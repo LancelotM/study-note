@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+  <ul ng-init="list=[200,40,11,908]">
+    <li ng-repeat="tmp in list">{{$index}}</li>
+  </ul>
+
+  <ol>
+    <li ng-repeat="(key,value) in list">
+      {{"key is "+key+" value is "+value}}
+    </li>
+  </ol>
+
+  <span ng-init="car={name:'BWM',price:30}"></span>
+  <div>
+    <a ng-repeat="tmp in car">{{tmp}}</a>
+  </div>
+
+  <div>
+    <a ng-repeat="(key,value) in car">
+      {{"key is "+key+" value is "+value}}
+    </a>
+  </div>
+
+</body>
+</html>

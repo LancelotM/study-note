@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+  <style>
+    .accordion>.title{/*背景#eee,边框#aaa,内边距6,字体1.5,粗体,鼠标变手指*/
+      background:#eee;
+      border:1px solid #aaa;
+      padding:6px;
+      font-size:1.5em;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    .accordion>.content{
+      /*边框#aaa,内边距6,高度60*/
+      border:1px solid #aaa;
+      padding:6px;
+      height:0;
+      overflow:hidden;
+      background-color:#fff;
+      transition:all .5s linear;
+    }
+    .accordion>.content.open{ 
+      height:100px;
+      background-color:#afa;
+    }
+  </style>
+ </head>
+ <body>
+<!--   div.accordion>(div.title[data-toggle='title']+div.content>p>lorem)*3 -->
+	<div class="accordion">
+    <div class="title" data-toggle="title">《西游记》简介</div>
+    <div class="content open">
+      <p>一个和尚和四个动物的故事: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non suscipit explicabo tenetur corrupti facere labore mollitia illum deserunt excepturi pariatur libero voluptatibus sit aspernatur. Cum consequatur et laborum perspiciatis aliquid!</p>
+    </div>
+    <div class="title" data-toggle="title">《水浒传》简介</div>
+    <div class="content">
+      <p>105个男人和3个女人的故事: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni reiciendis eligendi ullam voluptatibus ratione vel ut veritatis accusamus odit quisquam ex rerum placeat ipsum pariatur nam culpa omnis eos perspiciatis.</p>
+    </div>
+    <div class="title" data-toggle="title">《红楼梦》简介</div>
+    <div class="content">
+      <p>一个男人和一群女人的故事: Lorem ipsum dolor sit amet, consectetur adipisicing elit. In tempora quos iste quia animi obcaecati sint maxime nihil est quod. Sint pariatur illo dolorem velit reprehenderit explicabo itaque porro culpa.</p>
+    </div>
+  </div>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //为class为accordion的元素添加单击事件委托
+      //要求: 只有data-toggle="title"的元素才响应
+    $(".accordion").on(
+      "click","[data-toggle='title']",
+      function(){//处理函数: 
+        //清除当前元素的下一个兄弟content的兄弟中class为open的元素上的open
+//        $(this).next().siblings(".open")
+//               .removeClass("open");
+        //为当前元素的下一个兄弟content切换open
+//        $(this).next().toggleClass("open")
+        //链式操作
+        $(this).next().toggleClass("open")
+               .siblings(".open")
+               .removeClass("open");
+      }
+    );
+  </script>
+ </body>
+</html>

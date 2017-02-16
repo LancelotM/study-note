@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+/*
+      var emps=[];//创建空数组emps
+      var input;//声明变量input
+ //请用户反复输入员工姓名
+ while(input=prompt("输入姓名:")!=="exit"){
+   //将员工姓名追加到数组中
+   emps[emps.length]=input;
+ }
+      console.log(String(emps));//输出emps
+*/
+      //找出arr中最大的元素值
+      function getMax(arr){
+        //从1开始遍历arr中每个元素，同时声明max为arr中第0个元素
+          //如果当前元素>max,就将max改为当前元素
+        for(var i=1,max=arr[0];
+            i<arr.length;
+            arr[i]>max&&(max=arr[i]),i++);
+        //(遍历结束)
+        return max;//返回max
+      }
+      测试:
+      console.log(
+        getMax([1,4,2,3]),//4
+        getMax([12,123,23,3])//123
+      );
+      
+      //在arr中，从fromi位置开始，找下一个val的位置i
+        //如果省略fromi，默认从0开始
+        //如果找不到，就返回-1
+      function indexOf(arr,val,fromi){
+        //如果fromi是undefined,就改为0
+        fromi===undefined&&(fromi=0);
+        //i从fromi开始遍历arr
+        for(;fromi<arr.length;fromi++){
+          //如果当前元素等于val,返回fromi 
+          if(arr[fromi]===val){
+            return fromi;
+          };
+        }//(遍历结束)
+        return -1//返回-1
+      }
+      //测试:
+      var arr=[1,2,3,2,1];
+             //0 1 2 3 4
+      console.log(
+        indexOf(arr,2),  //1
+        indexOf(arr,2,2),//3
+        indexOf(arr,2,4),//-1
+        indexOf(arr,4)   //-1
+      );
+    </script>
+  </body>
+</html>

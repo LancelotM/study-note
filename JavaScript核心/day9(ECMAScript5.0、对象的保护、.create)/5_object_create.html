@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      if(Object.create===undefined)
+        Object.create=function(father,props){
+          document.write(
+            "调用自定义的create<br>");
+          //新建一个空对象newObj;
+          //设置newObj继承father
+          //Object.setPrototypeOf(newObj,father);
+          function Mother(){}
+          Mother.prototype=father;
+          var newObj=new Mother();
+          Mother=null;
+          //用Object.defineProperties为newObj添加props中的所有新属性
+          //遍历props中每个属性
+          for(var key in props){
+            //为newObj添加新属性:
+              //名为key, 值为props中当前属性的value特性值
+            newObj[key]=props[key].value;
+          }//(遍历结束)
+          return newObj;//返回newObj
+        }
+      var father={bal:1000000000,car:"infiniti"};
+      var lilei=Object.create(father,{
+        //Object.defineProperties
+        phone:{
+          value:"iphone7s plus",
+          writable:true, enumerable:true
+        },
+        house:{
+          value:"180m2",
+          writable:true, enumerable:true,
+        }
+      });
+//      var hmm=Object.create(father,{
+//        bao:{
+//          value:"LV",
+//          writable:true,
+//          enumerable:true
+//        }
+//      });
+//      console.log(lilei==father, hmm==father );
+//      console.log(
+//        lilei.__proto__==father,
+//        hmm.__proto__==father
+//      );
+//      console.dir(lilei);
+//      console.dir(hmm);
+      for(var key in lilei){
+        document.write(
+          key+" : "+lilei[key]+"<br>");
+      }
+    </script>
+  </body>
+</html>

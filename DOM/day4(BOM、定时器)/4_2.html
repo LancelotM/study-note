@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Js版带表盘的时钟</title>
+  <meta charset="utf-8"/>
+  <link rel="Stylesheet" href="css/4_2.css"/>
+ </head>
+ <body>
+  <div id="clock">
+	<div id="h"></div>
+	<div id="m"></div>
+	<div id="s"></div>
+	<div id="a1">I</div>
+	<div id="a2">II</div>
+	<div id="a3">III</div>
+	<div id="a4">IIII</div>
+	<div id="a5">V</div>
+	<div id="a6">VI</div>
+	<div id="a7">VII</div>
+	<div id="a8">VIII</div>
+	<div id="a9">IX</div>
+	<div id="a10">X</div>
+	<div id="a11">XI</div>
+	<div id="a12">XII</div>
+  </div>
+  <script>
+    function task(){
+      //获得当前时间now
+      var now=new Date();
+      var s=now.getSeconds();//获得s
+      //计算s对应的角度sDeg
+      var sDeg=s/60*360;
+      var m=now.getMinutes();//获得m
+      //计算m对应的角度mDeg
+      var mDeg=(m*60+s)/3600*360;      
+      var h=now.getHours();//获得h
+      h>=12&&(h-=12);//如果h>=12,就h-12
+      //计算h对应的角度hDeg
+      var hDeg=(h*3600+m*60+s)/(3600*12)*360;
+      //设置id为s的元素的style的transform属性值为"rotate(sDegdeg)"
+      document.getElementById("s")
+              .style.transform=
+                "rotate("+sDeg+"deg)";
+      //设置id为m的元素的style的transform属性值为"rotate(mDegdeg)"
+      document.getElementById("m")
+              .style.transform=
+                "rotate("+mDeg+"deg)";
+      //设置id为h的元素的style的transform属性值为"rotate(hDegdeg)"
+      document.getElementById("h")
+              .style.transform=
+                "rotate("+hDeg+"deg)";
+    }
+    task();
+    setInterval(task,1000);
+  </script>
+ </body>
+</html>

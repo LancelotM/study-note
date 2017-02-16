@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <svg id="s" width="600" height="600">
+    <rect width="50" height="50" x="0" y="0" id="r"></rect>
+  </svg>
+  <script>
+    function rc(){
+      var r=Math.floor(Math.random()*256);
+      var g=Math.floor(Math.random()*256);
+      var b=Math.floor(Math.random()*256);
+      return `rgb(${r},${g},${b})`;
+    }
+    var timer=setInterval(function(){
+      var x= parseInt(r.getAttribute('x'));
+      if(x<550){
+        x+=5;
+        r.setAttribute('x',x);
+        r.setAttribute('fill',rc());
+      }else{
+        clearInterval(timer)
+      }
+      console.log(x)
+
+    },41)
+  </script>
+</body>
+</html>

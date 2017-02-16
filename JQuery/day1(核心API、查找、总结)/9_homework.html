@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>...</title>
+  <style>
+    a{text-decoration:none; color:#000}
+    .dropdown{position:relative}
+    .dropdown-menu{
+      list-style:none; margin:0; padding:0;
+      border:1px solid #aaa;
+      box-shadow:0 0 6px #aaa;
+      position:absolute;
+    }
+    .dropdown-menu>li{
+      padding:6px 20px 6px 6px;
+    }
+    .fade{/*起始状态*/
+      opacity:0; transition: opacity .5s linear
+    }
+    .in{opacity:1;}/*结束状态*/
+  </style>
+ </head>
+  
+ <body>
+  <div class="dropdown">
+    <a data-trigger="dropdown" href="#">Dropdown</a>
+    <ul class="dropdown-menu fade">
+	    <li><a>Action</a></li>
+      <li><a>Another action</a></li>
+      <li><a>Something else here</a></li>
+	    <li><hr></li>
+      <li><a>Separated link</a></li>
+    </ul>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+      //为data-trigger为dropdown的元素绑定单击事件
+      $('[data-trigger="dropdown"]').click(
+        function(e){
+          e.preventDefault();
+          //设置当前元素的下一个兄弟元素的display为
+          //获取当前元素的下一个兄弟元素的display属性,如果是none，就改为block，否则就改为none
+//          $(this).next().css("display",
+//            $(this).next().css("display")=="none"?"block":"none"
+//          )
+//          //如果当前元素的下一个兄弟有in class
+//          if($(this).next().hasClass("in"))
+//            //就移除当前元素的下一个兄弟的in
+//            $(this).next().removeClass("in");
+//          else//否则
+//            //就为当前元素的下一个兄弟添加in
+//            $(this).next().addClass("in");
+          $(this).next().toggleClass("in");
+        }
+      );
+    </script>
+  </div>
+ </body>
+</html>

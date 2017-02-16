@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		input.error{box-shadow:0 0 6px red}
+		label.error{color:red;}
+	</style>
+ </head>
+ <body>
+  <h1>jQuery.validate表单验证组件的使用</h1>
+	<form id="form-msg">
+		用户名: <input type="text" name="uname"><br>
+		密码名: <input id="upwd1" type="password" name="upwd1"><br>
+		确认密码: <input  type="password" name="upwd2"><br>
+		邮箱名: <input type="text" name="mail"><br>
+		个人网站: <input type="text" name="site"><br>
+		生日: <input name="birth"><br>
+		手机号: <input name="mobile"><br>
+		<input type="submit" value="提交">	
+	</form>
+
+	<script src="js/jquery-1.11.3.js"></script>
+	<script src="js/jquery.validate.js"></script>
+	<script>
+		jQuery.validator.addMethod("mobile",
+			function(val){
+				return /^(\s*|1[34578]\d{9})$/.test(val);
+			},"手机号格式不正确");
+		$("#form-msg").validate({
+			rules:{
+				uname:"required",
+				upwd1:{
+					required:true,
+					//minlength:6,
+					//maxlength:12,
+					rangelength:[6,12],
+				},
+				upwd2:{
+					equalTo:"#upwd1",
+				},
+				mail:{
+					required:true,
+					email:true,
+				},
+				site:"url",
+				birth:"date",
+				mobile:"mobile"
+			},
+			messages:{
+				uname:"验证错误",
+				upwd1:{
+					required:"密码必填",
+					//minlength:"至少6位",
+					//maxlength:"最多12位",
+					rangelength:"6~12位",
+				},
+				upwd2:{
+					equalTo:"前后两次输入密码不一致",
+				},
+				mail:{
+					required:"必填",
+					email:"邮箱格式不正确",
+				},
+				site:"网址格式不正确",
+				birth:"日期格式不正确",
+			},
+		});
+	</script>
+ </body>
+</html>

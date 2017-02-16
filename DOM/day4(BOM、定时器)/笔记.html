@@ -1,0 +1,88 @@
+1、***BOM（Browser Object Mode）:专门操作浏览器窗口的API————没有标准
+	DHTML对象模型：
+		window：2个角色
+			1、代替global作为全局作用域对象
+				所有全局函数和全局变量都是window的成员
+			2、封装所有的 DOM 和 BOM的 API
+				history		当前窗口打开后成功访问的历史记录
+					原理：
+						保存当前窗口打开成功访问过的URL的历史记录栈
+				location	当前窗口正在打开的URL
+				document	DOM是的根节点，包含所有网页内容
+				screen		当前显示设备的信息
+				navigator	浏览器的配置信息（版本，名称，插件，cookie）
+				event		定义了浏览器中所有事件
+		window: 指代当前浏览器窗口对象		
+			1、打开关闭窗口
+				打开:open("URL","name(target)")
+				关闭:close();
+
+				打开一个链接，共有几种方式
+					1、在当前窗口打开，可后退
+						html:<a href="" target="_self"></a>
+						js:open("URL","_self")
+					2、在当前窗口打开，禁止后退
+						html:
+						js:location.replace("U RL")
+					3、在新窗口打开，可打开多个
+						html:<a href="" target="_blank"></a>
+						js:open("URL","_blank")
+					4、在新窗口打开，只能打开1个
+						html:<a href="" target="blank"></a>
+						js:open("URL","TMD")
+					每个窗口都有一个唯一的name属性
+					name:在内存中唯一标识一个窗口的名称
+					规定：同时只能打开一个相同name的窗口
+						预定义：
+							_self:和当前窗口使用相同的name
+							_blank:不指定自定义name，由浏览器随机分配
+			2、窗口大小和位置
+				1、窗口大小
+					文档显示区大小：window.innerWidth/innerHeight
+					调整：2个机会
+						1、在打开窗口时，就规定大小
+							var config="left=? top=? width=? height=?";
+							open("URL","name",config)
+						2、打开窗口后再调整（基本被禁用）
+							window.resizeTo(width,height)
+							window.resizeBy(width增量,height增量)
+				2、窗口位置:窗口左上角距离屏幕左上角的位置
+					window.screenLeft/X
+					window.screenTop/Y
+					调整：
+						moveTo(width,height)
+						moveBy(width增量,height增量)
+			3、*****定时器:(动画)
+				什么是：让程序按照指定时间执行一项任务
+				场合：
+					1、让程序每隔一段时间间隔反复执行一项任务————周期性定时器
+					2、让程序等待一段时间后自动执行一项任务————一次性定时器
+				如何：3步
+					1、周期性定时器：
+						1、任务函数task
+						2、启动定时器：将task放入定时器中，并设定时间间隔
+							timer=setInterval(task,ms(间隔时间));
+							timer是唯一标识一个定时器实例的序号
+							强调：task不能加(),因为是传递给定时器去回调执行
+						3、停止定时器：
+							clearInterval(timer);
+							清空timer timer=null;
+
+							问题：定时器往往需要自动停止
+							解决：在任务函数中判断临界值
+									未达到临界值，继续执行任务
+									否则停止定时器
+					2、一次性定时器：
+						1、任务函数task
+						2、启动定时器：将task放入定时器中，并设定时间间隔
+							timer=setTimeout(task,ms(等待时间));
+							timer是唯一标识一个定时器实例的序号
+							强调：task不能加(),因为是传递给定时器去回调执行
+						3、停止定时器：(其实是在执行之前，停止等待)
+							clearTimeout(timer);
+							如果只有一句话的时候，可以放在 task 中
+								setTimeout("close",ms(等待时间));
+								清空timer timer=null;
+				
+				定时器原理：
+					定时器中的回调函数，必须在主程序所有语句执行完，最后才能开始执行！ 

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#links a{
+				display:inline-block;
+				width:100px;
+				border:1px solid #000;
+				background:#ccc;
+			}
+			#content{
+				width:350px;
+				height:350px;
+				padding:15px;
+				border:1px solid #666;
+				margin-top:20px;
+			}
+
+			#content img{
+				display:none;
+			}
+			#content img:target{
+				display:block;
+			}
+			#img2:target{
+				/*缩小*/
+				transform:scale(0.5);
+			}
+			#img3:target{
+				/*左转:逆时针*/
+				transform:rotate(-90deg);
+			}
+			#img4:target{
+				/*右转:顺时针*/
+				transform:rotate(90deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="links">
+			<a href="#img1">原始</a>
+			<a href="#img2">缩小</a>
+			<a href="#img3">左转</a>
+			<a href="#img4">右转</a>
+		</div>
+		<div id="content">
+			<img id="img1" src="Images/p001.jpg">
+			<img id="img2" src="Images/p002.jpg">
+			<img id="img3" src="Images/p003.jpg">
+			<img id="img4" src="Images/p004.jpg">
+		</div>
+	</body>
+</html>

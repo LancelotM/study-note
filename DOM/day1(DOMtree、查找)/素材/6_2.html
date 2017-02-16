@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>使用Selector API实现购物车客户端计算</title>
+<meta charset="utf-8" />
+<style>
+	table{width:600px; text-align:center;
+		border-collapse:collapse;
+	}
+	td,th{border:1px solid black}
+	td[colspan="3"]{text-align:right;}
+</style>
+</head>
+<body>
+	<table id="data">
+		<thead>
+			<tr>
+				<th>商品名称</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>小计</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>iPhone6</td>
+				<td>&yen;4488</td>
+<td>
+<!--为当前按钮绑定单击事件,事件发生时自动调用calc -->
+	<button onclick="calc(this)">-</button>
+	<span>1</span>
+	<button onclick="calc(this)">+</button>
+</td>
+				<td>&yen;4488</td>
+			</tr>
+			<tr>
+				<td>iPhone6 plus</td>
+				<td>&yen;5288</td>
+				<td>
+				<button onclick="calc(this)">-</button>
+				<span>1</span>
+				<button onclick="calc(this)">+</button>
+				</td>
+				<td>&yen;5288</td>
+			</tr>
+			<tr>
+				<td>iPad Air 2</td>
+				<td>&yen;4288</td>
+<td>
+  <button onclick="calc(this)">-</button>
+	<span>1</span>
+	<button onclick="calc(this)">+</button>
+</td>
+				<td>&yen;4288</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">Total: </td>
+				<td>&yen;14064</td>
+			</tr>
+		</tfoot>
+	</table>
+  <script src="js/6_2.js"></script>
+</body>
+</html>

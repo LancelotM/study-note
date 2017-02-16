@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <svg id="s" width="600" height="600">
+  </svg>
+  <script>
+    var data=[
+      {"label":"1月","value":350},
+      {"label":"2月","value":300},
+      {"label":"3月","value":450},
+      {"label":"4月","value":380}
+    ];
+    var html='';
+    for(var i=0;i<data.length;i++){
+      var d=data[i];
+      html+=`
+        <rect width="50" height="${d.value}" x="${i*80}" y="10"></rect>
+      `;
+    }
+    s.innerHTML=html
+  </script>
+</body>
+</html>

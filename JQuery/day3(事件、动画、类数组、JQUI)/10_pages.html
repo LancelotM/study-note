@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,user-scalable=no">
+	<style>
+		body { margin: 0; }
+		.page {
+			position: fixed;
+			left: 0; right: 0; top: 0; bottom: 0;
+		}
+	</style>
+ </head>
+ <body>
+	<div class="page" style="left: 0; background:#faa;">
+		<h1>第一个PAGE</h1><hr>
+	</div>
+	<div class="page" style="left: 100%; background:#afa;">
+		<h1>第二个PAGE</h1><hr>
+	</div>
+  <div class="page" style="left: 200%; background:#aaf;">
+		<h1>第三个PAGE</h1><hr>
+	</div>
+  <div class="page" style="left: 200%; background:#ffa;">
+		<h1>第四个PAGE</h1><hr>
+	</div>
+  <div class="page" style="left: 200%; background:#aff;">
+		<h1>第五个PAGE</h1><hr>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+    /*
+           0    1     2
+      0  -100   0    100
+      1  -200  -100   0
+      2  -300  -200  -100
+    */
+    var n=$(".page").size();//获得总页数n
+    //对每个page执行相同的操作
+                           //i自动获得当前下标
+    $(".page").each(function(i){
+      if(i!=n-1){//最后一个不能单击
+        $(this).click(function(){
+         //从0开始遍历每个page,并设置第一个page的left为-100*(i+1)作为之后每个page的参照
+          for(var j=0,left=-100*(i+1);
+              j<n;
+              left+=100,j++){//每移动一个page，就见left+100，作为下一个page的left
+            $(`.page:eq(${j})`)
+              //让第j个page移动到对应的left位置
+              .animate({left:`${left}%`},1000);
+          }
+        });
+      }
+    })
+    //找到.class为page的第一个div绑定单击事件
+//    $(".page:eq(0)").click(function(){
+//      //对当前div启动动画:2秒,left:-100%
+//      //对当前div的下一个兄弟启动动画:2秒,left:0
+//      $(this).animate({left:"-100%"},2000)
+//             .next().animate({left:"0%"},2000)
+//             .next().animate({left:"100%"},2000)
+//    });
+//    $(".page:eq(1)").click(function(){
+//      //对当前div启动动画:2秒,left:-100%
+//      //对当前div的下一个兄弟启动动画:2秒,left:0
+//      $(this).prev().animate({left:"-200%"},2000)
+//             .next().animate({left:"-100%"},2000)
+//             .next().animate({left:"0%"},2000)
+//    });
+	</script>
+ </body>
+</html>

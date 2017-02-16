@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>...</title>
+</head>
+<body>
+  <ul class="btn-group">
+    <li>&lt;&lt;</li>
+    <li>||</li>
+    <li>|&gt;</li>
+    <li>&gt;&gt;</li>
+  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>User Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>东</td>
+        <td>张</td>
+        <td>@zhangsir</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>大旭</td>
+        <td>赵</td>
+        <td>@xuxu</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>化</td>
+        <td>文</td>
+        <td>@huahua</td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $("table").css({
+      borderCollapse:"collapse",
+      width:"100%",
+    });
+    $("table th,table td").css(
+      "padding","6px 12px");
+    $("table th").css(
+      "borderBottom","2px solid #aaa");
+    $("table tr:not(:last) td").css(
+      "borderBottom","1px solid #aaa");
+    $("table>tbody>tr:even").css(
+      "background","#afa");
+
+    $(".btn-group>li").css({
+        float:"left",
+        listStyle:"none",
+        border:"1px solid #aaa",
+        padding:"6px 12px"
+    });
+    $(".btn-group>li+li").css(
+      "borderLeft","none");
+    $(".btn-group>li:first-child").css({
+      borderTopLeftRadius:4,
+      borderBottomLeftRadius:4
+    });
+    $(".btn-group>li:last-child").css({
+      borderTopRightRadius:4,
+      borderBottomRightRadius:4
+    });
+  </script>
+</body>
+</html>

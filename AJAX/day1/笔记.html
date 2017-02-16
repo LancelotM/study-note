@@ -1,0 +1,48 @@
+1、AJXA(Asynchronous Javascript And XML)
+	底层原理：在客户端浏览网页的同时，浏览器底层使用XHR(XML HTTP Request)对象，向服务器发起HTTP请求，并接受服务器的响应消息————浏览的同时服务器也在工作
+2、使用AJAX的步骤
+	1、创建XHR对象
+		var xhr=new XMLHttpRequest();
+	2、监听服务器返回响应消息事件
+	3、使用XHR连接到Web服务器
+	4、使用XHR对象发起异步的HTTP请求消息
+3、XHR 对象的常用属性和方法
+	1、XHR 对象的成员属性
+		.readyState:0	表示XHR的当前状态，即 请求-响应 过程进行到哪一步
+			可取值:5个  而且只能一次递增不能回退,自动改变不能手工赋值
+				0 - UNSENT	请求消息尚未发送
+				1 - OPENED	已打开到服务器的连接
+				2 - HEADERS_RECEIVED 客户端已接收到响应消息起始行和头部
+				3 - LOADING	XHR正在加载响应消息的主体
+				4 - DONE	XHR已经接受完成响应消息
+		.status:0	响应消息的状态码,只有 xhr.readyState变为 2 后才有值
+		.statusText:"" 响应消息中的原因短句,只有 xhr.readyState变为 2 后才有值
+		.responseText:"" 响应消息的主体内容,只有 xhr.readyState变为 3 才开始有值,当变为 4 后才有值
+	2、XHR 对象的成员事件
+		onreadystatechange: xhr.readyState 属性值的每次改变都会触发该事件
+	3、XHR 对象的成员方法
+		.open(method,uri,isAsyn): 用来打开到服务器的连接
+		.send(body/null): 发送请求信息
+		.setRequestHeader(name,value): 设置请求消息头部
+		.setResponseHeader(name): 获取响应消息头部
+		.setAllResponseHeaders(name): 获取响应消息中的所有头部
+4、XML语法
+	eXtensible Makup Language ,可扩展的标签语言，本身是一种字符串格式，用于描述批量复合数据，语法：
+		1、所有数据放在标签中:
+			<名>数据</名>
+			<名/>
+		2、整个XML只能有一个根标签
+		3、所有标签名都可以自定义，但严格区分大小写，且开始和结束标签必须完全一致
+		4、每个标签都可以自定义属性，但是属性必须有值，值必须用 '' 或 "" 括起来
+		5、每个标签都可以定义任意的自标签，标签可以嵌套，但是不能交叉
+	注意：HTML 和 XML的区别
+		HTML：
+			语法随意，标签预定义好了，用于描述网页的结构
+		XML：
+			语法严格，标签都是自定的，用于描述数据
+5、JSON字符串格式的语法
+	在Web编程领域可以取代XML字符串格式
+	1、数据分为2中：[] {}
+	2、整个字符串要么是一个数组、要么是一个对象
+	3、数组中可以包含多个类型：数组、boolean、字符串、null、[]、{}
+	4、对象中可以包含多个键值对，键必须用""双引号，值要是字符串的话也要用""

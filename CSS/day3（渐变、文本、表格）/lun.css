@@ -1,0 +1,103 @@
+body{
+				font-size:12px;
+			}
+			#discuss{
+				width:990px;
+			}
+			#discuss>div.mt{
+				/*宽度，高度，边框，背景颜色*/
+				width:990px;
+				height:26px;
+				border:1px solid #ddd;
+				border-top:2px solid #999;
+				background:#f7f7f7;
+			}
+			#discuss>div.mt>a{
+				width:100px;
+				height:30px;
+				float:left;
+				text-align:center;
+				text-decoration:none;
+				line-height:29px;
+			}
+			#discuss>div.mt>.a1{
+				background:#FFFFFF;
+				margin-top:-5px;
+				border:1px solid #ddd;
+				border-top:2px solid #E95958;
+				border-bottom:0;
+				color:#E95958;
+			}
+			#discuss-content{
+				/*宽度，下边框*/
+				width:990px;
+				border-bottom:1px solid #ddd;
+			}
+
+			/*表格*/
+			#discuss-datas{
+				width:990px;
+			}
+			#discuss-datas th{
+				/*文本颜色:#666*/
+				color:#666;
+				/*上下内边距*/
+				padding:5px 0;
+				/*下边框*/
+				border-bottom:1px solid #ddd;
+			}
+
+			/*.col1*/
+			#discuss-datas .col1{
+				/*宽度，文本左对齐*/
+				width:620px;
+				text-align:left;
+			}
+
+			#discuss-datas td{
+				/*文本颜色，水平对齐方式*/
+				color:#9F9A9C;
+				text-align:center;
+				/*边框*/
+				border-bottom:1px dotted #ddd;
+				/*上下内边距*/
+				padding:5px 0;
+			}
+
+			#discuss-datas a{
+				/*文本颜色，去掉下划线*/
+				color:#005aa0;
+				text-decoration:none;
+			}
+			#discuss-datas a:hover{
+				text-decoration:underline;
+			}
+
+			#discuss-datas i{
+				/*20*17*/
+				padding-left:20px;
+				padding-bottom:3px;
+				padding-top:2px;
+				background:url(iconlist_1.png) no-repeat;
+				margin-right:5px;
+
+			}
+			#discuss-datas i.shai{
+				background-position:-110px -220px;
+			}
+			#discuss-datas i.lun{
+				background-position:-152px -220px;
+			}
+			#discuss-content>#others>.fl {
+				float:left;
+				color:#9F9A9C;
+				text-decoration:none;
+			}
+			#discuss-content>#others>.fr {
+				float:right;
+				color:#9F9A9C;
+				text-decoration:none;
+			}
+			#discuss-content>#others>.fb {
+				clear:both;
+			}

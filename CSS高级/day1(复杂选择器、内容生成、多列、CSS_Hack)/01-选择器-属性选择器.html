@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			/*1、匹配 页面所有附带 id 属性的元素，将其文本改为 red 色*/
+			[id]{color:red;}
+			p[id]{background:yellow;}
+			div[id=d1]{
+				font-weight:bold;
+				font-style:italic;
+			}
+
+			p[class~=redColor]{
+				font-size:48px;
+			}
+
+			/*p[class^=imp]{
+				text-decoration:line-through;
+
+			}*/
+			[id$="1"]{
+				text-decoration:overline;
+			}
+			
+			/*匹配页面上所有 class 属性值中包含 p字符的元素*/
+			[class*=p]{
+				text-decoration:underline;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">id为d1的元素</div>
+		<div id="d2">id为d2的元素</div>
+		<p id="p1" class="p1">id为p1的元素</p>
+		<p class="important redColor">class属性值为important以及redColor的p元素</p>
+		<p class="impress">class为impress的p标记</p>
+	</body>
+</html>

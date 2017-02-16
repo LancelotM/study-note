@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function getMoney(){
+			var price=prompt("请输入商品单价"),cout=prompt("请输入商品数量");
+			var total=price*cout;
+			console.log("您共消费："+total);
+			var money=prompt("收款金额")
+			var change=money-total;
+			change>=0 && console.log("找您："+change);
+			change<0 && console.log("您付款金额不足，请继续付款");
+		}
+	</script>	
+	<button onclick="getMoney();">收款</button>
+</body>
+</html>

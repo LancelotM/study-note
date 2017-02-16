@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var scores=[];
+		scores["Math"]=81;
+		scores["Chinese"]=53;
+		scores["English"]=89;
+		console.dir(scores);
+		for(var key in scores){
+			console.log(key+":"+scores[key]);
+		}
+
+		function unique1(arr){
+			for(var i=0,result=[];i<arr.length;i++){
+				for(var j=0;j<result.length;j++){
+					if(result[j]===arr[i]){break;}
+				}
+				if(j===result.length){result[result.length]=arr[i];}
+			} 
+			return result;
+		}
+
+		var arr=[1,2,3,4,5,6,2,1,3,4,1];
+		console.log(String(unique1(arr)));
+		
+		function unique2(arr){
+			for(var i=0,result=[],hash=[];i<arr.length;i++){
+				if(hash[arr[i]]===undefined){
+					result[result.length]=arr[i];
+					hash[arr[i]]=true;
+				}
+			}
+			return result;
+		}
+		var arr=[1,2,3,4,5,2,1,3,4,1];
+		console.log(String(unique2(arr)));
+
+	for(var i=0,arr=[];i<1000000;i++){
+		arr[i]=Math.floor(Math.random()*1000);
+	}
+	console.time("unique1");
+	unique1(arr);
+	console.timeEnd("unique1")
+	console.time("unique2");
+	unique2(arr);
+	console.timeEnd("unique2")
+	</script>
+</body>
+</html>

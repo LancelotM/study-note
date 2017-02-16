@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="AngularJS-1.4.1/js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myControl">
+  <p>{{name}}</p>
+  <p ng-bind='name'></p>
+  <button ng-dblclick="show()">click me</button>
+</div>
+<script>
+  //Model
+  var app=angular.module('myApp',['ng']);
+  //Controller
+  app.controller('myControl',function($scope){
+    console.log('in myControl');
+    //View
+    $scope.name='Web1609';
+    $scope.show=function(){
+      console.log('function show is called')
+    }
+  });
+
+</script>
+</body>
+</html>

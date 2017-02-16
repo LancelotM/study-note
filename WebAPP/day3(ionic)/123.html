@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+  <style>
+    img{
+      width: 50%;
+    }
+  </style>
+</head>
+<body>
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<ion-content>
+  <h1 class="text-center">我的订单</h1>
+  <div class="card">
+    <div class="list">
+      <div class="item">
+        <div class="row row-center">
+          <div class="col col-20">序号</div>
+          <div class="col col-30">菜品</div>
+          <div class="col col-30">下单时间</div>
+          <div class="col col-20">联系人</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="row row-center">
+          <div class="col col-20">1</div>
+          <div class="col col-30">
+            <img src="img/1.jpg" >
+          </div>
+          <div class="col col-30">2016-11-11</div>
+          <div class="col col-20">tony</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="row row-center">
+          <div class="col col-20">1</div>
+          <div class="col col-30">
+            <img src="img/2.jpg" >
+          </div>
+          <div class="col col-30">2016-11-11</div>
+          <div class="col col-20">tony</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="row row-center">
+          <div class="col col-20">1</div>
+          <div class="col col-30">
+            <img src="img/3.jpg" >
+          </div>
+          <div class="col col-30">2016-11-11</div>
+          <div class="col col-20">tony</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+</script>
+</body>
+</html>

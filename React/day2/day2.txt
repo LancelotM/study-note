@@ -1,0 +1,88 @@
+命令行：
+https://github.com/facebookincubator/create-react-app
+
+一、state 
+state状态：只要更新state，就会根据state重新渲染用户界面，react来处理如何最高效的更新DOM。（类似ng中的方向1数据绑定）
+
+how？
+初始化状态： getInitialState  定义状态（返回一个对象）
+设置状态： setState({}) 修改状态
+读取状态： this.state.状态名称
+
+练习：周六Main、A、B通信的案例，数据存储的result替换成状态来完成数据的读写。
+
+二、React组件的生命周期
+
+生命周期的3个阶段：
+mount 插入到DOM
+update 重新渲染
+unmount 从DOM移除
+
+3个阶段的处理函数：
+componentWillMount() 准备插入
+componentDidMount()  已经插入
+
+componentWillUpdate(props，state) 准备更新
+componentDidUpdate(props，state)  已经更新
+
+componentWillUnmount（） 准备从DOM中移除
+
+练习： state和生命周期的处理函数
+
+在组件插入到真实DOM节点之后，启动定时器修改组件的透明度（0-1）
+
+状态：透明度的值 opacityValue
+组件：
+style='opacity:{this.state.opacityValue}'--->
+style={{opacity:this.state.opacityValue}}
+
+三、事件
+
+将React组件中的方法分为两大类：
+①React自有的方法：生命周期、render。。
+ComponentWill/DidMount/Update/Unmount/render/getInitialState
+②用户自定义的方法，遵循驼峰式命名：handleChange handleClick （handle+eventName）
+采用标准的事件对象。
+
+基于事件，完成功能：
+组件，div，鼠标的滚轮在div上滚动时，改变背景色(随机颜色)
+
+①创建组件
+②指定事件 onWheel  handleWheel
+③状态（初始化、设置、读取）
+
+四、表单组件
+
+表单元素有以下的属性设置都是受控组件：
+value (input textarea)
+checked (checkbox radio)
+selected( option)
+
+其余的都是非受控组件。
+
+结合着onChange、value/checked一起来解决受控组件的问题。
+
+五、toDoList
+
+功能点：
+①输入数据，在列表中增加一个待做事项
+②点击delete按钮，从列表中删除一个事项
+
+步骤1：将应用划分成组件 ToDoBox:ToDoInput + ToDoList(多个ToDoItem构成)
+步骤2：创建组件，并先能模拟数据显示出来
+步骤3: add
+	①初始化状态：数组
+	②添加向指定数组插入一条数据
+	③显示
+步骤4:delete
+	就是从数组中删除一条数据。
+
+
+
+
+
+
+
+
+
+

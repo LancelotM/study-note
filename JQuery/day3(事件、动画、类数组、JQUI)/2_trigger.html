@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+ </head>
+ <body>
+  <h1>使用代码触发事件</h1>
+  <button id="btn1">BTN1</button>
+  <button id="btn2">BTN2</button>
+	<script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $("#btn1").click(function(){
+      $("#btn2").trigger("click");
+    });
+    $("#btn2").click(function(){
+      alert($(this).html()+"被点中");
+    });
+  </script>
+
+ </body>
+</html>

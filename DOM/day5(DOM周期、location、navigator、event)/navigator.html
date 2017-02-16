@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      if(navigator.cookieEnabled){
+        document.write("已启用cookie，可记住密码<br>");
+      }else{
+        document.write("cookie已禁用，无法记住密码<br>");
+      }
+      function checkPlugin(pname){
+        //将navigator的plugins保存在plugins变量
+        var plugins=navigator.plugins;
+        //遍历plugins集合
+        for(var i=0;i<plugins.length;i++){
+          //如果当前插件的name等于pname
+          if(plugins[i].name===pname){
+            //输出:已安装pname插件
+            document.write(
+              "已安装"+pname+"插件<br>");
+            return;//退出函数
+          }
+        }//(遍历结束)
+        //输出:未安装pname插件，请下载
+        document.write(
+          "未安装"+pname+"插件，请下载...<br>");
+      }
+      checkPlugin("Shockwave Flash");
+      checkPlugin("Tencent QQ");
+      checkPlugin("Chrome PDF Viewer");
+
+      document.write(
+        "<h3>"+navigator.userAgent+"</h3>"
+      );
+      (function(){
+        var browser="unknown",
+            version="unknown";
+        //将userAgent临时保存在变量ua中
+        var ua=navigator.userAgent;
+        //如果ua中包含Firefox
+        if(ua.indexOf("Firefox")!=-1)
+          //修改browser为firefox
+          browser="Firefox";
+        //否则,如果ua中包含MSIE
+        else if(ua.indexOf("MSIE")!=-1)
+          //修改browser为MSIE
+          browser="MSIE";
+        //否则,如果ua中包含OPR
+        else if(ua.indexOf("OPR")!=-1)
+          //修改browser为OPR
+          browser="OPR";
+        //否则,如果ua中包含Chrome
+        else if(ua.indexOf("Chrome")!=-1)
+          //修改browser为Chrome
+          browser="Chrome";
+        //否则,如果ua中包含Safari
+        else if(ua.indexOf("Safari")!=-1)
+          //修改browser为Safari
+          browser="Safari";
+        document.write("<br>浏览器: "+browser);
+        
+        //如果browser不是unknown
+        if(browser!="unknown"){
+          //在ua中找browser的位置+browser的长度+1,保存在变量i中
+          var i=
+            ua.indexOf(browser)+browser.length+1;
+          //选取ua中i位置开始的3位字符，转为浮点数保存在version中
+          version=parseFloat(ua.slice(i,i+3));
+        }
+        
+        document.write("<br>版本: "+version);
+      })();
+    </script>
+  </body>
+</html>

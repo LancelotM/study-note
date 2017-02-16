@@ -1,0 +1,95 @@
+正课:
+1. *****OOP
+   原型链
+*****自定义继承
+
+1. 原型链: 
+  判断一个对象是不是数组类型,有几种方法: 4种
+  0. typeof X
+  1. 判断原型对象: 
+     obj.__proto__==Array.prototype
+         问题: __proto__是内部属性，可能不允许使用
+         Object.getPrototypeOf(obj)==Array.prototype
+              问题: 只能判断直接父对象是Array.prototype的情况
+                       无法判断间接继承Array.prototype的情况
+              解决: var bool=father.isPrototypeOf(child)
+                  判断father是否是child的父级对象
+                     不但检查直接父对象，且检查整个原型链！
+   2. 判断构造函数: 
+       每个原型对象都有一个constructor属性指回构造函数
+       obj.constructor==Array 
+       还可以用: obj instanceof Array
+          instance: 实例-用一个构造函数创建出的一个具体对象
+         比如: var lilei=new Student(...);
+                 称lilei是Student类型的一个实例
+                 实例化一个Student类型的对象lilei
+          检查整个原型链
+
+   要求不够严格: 只要有继承关系，就认为是数组
+   要求严格: 只有用数组类型创建的对象，才是真正的数组。
+
+   3. 检查对象的class属性
+      什么是class: 对象的内部属性，专门保存创建对象时使用的类型名。
+       只有一个办法获得class属性值: 
+          调用Object.prototype.toString();->"[object Class]"
+      问题: 所有内置对象都重写了Object中的toString
+         重写(override): 如果子对象觉得，父对象的成员不好用，可在本地定义同名的自有成员，覆盖父对象中的。
+         ——多态
+      解决: 用call强行借用
+        call: 强行借用一个本无法调用的方法
+        何时:  想调用一个原本无法调用的方法
+        如何: 想借用的函数.call(要替换的对象)
+             比如: Object.prototype.toString.call(obj)
+                         相当于: obj.toString()
+                         返回: "[object Class]"
+
+   4. Array.isArray(obj);
+      问题: ES5   IE9+
+      解决: 自定义isArray方法
+
+鄙视题: 对象实例方法 vs 构造函数方法
+     对象实例方法: 必须用一个对象实例才能调用的方法
+                            仅当前类型的对象可用！
+        对象实例方法一律保存在该类型的原型对象中，所有子对象共用。
+        何时: 一个方法只希望当前类型的子对象才能使用时
+     构造函数方法: 不需要任何对象实例，用构造函数即可直接调用的方法。
+       构造函数方法一律保存在构造函数对象上
+        何时: 一个方法的执行和对象的类型无关时
+
+2. *****自定义继承关系:
+    1. 修改单个对象的继承关系: 
+       obj.__proto__=father; 
+       问题: 内部属性: Object.setPrototypeOf(child,father);
+                   设置child继承father
+    2. 批量修改多个对象的继承关系: 
+       直接修改构造函数的prototype引用新的父对象
+       obj.prototype=father
+       强调: 必须在创建第一个子对象之前就换
+    3. 两种类型间的继承: 最像Java的继承
+      何时: 只要两种类型间包含相同的属性结构定义或相同的方法。
+      如何: 3步: 
+         1. 抽象出一个父类型
+             共同的属性定义，集中到父类型的构造函数中
+             共同的方法，集中到父类型的原型对象中
+         2. 在子类型构造函数中借用父类型构造函数
+              不能直接调用: this->window
+             应该用call，将this替换为当前正在创建的新对象
+               父类型构造.call(this,参数...)
+         3. 让子类型原型对象继承父类型原型对象
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+

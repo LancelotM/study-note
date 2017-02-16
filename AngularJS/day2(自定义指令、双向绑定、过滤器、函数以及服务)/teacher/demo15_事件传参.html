@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  <button ng-click="funcCall()">
+    调用myCtrl02当中的方法
+  </button>
+  <div ng-controller="myCtrl02">
+    <button ng-click="toChild()">发送到子作用对象</button>
+    <div ng-controller="myCtrl03">
+        <p>{{count}}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+
+      $scope.$on('event_parent', function (event,data) {
+        console.log('接收到了event_parent事件');
+        console.log(data);
+        $scope.funcCall = data;
+      })
+
+  })
+
+  app.controller('myCtrl02', function ($scope) {
+      $scope.toParent = function () {
+        console.log('toParent function is called');
+      }
+      $scope.$emit('event_parent',$scope.toParent)
+
+      $scope.toChild = function () {
+        $scope.number = 10;
+        $scope.$broadcast('event_child',$scope.number);
+      }
+  });
+
+  app.controller('myCtrl03', function ($scope) {
+      $scope.$on('event_child', function (event,data) {
+        $scope.count = data;
+      })
+  });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+框架：优秀的可以重复使用的代码,单独提取并封装,提高代码的复用性、开发速度,并保证良好的浏览器的兼容性
+判断框架：
+	1、框架适用的场景
+	2、如何使用
+	3、遇到了问题怎么解决
+1、常用的设计原则和设计模式
+	1、设计原则：
+		1、YANGI(You aren't gonna need it) 不写不需要的代码
+		2、KISS(Keep if simple and stupid) 代码越简单越好
+		3、DRY(Don't Repeat Yourself) 封装代码
+		4、高内聚低耦合 
+			内聚：一个模块内部的不同部分之间的关系
+			耦合：不同模块/组件的关系
+		5、SRP(single responsibility principle) 单一责任原则
+		6、OCP(open closed principle) 开闭原则
+			对扩展开放,对修改关闭
+		7、LCP(least knownledge principle) 最少知识法则
+	2、设计模式(23种 了解)
+		常用的设计模式： =》终极目标：模块化和复用
+			工厂方法模式、单例模式、适配器模式、解释器模式、观察者模式
+			MVC(Model View Controller)
+				模型数据 视图 控制器
+
+				MVC出现的原因：解耦(降低代码的耦合度)、职责的切分
+				
+				工作原理：当对视图操作的时候,触发控制器中的一些方法,在这些方法中对于数据的增删改查的操作,借助一些绑定显示,更新到视图
+2、认识AngularJS
+	1、什么是 AngularJS
+		ng是一个由Google维护的开源的框架,实现单页面应用程序,适用于数据操作比较频繁的场景
+	2、为什么 AngularJS
+		4大特征：
+			1、采用了 MVC 的设计模式
+			2、双向数据绑定
+			3、依赖注入
+			4、模块化设计
+	3、怎么使用 AngularJS
+		引入对应的JS文件
+		表达式：
+			语法：
+				{{表达式}}
+				作用：将表达式的结果输出到调用该表达式的元素的innerHTML中
+			常用的ng指令：是由 AngularJS 提供的,可以将指令用在HTML中作为扩展属性、扩展标签
+				1、ngAPP(在标签中添加属性 ng-app)
+					<html ng-app>||<body ng-app>
+					1、指定 AngularJS 的作用范围
+					2、自动载入并启动 ng 应用
+					注意：只能第一个ng-app可以生效
+				2、ngInit(添加属性 ng-init="变量名='值'")
+					1、初始化一些变量
+						<Anyd ng-init="name='Michael'">
+						注意：初始化多个变量时,用';'隔开即可
+					2、也可定义对象和数组
+						<Any ng-init="car={name:'BMW',price:50}">
+						<Any ng-init="list=[10,20,30]">
+				3、ngBind 将表达式的结果输出到调用该表达式的元素的innerHTML中,但是相对于{{}},解决在ng启动较慢时,{{}}闪烁的问题
+				4、ngRepeat 为HTML添加循环功能
+					<Any ng-repeat="临时变量 in 集合">
+					<Any ng-repeat="(下标变量名,值变量名) in 集合">
+					作用:对于制定的集合的每个成员,一次赋值给临时变量,将当前元素循环输出一遍
+				5、ngIf 为HTML添加选择功能
+					<ANY ng-if="表达式">
+					作用：表达式的结果为true,当前元素会挂在DOM树上,否则移除
+				6、ngShow/Hide
+					<ANY ng-show="表达式">
+					根据表达式输出结构,true=>显示 false=>隐藏
+					<ANY ng-hide="表达式">
+					根据表达式输出结构,true=>隐藏 false=>显示
+				7、ngSrc
+					<img ng-src="{{url}}">
+				8、ngDisabled
+				9、ngChecked
+				10、ngStyle/Class
+3、AngularJS如何实现MVC
+	M:model模型数据：JS定义的变量
+	V:view视图：增强过后的html,显示数据
+	C:controller控制器,负责数据的操作,function来处理
+
+	步骤:
+		1、声明一个模块
+			var app=angular.module('模块名','依赖列表');
+		2、注册模块
+			ng-app="模块名"
+		3、声明控制器
+			app.controller('控制器名',function(){})
+		4、调用控制器
+			ng-controller='控制器名'
+		5、操作：操作模型数据($scope是一个控制器的作用域对象,服务service,单例模式的对象)
+			$scope.name='显示的内容'
+		6、显示 在控制器范围内,通过ng指令或'{{}}'来显示数据
+			<p>{{name}}</p>
+			<p ng-bind='name'></p>
+		
+		事件:单机事件ngClick <button ng-click="方法名()">

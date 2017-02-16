@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <p ng-bind="money"></p>
+  <p ng-bind="money|currency:'¥'"></p>
+
+  <p ng-bind="nowDate"></p>
+  <p ng-bind="nowDate|date:yyyy-MM-dd"></p>
+
+  <p ng-bind="name"></p>
+  <p ng-bind="name|uppercase"></p>
+  <p ng-bind="name|lowercase"></p>
+
+  <ul>
+    <li ng-repeat="obj in list"
+      ng-bind='obj.name+" "+obj.age+" "+obj.score'></li>
+  </ul>
+  <ul>
+    <li ng-repeat="obj in list|orderBy:'score'"
+        ng-bind='obj.name+" "+obj.age+" "+obj.score'></li>
+  </ul>
+
+  <ol>
+    <li ng-repeat="obj in array"
+        ng-bind="obj.name"></li>
+  </ol>
+  <ol>
+    <li ng-repeat="obj in array|limitTo:3"
+        ng-bind="obj.name"></li>
+  </ol>
+
+  <p ng-bind="number"></p>
+  <p ng-bind="number|number:5"></p>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', function ($scope) {
+      $scope.money=20;
+      $scope.nowDate=new Date();
+      $scope.name='Lancelot';
+      $scope.list=[
+        {name:'Lucy',age:15,score:80},
+        {name:'Mike',age:20,score:40},
+        {name:'Nike',age:25,score:60}
+      ]
+      $scope.array=[
+        {name:'qwe'},
+        {name:'asd'},
+        {name:'zxc'},
+        {name:'qaz'},
+        {name:'wsx'}
+      ]
+      $scope.number=3.1415956;
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var arr=[1,2,3,4,5];
+      var evens=arr.filter(function(val){
+        return val%2==0;
+      });
+      var odds=arr.filter(function(val){
+        return val%2==1;
+      });
+      console.log(String(arr));
+      console.log(String(evens));
+      console.log(String(odds));
+
+      var r=arr.reduce(function(prev,val){
+        console.log("目前"+prev);
+        return prev+val;
+      },0);
+      console.log(r);
+      var arr2=[5,4,3,2,1];
+      r=arr2.reduce(function(prev,val){
+        return prev+val;
+      },r);
+      console.log(r);
+    </script>
+  </body>
+</html>

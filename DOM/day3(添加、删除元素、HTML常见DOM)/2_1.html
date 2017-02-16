@@ -1,0 +1,67 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>动态操作表格</title>
+<meta charset="utf-8" />
+<style>
+	table{width:500px; border-collapse:collapse;
+		text-align:center;
+	}
+	td{border:1px solid #ccc}
+	thead td{font-weight:bold;}
+</style>
+<script>
+	var data=[
+    {"id":1001,"name":'可口可乐',"price":2.5,"count":3000},
+    {"id":1003,"name":'百事可乐',"price":2.5,"count":5000},
+    {"id":1011,"name":'非常可乐',"price":2.3,"count":1000}
+	];
+</script>
+</head>
+<body>
+	<div id="data"></div>
+  <script>
+    //创建table
+    var table=document.createElement("table");
+    table.createTHead();//为table添加thead
+    //为thead添加tr
+    var tr=table.tHead.insertRow();
+    //遍历data中第一个商品的每个属性
+    for(var key in data[0]){
+      //为tr添加一个td,并设置td的内容为当前属性名
+      tr.insertCell().innerHTML=key;
+    }//(遍历结束)
+    //为tr添加一个td，内容为operate
+    tr.insertCell().innerHTML="operate";
+
+    //为table添加tbody
+    var tbody=table.createTBody();
+    //遍历data中每个商品
+    for(var i=0;i<data.length;i++){
+      var tr=tbody.insertRow();//为tbody添加tr
+      //遍历data中当前商品的每个属性
+      for(var key in data[i]){
+        //为tr添加td，并设置td的内容为当前属性值
+        tr.insertCell().innerHTML=data[i][key];
+      }//(遍历结束)      
+      var td=tr.insertCell();//为tr添加一个td
+      //在td中添加一个button
+      var btn=document.createElement("button");
+      //设置button的内容为delete
+      btn.innerHTML="delete";
+      //为btn添加单击事件:
+      btn.onclick=function(){//this->btn
+        var tr=this.parentNode.parentNode;
+        var pname=tr.cells[1].innerHTML;
+        if(confirm("go on deleting "+pname+"?")){
+          table.deleteRow(tr.rowIndex);
+        }
+      }
+      td.appendChild(btn);//将btn添加到td中
+    }//(遍历结束)
+    //将table添加到id为data的div中
+    document.getElementById("data")
+            .appendChild(table);
+  </script>
+</body>
+</html>

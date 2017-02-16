@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+
+  var MyComponent = React.createClass({
+    handleClick:function(){
+      console.log(
+      parseInt(this.refs.num1.value)+
+      parseInt(this.refs.num2.value));
+    },
+    render:function(){
+      return <div>
+      <input type="text" ref='num1'/>
+      <br/>
+      <input type="text" ref='num2'/>
+      <br/>
+      <button onClick={this.handleClick}>求和</button>
+      </div>
+    }
+  })
+
+  ReactDOM.render(
+  <MyComponent/>,
+  document.getElementById('example')
+  )
+
+</script>
+
+</body>
+</html>

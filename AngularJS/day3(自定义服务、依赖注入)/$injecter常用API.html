@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <button ng-click="getPrint()">click me</button>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .factory('$custom',function(){
+      return {
+        print:function(){
+          console.log('it is a test!')
+        }
+      }
+    })
+    .controller('myCtrl',['$scope','$injector',function ($scope,$injector) {
+        $scope.getPrint=function(){
+          var injector=angular.injector(['ng','myModule'])
+          //查询是否$custom服务存在
+          var flagExist=injector.has('$custom')
+          console.log('flagExist is '+flagExist)
+          if(flagExist){
+            //获取$custom服务
+            var custom=injector.get('$custom')
+            custom.print();
+          }else{
+            console.log('$custom服务不存在')
+          }
+
+        }
+    }])
+    //得到注入器
+
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  <button ng-click="add()">添加</button>
+  <table>
+    <thead>
+    <tr>
+      <th>单价</th>
+      <th>数量</th>
+      <th>小计</th>
+      <th>删除</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="obj in list">
+      <td>{{obj.price}}</td>
+      <td>{{obj.count}}</td>
+      <td>{{obj.price*obj.count}}</td>
+      <td>
+        <button ng-click="delete($index)">删除</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p>总计：{{sum()}}</p>
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl',
+    ['$scope', '$http', function ($scope, $http) {
+      $http.get("data/server.php")
+        .success(function (data) {
+          console.log(data);
+          $scope.list = data;
+        });
+
+      $scope.add = function () {
+        var price = Math.round(Math.random()*100);
+        var count = Math.round(Math.random()*10);
+        $scope.list.push({"price":price,"count":count});
+      }
+
+      $scope.delete = function (index) {
+        $scope.list.splice(index,1);
+      }
+
+      $scope.sum = function () {
+        var totalPrice = 0;
+        angular.forEach($scope.list, function (value,key) {
+          totalPrice+=(value.count*value.price);
+        })
+        return totalPrice;
+      }
+
+    }])
+
+</script>
+
+</body>
+</html>

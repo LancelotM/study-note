@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function getChildren(parent){
+			console.log(parent.nodeType!=3?parent.nodeName:parent.nodeValue);
+			var children=parent.childNodes;
+			for(var i=0;i<children.length;i++){
+				getChildren(children[i]);
+			}
+		}
+		getChildren(document.body);
+
+		function calc(btn){
+			var span=btn.parentNode.getElementsByTagName("span")[0];
+			var n=parseInt(span.innerHTML);
+			n+=btn.innerHTML=="+"?1:
+							 n>1?-1:
+							      0;
+		span.innerHYML=n;
+		}
+	</script>	
+</body>
+</html>

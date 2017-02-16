@@ -1,0 +1,171 @@
+ng四大特征：
+①采用了MVC的设计模式
+②双向数据绑定（view和model）
+③依赖注入
+④模块化设计
+
+一、如何自定义模块并进行调用？？
+
+自定义模块：angular.module()
+模块之间如何相互之间的调用： angular.module('myApp02',['ng','myApp01']);
+
+
+模块化好处：体现“高内聚低耦合”的设计原则，提高代码的复用率，降低测试难度。
+
+模块分类：
+①ng官方提供的模块
+ng\ngAnimate\ngRoute\ngTouch...
+②用户自定义的模块
+angular.module();
+
+二、ng包含哪些模块
+一个angularJS的模块可以包含哪些组件？？
+①controller：维护模型数据
+②directive：用在view中 输出/绑定Model数据
+③function：forEach\toJson\fromJson
+④filter：结果的筛选、过滤、格式化
+⑤service：提供变量或者方法的服务
+。。。
+
+
+三、SPA应用以及通过ngRoute来实现的方式
+
+单页面应用的工作原理：
+①url
+http://127.0.0.1/index.html#/路由地址
+②浏览器请求index.html,解析路由地址
+③查找路由词典，#/start ==>tpl/start.html
+④获取当前路由地址 对应的真实模板的地址 start.html
+⑤发起ajax请求，获取目标模板页面，将服务器返回的代码片段，插入到当前的DOM树，实现局部刷新
+
+
+
+使用ngRoute模块来实现SPA应用的基本步骤：
+①创建完整的HTML页面 index.html,引入angular.js,angular-route.js
+②创建自定义的模块，指定依赖于ng\ngRoute
+③指定容器，盛放代码片段 ngView
+④创建模板页面
+⑤配置路由词典
+$routeProvider.when('/start',{
+	templateUrl:'tpl/start.html',
+	controller:'startCtrl'})
+⑥测试在地址栏中 输入不同的路由地址的时候，能否将代码片段加载进来。
+
+四、代码片段之间的跳转
+
+模板页面之间 执行跳转的3种方式：
+①直接修改地址栏中的url
+②使用超链接 <a href='#/路由地址'></a>
+③$location.path('/路由地址')
+
+如果有多个代码片段，都需要通过js的方式来跳转，为每个代码片段去创建控制器 去定义jump方法，这个是不合理的，可以这么处理：借助父控制器定义方法，然后让子控制器去调用。
+
+配置代码片段的控制器的方式：
+①ng-controller
+②配置路由词典设置
+$routeProvider.when('/myLogin',{
+	templateUrl:'tpl/login.html',
+	controller:'loginCtrl'
+});
+
+
+
+
+练习：使用ngRoute来实现一个SPA应用。
+创建一个完整的html--》index.html;创建2个代码片段 --》start.html register.html
+start.html --> 点击按钮跳转到register,
+register.html -->a 跳转到start.html
+
+
+从register跳转到start
+
+
+五、代码片段进行传参
+
+使用ngRoute进行参数的传递：
+①明确发送方和接收方
+发送方：register
+接收方：start
+②配置接收方的路由以及接受参数
+ .when('/myStart',{
+        templateUrl:'tpl/start.html'
+      })
+.when('/myStart/:id',{
+	templateUrl:'tpl/start.html'
+})
+如果接受id，
+借助ngRoute服务
+$routeParams.id
+③发送参数
+<a href='#/myStart/123'></a>
+$location.path('/myStart/123')
+
+
+练习：实现SPA应用
+完整：manager.html
+代码片段：check.html pay.html send.html
+要求：
+①能够实现不同页面的跳转
+②check.html-->超链接跳转到pay.html，传入price,
+pay.html接受参数并显示在页面中
+pay.html--》按钮 点击跳转到send.html
+send.html-->超链接跳转到check.html
+
+
+六、动态引入页头页尾
+ngInclude：
+<ANY ng-include="'tpl/include/header.html'"></ANY>
+
+七、其他模块
+ngAnimate 支持js动画和css动画
+
+①通过script 引入angular-animate.js到工程中
+②指定自定义的模块，要依赖于ngAnimate
+③设置cssngAnimate模块为ngView添加ng-leave和ng-leave-active、ng-enter和ng-enter-active.
+
+
+八、表单
+在ng中，专门针对表单和表单中的控件，提供了一些属性，用于验证控件值的状态。
+$pristine 未输入过
+$dirty 已输入过
+$valid 验证通过
+$invalid 验证未通过
+$error 验证时的错误信息
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,201 @@
+1、补充知识点：Bootstrap 全局CSS样式————栅格系统
+	1、列偏移(offset)
+		控制某列向右错位,并影响后续所有的列
+		col-xs/sm/md/lg-offset-1/2../12
+		作用：
+			左右留白、布局中列的右对齐、列居中
+	2、列排序
+		控制某列向右/左移动,并不影响其他列
+		右移(推):col-xs/sm/md/lg-push-1/2../12
+		左移(拉):col-xs/sm/md/lg-pull-1/2../12
+		作用：
+			在特定的屏幕下临时调整列的出现位置
+2、Bootstrap 组件——图标文字(glyphicon)
+	1、图标字体：本质是文字,不是图片,可以随意变大、添加下划线、变斜体、改颜色
+	Web应用中常用图标字体：FontAwesome、Glyphicons
+		因为客户端没有上述字体文件，必须应用服务器端字体
+		@font-face{
+			font-family:"Glyphicons";
+			sec:url(fonts/glyphicons.ttf)
+		}
+		.glyphicon{
+			font-family:"Glyphicons";
+		}
+		.glyphicon-alert:before{
+			content:"\e209";
+		}
+	2、Bootstrap提供了200+个Glyphicons图标,使用方法
+		<span class="glyphicon glyphicon-*"></span>
+		提示：使用图标字体HTML标签中不能有任何子元素或内容！
+3、Bootstrap 组件————按钮组(3种)
+	水平按钮组
+	<div class="btn-group"></div>	
+	两端调整对齐的按钮组
+	<div class="btn-group btn-group-justify"></div>	
+	竖直按钮组
+	<div class="btn-group-vertical"></div>	
+***4、Bootstrap 组件————导航(nav)
+	Bootstrap提供了3种形式的导航组件
+	1、标签页式导航(页签导航)
+		<ul class="nav nav-tabs">
+			<li><a href="#1">1</a></li>
+			<li class='avtive'><a data-toggle="tab" href="#2">2</a></li>
+			<li><a href="#3">3</a></li>
+		</ul>	
+		<div class="tab-content">
+			<div class="tab-plan" id="1">1的详情</div>
+			<div class="tab-plan" id="2">2的详情</div>
+			<div class="tab-plan" id="3">3的详情</div>	
+		</div>
+	2、胶囊式导航
+		<ul class="nav nav-pills">
+			<li><a href="#1">1</a></li>
+			<li class='avtive'><a data-toggle="pill" href="#2">2</a></li>
+			<li><a href="#3">3</a></li>
+		</ul>	
+	3、导航条专用导航
+5、Bootstrap 组件————面包屑
+	<ul class="breadcrumb">
+		<li><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+	</ul>	
+6、Bootstrap 组件————分页条
+	<ul class="pagination">
+		<li>
+			<a href="#" aria-label="Previous">
+				<span aria-hidden="true">前一页</span>
+			</a>
+		</li>
+		<li><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li>
+			<a href="#" aria-label="Next">
+				<span aria-hidden="true">后一页</span>
+			</a>
+		</li>
+	</ul>	
+7、Bootstrap 组件————分页条
+	<ul class="pager">
+		<li><a href="#">前一页</a></li>
+		<li><a href="#">后一页</a></li>
+	</ul>
+8、Bootstrap 组件————标签(label)
+	<span class="label label-default">Default</span>
+	<span class="label label-primary">Primary</span>
+	<span class="label label-success">Success</span>
+	<span class="label label-info">Info</span>
+	<span class="label label-warning">Warning</span>
+	<span class="label label-danger">Danger</span>
+9、Bootstrap 组件————徽章(badge)
+	<a href="#">Inbox <span class="badge">42</span></a>
+
+	<button class="btn btn-primary" type="button">
+	  Messages <span class="badge">4</span>
+	</button>
+10、Bootstrap 组件————巨幕(jumbotron)
+	<div class="jumbotron">
+	  <h1>Hello, world!</h1>
+	  <p>...</p>
+	  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+	</div>
+	如果需要让巨幕组件的宽度与浏览器宽度一致并且没有圆角，请把此组件放在所有 .container 元素的外面，并在组件内部添加一个 .container 元素。
+		<div class="jumbotron">
+		  <div class="container">
+			...
+		  </div>
+		</div>
+11、Bootstrap 组件————巨幕(well)
+		<div class="well">lorem</div>
+		<div class="well well-lg">lorem</div>
+		<div class="well well-sm">lorem</div>
+12、Bootstrap 组件————进度条(progress)
+	Bootstrap 提供的默认样式(深蓝色)
+		<div class="progress">
+			<div class="progress-bar" style="width: 10%">10%</div>
+		</div>
+	3种颜色的进度条
+		<div class="progress">
+			<div class="progress-bar progress-bar-3种颜色" style="width: 10%">10%</div>
+		</div>
+	带条纹的进度条(active可以动)
+		<div class="progress">
+			<div class="progress-bar progress-bar-striped" style="width: 10%">10%</div>
+		</div>
+**13、Bootstrap 组件————缩略图(thumbnail) 一般与栅格系统进行配合使用
+	缩略图用在a上
+		<a href="#" class="thumbnail">
+		  <img src="..." alt="...">
+		</a>
+	缩略图用在div上
+		<div class="thumbnail">
+			<img src="img/xx.jpg">
+			<h3>标题</h3>
+			<p>内容</p>
+			<a class='btn' href="#"></a>
+		</div>
+**14、Bootstrap 组件————媒体对象(media)
+	媒体对象常用于商品列表
+		<div class="media">
+			<div class="media-left">图片</div>
+			<div class="media-body">主体</div>
+			<div class="media-right">图片</div>
+		</div>
+***15、Bootstrap 组件————列表组(list-group) 可以用在 ul>li 中,但是推荐 div>a
+	<div class='list-group'>
+		<a href="#" class="list-group-item"></a>
+	</div>
+****16、Bootstrap 组件————面板————小难点
+	面板：在 Bootstrap 中是一种呈现 "头-主体-尾" 三层结构的组件
+	提示：面板组件中尤其适合方式 <table class='table'></table>
+		<div class="panel">
+			<div class="panel-heading"></div>
+			<div class="panel-body"></div>
+			<div class="panel-footer"></div>
+		</div>
+*****17、Bootstrap JS插件————Collapse
+	折叠效果,本身使用很简单
+		<a data-toggle="collapse" href="#cid">触发元素</a>
+		<div id='cid' class='collapse in'>
+			内容
+		</div>
+	折叠效果有2个使用场景：
+		1、手风琴
+			<div class='panel-group' id="pg">
+				<a data-toggle="collapse"  href="#cid">触发元素</a>
+				<div id='cid' class='collapse in'>
+					内容
+				</div>
+			</div>
+		2、响应式导航条
+			注意：响应式导航条的结构————只有从手机屏幕才能看出！
+			1、基本结构：
+				<div class='navbar'>
+					<div class='container'>
+						<div class="navbar-header">
+							<a href="" class="navbar-brand">Logo</a>
+							<!-- 汉堡包按钮 -->
+							<a href="" class="navbar-toggle">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>	
+							</a>
+						</div>
+						<div class="navbar-collapse collapse">
+							能够折叠隐藏的内容
+						</div>
+					</div>
+				</div>
+			2、导航条的种类
+				按颜色分
+					浅色底深色字:.navbar.navrbar-default
+					深色底浅色字:.navbar.navrbar-inverse
+				按定位分
+					相对定位(占空间):.navbar
+					固定定位(不占空间):.navbar.navbar-fixed
+				按位置分
+					固定在顶部.navbar.navbar-fixed-top
+					固定在底部.navbar.navbar-fixed-bottom

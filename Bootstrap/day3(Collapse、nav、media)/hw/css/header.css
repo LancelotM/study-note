@@ -1,0 +1,43 @@
+eq
+#header sub{
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background:url(../img/hdr-spr.png) no-repeat -1px -180px;
+}
+#header strong{
+  display: inline-block;
+  width: 9px;
+  height: 5px;
+  background:url(../img/hdr-spr.png) no-repeat 0 -124px;
+}
+default search
+#header sup{
+  display: inline-block;
+  width: 17px;
+  height: 15px;
+  background:url(../img/hdr-spr.png) no-repeat 0 -35px;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+logo
+#header b{
+  display: inline-block;
+  width: 53px;
+  height: 35px;
+  background:url(../img/hdr-spr.png) no-repeat 0 -427px;
+}
+blue search
+#header i{
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  background:url(../img/hdr-spr.png) no-repeat 0 -343px;
+}
+#header em{
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  background:url(../img/hdr-spr.png) no-repeat 0 -259px;
+}

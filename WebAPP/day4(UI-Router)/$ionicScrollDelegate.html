@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<ion-content>
+  <ul class="list list-inset">
+    <li class="item"
+        ng-repeat="tmp in list"
+        ng-bind="tmp"></li>
+  </ul>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+  <button class="button button-assertive" ng-click="toTop()">Top</button>
+  <button class="button button-assertive" ng-click="toBottom()">Bottom</button>
+  <button class="button button-assertive" ng-click="get()">Get</button>
+  <button class="button button-assertive" ng-click="scrollTo()">scrollTo</button>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+    .controller('myCtrl',['$ionicScrollDelegate','$scope',function($ionicScrollDelegate,$scope){
+      $scope.list=[];
+      for(var i=0;i<50;i++){
+        $scope.list.push(i);
+      };
+      $scope.toTop=function(){
+        $ionicScrollDelegate.scrollTop(true);
+      };
+      $scope.toBottom=function(){
+        $ionicScrollDelegate.scrollBottom(true);
+      };
+      $scope.get=function(){
+        a=$ionicScrollDelegate.getScrollPosition();
+        console.log(a);
+      };
+      $scope.scrollTo=function(){
+        $ionicScrollDelegate.scrollTo(a.left, a.top,true);
+      };
+    }])
+</script>
+</body>
+</html>

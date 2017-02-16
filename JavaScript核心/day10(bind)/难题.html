@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		if(Function.prototype.bind===undefined)
+		Function.prototype.bind=function(obj/*,args*/){
+			//args1=[obj,10000,3000]
+			//fun->this->calc
+			var fun=this;
+			var args1=[].slice.call(arguments,1);
+			//arguments.slice(1)
+			return function(){
+				//this->window
+				//args2[4000,5000]
+				var args2=[].slice.call(arguments2);
+				//fun->calc
+				fun.apply(obj,args1.concat(args2));
+				//pbj.fun();
+			}	
+		}
+		
+		function calc();
+	</script>
+</body>
+</html>

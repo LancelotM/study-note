@@ -1,0 +1,108 @@
+1、ng内置的服务($http,$interval,$timeout...)
+	1、双向数据绑定的工作原理
+		<p ng-bind='num'></p>  ==>ng框架添加一个监听(watch),和$scope.$watch是一样的,只要是数据发生了变化,视图就会更新
+
+		如何知道数据是否发生了变化？
+			ng会周期性的运行一个函数来检查$scope的模型数据是否发生变化,称之为$digest ==> $scope.$digest();
+
+		什么时候调用$digest()？
+			ng指令,很少直接手工调用$digest(),都是调用$scope.$apply();==>$rootScope.$digest();
+
+		setInterval是原生JS的功能,本身就是一个循环,需要我们手工调用$scope.$disgest()/$scope.$apply();
+	2、var t=$interval(function(){},500)
+		$interval.cancel(t)
+		var t=$timeout(function(){},500)
+		$timeout.cancel(t)
+	**3、$http
+		AJAX调用：$http服务向服务器发起AJAX请求,异步的获取服务器端返回的数据,声明为模型数据,在视图中展现出来
+		GET
+			$http.get('/someUrl').success(function(data){});
+		POST
+			$http.defaults.headers.post={'Content-Type':'application/x-www-form-urlencoded'}
+			$http.post('/someUrl', data).success(function(data){});
+2、自定义服务
+	无论哪种方式创建的服务,和ng内置的服务的使用时一致的,都是通过注入实现的
+	**1、.factory
+		html:
+			<div ng-controller="myCtrl">
+			  <button ng-click="callShow()">click me</button>
+			</div>
+		script:
+			angular.module('myModule', ['ng'])
+				.factory('$服务名',function(){
+					return{
+            $服务名:showFinc{}
+          }
+				})
+				.controller('myCtrl', function ($scope,$服务名) {
+				  $scope.callShow=function(){
+					$服务名.showFunc();
+				  }
+				})
+	**2、.service
+		html:
+			<div ng-controller="myCtrl">
+			  <p ng-bind="stu_name"></p>
+			  <button ng-click="callStudy()">click me</button>
+			</div>
+		script:
+			angular.module('myModule', ['ng'])
+				.service('$服务名',function(){
+				  this.name='Michael'
+				  this.study=function(){
+					console.log('Michael is studying')
+				  }
+				})
+				.controller('myCtrl', function ($scope,$服务名) {
+				  $scope.stu_name=$服务名.name;
+				  $scope.callStudy=function(){
+					$服务名.study();
+				  }
+				})
+	3、.constant、value //创建的服务返回的一些变量
+		html:
+			<div ng-controller="myCtrl">
+			  <p ng-bind="'ID：'+id"></p>
+			  <p ng-bind="'price：'+price"></p>
+			</div>
+		script:
+			angular.module('myModule', ['ng'])
+				.constant('$ID',{id:10})
+				.value('$price',{price:30})
+				.controller('myCtrl', function ($scope,$ID,$price) {
+				  $scope.id=$ID.id;
+				  $scope.price=$price.price;
+				})
+	4、常量服务可以通过extend(服务名,value)方法,进行修改
+		$scope.reset=function(){
+			angular.extend($ID,{id:20});
+			angular.extend($price,{price:33});
+			$scope.id=$ID.id;
+			$scope.price=$price.price;
+		}	
+3、依赖注入
+	1、文件压缩
+		使用YUICompresspor来完成文件的压缩,使用方式2种
+			1、直接通过命令行
+				
+			2、借助webStorm来配置
+				File Setting Tools FileWatchers
+			
+		文件压缩的作用：
+			1、删除所有的注释
+			2、删除空白、没有语义的字符
+			3、简化变量名、函数名、形参名 --》混淆
+	2、依赖注入的方式
+		每个AngularJS的应用,都有一个输入器,负责查找和创建依赖的服务,注入器的本质是服务的定位器,快速定位到应用需要注入的各种服务,在定位服务的过程中,需要提供注入的标记,根据标记的不同,划分为3大类：
+			1、推断(猜测)式依赖注入
+				不需要关心注入服务的顺序,ng会自动处理,根据参数的列表注入我们的服务,如果说参数一旦经过混淆或压缩,会出现问题
+
+				只能处理原始的代码
+			2、标记式依赖注入
+				直接调用了$inject属性来完成标记式的注入声明,该属性是一个字符型的数组,由于他是数组,所以有引入的先后顺序
+			***3、行内(内联)式依赖注入 ———— 推荐
+				在构建一个ng对象时,允许开发人员将一个字符型数组作为对象的参数,而不仅仅是一个函数
+				重点是,在这个数组中,除最后一个元素必须是函数体外,其余都是注入的服务名称,而且顺序保持一致
+	3、输入器($injecter)：定位和查找服务的
+		.has //查找服务是否存在
+		.get //得到服务的实例

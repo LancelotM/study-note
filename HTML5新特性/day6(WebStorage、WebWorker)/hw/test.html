@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>测试</h1>
+    <form id='complare'>
+        <label id="R0">英文</label><input id='W0' type="text">
+        <label id="R1">英文</label><input id='W1' type="text">
+        <label id="R2">英文</label><input id='W2' type="text">
+        <input id="test" type="button" value="测试">
+    </form>
+    <script type="text/javascript">
+        for(var i=0; i<localStorage.length; i++){
+            var key = localStorage.key(i)       //获取第i个key
+            var R=complare.querySelector(`label[id='R${i}']`)
+            R.innerHTML=key;
+      
+        }
+        test.onclick=function(){
+            for(var i=0; i<localStorage.length; i++){
+                var key = localStorage.key(i)       //获取第i个key
+                var W=document.getElementById(`W${i}`);
+                sessionStorage[key]=W.value;
+                //location.href='result.html';
+            }
+        };
+    </script>
+</body>
+</html>

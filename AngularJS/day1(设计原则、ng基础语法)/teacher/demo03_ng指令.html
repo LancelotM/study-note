@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body ng-app>
+
+<span ng-init="name='Michael'">{{name}}</span>
+
+<p>{{name}}</p>
+
+<span ng-init="car={name:'BMW',price:50}"></span>
+<p>{{car.name}}</p>
+
+<span ng-init="list=[20,30,40]"></span>
+<p>{{list[0]}}</p>
+
+<span ng-init="name='Lucy';age=20">{{name+"age is "+age}}</span>
+
+</body>
+</html>

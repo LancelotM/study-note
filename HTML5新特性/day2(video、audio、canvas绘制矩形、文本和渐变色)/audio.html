@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<audio id="music" src="res/bg.mp3" loop autoplay></audio>
+<input type="checkbox" checked id="cb"/><span>播放背景音乐</span>
+<script>
+  console.dir(music)
+  console.log(music.volume)
+  cb.onchange=function(){
+    var c=this.checked;
+    if(c){
+      music.play();
+    }else{
+      music.pause();
+    }
+  }
+</script>
+</body>
+</html>

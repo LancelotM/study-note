@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var a=10;//基础类型
+      var b=a;//仅将a中的10复制一个副本给b
+      b++;
+      console.log(b,a);//11,10
+
+      var card=10;//基础类型
+      function buy(card){
+        card-=3; console.log("余额"+card);
+      }
+      buy(card);//7
+      console.log("余额"+card);//10
+      //引用类型的对象
+      var dong=["包","包","包","包","包"];
+        //0x1234
+      var xu=dong;
+      xu.length--;
+      console.log(dong);
+      function eat(arr){//0x1234
+        arr.length--;
+      }
+      eat(dong);
+      console.log(dong);//4个
+    </script>
+  </body>
+</html>

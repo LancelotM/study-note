@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body>
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<ion-content>
+  <ul class="list">
+    <li class="item item-divider"><a href="">123</a></li>
+    <li class="item"><a href="">456</a></li>
+    <li class="item"><a href="">789</a></li>
+    <li class="item item-divider"><a href="">147</a></li>
+    <li class="item"><a href="">258</a></li>
+    <li class="item"><a href="">369</a></li>
+  </ul>
+
+  <div class="list">
+    <a class="item item-divider" href="">123</a>
+    <a class="item " href="">456</a>
+    <a class="item " href="">789</a>
+    <a class="item item-divider" href="">147</a>
+    <a class="item " href="">258</a>
+    <a class="item " href="">369</a>
+  </div>
+
+  <div class="list">
+    <a href="" class="item item-icon-left item-icon-right">
+      <i class="icon ion-plane"></i>
+      飞行模式
+      <i class="icon ion-ios-arrow-right"></i>
+    </a>
+    <a href="" class="item item-icon-left item-icon-right">
+      <i class="icon ion-wifi"></i>
+      Wi-Fi
+      <span class="badge">未连接</span>
+      <i class="icon ion-ios-arrow-right"></i>
+    </a>
+    <a href="" class="item item-icon-left item-icon-right">
+      <i class="icon ion-bluetooth"></i>
+      蓝牙
+      <span class="badge">未连接</span>
+      <i class="icon ion-ios-arrow-right"></i>
+    </a>
+    <a href="" class="item item-icon-left item-icon-right">
+      <i class="icon ion-gear-a"></i>
+      设置
+      <span class="badge badge-assertive">新版本</span>
+      <i class="icon ion-ios-arrow-right"></i>
+    </a>
+  </div>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+</script>
+</body>
+</html>

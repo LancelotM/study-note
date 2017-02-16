@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#d1{border:1px solid #333;}
+			#d2,#d3,#d4{
+				width:200px;
+				height:200px;
+				background:red;
+				float:left;
+			}
+
+			div:after{
+				content:"";
+				display:block;
+				clear:both;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">
+			<div id="d2"></div>
+			<div id="d3"></div>
+			<div id="d4"></div>
+			<!--
+				1、最后一个子元素位置处
+				2、内容为 空
+				3、必须是块级元素
+				4、clear:both
+			-->
+			<!-- <div style="clear:both;"></div> -->
+		</div>
+	</body>
+</html>

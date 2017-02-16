@@ -1,0 +1,113 @@
+1、面试题：Flash 被 HTML5 取代在哪些方面
+	音频和视频 ———— <video src=""></video>、<audio src=""></audio>
+	绘画 ———— <canvas></canvas>
+	动画/游戏 ———— <canvas></canvas>+定时器
+	统计图表 ———— <canvas></canvas>、<svg></svg>
+	客户端数据存储 ———— WebStorage
+2、HTML5新特性————视频播放
+	新增 <video src=""></video> 标签，默认是300*150的inline-block
+	VIDEO 元素/对象的属性：
+		1、scr:指定要播放的视频的资源路径
+		2、autoplay:false 是否自动播放
+		3、controls:false 播放控件，提示：不同浏览器的播放控件的效果不同，尽量不要用，可以自己写JS
+		4、currentTime:0 当前播放时间
+		5、duration:60 影片总长
+		6、ended:false 是否播放到片尾
+		7、loop:false 是否循环播放
+		8、muted:false 是否静音
+		9、volumn:1 音量设置(0~1)，对象属性，不用于标签
+		10、paused: 当前是否处于暂停状态
+		11、poster: 指定视频在第一帧播放之前呈现的画面（海报）
+		12、preload: 指定视频预加载方案，可取值：
+			auto:默认值，自动加载视频的 宽高、时长、第一帧内容、并缓冲了一定的时长
+			metadata:元数据，只预加载视频的 宽高、时长、第一帧内容
+			none:不预加载任何内容
+	VIDEO 对象的方法：
+		play() 播放
+		pause() 暂停
+	VIDEO 对象的事件：
+		onplay: 视频开始播放
+		onpause: 视频开始暂停
+		onplaying: 视频正在播放中
+3、HTML5新特性————音频播放
+	新增 <audio src=""></audio> 标签，默认是300*30的inline-block
+	AUDIO 元素/对象的属性：
+		1、scr:指定要播放的视频的资源路径
+		2、autoplay:false 是否自动播放
+		3、controls:false 播放控件，提示：不同浏览器的播放控件的效果不同，尽量不要用，可以自己写JS
+		4、currentTime:0 当前播放时间
+		5、duration:60 影片总长
+		6、ended:false 是否播放到片尾
+		7、loop:false 是否循环播放
+		8、muted:false 是否静音
+		9、volumn:1 音量设置(0~1)，对象属性，不用于标签
+		10、paused: 当前是否处于暂停状态
+		11、preload: 指定视频预加载方案，可取值：
+			auto:默认值，自动加载视频的 宽高、时长、第一帧内容、并缓冲了一定的时长
+			metadata:元数据，只预加载视频的 宽高、时长、第一帧内容
+			none:不预加载任何内容
+	AUDIO 对象的方法：
+		play() 播放
+		pause() 暂停
+	AUDIO 对象的事件：
+		onplay: 视频开始播放
+		onpause: 视频开始暂停
+		onplaying: 视频正在播放中
+4、HTML5新特性————CANVAS绘图
+	在网页中绘图可以使用的功能
+		1、实时走势图
+		2、统计图表
+		3、随机图表
+		4、在线画图板
+		5、HTML5游戏————2D/3D
+	可用的绘图技术：
+		1、Canvas技术 ———— 专用于绘制2D图形/图像
+		2、SVG技术 ———— 专用于绘制矢量图
+		3、WebGL ———— 目前不是HTML5标准技术，功能最强大，3D图形/图像
+5、Canvas绘图技术————
+	难点：
+		1、小学/中学数学知识
+		2、单词记忆
+	新增 <canvas id='c' width="600" height="500"></canvas> 标签 300*150的
+	inline-block元素,可以使用width/height指定尺寸，但不能用CSS样式指定宽高
+	往"画布"上绘图需要使用其对应的"画笔"对象:
+		var ctx=c.getContext('2d'); //绘图上下文 ———— 画笔
+			接下来所有的绘图任务都由画笔实现
+	绘图上下对象的常用属性————console.log(ctx)
+		fillStyle:'#000', 填充样式
+		strokeStyle:'#000', 描边/轮廓样式
+		lineWidth:'1', 轮廓的宽度
+		font:'10px sans-serip5f', 绘制文本所用的字号和字体
+		textBaseline:'alphabetic', 文本对齐的基线
+		shadowOffsetX:0, 阴影水平偏移量
+		shadowOffsetY:0, 阴影垂直偏移量
+		shadowColor:"rgba(0, 0, 0, 0)", 阴影颜色
+		shadowBlur:0, 阴影模糊半径
+6、使用Canvas绘制矩形
+	提示：矩形的定位点在自己的左上角
+	ctx.fillStyle='#000' 填充颜色
+	ctx.strokeStyle='#000' 描边颜色
+	ctx.fillRect(x,y,w,h) 填充一个矩形
+	ctx.clearRect(x,y,w,h) 删除一个矩形范围内的所有内容
+	ctx.strikeRect(x,y,w,h) 描边一个矩形
+7、使用Canvas绘制文本
+	ctx.textBaseLine='alphabetic(默认)' 文本基线,建议用top
+	ctx.fillText(txt,x,y) 填充一个文本
+	ctx.strokeText(txt,x,y) 描边一个文本
+	ctx.measureText(txt).width 测量,指定文本的宽度
+8、为文字或图形设置阴影
+	ctx.shadowColor='#aaa';
+	ctx.shadowOffsetX='8';
+	ctx.shadowOffsetY='8';
+	ctx.shadowBlur='5';
+	ctx.fillText(txt,x,y);
+9、在绘图时使用渐变色
+	线性渐变
+		var g=ctx.createLinearGradient(x0,y0,x1,y1)
+		g.addColorStop(0,'#f00');
+		g.addColorStop(0.5,'#ff0');
+		g.addColorStop(1,'#0f0');
+		ctx.fillStyle=g;
+		ctx.fillRect(x,y,w,h);
+	
+		ctx.createRadiaGradient()

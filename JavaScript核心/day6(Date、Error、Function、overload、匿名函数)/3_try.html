@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var n=345.678;
+    //var d=parseInt(prompt("输入小数位数"));
+    /*
+      try{
+        
+      }catch(err){
+        alert("出错啦!"+String(err))
+      }finally{
+        console.log("释放资源");
+        d=null;
+      }
+    */
+    /*
+      if(!isNaN(d)&&d>=0&&d<=20){
+        document.write(
+          n+"按"+d+"位小数四舍五入的结果是:"
+          +n.toFixed(d)
+        );
+      }else{
+        alert(
+          "出错啦!小数位数必须是0~20之间的数字");
+      }
+      console.log("释放资源");
+      d=null;
+    */
+    /*判断是否支持AJAX
+      try{
+        new XMLHttpRequest();
+        document.write(
+          "您的浏览器完美支持AJAX");
+      }catch(err){
+        document.write(
+          "您的浏览器版本太低，不支持AJAX");
+      }
+    */
+      if(window.XMLHttpRequest!==undefined){
+        document.write(
+          "您的浏览器完美支持AJAX");
+      }else{
+        document.write(
+          "您的浏览器版本太低，不支持AJAX");
+      }
+    </script>
+  </body>
+</html>

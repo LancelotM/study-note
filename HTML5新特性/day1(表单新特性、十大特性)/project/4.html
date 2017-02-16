@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>HTML5表单新特性——新的表单元素</h3>
+
+  <form>
+    <datalist id="dishList">
+      <option>鱼香肉丝</option>
+      <option>青椒肉丝</option>
+      <option>京酱肉丝</option>
+      <option>茄丁肉丝</option>
+    </datalist>
+    中午午餐：<input type="text" list="dishList" name="lunch" autocomplete="off"><br>
+
+    下载进度：<progress id="p1"></progress><br>
+    下载进度：<progress id="p2" value="0.0"></progress><br>
+
+    <!--最优值在合理下限/上限之间：黄-绿-黄-->
+    机油含量：<meter id="m1" min="0" max="100" low="30" high="60" optimum="45" value="0"></meter><br>
+
+    <!--最优值在合理下限之下：绿-黄-红-->
+    PM25含量：<meter id="m2" min="0" max="500" low="100" high="300" optimum="50" value="0"></meter><br>
+
+    <!--最优值在合理上限之上：红-黄-绿-->
+    每月工资：<meter id="m3" min="0" max="100000" low="20000" high="60000" optimum="80000" value="0"></meter><br>
+
+    单价：￥100.00 数量：<input type="number" min="1" max="99" value="2"> 小计：￥
+    <output>200.00</output><br>
+
+
+    <input type="submit"/>
+  </form>
+
+  <script>
+    var timer = setInterval(function(){
+      var v = p2.value;
+      v = parseFloat(v);
+      v += 0.05;
+      p2.value = v;
+      if(v>=1){
+        clearInterval(timer);
+      }
+    },100)
+
+    var tm1 = setInterval(function(){
+      var v = m1.value;
+      v = parseInt(v);
+      v+=2;
+      m1.value = v;
+      if(v>=100){
+        clearInterval(tm1);
+      }
+    }, 100)
+    var tm2 = setInterval(function(){
+      var v = m2.value;
+      v = parseInt(v);
+      v+=10;
+      m2.value = v;
+      if(v>=500){
+        clearInterval(tm2);
+      }
+    }, 100)
+    var tm3 = setInterval(function(){
+      var v = m3.value;
+      v = parseInt(v);
+      v+=1000;
+      m3.value = v;
+      if(v>=100000){
+        clearInterval(tm3);
+      }
+    }, 100)
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+
+		//var now=new Date();
+		//console.log(now);
+		//var year=now.getFullYear();
+		//console.log(year);
+		//var month=now.getMonth();
+		//console.log(month);
+		//var date=now.getDate();
+		//console.log(date);
+		//var day=now.getDay();
+		//console.log(day);
+		//year=now.setFullYear(2017);
+		//console.log(year);
+		//console.log(now);
+
+		
+		//var start=new Date();
+		//var end=new Date(start);
+		//console.log(start.toLocaleDateString());
+		//console.log(start);
+		//end.setMonth(end.getMonth()+30);
+		//console.log("开始时间"+start+"\n"+"截止时间"+end);
+
+		var hiredate=new Date("2012/06/30");
+
+
+		var enddate=new Date(hiredate);
+		enddate.setFullYear(enddate.getFullYear()+3);
+
+
+		var renedate=new Date(enddate);
+		renedate.setMonth(renedate.getMonth()-1);
+		if(renedate.getDay()==6){
+			renedate.setDate(renedate.getDate()-1);
+		}else if(renedate.getDay()==0){
+			renedate.setDate(renedate.getDate()-2);
+		}else{
+			renedate.setDate(renedate.getDate());
+		}
+
+
+		var alertdate=new Date(renedate);
+		alertdate.setDate(alertdate.getDate()-7);
+
+
+		console.log("入职时间："+ hiredate.toLocaleDateString());
+		console.log("到期时间："+enddate.toLocaleDateString());
+		console.log("续签时间："+renedate.toLocaleDateString());
+		console.log("提醒时间："+alertdate.toLocaleDateString());
+
+
+		var arr=[3,12,1,123,23,2];
+		function compare(a,b){return a-b;}
+		console.log(String(arr.sort(compare)));//升序
+
+		var compare=function(a,b){return b-a;}
+		console.log(String(arr.sort(compare)));//降序
+
+		var compare=new Function("a","b","return a-b");
+		console.log(String(arr.sort(compare)));//升序
+
+		function pay(){
+			if(arguments.length===0){
+				console.log("刷脸");
+			}
+			else if(arguments.length===1){
+				console.log("现金");
+			}else if(arguments.length===2){
+				console.log("刷卡");
+			}else 
+				console.log("微信");
+		}
+		pay();
+		pay(100);
+		pay("xxxxxx xxxx","456123");
+		pay(123,456,789,456);
+
+		function add(){	 
+			for(var i=0,sum=0;i<arguments.length;sum+=arguments[i++]);
+			return sum;
+		}
+		console.log(
+			add(1,2,3),
+			add(1,2,3,4,5)
+			);
+	</script>		
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//var provs=["北京市","河北省","山东省"];
+		//var cities=[
+			//["东城区","西城区","海淀区"],
+			//["廊坊市","石家庄","保定市"],
+			//["济南市","青岛市","烟台市","德州市"],
+		//];
+		//function getCitiesByprov(pname){
+			//for(var i=0;i<=provs.length;i++){
+				//if(provs[i]===pname){
+					//alert(cities[i]);
+					//return cities;
+				//}
+			//}
+			//alert("省份不存在");
+		//}
+		//getCitiesByprov(prompt("输入省份"));
+
+		var data=[
+			[0,0,0,0],
+			[0,0,0,0],
+			[0,0,0,0],
+			[0,0,0,0],
+		]
+	/*
+		function randomNum(){
+			while(true){
+				var r=Math.floor(Math.random()*4);
+				var c=Math.floor(Math.random()*4);
+				if(data[r][c]===0){
+					data[r][c]=Math.random()<0.5?2:4;
+					break;
+				}
+			}
+		}
+		randomNum();randomNum();
+		console.log(data.join("\n"));
+	*/
+		function isGameOver(){
+			for(var r=0;r<data.length;r++){
+				for(var c=0;c<data.length;c++){
+					data[r][c]===0&&return false;
+					c<data[r].length-1;
+				}
+			}
+			return true;
+		}
+		console.log(isGameOver());
+	</script>	
+</body>
+</html>

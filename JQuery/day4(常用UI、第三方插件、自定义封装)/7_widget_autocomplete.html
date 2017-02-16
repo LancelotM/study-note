@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<link rel="stylesheet" href="jquery-ui-1.11.4/jquery-ui.css">
+ </head>
+ <body>
+  <h1>jQueryUI：Widgets —— Autocomplete</h1>
+	
+	菜品搜索：<input type="text" name="search">
+
+
+<!--
+	<form action="9.php">
+	芳龄：<input type="text" name="age" autocomplete="off">
+	<input type="submit">
+	</form>
+-->
+	<script src="js/jquery-1.11.3.js"></script>
+	<script src="jquery-ui-1.11.4/jquery-ui.js"></script>
+	<script>
+		var dish=["水煮肉片","红烧茄条","红烧狮子头","鱼香肉丝"];
+
+		$("input").autocomplete({source:dish});
+	</script>
+ </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+    <style>
+      table{
+        width:100%; 
+        border-collapse:collapse;
+      }
+      table tr{
+        border-bottom:1px solid #aaa;
+      }
+      table td{text-align:center}
+    </style>
+  </head>
+  <body>
+<!--table>thead#th1+tbody#tb1-->
+    <table>
+      <thead id="th1">
+      </thead>
+      <tbody id="tb1">
+      </tbody>
+    </table>
+    <script>
+      var scores=[];
+      scores["MATH"]=81;
+      scores["CHS"]=53;
+      scores["ENG"]=89;
+      var keys=[];//保存所有下标
+      var values=[];
+      var i=0;
+      for(keys[i++] in scores){
+        values[values.length]=
+          scores[keys[values.length]];
+      }
+      th1.innerHTML="<tr><th>"+
+        keys.join("</th><th>")
+      +"</th></tr>";
+      tb1.innerHTML="<tr><td>"+
+        values.join("</td><td>")
+      +"</td></tr>";
+    </script>
+  </body>
+</html>

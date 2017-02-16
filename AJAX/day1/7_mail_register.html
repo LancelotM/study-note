@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+    <style>
+      .text-danger {
+        color: #a00;
+      }
+      .text-success {
+        color: #0a0;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>邮箱注册-GET</h3>
+    <h4>本示例未实现注册功能！仅实现了异步的电话号码验证!</h4>
+    <form action="xx.php">
+
+      手机号：<input name="phone" id="phone">
+      <span id="phoneMsg"></span><br>
+     
+      
+      密码号：<input type=""><br>
+      <input type="submit">
+    </form>
+    <script>
+    //当输入框失去焦点时，发起异步请求
+    phone.onblur = function(){
+      var p = this.value;
+      console.log('当前输入：'+p);
+      if(!p){
+        return;//用户未进行输入，则退出函数
+      }
+      //发起异步GET请求，check_phone.php?phone=x
+      //1 创建XHR
+      var xhr = new XMLHttpRequest();
+      //2 监听状态改变，监听响应接收完成后读取响应主体，判断是cunzai还是bucunzai...
+      xhr.onreadystatechange = function(){
+        //readyState: 0 -> 1 -> 2 -> 3 -> 4
+        //console.log('XHR的状态改变了：'+xhr.readyState);
+        if(xhr.readyState===4){ //响应接收完成
+            if(xhr.status===200){
+              //alert('响应完成且成功');
+              doResponse(xhr);  //处理响应消息
+            }else {
+              alert('响应完成但有问题');
+            }
+        }
+      }
+      //3 打开连接
+      xhr.open('GET','6_check_phone.php?phone='+p, true);
+      //4 发送请求
+      xhr.send( null );
+
+
+      function doResponse(xhr){  //处理响应消息
+        console.log('开始处理响应数据');
+        console.log(xhr);
+        if(xhr.responseText==='cunzai'){
+          phoneMsg.className = 'text-danger';
+          phoneMsg.innerHTML = '该手机号已经注册过';
+        }else if(xhr.responseText==='bucunzai'){
+          phoneMsg.className = 'text-success';
+          phoneMsg.innerHTML = '该手机号可以注册';
+        }else {
+          alert('不可识别的响应数据：'+xhr.responseText);
+        }
+      }
+    }
+    </script>
+  </body>
+</html>

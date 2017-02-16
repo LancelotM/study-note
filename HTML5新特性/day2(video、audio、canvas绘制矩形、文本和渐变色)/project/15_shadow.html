@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制文本</h3>
+  <canvas id="c8" width="600" height="400">
+    您的浏览器不支持Canvas标签！
+  </canvas>
+  <script>
+    //获得画布对应的画笔
+    var ctx = c8.getContext('2d');
+
+    ctx.textBaseline = 'top';
+    ctx.font = '80px SimHei';
+
+    var txt = '达内2016';
+    ctx.fillText(txt, 100, 100);
+
+    ctx.shadowColor = '#666'; //阴影颜色
+    ctx.shadowOffsetX = 8;    //阴影偏移量
+    ctx.shadowOffsetY = 8;
+    ctx.shadowBlur = 10;      //阴影模糊半径
+    ctx.fillText(txt, 100, 200);
+
+
+  </script>
+</body>
+</html>

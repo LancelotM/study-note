@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .videoBox{
+      position: relative;
+      text-align: center;
+    }
+    #pointer{
+      width: 64px;
+      height: 64px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -32px;
+      margin-top: -32px;
+      cursor: pointer;
+      opacity: 0.9;
+      z-index: 50;
+      display: none;
+    }
+    #pointer:hover{
+      opacity: 1;
+    }
+    .active{
+      width:400px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -200px;
+      margin-top: -150px;
+      z-index: 10;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h3>视频播放</h3>
+<div class="videoBox">
+  <video src="res/birds.mp4" id="v1" poster="img/2.jpg">
+    您的浏览器不支持VIDEO标签</video>
+  <img class="active" src="img/2.jpg" >
+  <img id="pointer" src="img/play.png"/>
+</div>
+  <script>
+    console.dir(v1)
+    var c=document.querySelector('.videoBox')
+    c.onmouseenter=function(){
+        pointer.style.display='block';
+    }
+    c.onmouseleave=function(){
+      pointer.style.display='none';
+    }
+
+    pointer.onclick=function(){
+      if(v1.paused){
+        v1.play();
+        pointer.src='img/pause.png';
+      }else{
+        v1.pause();
+        pointer.src='img/play.png';
+      };
+    }
+
+    var img=document.querySelector('.active')
+    v1.onpause=function(){
+      img.style.display='block'
+    }
+    v1.onplay=function(){
+      img.style.display='none'
+    }
+  </script>
+</body>
+</html>

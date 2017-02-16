@@ -1,0 +1,18 @@
+.box {
+  color: #e4393c;
+}
+.main {
+  padding: 10px;
+}
+.main ul {
+  list-style: none;
+}
+.main ul li {
+  display: inline-block;
+}
+.main ul li a {
+  color: #333;
+}
+.main ul li a:hover {
+  text-decoration: none;
+}

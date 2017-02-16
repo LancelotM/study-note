@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style type="text/css">
+		.circle{
+			width:500px;
+			height:500px;
+			border:10px solid blue;
+			border-radius:50%;
+			position:relative;
+		}
+		.min{
+			width:20px;
+			height:100px;
+			background:blue;
+			position:absolute;
+			right:240px;
+			bottom:250px;
+		}
+		.s{
+			width:10px;
+			height:200px;
+			background:blue;
+			position:absolute;
+			right:245px;
+			bottom:250px;
+			transition:transform 0.3s linear;
+		}
+		.s:hover{
+			transform-origin:bottom center;
+			transform:rotate(360deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="circle">
+		<div class="min"></div>
+		<div class="s"></div>
+	</div>	
+</body>
+</html>

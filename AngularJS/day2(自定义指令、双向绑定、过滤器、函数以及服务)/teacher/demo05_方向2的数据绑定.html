@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  <input type="text" ng-model="myText"/>
+</div>
+
+<script>
+  var app =angular.module('myModule',['ng']);
+  app.controller('myCtrl', function ($scope) {
+
+    $scope.myText = '';
+
+//    如果说想要去判断模型数据myText是否真的会跟着用户的输入改变内容
+//    通过以下方式来实现
+    $scope.$watch('myText', function () {
+      console.log($scope.myText);
+    })
+
+  });
+</script>
+
+</body>
+</html>

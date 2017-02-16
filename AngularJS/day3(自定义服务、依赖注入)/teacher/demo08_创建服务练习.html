@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  <button ng-click="startBeat()">开始</button>
+  <button ng-click="stopBeat()">结束</button>
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  //  通过service方法创建服务
+  app.service('$heartBeat', function ($interval) {
+    this.start = function () {
+      t = $interval(function () {
+        console.log('send msg to server');
+      }, 500);
+    };
+
+    this.stop = function () {
+      $interval.cancel(t);
+    }
+  });
+
+
+  app.controller('myCtrl',
+    function ($scope, $heartBeat) {
+      $scope.startBeat = function () {
+        $heartBeat.start();
+      }
+
+      $scope.stopBeat = function () {
+        $heartBeat.stop();
+      }
+    })
+
+</script>
+
+</body>
+</html>

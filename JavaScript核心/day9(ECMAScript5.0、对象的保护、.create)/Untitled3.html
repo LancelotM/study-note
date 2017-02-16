@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict"
+		function Emp(id,name,salary,age){
+			this.id=id;//只读
+			this.name=name;//不可删除
+			this.salary=salary;//不可遍历
+			var _age;
+			Object.defineProperties(this,{
+				id:{writable:false},
+				salary:{enumerable:false},
+				age:{
+					get:function(){return _age;},
+					set:function(val){
+						if(val<18||val>65)
+							throw new Error("年龄必须介于18~65");
+						_age=val;
+					}
+				}
+			})
+			this.age=age;
+			Object.seal(this);
+		}
+		var eric=new Emp(102,"eric",10000,20);
+		console.log(eric);
+	</script>	
+</body>
+</html>

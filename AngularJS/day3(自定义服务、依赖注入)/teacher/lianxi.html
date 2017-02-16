@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  <table>
+    <thead>
+    <tr>
+      <th>选择</th>
+      <th>姓名</th>
+      <th>生日</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="obj in list">
+      <td>
+        <input
+          ng-click="funcChange()"
+          type="checkbox"
+          ng-model="obj.isSelected"
+          ng-checked="selectAll"
+          />
+      </td>
+      <td>
+        {{obj.name}}
+      </td>
+      <td>
+        {{obj.birthday}}
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+  <br/>
+  <input
+    type="checkbox"
+    ng-checked="select"
+    ng-model="selectAll"
+    ng-click="changeAll()"
+    /> 全选/取消全选
+  <br/>
+  <button ng-click="checkStatus()">查看</button>
+
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+    $scope.list = [
+      {name: 'Golden', birthday: '2011-11-11', isSelected: false},
+      {name: 'King', birthday: '2012-10-12', isSelected: false},
+    ]
+
+    $scope.changeAll = function(){
+
+      angular.forEach($scope.list, function (value,key) {
+        value.isSelected = $scope.selectAll;
+      })
+    }
+
+
+//    对于对象进行操作的时候（点击），执行funcChange
+//    判断对象数组中isSelected的true或者false，决定select是否为true
+    $scope.funcChange = function () {
+      $scope.select = true;
+      angular.forEach($scope.list,
+        function (value, key) {
+          $scope.select = $scope.select&&value.isSelected
+        })
+    }
+
+    $scope.checkStatus = function () {
+      var str = "";
+      angular.forEach($scope.list,
+        function (value, key) {
+          if (value.isSelected) {
+            str += value.name + "被选中"
+          }
+        })
+      if (str == "") {
+        str = "都未选中";
+      }
+      alert(str);
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var arr=[3,12,1,123,23,2];
+      //function compare(a,b){return a-b;}
+      var compare=function(a,b){return a-b;}
+      arr.sort(compare);//升序
+      console.log(String(arr));
+      //function compare(a,b){return a-b;}
+      var compare=
+        new Function("a","b","return b-a");
+      arr.sort(compare);//降序
+      console.log(String(arr));
+    </script>
+  </body>
+</html>

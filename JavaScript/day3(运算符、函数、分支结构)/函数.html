@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function change (){
+			var num1=prompt("请输入一个数字："),num2=prompt("请再一次输入一个数字：");
+			console.log("输入的第一个数字是："+num1);
+			console.log("输入的第二个数字是："+num2);
+			num1^=num2;
+			num2^=num1;
+			num1^=num2;
+			alert("交换后第一个数字："+num1 + "交换后第二个数字："+num2);
+		}
+	</script>
+	<button onclick="change();">点一下有惊喜！</button>
+</body>
+</html>

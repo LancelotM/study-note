@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>实现表盘样式的时间显示</title>
+  <meta charset="utf-8"/>
+  <link rel="Stylesheet" href="css/4_2.css"/>
+  <style>
+#clock{width:100px; height:100px;
+	border-radius:50%;
+	border:4px solid black;
+	position:relative;
+}
+#s{width:2px; height:55px;
+	position:absolute; top:5px; left:49px;
+	background-color:red;
+	transform-origin:50% 45px;
+	-webkit-animation:rotateS 60s linear infinite;
+}
+#m{width:4px; height:50px;
+	position:absolute; top:10px; left:48px;
+	background-color:black;
+	transform-origin:50% 40px;
+	-webkit-animation:rotateM 3600s linear infinite;
+}
+#h{width:6px; height:45px;
+	position:absolute; top:15px; left:47px;
+	background-color:black;
+	transform-origin:50% 35px;
+	-webkit-animation:rotateH 43200s linear infinite;
+}
+@-webkit-keyframes rotateS{
+	0%{transform:rotate(0deg)}
+	100%{transform:rotate(360deg)}
+}
+@-webkit-keyframes rotateM{
+	0%{transform:rotate(0deg)}
+	100%{transform:rotate(360deg)}
+}
+@-webkit-keyframes rotateH{
+	0%{transform:rotate(0deg)}
+	100%{transform:rotate(360deg)}
+}
+  </style>
+  <script src="js/4_2.js"></script>
+ </head>
+ <body>
+  <div id="clock">
+	<div id="h"></div>
+	<div id="m"></div>
+	<div id="s"></div>
+	<div id="a1">I</div>
+	<div id="a2">II</div>
+	<div id="a3">III</div>
+	<div id="a4">IIII</div>
+	<div id="a5">V</div>
+	<div id="a6">VI</div>
+	<div id="a7">VII</div>
+	<div id="a8">VIII</div>
+	<div id="a9">IX</div>
+	<div id="a10">X</div>
+	<div id="a11">XI</div>
+	<div id="a12">XII</div>
+  </div>
+  
+ </body>
+</html>

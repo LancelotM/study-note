@@ -1,0 +1,124 @@
+1、添加/删除元素
+	1、添加元素：3步
+		1、创建空元素
+			var a=document.createElement("a"); -> <a></a>
+		2、设置元素关键属性
+			a.href="URL"
+			a.innerHTML="页面显示的文本"
+		3、**将元素添加到DOM树上(3种情况)
+			1、末尾追加
+				parent.appendChild(a);
+				2、插入在一个现有元素之前
+				parent.insertBefore(a,oldElem);
+			3、替换现有元素
+				parent.replaceChild(a,oldElem);
+	
+	2、***页面加载过程
+		html->DOM Tree
+				↓
+			Render Tree->***Lay out->paint
+				↑
+		css-> CSSRules
+		结论：只要修改DOM树的内容，都会导致重新Lay out
+		解决：优化：尽量少的操作DOM树
+			1、如果同时添加父元素和子元素
+				先在内存中将子元素添加到父元素中，最后再将父元素添加到页面中
+			2、如果同时添加多个平级元素时，都要用文档片段
+			文档片段:DocumentFragment(内存中临时存放多个平级元素的虚拟的临时父元素)
+				场合：同时添加多个平级元素时，都要先将平级元素添加到文档片段中，最后将文档片段同时添加到DOM树中
+				如何：
+					1、创建文档片段
+						var frag=document.createDocumentFragment();
+					2、将子元素添加到frag中
+						frag.appendChild(child)
+					3、将frag添加到DOM树(frag将子元素添加到DOM树后，会自动释放)
+						parent.appendChild(frag);
+	3、删除元素：
+		1、先要找到要删除的元素对象elem
+		2、parent.removeChild(elem);
+		ele.parentNode.removeChild(elem);
+2、***HTML DOM常用对象
+	Image Select/Option Table/行分组/tr/td Form
+	
+	1、Image:代表一个 <img元素
+		唯一的简化:var img=new Image();
+	2、Select:代表一个 <select元素
+		属性：
+			.selectedIndex; 获得select中当前选中项的下标
+			.options;	获得select中所有option元素对象的集合
+			.options.length;	option元素的个数
+						=0可清除所有option
+			其实select.length等效于select.option.length
+				最简单清除所有option的方法:select.length=0;
+			.value; 当前select元素选中项的值
+				2种情况：
+					1、选中项有value属性，则使用选中项的value属性
+					2、如果选中项没有value属性，则使用text作为value
+		方法：
+			.add(option) =>.appaendChild
+			.remove(i)	 =>select.removeChild(select.options[i])
+		事件：
+			.onchange:当选中项发生改变时触发
+		Option:代表一个option元素
+			创建：
+				var opt=new Option(text,value);
+			属性：
+				.index; 当前option在select中的下标
+				.value;
+				.text =>innerHTML
+				.selected
+		其实向select中添加一个option的最简单写法:
+			sel.add(new Option(text,value));
+	3、***Table:代表 <table元素
+		table
+			.createTHead() thead
+			.deleteTHead() 
+			.tHead
+				.insertRow(i); =>tr //在i位置插入一个新行
+									省略i自动表示末尾追加
+				.deleteRow(i); //删除i位置为行
+				.rows //获得thead中的所有行对象(tr)
+				.row[i] => tr 属性: rowIndex 获得当前tr相对于整个table的行下标
+							.insertCell(i) => td //位置i添加一个新td
+								强调：省略i自动表示末尾追加
+							.deleteCell(i) 
+							.cells //获得行(tr)中的所有格(td)
+
+			.tBodies/tBody
+			.createTBody() tbody
+			
+			.tFoot
+			.createTFoot() tfoot
+			.deleteTFoot() 
+		
+		删除行：2种
+			1、用行分组的.deleteRow(i)
+				i:指的是行在当前分组内的下标位置
+			2、用table.deleteRow(i) = tr.rowIndex
+				i:指的是行在整个table中的下标位置
+			只要用tr.rowIndex删除行,必须用table.deleteRow;
+	4、Form:代表一个<form元素
+		获取表单：
+			var form=document.forms[i/id/name];
+		获取 "表单元素"：
+			form.elements[i/id/name];
+			更简化：如果表单元素有name属性：
+				form.name
+			方法:
+				.focus();让当前表单元素获得焦点
+		属性：
+			.length => form.elements.length;
+		方法：
+			form.sbumit():专门用于手动提交表单
+				一般放在input type="button" onclick="form.sbumit()";
+				
+				问题：用户可能按回车，自动提交
+				解决：表单提交的最有一关是一个事件
+				事件：form.onsubmit();
+					当表单提交前自动触发，验证所有程序，都是true才能提交
+3、补充：三大对话框：都不用
+	alert("警告");
+	confirm("确认提示");
+		点确定->true
+		点取消->false
+	var input=prompt("输入提示")

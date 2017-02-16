@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<ion-content>
+  <div ui-view></div>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+    .config(function($stateProvider,$urlRouterProvider){
+      $stateProvider
+        .state('main',{
+          url:'/myMain',
+          templateUrl:'tpl/main.html'
+        })
+        .state('login',{
+          url:'/myLogin',
+          templateUrl:'tpl/login.html'
+        })
+        .state('register',{
+          url:'/myRegister',
+          templateUrl:'tpl/register.html'
+        })
+      $urlRouterProvider.otherwise('myLogin');
+    })
+    .controller('myCtrl',['$scope','$state',function($scope,$state){
+      $scope.jump=function(arg){
+        $state.go(arg);
+      }
+    }])
+</script>
+</body>
+</html>

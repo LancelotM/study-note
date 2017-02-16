@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    svg,
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>第三方绘图工具库——Two.js的使用</h3>
+  <div id="container"></div>
+  <script src="js/two.js"></script>
+  <script>
+    var params = {width:800, height:400, type: Two.Types.svg};
+    //var params = {width:800, height:400, type: Two.Types.webgl};
+    //var params = {width:800, height:400, type: Two.Types.canvas};
+    var two = new Two(params).appendTo(container);
+
+    //添加一个圆形
+    var circle = two.makeCircle(200,200,100);
+    circle.fill = '#fa3';
+    circle.opacity = 0.6;
+    circle.stroke = '#a80';
+    circle.linewidth = 8;
+
+    //添加一个矩形——定位点在矩形中央
+    var rect = two.makeRectangle(600,200,200,200);
+    rect.fill = '#2bf';
+    rect.stroke = 'transparent';
+
+    //记得更新界面视图，把内存中的图形绘制到浏览器
+    two.update();
+  </script>
+</body>
+</html>

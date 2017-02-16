@@ -1,0 +1,106 @@
+1、jQuery UI	
+	1、autocomplete 自动完成
+		为什么：减少重复输入
+		如何：
+			HTML：<input>
+			js:2件事
+				1、数组：保存所有备选词
+				2、$(...).autocomplete({source:数组})
+	2、button 将a,input,button都转为统一的样式 ——boot中有
+		如何:
+			$(...).button();
+	3、datepicker 日期选择
+		HTML：普通的input文本框
+		js:$(...).datepicker();
+	4、对话框 ——boot中有
+		为什么:普通的alert,confirm,prompt 样式不可修改，切有兼容性问题
+		如何:
+			html:容器元素包含提示内容
+					容器的title属性作为对话框的标题
+			js:
+				$(容器元素).dialog(); //让元素变成对话框的样子
+				$(容器元素).dialog({autoOpen:false}); //自动隐藏
+				$(容器元素).dialog("open");	//打开对话框
+	5、tabs
+		html:
+			div
+				ul>li>a href="#div(目标div的id)"
+				+div id="..." *n
+		js:$(父容器).tabs();
+	6、tooltip 工具提示 ——boot中有
+		场合:只要提示用户按钮或输入项的意义时
+			其实就是title属性
+		为什么:不同浏览器的title显示样式不一样
+		如何:$(document).tooltip(); //对整个页面统一tooltip案例
+2、第三方插件：日期,验证,彩砖墙
+	1、日期：layDate 不依赖于jQuery
+		引入css
+		hrml: <input class="laydate-icon(出现提示图标)">
+		js:
+			1、在input的点击事件中调用
+				laydate();
+			2、在页面加载后调用
+				laydate({elem:#input的id})
+	2、验证 jquery.validator
+		js:
+			$(表单).validate({
+				rules:{
+					name1:"required", //表示name1的内容必填
+					name2:{			  //表示name2必须符合多个规则
+						规则1:值,
+						规则2:值,
+					},
+				},
+				messages:{
+					name1:"name1验证失败",
+					name2:{
+						规则名:"name2的规则1验证失败",
+						规则名:"name2的规则2验证失败"
+					},
+				},
+			})
+			
+			添加自定义验证规则：其实就是给jquery.validator添加一个验证函数
+				jQuery.validator.addMethod(规则名,fn,msg(预制消息))
+					fn:function(val){//自动获得要验证的元素内容
+						return 验证结果(正则.test(val))
+					}
+			自定义的规则，遇到空val，直接返回true，不做验证
+	3、彩砖墙(masonry)
+		html:
+			<div class="container">
+				<div class="block"></div> *n
+			</div>
+		js:
+			$(".container").masonry();
+3、***封装自定义插件（2种）
+	1、扩展jQuery全局函数(函数级别的封装)
+		jQuery全局对象：window.jQuery/window.$
+			jQuery全局函数:在jQuery对象内添加的函数
+				vs　ES的全局函数：在window下添加的函数
+			如何:
+				jQuery.方法名=function(){...}
+			调用:
+				$.方法名();可以调用
+				$(...).方法名();不能调用
+			笔试题: $.each() vs $(...).each(function(){...})
+				$.each()是jQuery的一个全局函数，不需要任何查找结果就可直接调用
+					保存在jQuery对象上
+				$(...).each()是jQuery的实例函数，必须要在查找结果上才能调用
+					保存在jQuery查询结果集合的原型对象中
+			场合:只要复用一基于jQuery的函数时，就将函数添加到jQuery全局对象中
+	2、封装自定义部件(部件级别的封装)
+		1、myAccordion插件
+		在使用jQuery已经实现功能和样式的基础上
+			1、所需的所有样式，放入专门的CSS文件中
+			2、所需的JS，放入专门的JS文件中
+				1、判断是否先引入jQuery
+				2、为jQuery添加实例方法
+					为样式侵入class和行为
+			//插件制作完成
+		如何:
+			1、引入自定义插件的CSS
+			2、引入jQuery
+			3、引入自定义插件的JS
+			4、按照插件要求，编写HTML内容
+			5、在定义脚本中直接找到父元素，调用插件函数

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>2-5</title>
+ <!--   引入jQuery --> 
+ <link rel="stylesheet" href="css/style.css" />  
+</head>
+<body>
+  <h3>层次选择器.</h3>
+  <button id="reset">手动重置页面元素</button>
+  <input type="checkbox" id="isreset" checked="checked"/><label for="isreset">点击下列按钮时先自动重置页面</label><br /><br />
+ 
+  <input type="button" value="选择body内的所有div元素." id="btn1"/>
+  <input type="button" value="选择body内直接div子元素." id="btn2"/>
+  <input type="button" value="选择class为one的下一个兄弟div元素." id="btn3"/>
+  <input type="button" value="选择id为two的元素后面的所有兄弟div元素." id="btn4"/>
+
+  <br />
+  <br />
+  
+   <!-- 测试的元素 -->
+  <div class="one" id="one" >
+ id为one,class为one的div
+      <div class="mini">class为mini</div>
+  </div>
+
+    <div class="one"  id="two" title="test" >
+	 id为two,class为one,title为test的div.
+      <div class="mini"  title="other">class为mini,title为other</div>
+      <div class="mini"  title="test">class为mini,title为test</div>
+  </div>
+
+  <div class="one">
+      <div class="mini">class为mini</div>
+      <div class="mini">class为mini</div>
+	  <div class="mini">class为mini</div>
+	  <div class="mini"></div>
+  </div>
+
+  
+
+  <div class="one">
+      <div class="mini">class为mini</div>
+      <div class="mini">class为mini</div>
+	  <div class="mini">class为mini</div>
+	  <div class="mini"  title="tesst">class为mini,title为tesst</div>
+  </div>
+
+
+  <div style="display:none;"  class="none">style的display为"none"的div</div>
+  
+  <div class="hide">class为"hide"的div</div>
+ 
+  <div>
+  包含input的type为"hidden"的div<input type="hidden" size="8"/>
+  </div>
+
+  
+  <span id="mover">正在执行动画的span元素.</span>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $("#btn1").click(function(){
+      $("body div").css("border","1px solid red")
+    })
+    //实现剩余三个按钮
+    $("#btn2").click(function(){
+      $("body>div").css("border","1px solid red")
+    })
+    $("#btn3").click(function(){
+      $(".one+div").css("border","1px solid red")
+    })
+    $("#btn4").click(function(){
+      $("#two~div").css("border","1px solid red")
+    })
+  </script>
+</body>
+</html>

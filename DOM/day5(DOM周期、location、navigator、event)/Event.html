@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<button id="btn">法师放技能</button>
+	<script type="text/javascript">
+		function attrack1(){
+			console.log("用法杖打");
+		}
+		function attrack2(){
+			console.log("防御技能：冰墙术");
+		}
+		function attrack3(){
+			console.log("冰枪术");
+		}
+		btn.addEventListener("click",attrack1);
+		btn.addEventListener("click",attrack2);
+		btn.addEventListener("click",attrack3);
+		btn.removeEventListener("click",attrack1);
+		btn.removeEventListener("click",attrack2);
+	</script>
+</body>
+</html>

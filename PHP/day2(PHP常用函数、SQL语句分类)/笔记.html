@@ -1,0 +1,33 @@
+1.扩展PHP常用函数
+	@ 压制错误，不显示  ，但错误还是实际存在的
+	die('输出的内容'); 终止页面的执行，并输出消息
+	@$nm=$_REQUEST['cname'] or die('cname required');
+	mysqli_insert_id($conn);  SQL语句中新添加的编号
+	mysqli_affected_rows($conn) SQL语句中被影响的行数
+
+	require('xxx.php'); 包含其他页面
+		可以用来减少代码的重复数
+	
+	精确查询
+		SELECT * FROM book WHERE bname='模糊查询内容';
+	模糊查询
+		SELECT * FROM book WHERE bname LIKE '%模糊查询内容%';
+	
+	//读取数据(3种)：
+		1、抓取一行，返回索引数组
+			$row=mysqli_fetch_row($result);
+		2、抓取一行，返回关联数组
+			$row=mysqli_fetch_assoc($result);
+		3、一次抓取所有行，返回二维数组
+			$row=mysqli_fetch_all($result);
+			+MYSQLI_ASSOC，可以使二维数组中的数组是关联数组
+			$row=mysqli_fetch_all($result,MYSQLI_ASSOC/1);
+2、SQL语句的分类
+	1、DDL(Data Define Language)：数据定义语言————定义列
+		DROP CREATE ALTER TRUNCATE(截断表)
+	2、DML(Data Mainpulate Language)：数据操作元素————定义行
+		INSERT DELETE UPDATE
+	3、DQL(Data Query Language)：数据查询语言
+		SELECT
+	4、DCL(Data Control Language)：数据控制语言————控制
+		GRANT REVOKE(收回权限)

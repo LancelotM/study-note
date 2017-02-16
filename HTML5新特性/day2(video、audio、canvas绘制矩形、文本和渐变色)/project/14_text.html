@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制文本</h3>
+  <canvas id="c8" width="600" height="400">
+    您的浏览器不支持Canvas标签！
+  </canvas>
+  <script>
+    //获得画布对应的画笔
+    var ctx = c8.getContext('2d');
+
+    ctx.textBaseline = 'top';
+    ctx.font = '80px SimHei';
+    ctx.fillStyle = '#f00';
+
+    //从左到右移动的文字
+    var txt = '达内科技2016';
+    var w = ctx.measureText(txt).width;
+    var x = -w;
+    var y = 200-40;
+    setInterval(function(){
+      //清画布
+      ctx.clearRect(0,0, 600, 400);
+
+      ctx.fillText(txt, x, y);
+      x += 10;
+      if(x>=600){ //即将移出屏幕，则再次回到左侧
+        x = -w;
+      }
+    }, 100)
+
+
+  </script>
+</body>
+</html>

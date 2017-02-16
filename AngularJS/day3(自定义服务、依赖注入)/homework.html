@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myControl">
+  <button ng-click="add()">添加</button>
+  <table border="1" cellspacing="0" cellpadding="0">
+    <thead>
+    <tr>
+      <th>name</th>
+      <th>price</th>
+      <th>cout</th>
+      <th>total</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(key,value) in list">
+      <td ng-bind="value.name"></td>
+      <td ng-bind="value.price"></td>
+      <td ng-bind="value.cout"></td>
+      <td ng-bind="value.cout*value.price"></td>
+      <td>
+        <button  ng-click="delete()">删除</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  angular.module('myApp',['ng'])
+    .controller('myControl',['$scope','$http',function($http,$scope){
+      $http.get('data/homework.php')
+        .success(function(data){
+          $scope.list=data;
+        })
+      $scope.add=function(){
+        $scope.list.push({name:'日了狗',price:9999,cout:1});
+        // console.log('1')
+      },
+        $scope.delete=function(){
+          console.log(this.key);
+          $scope.list.splice(this.key,1);
+        }
+    }])
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制路径——圆拱</h3>
+  <canvas id="c3" width="600" height="400"></canvas>
+  <script>
+    var ctx = c3.getContext('2d');
+
+    //openMouth();
+    //吃豆人张嘴
+    function openMouth(){
+      //外围轮廓:半圆环 + 斜线到圆心 + 闭合
+      ctx.beginPath();
+      ctx.arc(300,200,100,Math.PI/4, 7*Math.PI/4);
+      ctx.lineTo(300,200);
+      ctx.closePath();
+      ctx.fillStyle = '#fea';
+      ctx.fill();
+      ctx.stroke();
+
+      //眼睛的外框
+      ctx.beginPath();
+      ctx.arc(300,150,25, 0, 2*Math.PI);
+      ctx.stroke();
+      ctx.fillStyle = '#38f';
+      ctx.fill();
+
+      //两个眼神光
+      ctx.beginPath();
+      ctx.arc(315, 140, 5, 0, 2*Math.PI);
+      ctx.arc(305, 130, 3, 0, 2*Math.PI);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+    }
+
+    //closeMouth();
+    //吃豆人闭嘴
+    function closeMouth(){
+      //外围轮廓:圆环 + 直线到圆心
+      ctx.beginPath();
+      ctx.arc(300,200,100,0, 2*Math.PI);
+      ctx.lineTo(300,200);
+      ctx.fillStyle = '#fea';
+      ctx.fill();
+      ctx.stroke();
+
+      //眼睛的外框
+      ctx.beginPath();
+      ctx.arc(300,150,25, 0, 2*Math.PI);
+      ctx.stroke();
+      ctx.fillStyle = '#38f';
+      ctx.fill();
+
+      //两个眼神光
+      ctx.beginPath();
+      ctx.arc(315, 140, 5, 0, 2*Math.PI);
+      ctx.arc(305, 130, 3, 0, 2*Math.PI);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+    }
+
+    var isOpen = true;  //是否处于张嘴状态
+    setInterval(function(){
+      //清除已有内容
+      ctx.clearRect(0,0,600,400);
+
+      if(isOpen){
+        closeMouth();
+        isOpen = false;
+      }else {
+        openMouth();
+        isOpen = true;
+      }
+    }, 500);
+
+  </script>
+</body>
+</html>

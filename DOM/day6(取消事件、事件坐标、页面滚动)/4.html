@@ -1,0 +1,56 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>取消与利用冒泡</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/3.css"/>
+		
+	</head>
+	<body>
+		<div id="keys">
+			<button>1</button>
+			<button>2</button>
+			<button>3</button>
+			<button>4</button><br>
+			<button>C</button>
+			<button>+</button>
+			<button>-</button>
+			<button>=</button>
+		</div>
+		<textarea id="sc" style="resize:none;width:200px; height:50px;" readonly></textarea>
+    <script>
+      //查找id为keys的div,添加单击事件处理函数
+      document.getElementById("keys")
+              .addEventListener("click",
+        function(e){//e->event
+          e=e||window.event;
+          //获取目标元素target
+          var target=e.target||e.srcElement;
+          //查找id为sc的文本框,保存在变量sc中
+          var sc=document.getElementById("sc");
+          //如果目标元素是button
+          if(target.nodeName=="BUTTON"){
+            //判断目标元素的内容
+            switch(target.innerHTML){
+              case "C"://是C
+                sc.value="";//清除sc的内容
+                break;
+              case "="://是=
+                try{//尝试
+                  //将sc的内容放入eval，将计算结果再赋值回sc的内容中
+                  sc.value=eval(sc.value);
+                }catch(err){//捕获错误
+                  //将错误信息放回sc的内容中
+                  sc.value=String(err);
+                }
+                break;
+              default://其余: 
+                //将目标元素的内容追加到sc的内容中
+                sc.value+=target.innerHTML;
+            }
+          }
+        }
+      );
+		</script>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        #select option{
+            padding:0 10px;
+        }
+        #list{
+            width:100%;
+            border: 1;
+            display: none;
+        }
+        #list.active{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <select id='select' size='1'>
+        <option>－请选择部门－</option>
+        <option >10</option>
+        <option>20</option>
+        <option>30</option>
+    </select>
+
+    <table id='list' class='active'>
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>照片</th>
+                <th>姓名</th>
+                <th>工资</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id='tbodyText'>
+            
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        select.onchange=function(){
+            var s=this.value;
+            var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState===4){
+                    if(xhr.status===200){
+                        doResponse(xhr);
+                    }
+                }
+            }
+            xhr.open=('GET','emp_select.php',true);
+            xhr.send(null);
+            function doResponse(xhr){}
+        }
+    </script>
+</body>
+</html>

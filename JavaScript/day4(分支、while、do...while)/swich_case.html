@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function query(){
+			alert("查询余额中");
+		}
+		function getMoney(){
+			alert("取款中");
+		}
+		function transfer(){
+			alert("转账中");
+		}
+		function exit(){
+			alert("退出系统，欢迎使用");
+		}
+		function user_error(){
+			alert("输入出错");
+		}
+		function stop(){
+			alert("系统维护中");
+		}
+		function list(one){
+			switch(one){
+				case 1:
+					query();
+					break;
+				case 2:
+				case 3:
+					stop();
+					break;
+				case 0:
+					exit();
+					break;
+				default:
+					user_error();
+					break;
+			}	
+		}
+		function telBank(){
+			while(true){
+			var one=Number(prompt("====欢迎使用电话银行系统====\n查询请按1\n取款请按2\n转账请按3\n退出请按0"));
+			list(one);
+				if(one==0){
+					break;
+				}
+			}
+		}
+
+		function date(){
+			var year=Number(prompt("请输入年")),month=Number(prompt("请输入月")),day=Number(prompt("请输入日")),totalDay=0;
+			var i=1;
+			while(i<month){
+				switch(i){
+					case 1:
+					case 3:
+					case 5:
+					case 7:
+					case 8:
+					case 10:
+					case 12:
+						totalDay+=31;
+						break;
+					case 4:
+					case 6:
+					case 9:
+					case 11:
+						totalDay+=30;
+						break;
+					case 2:
+						totalDay+=28;
+						if(year%4==0&&year%100!=0||year%400==0){
+							totalDay+=1;
+						}
+						break;
+				}
+				i++;
+			}
+			totalDay+=day;
+			console.log(totalDay);
+		}
+			/*switch(month-1){
+				case 11:
+					totalDay+=30;
+				case 10:
+					totalDay+=31;
+				case 9:
+					totalDay+=30;
+				case 8:
+					totalDay+=31;
+				case 7:
+					totalDay+=31;
+				case 6:
+					totalDay+=30;
+				case 5:
+					totalDay+=31;
+				case 4:
+					totalDay+=30;
+				case 3:
+					totalDay+=31;
+				case 2:
+					totalDay+=28;
+					if(year%4==0&&year%100!=0||year%400==0){
+						totalDay+=1
+					}	
+				case 1:
+					totalDay+=31;
+			}
+			totalDay+=day;
+			console.log(totalDay);
+		}*/
+	</script>
+	<button onclick="telBank();">访问电话银行</button>
+	<button onclick="date();">日期计算器</button>
+</body>
+</html>

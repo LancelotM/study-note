@@ -1,0 +1,74 @@
+正课:
+1. 类数组操作
+2. jQueryUI
+
+1. 类数组操作
+    类数组对象本来不能使用数组的任何API: 比如: forEach, indexOf
+       arr.forEach(function(val,i))
+    jQuery为类数组对象提供了专门的遍历/查找API
+      $(...).each(function(i[,elem])){
+           //对结果集合中每个元素执行相同操作
+           //this->elem->DOM->$(this)
+      }
+      var i=$(...).index(elem/$(elem)); //查找elem在结果集中的下标
+   鄙视题: 页面上多个按钮，点每个按钮提示点的是第几个（下标）
+
+2. jqueryUI: 
+  UI: User Interface
+  UI库: 完整的js,css组成的独立功能/效果的集合
+  jqueryUI: 是jquery官方出的UI库
+                  基于jquery, 但是极简化
+  为什么: 实际开发中，很多功能(样式和行为)会反复使用
+     解决: 使用现成的UI库中的插件——复用
+  新技术: 上官网 -> DEMO/Start/Guide -> API Document
+  
+  分三部分: Effects 动画效果
+                  Interactions 交互组件
+                  Widgets: 小部件
+
+  Effects动画效果: 
+    基于jquery提供了更丰富的动画效果: 
+     1. 为add/remove/toggleClass，添加动画效果:
+        jquery: add/remove/toggleClass默认没有动画，不能加时间
+        jquery-ui: 可以为add/remove/toggleClass添加时间
+     2. 为show/hide/toggle，添加了更多动效
+     3. 让.animate支持颜色动画
+
+  Interactions: 交互组件
+    1. $(...).draggable() 将找到的元素变为可拖拽
+        <ANY>
+            <title  class="ui-dialog-titlebar"> 让标题变拖拽图标
+    2. $(...).selectable() 让目标元素可选中
+         <ul>
+            <li class="ui-selectee ui-selected"></li>
+    侵入性: API根据自身的需要，向元素默默添加class
+           有的class已经定义好，可直接使用
+           有的class需要使用者自行定义
+    3. $(...).sortable() 让目标元素可调整位置
+         <ul >
+            <li class="ui-sortable-handle ui-sortable-helper"
+
+   Widget: 小部件: 
+    Accordion: 
+       html:
+           <div>
+                <hn>
+                <div> 
+       css: 
+       js: $(...).accordion();
+
+   问题: 主题颜色是固定的
+   解决: 官网->主题画廊/颜色筒->先选择主题风格/定制风格->下载
+
+
+
+
+
+
+
+   
+
+
+
+
+

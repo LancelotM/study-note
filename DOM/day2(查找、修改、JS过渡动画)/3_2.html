@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>实现带样式的表单验证</title>
+	<link rel="Stylesheet" href="css/3_2.css" />
+ </head>
+ <body>
+	<form id="form1">
+		<h2>增加管理员</h2>
+		<table>
+			<tr>
+				<td>姓名：</td>
+        <td>
+					<input name="username"
+           onfocus="getFocus(this)"
+           onblur="valiName(this)"/>
+					<span>*</span>
+				</td>
+				<td>
+					<div class="vali_Info">
+					10个字符以内的字母、数字或下划线的组合
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td>
+					<input type="password" name="pwd"
+           onfocus="getFocus(this)"
+           onblur="valiPwd(this)"/>
+					<span>*</span>
+				</td>
+				<td>
+					<div class="vali_Info">6位数字</div>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2">
+					<input type="button" value="保存"/>
+					<input type="reset" value="重填"/>
+				</td>
+			</tr>				
+	    </table>
+	</form>
+	<script>
+    //当文本框获得焦点时自动触发
+    function getFocus(txt){
+      //修改txt的class为txt_focus
+      //在txt的父元素的父元素下找最后一个td的第一个子元素div,清除其class
+    }
+    //当姓名文本框失去焦点时自动触发
+    function valiName(txt){
+      //定义正则reg: 10个字符以内字符数字或下划线,至少一个
+      vali(txt,reg);
+    }
+    function vali(txt,reg){//重构
+      //清除txt的class
+      //在txt的父元素的父元素下找最后一个td的第一个子元素div,保存在div中
+      //如果用reg检测txt的内容通过
+        //设置div的class为vali_success
+      //否则
+        //设置div的class为vali_fail
+    }
+    //当密码框失去焦点时自动触发
+    function valiPwd(txt){
+      //定义正则reg: 6位数字
+      vali(txt,reg);
+    }
+  </script>
+ </body>
+</html>

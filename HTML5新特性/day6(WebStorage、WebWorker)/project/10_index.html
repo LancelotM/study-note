@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    header {
+      text-align: right;
+      padding: 10px;
+      border-bottom: 1px solid #aaa;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a href="10_login.html">登录</a>
+</header>
+<section>
+  <h3>首页</h3>
+</section>
+<script>
+  //若用户已经登录，则需要修改header中的内容
+  var n = sessionStorage['LoginName'];
+  if(n){
+    var header = document.querySelector('header');
+    header.innerHTML = `
+    欢迎回来：${n} <a href="10_logout.html">退出登录</a>
+    `
+  }
+
+</script>
+</body>
+</html>

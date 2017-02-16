@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/normal.css"/>
+  <title></title>
+</head>
+<body>
+<canvas id="c" width="100" height="40"></canvas>
+<a href="#" id='change'>看不清？换一张</a>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  var str='ABCDEFGHJKLMNPQRSTWXY3456789';
+  function rStr(){
+    var r=Math.floor(Math.random()*28);
+    return r;
+  }
+  function rSize(){
+    var s=Math.floor(Math.random()*(11)+10);
+    return s;
+  }
+  console.log(rSize());
+  function rBg(){
+    var r=Math.floor(Math.random()*256);
+    var g=Math.floor(Math.random()*256);
+    var b=Math.floor(Math.random()*256);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  function draw(){
+	var ctx=c.getContext('2d');
+	ctx.fillStyle=rBg();
+    ctx.fillRect(0,0,100,40);
+    ctx.textBaseline='middle';
+    ctx.font=`${rSize()}px sans-serip5f`;
+    for(var i=0;i<5;i++){
+		var char=str[rStr()];
+		var txt=char;
+		ctx.fillStyle=rBg();
+		ctx.fillText(txt,15+15*i,20);
+    }
+    for(var i=0;i<100;i++){
+		var x=Math.floor(Math.random()*101);
+		var y=Math.floor(Math.random()*41);
+		ctx.beginPath();
+		ctx.arc(x,y,1,0,Math.PI*2);
+		ctx.fillStyle=rBg();
+		ctx.fill();
+    }
+  }
+  draw();
+  
+  change.onclick=function(e){
+    e.preventDefault();
+    draw();
+  }
+</script>
+</body>
+</html>

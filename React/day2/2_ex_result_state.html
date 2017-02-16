@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var InputContent=React.createClass({
+    handleClick:function(){
+      console.log(this.refs.inputTxt.value)
+      this.props.funcChange(this.refs.inputTxt.value);
+    },
+    render:function(){
+      return <input ref='inputTxt'
+                    onChange={this.handleClick}
+                    type="text"/>
+    }
+  })
+  var BtnContent=React.createClass({
+    handleClick:function(){
+      console.log(this.props.funcGet());
+    },
+    render:function(){
+      return <button onClick={this.handleClick}>{this.props.btn}</button>
+    }
+  })
+  var MainContent=React.createClass({
+    getInitialState:function(){
+      return {
+        result:''
+      }
+    }
+    ,
+    change:function(value){
+      console.log('In main 内容发生改变 value is '+value)
+      return this.setState({result:value})
+    },
+    get:function(){
+      return this.state.result
+    },
+    render:function(){
+      return <div>
+        <InputContent funcChange={this.change}/>
+        <br/>
+        <BtnContent btn="获取输入的值"
+                    funcGet={this.get}/>
+      </div>
+    }
+  })
+  ReactDOM.render(
+      <MainContent/>,
+    document.getElementById('ex')
+  )
+
+</script>
+</body>
+</html>

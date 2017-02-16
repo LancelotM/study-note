@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var FormComponent=React.createClass({
+    getInitialState:function(){
+      return {
+        userName:'',
+        userSex:'1',
+        userIsAgree:'true'
+      }
+    },
+    handleSubmit:function(e){
+      e.preventDefault();
+      console.log(this.state)
+      console.log('用户名:'+this.state.userName+
+                  '性别为:'+this.state.userSex+
+                  '是否同意协议:'+this.state.userIsAgree
+      )
+    },
+    handleChangeName:function(e){
+      console.log(e.target.value)
+      this.setState({userName:e.target.value})
+    },
+    handleChangeSex:function(e){
+      console.log(e.target.value)
+      this.setState({userSex:e.target.value})
+    },
+    handleChangeCheckbox:function(e){
+      var isChecked='';
+      if(e.target.checked){
+        isChecked=true
+      }else{
+        isChecked=false
+      }
+      this.setState({userIsAgree:isChecked})
+    },
+    render:function(){
+      return <form onSubmit={this.handleSubmit}>
+        <label htmlFor='userName'>请输入用户名:</label>
+          <input type="text"
+                  id='userName'
+                  onChange={this.handleChangeName}
+                  value={this.state.userName}/>
+        <br/>
+
+        <label htmlFor='userSex'>请输入性别:</label>
+          <select id='userSex'
+                  value={this.state.userSex}
+                  onChange={this.handleChangeSex}>
+            <option value='1'>男</option>
+            <option value='0'>女</option>
+          </select>
+        <br/>
+
+        <label htmlFor='userIsAgree'>同意用户协议</label>
+          <input id='userIsAgree'
+                  onChange={this.handleChangeCheckbox}
+                  checked={this.state.userIsAgree}
+                 type="checkbox"/>
+        <br/>
+
+        <input type="submit" value='注册'/>
+      </form>
+    }
+  })
+  ReactDOM.render(
+      <FormComponent/>,
+    document.getElementById('ex')
+  )
+</script>
+</body>
+</html>

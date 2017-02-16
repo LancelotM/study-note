@@ -1,0 +1,84 @@
+1、如何访问服务器
+	1、协议(语言)
+	2、域名或IP地址
+	3、端口号(1~65535)
+2、数据库服务器的种类
+	1、网状数据库
+	2、树状数据库
+	3、关系型数据库 ————主流
+		服务器端程序：负责保存管理数据
+		客户端程序：负责向服务器发起增删改查指令
+		
+		数据结构:
+		SERVER => TABLE => ROW => COLUMN
+		MySQL的两个版本：
+			1、Oracle - MySQL
+			2、Maria基金会 - MariaDB
+	4、对象型数据库
+3、***使用MySQL服务器的步骤
+	mariadb.org
+	1、服务器端：下载并安装MySQL服务器端程序
+	2、服务器端：启用MySQL的服务器程序
+		确保 3306 端口已打开
+	-------------------------------------------
+	3、客户端：下载并安装MySQL客户端程序
+	4、客户端：启动客户端程序，远程连接到服务器上
+		-uroot -p
+	5、客户端：向服务器发送操作指令，实现增删改查(CRUD)
+4、常用的 SQL 语句
+	向服务器提交 SQL语句有2种方式：
+		1、交互方式：输入一行提交执行一行
+			1、连接到服务器
+			2、输入一行命令，添加一个分号，回车执行
+		2、脚本模式：把所有的语句编写在一个文本文件中，一次性全部提交给服务器执行
+			1、创建一个文本文件
+			2、开始编写所有的语句
+			3、将文本文件提交给服务器执行
+				mysql -uroot -p < e:/tmooc.sql>r
+	
+	sql(Structured Query Language):结构化查询语言	
+	
+	#设置下边所有的SQL的编码方式
+	SET NAMES UTF8;
+	#判断是否有 tmooc 库并删除
+	DROP DATABASE IF EXISTS tmooc;
+	#创建名为 tmooc 的库
+	CREATE DATABASE tmooc CHARSET=UTF8;
+	#显示现有的库
+	SHOW DATABASES;
+	#开始使用指定的数据库/进入指定的数据库
+	USE taobao;
+
+	#创建保存用户信息的表
+	CREATE TABLE tb_user(
+		uid INT PRIMARY KEY AUTO_INCREMENT,           
+		#主键列,不允许出现重复值或空  自增列
+		uname VARCHAR(16)(variable character),
+		upwd VARCHAR(32),pic VARCHAR(32F),
+		score FLOAT(10,2),  最大值是10位，小数点后2位
+		regTime BIGINT
+	);
+	#外键列 允许重复，但取值范围必须和主键列一致
+
+	#向表中插入记录行(ROW)
+	INSERT INTO tb_user VALUES(
+		101,'tom','789456123','das1.jpg','11111','1234567890123'
+	);
+	INSERT INTO tb_user VALUES(
+		102,'tomass','789456123','das2.jpg','11111','1534567890123'
+	);
+	INSERT INTO tb_user VALUES(
+		103,'perlGeosol','789456123','das3.jpg','11111','1734567890123'
+	);
+	#查询出表中指定列的数据
+	SELECT uid,uname,upwd,pic,score,regTime FROM tb_user;
+	#删除一行指定的记录
+	DELETE FROM tb_user WHERE uid=number;
+	#修改一行指定的记录 ————很容易忘记！
+	UPDATE tb_user SET uname='xxx',upwd='xxxxxx' WHERE uid=number;
+
+	乱码问题：
+	1、SET NAMES UTF8;
+	2、CREATE DATABASE XXX CHARSET=UTF8;
+	3、引入的.sql编码方式为UTF8
+	4、在交互模式下查看

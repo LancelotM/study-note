@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  <button ng-click="add()">添加</button>
+  <table>
+    <thead>
+      <tr>
+        <th>单价</th>
+        <th>数量</th>
+        <th>小计</th>
+        <th>删除</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="obj in cart">
+          <td>{{obj.price}}</td>
+          <td>{{obj.count}}</td>
+          <td>{{obj.price*obj.count}}</td>
+          <td>
+            <button ng-click="delete($index)">删除</button>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  //声明模块
+  var app = angular.module('myModule',['ng']);
+
+  //创建控制器
+  app.controller('myCtrl', function ($scope) {
+
+    //初始化模型数据
+    $scope.cart = [
+      {price:3,count:5},
+      {price:9,count:1},
+      {price:10,count:2},
+    ];
+
+    //添加数据到购物车
+    $scope.add = function () {
+      $scope.cart.push({price:7,count:3});
+    }
+
+    //从购物车中删除指定的一行数据
+    $scope.delete = function (index) {
+      $scope.cart.splice(index,1);
+
+    }
+
+
+  })
+
+</script>
+
+</body>
+</html>

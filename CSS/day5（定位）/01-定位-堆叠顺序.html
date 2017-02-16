@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#d1,#d2,#d3{
+				width:200px;
+				height:200px;
+				position:absolute;
+				top:0px;
+				left:0px;
+			}
+			#d1{
+				background:red;
+				z-index:300;
+			}
+			#d2{
+				background:blue;
+				top:20px;
+				left:20px;
+				z-index:250;
+			}
+			#d3{
+				background:green;
+				top:40px;
+				left:40px;
+				z-index:10;
+			}
+
+			#d4{
+				width:200px;
+				height:200px;
+				background:yellow;
+				position:relative;
+				z-index:100;
+			}
+			#d5{
+				width:100px;
+				height:100px;
+				background:blue;
+				position:absolute;
+				top:0px;
+				right:0px;
+				z-index:20;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div id="d1"></div>
+		<div id="d2"></div>
+		<div id="d3"></div> -->
+		<div id="d4">
+			<div id="d5"></div>
+		</div>
+	</body>
+</html>

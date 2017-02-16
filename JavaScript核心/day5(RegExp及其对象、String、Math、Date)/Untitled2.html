@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<h1 id="jx"></h1>
+	<!-- <ul id="ulNames"> -->
+		<!-- <li>jeason</li> -->
+		<!-- <li>tom</li> -->
+		<!-- <li>jerry</li> -->
+		<!-- <li>alice</li> -->
+		<!-- <li>harry</li> -->
+		<!-- <li>geonory</li> -->
+	<!-- </ul> -->
+	<script type="text/javascript">
+
+		////var str="那天，我去了他家，我说：我勒个去，你家真大，他想和我去草地野餐。我说：我勒个去，你家还有草坪！";
+		////str=str.replace(/我(勒个?)?去/g,
+			////function(kw){
+				////return	kw.length==2?"**":
+						////kw.length==3?"***":
+						////"****";
+			////}
+		////)
+		////console.log(str);
+
+		//var stmt="wo two who and who";
+		//stmt=stmt.replace(/\b[a-z]/g,function(kw){
+			//return kw.toUpperCase();
+		//})
+		//console.log(stmt);
+
+		//var str="       yu     ming     ";
+		//function ltrim(str){
+			//return str.replace(/^\s+/,"");
+		//}
+		//function rtrim(str){
+			//return str.replace(/\s+$/,"");
+		//}
+		//function trim(str){
+			//return str.replace(/^\s+|\s+$/,"");
+		//}
+		//console.log(ltrim(str));
+		//console.log(rtrim(str));
+		//console.log(trim(str));
+
+		//var birth="19930806";
+		//birth=birth.replace(/(\d{4})(\d{2})(\d{2})/,"$1年$2月$3日");
+		//console.log(birth);
+	
+		//var names=ulNames
+			//.innerHTML
+			//.replace(/^\s*<li>|<\/li>\s*$/g,"")
+			//.split(/<\/li>\s*<li>/)
+			//.sort();
+		//console.log(names);
+		//ulNames.innerHTML="<li>"+
+			//names.join("</li><li>")
+			//+"</li>";
+		
+		//验证
+		//var reg=/^\d{6}$/;
+		//while(!reg.test(prompt("输入密码(6位数字)"))){
+			//alert("密码不正确");
+		//}
+		//document.write("验证通过哟");
+
+		//既查找位置，又查找内容
+		var str="明明喜欢我，去不告诉我，别理我，我想静静，静静是谁？你先告诉我明明是学谁";
+		var reg=/明明|静静/g;
+		var arr=null;
+		while((arr=reg.exec(str))!=null){
+			console.log("在位置"+arr.index+"发现敏感词"+arr[0]+"下次从"+reg.lastIndex/*Number(arr.index+arr[0].length)*/+"处开始");
+		}
+
+
+		var html='<body><a name="dsadsa"></a><div><div></body><a class="dasd" href="wdsadasdsad"></a><p></p><ul><li></li><li><a href="http://tmooc.cn"></a></li></ul></body>';
+		var reg=/<a [^<]*href="([^"]+)"/g;
+		var arr=null;
+		while((arr=reg.exec(html))!=null){
+			console.dir(arr);
+			console.log(arr[1]);
+			console.log(RegExp.$1);
+		}
+
+		function round(num,d){
+				num*=Math.pow(10,d);
+				num=Math.round(num);
+				return num/Math.pow(10,d);
+			}
+			console.log(
+				round(345.678,2),
+				round(345.678,0),
+				round(345.678,-1)
+
+			)
+
+		
+		function doubleBall(){
+			var reds=[];
+			while(reds.length<6){
+				var r=Math.floor(Math.random()*(33)+1);
+				for(var i=0;i<reds.length;i++){
+					if(reds[i]==r){break;}
+				}
+				if(i==reds.length){reds.push(r);}
+			}
+			reds.sort(function(a,b){return a-b;});
+			var blue=Math.floor(Math.random()*16+1);
+			return String(reds)+"|"+blue;
+		}
+		jx.innerHTML=doubleBall();
+
+		var birth=new Date("1993/8/6");
+		var	today=new Date();
+		var days=(today-birth)/(3600*1000*24*365);
+		var die=58*365;
+		console.log(days);
+		console.log(die);
+	</script>	
+	
+</body>
+</html>

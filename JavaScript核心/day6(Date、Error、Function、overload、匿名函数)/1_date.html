@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var start=new Date();//获得当前时间
+      //将start复制一个副本end
+      var end=new Date(start);
+      end.setDate(end.getDate()+60);//放回去
+
+      console.log("开始时间:"+start);
+      console.log("截止时间:"+end);
+
+      //定义入职时间hiredate: 2012/06/30
+      var hiredate=new Date("2012/06/30");
+      //复制入职时间到到期时间enddate
+      var enddate=new Date(hiredate);
+      //将enddate+3年
+      enddate.setFullYear(
+        enddate.getFullYear()+3);
+      //复制到期时间到续签时间renewdate
+      var renewdate=new Date(enddate);
+      //将renewdate-1月
+      renewdate.setMonth(renewdate.getMonth()-1);
+      //如果renewdate是周六，再-1天
+      if(renewdate.getDay()==6){
+        renewdate.setDate(renewdate.getDate()-1);
+      }else if(renewdate.getDay()==0){
+      //否则，如果renewdate是周日，再-2天
+        renewdate.setDate(renewdate.getDate()-2);
+      }
+      //复制续签时间到提醒时间alertdate
+      var alertdate=new Date(renewdate);
+      //将alertdate-1周
+      alertdate.setDate(alertdate.getDate()-7);
+      console.log("入职时间:"
+              +hiredate.toLocaleDateString());
+      console.log("到期时间:"
+              +enddate.toLocaleDateString());
+      console.log("续签时间:"
+              +renewdate.toLocaleDateString());
+      console.log("提醒时间:"
+              +alertdate.toLocaleDateString());
+    </script>
+  </body>
+</html>

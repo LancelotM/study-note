@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <button>异步请求服务器端的JS响应</button>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('button').click(function(){
+      //发起异步请求
+      $.getScript('14_getScript.php');
+      //$.get('14_getScript.php');
+    })
+
+    function doEmpData(emp){
+      alert(emp.ename + '-'+emp.age);
+    }
+    </script>
+  </body>
+</html>

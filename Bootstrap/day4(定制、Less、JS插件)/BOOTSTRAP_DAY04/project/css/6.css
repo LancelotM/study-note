@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+/*多行注释*/
+/*多行注释*/
+/*变量*/
+.box {
+  color: #f4393c;
+  font-family: 'SimHei';
+  border: 4px solid #f4393c;
+}
+/*变量的运算*/
+.col-1 {
+  width: 82.66666667px;
+}
+.col-3 {
+  width: 248px;
+}
+/*样式的混入(Mixin)*/
+.box2 {
+  padding: 20px;
+  border: 3px solid #aaa;
+}
+.well {
+  padding: 20px;
+  border: 3px solid #aaa;
+  background: #eee;
+}
+.alert {
+  padding: 20px;
+  border: 3px solid #aaa;
+  color: #f00;
+}
+/*带参数的混入*/
+.well {
+  padding: 10px;
+  border: 2px solid #aaaaaa;
+  background: #eee;
+}
+.alert {
+  padding: 20px;
+  border: 1px solid #000000;
+  color: #f00;
+}
+/*样式嵌套*/
+/*
+
+.main {
+  padding: 10px;
+}
+.main ul {
+  list-style: none;
+}
+.main ul li {
+  display: inline-block;
+}
+.main ul li > a {
+  color:#333;
+}
+.main ul li > a:hover {
+  text-decoration: none;
+}
+*/
+.main {
+  padding: 10px;
+}
+.main ul {
+  list-style: none;
+}
+.main ul li {
+  display: inline-block;
+}
+.main ul li > a {
+  color: #333;
+}
+.main ul li > a:hover {
+  text-decoration: none;
+}
+/*Less提供的函数*/
+.col-1 {
+  width: 82px;
+}
+.col-2 {
+  width: 8.33333333%;
+}

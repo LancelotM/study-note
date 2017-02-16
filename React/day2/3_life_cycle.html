@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var LifeComponent=React.createClass({
+    componentWillMount:function(){
+      console.log('准备插入');
+      console.log(this.refs.myParagraph)
+    },
+    componentDidMount:function(){
+      console.log('已经插入')
+      console.log(this.refs.myParagraph)
+    },
+    render:function(){
+      return <p ref='myParagraph'>Hello LifeCycle</p>
+    }
+  })
+  ReactDOM.render(
+      <LifeComponent/>,
+    document.getElementById('ex')
+  )
+
+</script>
+</body>
+</html>

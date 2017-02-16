@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    #container{
+      width: 500px;
+      min-height: 400px;
+      border:1px solid #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h3>请拖拽你的头像</h3>
+  <div id="container"></div>
+  <script>
+    document.ondragover=function(e){
+      e.preventDefault();
+    };
+    document.ondrop= function(e){
+      e.preventDefault();
+    };
+    container.ondragover=function(e){
+      e.preventDefault();
+    };
+    container.ondrop=function(e){
+      var list= e.dataTransfer.files;
+      for(var i=0;i<list.length;i++){
+
+        (function(a){
+          var f= list[i];
+          var reader=new FileReader();
+          reader.readAsDataURL(f);
+          reader.onload=function(){
+            console.log(reader.result);
+            var img=new Image();
+            img.src=reader.result;
+            container.appendChild(img);
+          }
+        })(i)
+
+      }
+//      var f0= e.dataTransfer.files[0];
+//      console.log(f0);
+
+//      var reader=new FileReader();
+//      reader.readAsDataURL(f0);
+//      reader.onload=function(){
+//        console.log(reader.result);
+//        var img=new Image();
+//        img.src=reader.result;
+//        container.appendChild(img);
+//      }
+    }
+  </script>
+</body>
+</html>

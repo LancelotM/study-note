@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="AngularJS-1.4.1/js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myControl">
+  <input type="checkbox" ng-checked="checked">是否同意
+  <p ng-style="bg">haha</p>
+</div>
+<script>
+  var app=angular.module('myApp',['ng']);
+  app.controller('myControl',function($scope){
+    $scope.checked='true';
+    $scope.bg='background:#ddd';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#parent{
+				width:400px;
+				height:400px;
+				border:1px solid #333;
+				margin:100px auto;
+				/*perspective*/
+				perspective:1000px;
+			}
+			#son{
+				width:200px;
+				height:200px;
+				background:red;
+				margin:100px auto;
+				/*x轴的旋转*/
+				/*transform:rotatex(0deg);*/
+				/*transform:rotatey(0deg);*/
+				/*transform:rotatez(0deg);*/
+
+				/*transform:rotatex(45deg) rotatey(45deg) rotatez(45deg);*/
+				transform:rotate3d(1,1,1,45deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="parent">
+			<div id="son">3D转换元素</div>
+		</div>
+	</body>
+</html>

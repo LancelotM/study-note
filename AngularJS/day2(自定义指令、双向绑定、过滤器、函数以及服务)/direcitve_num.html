@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div my-directive test-name="World"></div>
+
+<my-directive test-name="World"></my-directive>
+
+<div class="my-directive" test-name="  World"></div>
+
+<!--directive:my-directive-->
+
+<div ng-controller="myCtrl"></div>
+<script>
+  angular.module('myModule',['ng'])
+    .directive('myDirective',function(){
+      return{
+        template:'<h1>Hello {{testName}}</h1>',
+        scope:{
+          testName:'@'
+        },
+        restrict:'EACM',
+        replay:true
+      }
+    })
+    .controller('myCtrl',function(){
+
+    })
+</script>
+</body>
+</html>

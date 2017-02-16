@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    svg{
+      background: #F1F1F1;
+    }
+  </style>
+</head>
+<body>
+  <svg id="s" width="1200" height="1000">
+
+    <g alignment-baseline="middle" font-size="30">
+      <text x="70" y="900">0</text>
+      <text x="70" y="750">2</text>
+      <text x="70" y="600">4</text>
+      <text x="70" y="450">6</text>
+      <text x="70" y="300">8</text>
+      <text x="60" y="100">10</text>
+      <text x="550" y="980" font-size="30">课程名称</text>
+      <text x="400" y="50" font-size="50">前三阶段课程难度系数</text>
+    </g>
+    <g fill="#FFF">
+      <rect width="1050" height="150" x="103" y="747"></rect>
+      <rect width="1050" height="150" x="103" y="447"></rect>
+      <rect width="1050" height="200" x="103" y="97"></rect>
+    </g>
+    <g stroke-linejoin="round" fill-opacity="0" stroke="#686868" stroke-width="5">
+      <polyline points="100,900 1200,900 1155,870 1200,900 1155,930" ></polyline>
+      <polyline points="100,900 100,100 130,150 100,100 70,150"></polyline>
+    </g>
+    <defs></defs>
+  </svg>
+  <script>
+    $.ajax({
+      url:"res/hw1.json",
+      success:function(){},
+      error:function(){}
+    })
+  </script>
+</body>
+</html>

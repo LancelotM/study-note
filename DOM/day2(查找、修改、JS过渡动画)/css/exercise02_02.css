@@ -1,0 +1,16 @@
+#date {
+    border-collapse:collapse;
+    margin-top:20px;
+}
+#date thead td {
+    border:1px solid #000;
+    background-color:#ccc;
+    width:80px;
+    height:30px;
+    text-align:center;
+}
+#date tbody td {
+    border:1px solid #666;
+    height:25px;
+    text-align:center;
+}

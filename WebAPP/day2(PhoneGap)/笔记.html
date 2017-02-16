@@ -1,0 +1,140 @@
+1、PhoneGap:开源的移动设备应用程序框架,目标是使用前端开发技术来实现跨平台应用程序,能够实现原生应用程序可以实现的功能:调用只能手机的核心本地功能,传感器、摄像头、震动...
+	混合编程应用程序和webApp功能上差别不大,在android系统中运行,借助工具来实现和nativeApp差不多的功能,比如说调用底层的硬件--phoneGap
+	
+	开发框架分为3层：
+		应用层:开发者写HTML、JS、CSS
+		中建材:phoneGap/cordova封装好的js的api
+		底层:各个操作系统的硬件的调用
+	特点：
+		1、兼容性
+			write once,run everywhere
+		2、标准化
+			采用w3c标准
+		3、大众化
+			不需要手机编程基础,只要会html/css/js,就能做混合编程应用程序开发,而且还能通过JS调用设备底层硬件
+	云端打包:
+		build.phonegap.com
+		cordova.apache.org
+2、搭建 PhoneGap 开发环境
+	方式1：命令行
+	方式2：图形化应用
+		PC端
+		移动端
+3、将 apk 的安装包安装到模拟器中
+	方式1：命令行
+		通过adb(Android Debug Bridge),借助命令行去安装
+			1、找到adb.exe
+			2、控制台输入 adb.exe路径 install apk安装包路径
+	方式2：图形化应用
+4、phonegap事件列表
+	1、运行状态 pause/resume
+	2、网络状态 online/offline
+	3、电池状态 battery
+	4、按钮状态 button
+	document.addEventListener('事件名称',事件对应的处理函数,false)
+5、phonegap核心API
+	1、设备(device)
+		device.name 设备名
+		device.phonegap 
+		device.platform 操作系统
+		device.uuid 设备序列号
+		device.version 操作系统版本号
+	2、提醒通知(notification)
+		navigator.notification.alert 警告框
+		navigator.notification.confirm 确认对话框
+		navigator.notification.beep 蜂鸣
+		navigator.notification.vibrate 震动
+	3、加速度传感器(accelerometer)
+		navigator.accelerometer.getCurrentAcceleration 获取当前x、y、z方向的加速度信息
+		navigator.accelerometer.watchAcceleration 开始监听加速度信息
+		navigator.accelerometer.clearWatch  停止监听加速度信息
+	4、采集音频、视频、照片(capture)
+		navigator.device.capture.captureAudio/Image/Video ()
+	5、file文件操作
+		功能1——文件系统创建文件并写入内容
+			1、得到文件系统localFileSystem
+				function writeSth(){
+					window.requestFileSystem(
+					  LocalFileSystem.PERSISTENT,
+					  0,
+					  getFSWrite,
+					  fail
+					);
+				}
+
+				function fail(){
+					showAlert('文件操作失败');
+				}
+			2、得到文件入口fileEntry
+				fileSystem.root.getFile,在成功的回调里得到fileEntry
+					function getFSWrite(fileSystem){
+						fileSystem.root.getFile(
+						  "a.txt",
+						  {create:true},
+						  getFileEntry,
+						  fail
+						)
+					}
+			3、fileWrite
+				fileEntry.createWriter,在成功的回调里得到fileWriter
+				fileWriter.write();
+					function getFileEntry(fileEntry){
+						fileEntry.createWriter(
+						  function (fileWriter) {
+							  fileWriter.onwrite = function () {
+								  showAlert("写入成功!");
+							  }
+							  fileWriter.write("Hello PhoneGap")
+						},
+						  fail
+						)
+					}
+		功能2——从文件系统读取文件中的内容
+			1、得到文件系统localFileSystem
+				window.requestFileSystem,在成功的回调里得到fileSystem
+					window.requestFileSystem,在成功的回调里得到fileSystem
+					function readFile(){
+					  window.requestFileSystem(
+						LocalFileSystem.PERSISTENT,
+						0,
+						getFSRead,
+						fail
+					  )
+					}
+			2、得到文件入口fileEntry
+				fileSystem.root.getFile,在成功的回调里得到fileEntry
+					function getFSRead(fileSystem){
+					  fileSystem.root.getFile(
+						"a.txt",
+						null,
+						getFileEntryRead,
+						fail
+					  )
+					}
+			3、fileReader
+				file对象(包含单个文件的属性):
+				function getFileEntryRead(fileEntry){
+				  fileEntry.file(
+					function (file) {
+					  //获取对文件进行读操作的对象
+					   var reader = new FileReader();
+
+					  reader.onloadend = function (event) {
+						showAlert(event.target.result);
+					  }
+					  reader.readAsText(file);
+					},
+					fail
+				  )
+				}
+	6、摄像头(camera)
+		navigator.camera.getPicture( 
+		cameraSuccess, 
+		cameraError, 
+		{	
+			quality:50,
+			sourceType:Camera.PictureSourceType.PHOTOLIBRARY(从相册中选照片)/CAMERA(调用照相机)
+		});
+		cameraSuccess(imgUrl){
+			目标元素.src=imgUrl;
+		}

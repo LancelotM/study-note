@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#d1,#d2{
+				width:200px;
+				height:200px;
+				position:absolute;
+				left:400px;
+				top:200px;
+			}
+			#d1{
+				border:1px dotted #666;
+			}
+			#d2{
+				border:1px solid #333;
+				background:#666;
+				opacity:0.5;
+				/*向右下移动50px*/
+				/*transform:translate(50px,50px);*/
+				/*缩放元素*/
+				/*transform:scalex(0.5);*/
+
+				/*旋转，顺时针旋转45deg*/
+				/*transform:rotate(45deg);*/
+
+				/*先顺时针旋转45deg，再向右移动100px*/
+				/*transform:translate(100px) rotate(45deg);*/
+				/*改变转换原点，再旋转*/
+				/*transform-origin:left top;
+				transform:rotate(45deg);*/
+				/*x轴倾斜 45deg*/
+				/*transform:skewx(-45deg);*/
+				transform:skewy(45deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">原始div</div>
+		<div id="d2">转换div</div>
+	</body>
+</html>

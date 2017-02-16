@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      position: relative;
+      margin: 0;
+    }
+    body:before {
+      content: ' ';
+      display: table;
+    }
+    #p3 {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <h3>拖放API——可以随动的源对象</h3>
+  <img src="img/p3.png" id="p3">
+  <script>
+    var startX = 0; //鼠标刚一拖动时在飞机上偏移量
+    var startY = 0;
+    p3.ondragstart = function(e){
+      startX = e.offsetX;//刚要移动时鼠标相对于飞机的偏移量
+      startY = e.offsetY;
+    }
+    p3.ondrag = function(e){
+      var x = e.pageX;  //拖动在整个页面中的坐标
+      var y = e.pageY;
+      console.log(x+'-'+y);
+      if( x===0  &&  y===0 ){//解决拖动最后出现的0-0坐标问题
+        return;
+      }
+
+      x -= startX;
+      y -= startY;
+      p3.style.left = x+'px';//修改图片的坐标
+      p3.style.top = y+'px';
+    }
+    p3.ondragend = function(e){
+
+    }
+  </script>
+</body>
+</html>

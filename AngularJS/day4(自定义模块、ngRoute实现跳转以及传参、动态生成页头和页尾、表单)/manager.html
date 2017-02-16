@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.js"></script>
+  <title></title>
+</head>
+<body ng-controller="myCtrl">
+<div ng-view></div>
+<script>
+  angular.module('myModule', ['ng','ngRoute'])
+    .config(function($routeProvider){
+      $routeProvider.when('/check',{
+        templateUrl:'tpl/m_check.html'
+      })
+        .when('/pay',{
+          templateUrl:'tpl/m_pay.html'
+          ,controller:'payCtrl'
+        })
+        .when('/pay/:price',{
+          templateUrl:'tpl/m_pay.html'
+          ,controller:'payCtrl'
+        })
+        .when('/send',{
+          templateUrl:'tpl/m_send.html'
+        })
+        .otherwise({redirectTo:'/check'})
+    })
+    .controller('myCtrl',['$scope','$location',function ($scope,$location) {
+      $scope.jump=function(arg){
+        $location.path(arg);
+      }
+    }])
+    .controller('payCtrl',['$routeParams','$scope',function($routeParams,$scope){
+      console.log($routeParams.price);
+      $scope.price=$routeParams.price;
+    }])
+</script>
+</body>
+</html>

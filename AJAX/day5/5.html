@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h3>非跨域的XHR请求</h3>
+    <button id="bt1">非跨域异步请求</button>
+    
+    
+    <h3>跨域的XHR请求</h3>
+    <button id="bt2">跨域异步请求</button>
+    
+    <h3>跨域的XHR请求——解决方案之七</h3>
+    <button id="bt3">跨域异步请求</button>
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('#bt1').click(function(){
+      $.get('5.php', function(data){
+        console.log('开始处理响应数据');
+        console.log(data);
+      });
+    
+    });
+
+
+    //使用127.0.0.1/5.html访问  localhost/5.php
+    $('#bt2').click(function(){
+      $.get('http://localhost/AJAX_DAY08/5.php', function(data){
+        console.log('开始处理响应数据');
+        console.log(data);
+      });
+    
+    });
+
+    //解决跨域访问的限制，方案七
+    $('#bt3').click(function(){
+      $.get('http://localhost/AJAX_DAY08/6.php', function(data){
+        console.log('开始处理响应数据');
+        console.log(data);
+      });
+    
+    });
+
+
+
+    </script>
+  </body>
+</html>

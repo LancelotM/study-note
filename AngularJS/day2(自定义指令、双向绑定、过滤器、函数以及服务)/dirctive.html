@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <!--扩展属性-->
+  <div my-direct></div>
+  <!--class属性-->
+  <div class="my-direct"></div>
+  <!--标签-->
+  <my-direct></my-direct>
+  <!--comment-->
+  <!--directive:my-direct-->
+</div>
+<script>
+  angular.module('myApp',['ng'])
+    .controller('myCtrl',function($scope){
+
+    })
+    .directive('myDirect',function(){
+      return{
+        template:'<h1>Hello Directive</h1>',
+        restrict:'EACM',
+        replace:true
+      }
+    })
+</script>
+</body>
+</html>

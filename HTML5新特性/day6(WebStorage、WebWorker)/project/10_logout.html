@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>退出登录</h3>
+  <p>退出登录成功！3秒钟后将跳转回首页....</p>
+  <script>
+    //清除用户的登录信息
+    sessionStorage.removeItem('LoginName');
+    //sessionStorage.clear();
+    setTimeout(function(){
+      location.href = '10_index.html';
+    },3000)
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <p ng-bind="'当前地址为：'+url"></p>
+  <button ng-click="getUrl()">获取地址</button>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', function ($scope,$location) {
+      $scope.url='';
+      $scope.getUrl=function(){
+        $scope.url=$location.absUrl();
+      }
+    })
+</script>
+</body>
+</html>

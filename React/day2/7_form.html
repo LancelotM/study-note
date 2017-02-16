@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var FormComponent=React.createClass({
+    getInitialState:function(){
+      return {
+        result:'123'
+      }
+    },
+    handleChange:function(){
+      console.log(this.refs.userInput.value)
+      this.setState({result:this.refs.userInput.value})
+    },
+    handleSubmit:function(e){
+      e.preventDefault();
+      console.log("提交的结果为："+this.state.result)
+    },
+    render:function(){
+      return <form onSubmit={this.handleSubmit}>
+        <input type="text"
+                value={this.state.result}
+                ref='userInput'
+                onChange={this.handleChange}/>
+        <input type="submit" value='提交'/>
+      </form>
+    }
+  })
+  ReactDOM.render(
+      <FormComponent/>,
+    document.getElementById('ex')
+  )
+
+</script>
+</body>
+</html>

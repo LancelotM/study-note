@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      //isArray的执行和具体对象类型无关
+      //所以，isArray不能定义在prototype中
+      //而要定义在构造函数Array上，所有类型共用
+      if(Array.isArray===undefined)
+        Array.isArray=function(obj){
+          //用obj强行调用Object中的toString方法和"[object Array]"比较
+          return Object.prototype.toString.call(
+                  obj)=="[object Array]";
+        }
+
+      var obj1=[];
+      var obj2={};
+      var obj3=function(){};
+          obj3.__proto__=obj1;
+      document.write(
+        Array.isArray(obj1)+"<br>"+
+        Array.isArray(obj2)+"<br>"+
+        Array.isArray(obj3)+"<br>"
+      );
+    </script>
+  </body>
+</html>

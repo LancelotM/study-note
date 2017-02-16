@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style type="text/css">
+		.parent{
+			width:400px;
+			height:400px;
+			border:1px solid #333;
+			margin:150px auto;
+			position:relative;
+		}
+		.parent>div{
+			width:100px;
+			height:100px;
+			margin:150px;
+			position:absolute;
+			color:#fff;
+			font-weight:bold;
+		}
+		.box{
+			transform-style:preserve-3d;
+			transform:rotate3d(1,0,0,75deg);
+		}
+		.c1{
+			background:red;	
+			transform:rotate(0deg) translatez(50px);
+		}
+		.c2{
+			background:yellow;	
+			transform:rotate(0deg) translatez(-50px);
+		}
+		.c3{
+			background:blue;	
+			transform:rotatex(90deg) translatez(50px);
+		}
+		.c4{
+			background:green;	
+			transform:rotatex(270deg) translatez(50px);
+		}
+		.c5{
+			background:gray;
+			transform:rotatey(90deg) translatez(50px);
+		}
+		.c6{
+			background:black;	
+			transform:rotatey(270deg) translatez(50px);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="parent">
+			<div class="c1">1</div>
+			<div class="c2">2</div>
+			<div class="c3">3</div>
+			<div class="c4">4</div>
+			<div class="c5">5</div>
+			<div class="c6">6</div>
+		</div>
+	</div>	
+</body>
+</html>

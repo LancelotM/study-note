@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h2>跨页面的传递数据</h2>
+    <h3>2-2</h3>
+
+    <p id="msg"></p>
+    <script>
+    //msg.innerHTML = loginUid+'-'+loginUname;
+    //读取所有的cookie数据
+    //msg.innerHTML = document.cookie;
+    
+    
+    //console.log(typeof document.cookie); //string
+    //console.log(document.cookie); //用;空格分隔键值对
+    /***解析Cookie数据先使用;空格拆分，再用=拆分，转存为Object即可***/
+    var list = document.cookie.split('; ');
+    var obj = {};
+    for(var i=0; i<list.length; i++){
+      var kv = list[i];
+      //console.log(kv);
+      var arr = kv.split('=');
+      obj[arr[0]] = arr[1];
+    }
+    console.log(obj);
+    </script> 
+  </body>
+</html>

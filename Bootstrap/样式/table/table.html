@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="container">
+  <h1>全局CSS样式————表格</h1>
+  <h3>TABLE默认样式</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>住址</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>100011</td>
+        <td>Allice</td>
+        <td>上海市普陀区</td>
+        <td>
+          <a href="#" class="btn btn-success btn-xs">更新</a>
+        </td>
+      </tr>
+      <tr>
+        <td>100451</td>
+        <td>Tom</td>
+        <td>上海市静安区</td>
+        <td>
+          <a href="#" class="btn btn-danger btn-xs">删除</a>
+        </td>
+      </tr>
+      <tr>
+        <td>100011</td>
+        <td>Make</td>
+        <td>上海市陆家嘴</td>
+        <td>
+          <a href="#" class="btn btn-info btn-xs">修改</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>bootstrap提供的基础样式的表格</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>编号</th>
+      <th>姓名</th>
+      <th>住址</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>100011</td>
+      <td>Allice</td>
+      <td>上海市普陀区</td>
+      <td>
+        <a href="#" class="btn btn-success btn-xs">更新</a>
+      </td>
+    </tr>
+    <tr>
+      <td>100451</td>
+      <td>Tom</td>
+      <td>上海市静安区</td>
+      <td>
+        <a href="#" class="btn btn-danger btn-xs">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td>100011</td>
+      <td>Make</td>
+      <td>上海市陆家嘴</td>
+      <td>
+        <a href="#" class="btn btn-info btn-xs">修改</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h3>带边框的表格</h3>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>编号</th>
+      <th>姓名</th>
+      <th>住址</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>100011</td>
+      <td>Allice</td>
+      <td>上海市普陀区</td>
+      <td>
+        <a href="#" class="btn btn-success btn-xs">更新</a>
+      </td>
+    </tr>
+    <tr>
+      <td>100451</td>
+      <td>Tom</td>
+      <td>上海市静安区</td>
+      <td>
+        <a href="#" class="btn btn-danger btn-xs">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td>100011</td>
+      <td>Make</td>
+      <td>上海市陆家嘴</td>
+      <td>
+        <a href="#" class="btn btn-info btn-xs">修改</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h3>隔行变色的表格 striped(条)</h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>编号</th>
+      <th>姓名</th>
+      <th>住址</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>100011</td>
+      <td>Allice</td>
+      <td>上海市普陀区</td>
+      <td>
+        <a href="#" class="btn btn-success btn-xs">更新</a>
+      </td>
+    </tr>
+    <tr>
+      <td>100451</td>
+      <td>Tom</td>
+      <td>上海市静安区</td>
+      <td>
+        <a href="#" class="btn btn-danger btn-xs">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td>100011</td>
+      <td>Make</td>
+      <td>上海市陆家嘴</td>
+      <td>
+        <a href="#" class="btn btn-info btn-xs">修改</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h3>鼠标悬停变色的表格</h3>
+  <table class="table table-hover">
+    <thead>
+    <tr class="danger">
+      <th>编号</th>
+      <th>姓名</th>
+      <th>住址</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="success">
+      <td>100011</td>
+      <td>Allice</td>
+      <td>上海市普陀区</td>
+      <td>
+        <a href="#" class="btn btn-success btn-xs">更新</a>
+      </td>
+    </tr>
+    <tr class="info">
+      <td>100451</td>
+      <td>Tom</td>
+      <td>上海市静安区</td>
+      <td>
+        <a href="#" class="btn btn-danger btn-xs">删除</a>
+      </td>
+    </tr>
+    <tr class="primary">
+      <td>100011</td>
+      <td>Make</td>
+      <td>上海市陆家嘴</td>
+      <td>
+        <a href="#" class="btn btn-info btn-xs">修改</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h3>响应式的表格</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>住址</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>100011</td>
+        <td>Allice</td>
+        <td>上海市普陀区dasdasdasd</td>
+        <td>
+          <a href="#" class="btn btn-success btn-xs">更新</a>
+        </td>
+      </tr>
+      <tr>
+        <td>100451</td>
+        <td>Tom</td>
+        <td>上海市静安区saddddasd</td>
+        <td>
+          <a href="#" class="btn btn-danger btn-xs">删除</a>
+        </td>
+      </tr>
+      <tr>
+        <td>100011</td>
+        <td>Make</td>
+        <td>上海市陆家嘴sadsadasdas</td>
+        <td>
+          <a href="#" class="btn btn-info btn-xs">修改</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+  (function(){
+    var s=document.createElement("script");
+    s.onload=function(){
+      bootlint.showLintReportForCurrentDocument([]);
+    };
+    s.src="js/bootlint.js";
+    document.body.appendChild(s)
+  })();
+</script>
+</body>
+</html>

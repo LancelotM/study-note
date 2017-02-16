@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <p ng-bind="num"></p>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', function ($scope,$interval) {
+      $scope.num=0;
+//      setInterval(function(){
+//        $scope.num++
+//        console.log($scope.num)
+//        $scope.$digest();
+//      },500)
+      $interval(function(){
+        $scope.num++;
+      },500)
+    })
+</script>
+</body>
+</html>

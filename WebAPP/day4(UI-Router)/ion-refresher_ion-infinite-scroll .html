@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<ion-content>
+  <ion-refresher
+    pulling-text="下拉刷新..."
+    on-refresh="downPull()"></ion-refresher>
+
+  <ul class="list list-inset">
+    <li class="item"
+        ng-repeat="obj in list"
+        ng-bind="obj"></li>
+  </ul>
+
+  <ion-infinite-scroll
+    immediate-check="false"
+    on-infinite="upPull()"
+    distance="1%"></ion-infinite-scroll>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+    .controller('myCtrl',['$scope','$timeout',function($timeout,$scope){
+      $scope.list=[0,1,2,3,4];
+      $scope.downPull=function(){
+        $scope.list.push($scope.list.length);
+        $scope.$broadcast('scroll.refreshComplete');
+      }
+      $scope.upPull=function(){
+        $scope.list.push($scope.list.length);
+        $timeout(function(){
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        },1000)
+      }
+    }])
+</script>
+</body>
+</html>

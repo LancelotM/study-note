@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var emp={id:1001,name:"eric"};
+      (function(){
+        var _age=18;
+        //为emp添加访问器属性age,保护_age
+        Object.defineProperty(emp,"age",{
+          get:function(){//获取属性值时自动调用
+            console.log("自动调用age的get方法");
+            return _age;
+          },
+          set:function(val){//为属性赋值时自动
+            //val可自动获得要赋的新值(等号右边的值)
+            console.log(
+              "自动调用age的set方法,获得"+val);
+            if(val<18||val>65)
+              throw new Error(
+                "年龄必须介于18~65");
+            _age=val;
+          }
+        });
+      })();
+      console.log(emp.age);
+      //emp.age=17;//报错
+      emp.age++;//get   +1    set
+      //存在什么漏洞?
+      console.log(emp.age);
+      console.dir(emp);
+    </script>
+  </body>
+</html>

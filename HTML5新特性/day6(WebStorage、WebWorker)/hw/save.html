@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>录入</h1>
+    <form >
+        <label>英文</label><input id='E' type="text">
+        <label>中文</label><input id='C' type="text">
+        <input id="save" type="button" value="保存">
+    </form>
+    <div id='start'>开始测试</div>
+    <script type="text/javascript">
+        save.onclick=function(){
+            localStorage[E.value]=C.value;
+            E.value='';
+            C.value='';
+        }
+        start.onclick=function(){
+            location.href='test.html';
+        }
+    </script>
+</body>
+</html>

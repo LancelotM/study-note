@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+
+  var ButtonComponent = React.createClass({
+    handlerClick:function(){
+        this.props.funcDeal();
+    },
+    render:function(){
+      return <div>
+      <button onClick={this.handlerClick}>
+        clickMe
+      </button>
+      </div>
+    }
+  })
+
+  var MainComponent = React.createClass({
+    handleClick:function(){
+      console.log('下单');
+    },
+    render:function(){
+      return <ButtonComponent
+        funcDeal={this.handleClick}/>
+    }
+  })
+
+  ReactDOM.render(
+  <MainComponent/>,
+  document.getElementById('example')
+  )
+
+</script>
+
+</body>
+</html>

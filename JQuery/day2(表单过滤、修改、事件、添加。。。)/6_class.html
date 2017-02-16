@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		.alert{
+      border:1px solid #a33;
+      color:#922;
+      background:#fee;
+      padding:10px;
+    }
+    .close{
+      float:right;
+      font-weight:bold;
+      opacity:.5;
+      cursor:pointer;
+    }
+    .close:hover{opacity:.8;}
+    .fade{
+      opacity:0; transition:opacity .5s linear
+    }
+    .in{opacity:1}
+	</style>
+ </head>
+ <body>
+  <button id="btn">显示/隐藏警告框</button>
+  <div class="alert fade in">
+    <span class="close" data-trigger="close">&times;</span>
+    <p>您的浏览器版本太低! 请下载最新版本的浏览器！</p>
+  </div>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //为id为btn的按钮绑定单击事件
+      //切换class为alert的元素的in class
+    $("#btn").click(function(){
+      $(this).next().toggleClass("in");
+    });
+    //为data-trigger属性为close的元素绑定单击事件
+    $('[data-trigger="close"]').click(
+      function(){
+      //用css修改当前元素的父元素的display为none
+      //$(this).parent().css("display","none");
+      //或
+      //移除当前元素的父元素的in class
+        $(this).parent().removeClass("in");
+      }
+    )
+  </script>
+ </body>
+</html>

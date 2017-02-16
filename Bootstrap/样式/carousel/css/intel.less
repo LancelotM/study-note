@@ -1,0 +1,66 @@
+@import "bootstrap";
+body {
+  font-family: 'SimHei';
+  margin-top: 50px;
+}
+.login-menu{
+  padding: 15px;
+  width: 400px;
+}
+.footer{
+  color: #0062A9;
+}
+.container .navbar-brand span{
+  display: inline-block;
+  width: 63px;
+  height: 42px;
+  background:url(../img/hdr-spr.png) no-repeat 0 -512px;
+  position: relative;
+  bottom:10px;
+}
+.big{
+  position: relative;
+}
+.big .caption{
+  padding: 1em;
+}
+@media screen and (min-width: 768px){
+  .big .caption{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+.small{
+  position: relative;
+  overflow: hidden;
+}
+.small .mask{
+  position: absolute;
+  background: rgba(0,0,0,.6);
+  left: 0;
+  right: 0;
+  top:80%;
+  height: 100%;
+  transition: top .3s linear;
+}
+.small .mask:hover{
+  top:0;
+}
+@media screen and (min-width: 992px) {
+  .small2{
+    padding: 16px;
+  }
+  .small2 li{
+    line-height: 1.9em;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 992px ){
+  .small2{
+    padding: 13px;
+  }
+  .small2 li{
+    line-height: 1.8em;
+  }
+}

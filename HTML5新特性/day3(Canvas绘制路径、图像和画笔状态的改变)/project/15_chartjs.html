@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>第三方绘图功能——Chart.js的使用</h3>
+  <canvas id="c15" width="600" height="400">
+  </canvas>
+
+  <script src="js/Chart.js"></script>
+  <script>
+    /*new Chart(c15,{ });*/
+
+    /*new Chart(c15,{
+      type: 'bar',  //总共有8中，见手册
+      data: {},
+      options: {}
+    });*/
+
+    new Chart(c15,{
+      type: 'bar',  //总共有8中，见手册
+      data: {
+        labels: ['部门1','部门2','部门3','部门4','部门5','部门6'],  //X轴说明文字
+        datasets: [
+          {
+            label: '达内2016年度销售总结',
+            data: [400,300,500,200,450,480]
+          }
+        ]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  </script>
+</body>
+</html>

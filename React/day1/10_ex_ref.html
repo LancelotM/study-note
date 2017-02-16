@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var BtnClick=React.createClass({
+    handelClick:function(){
+      this.props.funcDeal()
+    },
+    render:function(){
+      return <button onClick={this.handelClick}>{this.props.btn}</button>
+    }
+  })
+
+  var NumSum=React.createClass({
+    handleClick:function(){
+      console.log('button is clicked')
+      var sum=parseFloat(this.refs.num1.value)
+      +parseFloat(this.refs.num2.value);
+      console.log(sum)
+    },
+    render:function(){
+      return <div>
+        <input type="text" ref='num1'/>
+        <br/>
+        <input type="text" ref='num2'/>
+        <br/>
+        <BtnClick btn='sum' funcDeal={this.handleClick}/>
+        <br/>
+        <span></span>
+      </div>
+    }
+  })
+  ReactDOM.render(
+      <NumSum/>,
+    document.getElementById('ex')
+  )
+
+</script>
+</body>
+</html>

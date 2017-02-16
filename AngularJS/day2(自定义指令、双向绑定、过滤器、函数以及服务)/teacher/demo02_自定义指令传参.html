@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+
+</div>
+
+<div ts-hello="" test-name="world"></div>
+
+<script>
+  var app = angular.module('myModule',['ng']);
+
+  app.directive('tsHello', function () {
+    return {
+      template:'<p>hello {{testName}}</p>',
+      scope:{
+        testName:'@'
+      }
+    }
+  });
+
+  app.controller('myCtrl', function ($scope) {
+
+  })
+
+</script>
+
+</body>
+</html>

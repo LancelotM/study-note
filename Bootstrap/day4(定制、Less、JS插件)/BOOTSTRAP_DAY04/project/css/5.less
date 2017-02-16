@@ -1,0 +1,17 @@
+body {
+  margin: 20px;
+  font-family: 'SimHei';
+  background: #fff;
+}
+
+@jd-red: #e4393c;
+@dark-red: darken(@jd-red, 10%);
+@light-red: lighten(@jd-red, 30%);
+
+.box {
+  padding: 20px;
+  margin: 20px;
+  background: @light-red;
+  color: @jd-red;
+  border: 1px solid @dark-red;
+}

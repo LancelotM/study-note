@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict"
+		function Emp(id,name,salary,age){
+			//定义函数及其参数
+			//共有属性（数据属性）
+			//私有属性（访问器属性）
+			//为共有和私有属性定义
+			//先设置共有属性
+			//再设置私有属性
+			//防篡改
+			Object.defineProperties(this,{
+				age:{
+					get:function(){return _age;},
+					set:function(val){
+						if(val<18||val>65)
+							throw new Error("年龄必须介于18~65");
+						_age=val;
+					}
+				}
+			});
+			this.age=age;
+		}
+	</script>	
+</body>
+</html>

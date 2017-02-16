@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>.....</title>
+  <meta charset="utf-8"/>
+  <style>
+  </style>
+ </head>
+ <body>
+  <form action="">
+    用户名: <input disabled><br>
+    密码: <input type="password" disabled><br>
+    <input type="checkbox">我同意本站使用条款<br>
+    <input type="button" value="提交注册信息" disabled>
+  </form>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $("form>:checkbox").click(function(){
+      if($(this).prop("checked")){
+        $("form>:disabled").prop(
+                        "disabled",false);
+      }else{
+        $(this).siblings(":input").prop(
+                        "disabled",true);
+      }
+    });
+  </script>
+ </body>
+</html>

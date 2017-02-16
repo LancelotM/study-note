@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h3>使用Canvas绘制网易云音乐播放界面</h3>
+<canvas id="c2"></canvas>
+<script>
+  var w = 400;  //画布的宽
+  var h = 500;   //画布的高
+  c2.width = w;
+  c2.height = h;
+  var ctx = c2.getContext('2d');
+
+  var progress = 0; //所有图片的总加载进度
+
+  var bg = new Image();
+  bg.src = 'img/bg.jpg';
+  bg.onload = function(){
+    console.log('1-bg加载完成')
+    progress += 20;
+    if(progress===100){
+      startDraw();
+    }
+  }
+  var disc = new Image();
+  disc.src = 'img/disc.png';
+  disc.onload = function(){
+    console.log('2-disc加载完成')
+    progress += 40;
+    if(progress===100){
+      startDraw();
+    }
+  }
+  var pause = new Image();
+  pause.src = 'img/pause.png';
+  pause.onload = function(){
+    console.log('3-pause加载完成')
+    progress += 20;
+    if(progress===100){
+      startDraw();
+    }
+  }
+  var play = new Image();
+  play.src = 'img/play.png';
+  play.onload = function(){
+    console.log('4-play加载完成')
+    progress += 20;
+    if(progress===100){
+      startDraw();
+    }
+  }
+
+  function startDraw(){
+    console.log('所有图片加载完成，开始绘图')
+    //绘制背景图
+    ctx.drawImage(bg, 0, 0, w, h);
+    //绘制黑色胶片
+    ctx.beginPath();
+    ctx.arc(w/2, h/2, 130, 0, 2*Math.PI);
+    ctx.fill();
+    //绘制胶片封面
+    ctx.drawImage(disc, w/2-100, h/2-100, 200,200);
+
+    //绘制播放&暂停按钮
+    ctx.drawImage(play, w/2-50, h-100, 100,100)
+
+
+    /****为播放&暂停按钮“绑定”事件监听****/
+    c2.onclick = function(e){
+      var x = e.offsetX;  //事件发生的坐标点
+      var y = e.offsetY;
+      var r = 50;    //按钮半径
+      var cx = w/2;  //按钮圆心坐标
+      var cy = h-r;
+      //判定两点间距是否小于圆形半径        11:15
+      if((Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy)))<=r){
+        console.log('按钮被点击了')
+      }
+    }
+
+  }
+</script>
+</body>
+</html>

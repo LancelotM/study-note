@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var weight=prompt("请输入你的体重(kg)："),height=prompt("请输入你的身高(m)：");
+		var BIM=weight/(height*height);
+		console.log("BIM值："+BIM.toFixed(2));
+		
+		(BIM>=20&&BIM<=25)&&(console.log("正常范围，恭喜，恭喜，继续保持"))||BIM<20&&(console.log("瘦成杆啦，瘦猴子，赶快去进食"))||BIM>25&&(console.log("肥猪，都这么胖了还吃吃吃"));
+	</script>	
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>复杂表单</title>
+</head>
+<body>
+	<h1>修改个人信息</h1>
+	<script type="text/javascript">
+		console.log(document.body.firstElementChild)
+		console.log(document.body.children[0].nextElementSibling.previousElementSibling)
+	</script>
+	<form action="" method="get" enctype="multipart/form-data">
+		<table border="1" cellpadding="5" cellspacing="0">
+			<tr>
+				<td width="150">姓名：</td>
+				<td width="300"><input type="txt" value="mary" name="txtUser"/></td>
+				<td rowspan="7" width="200" valign="top">
+					<details>
+						<summary>
+							各项<mark>技能</mark>指数
+						</summary>
+							<ul type="none">
+								<li>
+									HTML:<meter min="0" max="100" value="100" title="100%"></meter>
+								</li>
+								<li>
+									CSS3:<meter min="0" max="100" value="80" title="80%"></meter>
+								</li>
+								<li>
+									AJAX:<meter min="0" max="100" value="50"	title="50%"></meter>
+								</li>
+							</ul>
+					</details>
+				</td>
+			</tr>
+			<tr>
+				<td>性别：</td>
+				<td>
+					<input type="radio" name="rdoGender" value="nv" checked id="rdoFemale"/>
+					<label for="rdoFemale">
+						女士
+					</label>
+					<input type="radio" name="rdoGender" value="nan" id="rdoManle"/>
+					<label for="rdoManle">
+						男士
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td>学历：</td>
+				<td>
+					<select name="selEdu" >
+						<option value="BK">本科</option>
+						<option value="ZK">专科</option>
+						<option value="SS">硕士</option>
+						<option value="QT" selected>其他</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>意向工作城市：</td>
+				<td>
+					<select name="selCity" size="5" multiple>
+						
+						<option value="BJ">北京</option>
+						<option value="SH">上海</option>
+						<option value="NJ">南京</option>
+						<option value="SZ">深圳</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">个人描述：</td>
+				<td>
+					<textarea name="txtDesc" cols="30" rows="5"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type="checkbox" name="chkPublic" id="chkInformation"/><label for="chkInformation">不要公开我的信息</label>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button>保存</button>
+					<input type="reset" value="重填" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

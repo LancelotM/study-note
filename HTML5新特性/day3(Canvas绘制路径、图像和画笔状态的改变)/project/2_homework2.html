@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    #c2 {
+      background: #f0f0f0;
+      /*不要用CSS指定canvas的宽和高*/
+      /* width: 800px; */  /*300px*/
+      /*height: 600px;*/  /*150px*/
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="c2"></canvas>
+  <h1>Canvas绘制统计图</h1>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //var ctx = $('#c2').getContext('2d');
+    //var ctx = $('#c2')[0].getContext('2d');
+    var w = 800;    //画布的宽
+    var h = 600;    //画布的高
+    c2.width = w;
+    c2.height = h;
+
+    var ctx = c2.getContext('2d');
+
+    //绘制边框轮廓
+    ctx.strokeRect(50, 50, w-100, h-100);
+
+    //异步请求服务器端数据
+    $.ajax({
+      type: 'GET',
+      url: 'data/2.json',
+      success: function(list){
+        //数据/柱子的数量
+        var count = list.length;
+        //每个柱子的宽度
+        var colWidth = (w-100)/(2*count+1);
+        //遍历list数据，绘制每个柱子
+        for(var i=0; i<list.length; i++){
+          var data = list[i]; //每个数据
+          var rw = colWidth; //矩形的宽
+          var rh = data.value; //矩形的高
+          var x = (2*i+1)*colWidth + 50;
+          var y = h-rh-50;
+          ctx.strokeRect(x, y, rw, rh);
+          //使用渐变色进行填充
+          var g = ctx.createLinearGradient(x,y,x,y+rh);
+          g.addColorStop(0, rc());  //随机色
+          g.addColorStop(1, '#fff');//白色
+          ctx.fillStyle = g;
+          ctx.fillRect(x, y, rw, rh);
+        }
+      }
+    });
+
+    //random color
+    function rc(){
+      var r = Math.floor(Math.random()*256);
+      var g = Math.floor(Math.random()*256);
+      var b = Math.floor(Math.random()*256);
+      return `rgb(${r},${g},${b})`;
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      function factory(){//外层函数
+        var num=1;//受保护
+        //返回操作变量的内部函数
+        return function(){ console.log(num++); }
+      }
+      //调用外层函数获得返回的专门操作受保护变量的内层函数的对象
+      var getNum=factory();//形成闭包
+      //getNum: function(){ console.log(num++); }
+      getNum();//1
+      getNum();//2
+      num=1;//污染
+      getNum();//3
+      getNum();//4
+
+      function factory(rate){//外层函数:
+        //rate: 受保护的变量，已经生产的计算器中的rate不能变了。
+        return function(rmb){//内层函数:
+          return (rmb*rate).toFixed(2);
+        }
+      }
+      //工厂生产第1个计算器，保存住rate=0.1639
+      var rmb2$=factory(0.1639);
+      //rmb2$: function(rmb){(rate=0.1639)
+        //return (rmb*rate).toFixed(2);
+      //}
+      console.log(rmb2$(1000));
+      console.log(rmb2$(5000));
+      //工厂生产第2个计算器，保存住rate=0.1449
+      var rmb2Euro=factory(0.1449);
+      //rmb2Euro: function(rmb){(rate=0.1449)
+        //return (rmb*rate).toFixed(2);
+      //}
+      console.log(rmb2Euro(1000));
+      console.log(rmb2Euro(5000));
+    </script>
+  </body>
+</html>

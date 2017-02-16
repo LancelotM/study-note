@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    svg{
+      background:#f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <svg id="s" height="600" width="600" >
+
+  </svg>
+  <script>
+    function rc(min,max){
+      var r=Math.floor(Math.random()*(max-min)+min);
+      var g=Math.floor(Math.random()*(max-min)+min);
+      var b=Math.floor(Math.random()*(max-min)+min);
+      return `rgb(${r},${g},${b})`;
+    }
+    function rn(min,max){
+      var r=Math.floor(Math.random()*(max-min)+min);
+      return r;
+    }
+    for(var i=0;i<30;i++){
+      var c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('r',rn(10,100));
+      c.setAttribute('cx',rn(0,600));
+      c.setAttribute('cy',rn(0,600));
+      c.setAttribute('fill',rc(0,256));
+      c.setAttribute('fill-opacity',Math.random());
+      s.appendChild(c);
+    }
+    s.onclick=function(e){
+      var target= e.target;
+      if(target.nodeName==='circle'){
+        console.log(target);
+        if(target.getAttribute('data-animate')!=='true'){
+          var timer=setInterval(function(){
+            target.setAttribute('data-animate','true');
+            var r=target.getAttribute('r');
+            r=parseFloat(r);
+            r*=1.1;
+            target.setAttribute('r',r);
+            var fo=target.getAttribute('fill-opacity');
+            fo=parseFloat(fo);
+            fo*=0.9;
+            target.setAttribute('fill-opacity',fo);
+            if(fo<0.001){
+              clearInterval(timer);
+              s.removeChild(target);
+            }
+          },50)
+        }
+
+      }
+    }
+  </script>
+</body>
+</html>

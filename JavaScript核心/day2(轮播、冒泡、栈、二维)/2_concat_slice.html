@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var arr1=[1,2,3];
+      var arr2=[12,23,123];
+      arr1=arr1.concat(33,66,arr2,88);
+      //arr1:[1,2,3,33,66,12,23,123,88]
+            
+      console.dir(arr1);
+      var subArr=arr1.slice(3,4+1);
+      console.log(String(subArr));
+      //var arr1_copy=arr1;
+      var arr1_copy=arr1.slice();
+      console.log(String(arr1_copy));
+      console.log(arr1_copy==arr1);
+      var subArr2=arr1.slice(-3,-2+1);
+		console.log(String(subArr2));
+    </script>
+  </body>
+</html>

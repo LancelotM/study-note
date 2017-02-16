@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    svg {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+<h3>使用SVG绘图——矩形</h3>
+<svg width="600" height="400" id="svg9">
+</svg>
+
+<script>
+  var data = [
+    {"label": "1月", "value": 250},
+    {"label": "2月", "value": 200},
+    {"label": "3月", "value": 350},
+    {"label": "4月", "value": 280}
+  ];
+  var html = '';
+  for(var i=0; i<data.length; i++){
+    var d = data[i];
+    html += `
+      <rect width="50" height="${d.value}" x="${i*80}" y="10"></rect>
+    `;
+  }
+  svg9.innerHTML = html;
+</script>
+</body>
+</html>

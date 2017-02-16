@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="container">
+  <h1>Bootstrap——折叠效果</h1>
+  <h3>1、手风琴</h3>
+  <div class="panel-group" id="pg">
+    <!--第1个面板-->
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <a class="panel-title" data-parent="#pg" data-toggle="collapse" href="#1">西游记</a>
+      </div>
+      <div id="1" class="collapse">
+        <div class="panel-body">
+          一个男人和四个动物的故事 一个男人和四个动物的故事
+          一个男人和四个动物的故事 一个男人和四个动物的故事
+          一个男人和四个动物的故事
+        </div>
+      </div>
+    </div>
+    <!--第2个面板-->
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <a class="panel-title" data-parent="#pg" data-toggle="collapse" href="#2">水浒传</a>
+      </div>
+      <div id="2" class="collapse">
+        <div class="panel-body">
+          105个男人和3个女人的故事 105个男人和3个女人的故事
+          105个男人和3个女人的故事 105个男人3个女人的故事
+          105个男人和3个女人的故事
+        </div>
+      </div>
+    </div>
+    <!--第3个面板-->
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <a class="panel-title" data-parent="#pg" data-toggle="collapse" href="#3">三国演义</a>
+      </div>
+      <div id="3" class="collapse">
+        <div class="panel-body">
+          为了捧一个卖草鞋的人而写的书
+          为了捧一个卖草鞋的人而写的书
+          为了捧一个卖草鞋的人而写的书为了捧一个卖草鞋的人而写的书为了捧一个卖草鞋的人而写的书
+        </div>
+      </div>
+    </div>
+    <!--第4个面板-->
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <a class="panel-title" data-parent="#pg" data-toggle="collapse" href="#4">西游记</a>
+      </div>
+      <div id="4" class="collapse">
+        <div class="panel-body">
+          一群女人撕逼的故事一群女人撕逼的故事一群女人撕逼的故事一群女人撕逼的故事一群女人撕逼的故事
+          一群女人撕逼的故事一群女人撕逼的故事一群女人撕逼的故事一群女人撕逼的故事
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+  //  (function () {
+  //    var s = document.createElement("script");
+  //    s.onload = function () {
+  //      bootlint.showLintReportForCurrentDocument([]);
+  //    };
+  //    s.src = "js/bootlint.js";
+  //    document.body.appendChild(s)
+  //  })();
+</script>
+</body>
+</html>

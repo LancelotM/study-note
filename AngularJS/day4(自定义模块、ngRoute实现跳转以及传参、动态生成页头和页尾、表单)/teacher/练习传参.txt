@@ -1,0 +1,9 @@
+练习：实现SPA应用
+完整：manager.html
+代码片段：check.html pay.html send.html
+要求：
+①能够实现不同页面的跳转
+②check.html-->超链接跳转到pay.html，传入price,
+pay.html接受参数并显示在页面中
+pay.html--》按钮 点击跳转到send.html
+send.html-->超链接跳转到check.html

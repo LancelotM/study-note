@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制文本</h3>
+  <canvas id="c8" width="600" height="400">
+    您的浏览器不支持Canvas标签！
+  </canvas>
+  <script>
+    //获得画布对应的画笔
+    var ctx = c8.getContext('2d');
+
+    //文本基线设为第一线
+    ctx.textBaseline = 'top';
+    ctx.font = '20px SimHei';
+
+
+    var txt = '达内科技ABabgyk123';
+    ctx.fillText(txt, 0, 0);
+  </script>
+</body>
+</html>

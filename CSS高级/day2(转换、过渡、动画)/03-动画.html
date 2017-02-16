@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#d1{
+				width:100px;
+				height:100px;
+				position:absolute;
+				top:0px;
+				left:0px;
+				background:#e4393c;;
+
+				/*调用动画：网页加载时，则执行动画*/
+				/*animation-name:scroll;
+				animation-duration:5s;
+				animation-timing-function:linear;*/
+				/*指定播放次数*/
+				/*animation-iteration-count:infinite*/;
+				/*指定播放方向*/
+				/*animation-direction:alternate;*/
+				/*简写方式调用动画*/
+				animation:scroll 3s linear  infinite;
+				animation-fill-mode:backwards;
+				
+			}
+
+			#d1:hover{
+				animation-play-state:paused;
+
+			}
+			/*声明动画*/
+			@keyframes scroll{
+				0%{
+					top:0px;
+					left:0px;
+					background:blue;
+				}
+				25%{
+					top:0px;
+					left:200px;
+					background:red;
+				}
+				50%{
+					top:200px;
+					left:200px;
+					background:yellow;
+				}
+				75%{
+					top:200px;
+					left:0px;
+					background:orange;
+				}
+				100%{
+					top:0px;
+					left:0px;
+					background:blue;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">
+		</div>
+	</body>
+</html>

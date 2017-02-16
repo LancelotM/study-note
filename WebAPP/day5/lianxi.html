@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+  <title></title>
+</head>
+<body>
+<ion-header-bar>
+  <h1 class="title">UiRouter</h1>
+</ion-header-bar>
+<ion-content ng-controller="ParentCtrl">
+  <p>Hello Angular UI Router!</p>
+  <!-- 盛放代码片段的容器-->
+  <div ui-view></div>
+</ion-content>
+<ion-footer-bar>
+  <h1 class="title"> footer </h1>
+</ion-footer-bar>
+<script>
+  var app = angular.module('myApp', ['ionic']);
+  //  配置状态
+  app.config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('login', {
+        templateUrl: 'tpl/login.html',
+        url: '/myLogin',
+        controller: 'LoginCtrl'
+      })
+      .state('register', {
+        templateUrl: 'tpl/register.html',
+        url: '/myRegister/:id'
+      })
+      .state('main', {
+        templateUrl: 'tpl/main.html',
+        url: '/myMain/:id',
+        controller:'MainCtrl'
+      })
+    $urlRouterProvider.otherwise('myLogin')
+  })
+  //创建控制器
+  app.controller('LoginCtrl',
+    ['$scope', '$state',
+      function ($scope, $state) {
+       /* $scope.jump = function () {
+          $state.go('register');
+        }*/
+      }]);
+  //  创建控制器
+  app.controller('ParentCtrl',
+    ['$scope', '$state',
+      function ($scope, $state) {
+        $scope.jump = function (state,arg) {
+          $state.go(state,arg);
+        }
+      }]);
+  app.controller('MainCtrl',
+    ['$scope', '$stateParams',
+      function ($scope, $stateParams) {
+        console.log($stateParams.id);
+      }]);
+</script>
+</body>
+</html>

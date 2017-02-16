@@ -1,0 +1,117 @@
+1、bootstrap 将屏幕分为4种
+	1、LG(Large)屏幕(1200px<width)
+	2、MD(Medim)屏幕(992px<=width<1200px)
+	3、SM(Small)屏幕(768px<=width<992px)
+	4、XS(Extra Small)屏幕(width<768px)
+2、全局CSS样式————表格
+	.table  //bootstrap的基础样式
+	.table-bordered	 //带边框的表格
+	.table-striped  //隔行变色的表格
+	.table-hover  //鼠标悬停变色的表格
+	.table-responsive  //响应式的表格(放在table的父容器div中)
+		<div class='table-responsive'>
+			<table class='table'></table>
+		</div>
+3、全局CSS样式————栅格布局(grid) ———— 重点
+	页面内容布局的3种方式：
+	1、TABLE布局
+		好处：简单容易控制
+		问题：语义错误,渲染效率低
+	2、DIV+CSS布局
+		好处：语义正确,渲染效率高
+		问题：不容易控制
+	3、Bootstrap栅格布局系统
+		好处：语义正确,渲染效率高,简单容易控制,实现了响应式
+		不足：没有！
+		
+		1、栅格布局系统的使用方法
+			1、栅格系统的父元素必须是：
+				div.container - 定宽容器
+					LG:1170px MD:970px SM:750px XS:100%
+				div.container-fluid - 变宽容器
+					width:100%;
+			2、容器中的'行'
+				div.container>div.row
+			3、'行'中的'列'
+				div.container>div.row>div.col-*-*
+			4、列根据不用的屏幕尺寸分为4组
+				.col-lg-*
+				.col-md-*
+				.col-sm-*
+				.col-xs-*
+			5、一行均分12等份,每个列必须制定自己的占比
+				.col-lg-1
+				.col-lg-2
+					..
+				.col-lg-12
+			6、列可以向右'偏移'指定的宽度
+				.col-lg-offset-1
+				.col-lg-offset-2
+					..
+				.col-lg-offset-12
+		2、列的适用性的问题
+			1、不同屏幕宽度下的列宽度占比适用于指定屏幕以及更大屏幕		
+				.col-xs-*	适用于xs/sm/md/lg屏幕
+				.col-sm-*	适用于sm/md/lg屏幕
+				.col-md-*	适用于md/lg屏幕
+				.col-lg-*	适用于lg屏幕
+			2、一个列可以指定不同屏幕下的不同宽度占比
+				pc<div class='col-xs-12 col-sm-9 col-md-6'></div>
+				pad<div class='col-xs-12 col-md-6'></div>
+			3、指定列在指定的屏幕下实现隐藏
+				.hidden-lg
+				.hidden-md
+				.hidden-sm
+				.hidden-xs
+				.hidden
+				注意：隐藏只对指定屏幕有效！
+			4、列的排序问题
+4、全局CSS样式————表单————难点
+	难点：
+		1、相关class较多
+		2、HTML结构复杂————HTML5规范
+	Bootstrap提供了3中形式的表单
+	1、默认表单
+		<form>
+			<div class="form-group">
+				<label class="control-label"></label>
+				<input class="form-control">
+				<span class="help-block"></span>
+			</div>
+		</form>
+	2、行内表单
+		<form class="form-inline">
+			<div class="form-group">
+				<label class="sr-only"></label>
+				<input class="form-control">
+			</div>
+		</form>
+	3、水平表单
+		提示：水平表单指在一行中放置label、input、span，需要整合 栅格布局系统(变种) 和 表单相关内容
+						标准栅格系统			水平表单中栅格
+		外层容器	div.container			form.form-horizontal
+					div.container-fluid			
+		行			div.row					.form-grounp
+		列			div.col					.col-*-*
+
+		<form class="form-horizontal ">	  <!--.container-->
+			<div class="form-group">	  <!--.row-->
+				<div class="col-*-*>		  <!--.col-*-*-->
+					<label class="sr-only"></label>
+				</div>
+			  <div class="col-*-*">
+					<input class="form-control">
+			  </div>
+			</div>
+		</form>
+5、Bootstrap 第三部分：组件 ———— 下拉菜单(dropdown)
+	下拉菜单必须的三级结构：
+	<div class="dropdown">
+		<a data-toggle="dropdown" href="#" >触发元素</a>
+		<ul class="dropdown-menu">隐藏的菜单</ul>
+	</div>
+6、Bootstrap 第三部分：组件 ———— 警告框(alert)
+	<div class="alert alert-四种颜色(没有primary) alert-dismissible">
+		<span class="close" data-dismiss="alert">&times;</span>
+		任意文本内容
+	</div>

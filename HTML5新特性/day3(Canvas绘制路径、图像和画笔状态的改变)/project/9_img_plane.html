@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制路径——左右移动的飞机</h3>
+  <canvas id="c8" width="600" height="400"></canvas>
+  <script>
+    var ctx = c8.getContext('2d');
+
+    var p3 = new Image();
+    p3.src = "img/p3.png";
+    p3.onload = function(){
+
+      //碰撞弹回算法
+      var x = 0;
+      var xDirection = 1;  //横向的移动方向，1或-1
+      var y = 0;
+
+      setInterval(function(){
+        ctx.clearRect(0,0, 600, 400);
+
+        x += 5*xDirection;
+        ctx.drawImage(p3, x, y);
+
+        if(x>=(600-200)){ //已到最右侧
+          xDirection = -1; //-1代表左移
+        }else if(x<=0){
+          xDirection = 1; //1代表右移
+        }
+      },20)
+    }
+
+
+  </script>
+</body>
+</html>

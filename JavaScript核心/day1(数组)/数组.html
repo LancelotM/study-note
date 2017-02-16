@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var empty=new Array(8);
+		console.dir(empty);
+		var stocks=[20,15,30,50];
+		stocks[stocks.length]=80;
+		console.log(String(stocks));
+		for(var i=0;i<stocks.length;i++){
+			stocks[i]+=15;
+		}
+		stocks[stocks.length]=100;
+		console.log(String(stocks));
+		console.log(String(stocks[stocks.length-3]));
+
+		/*
+		var emps=[],input;
+		while((input=prompt("输入员工姓名："))!=="exit"){
+				emps[emps.length]=input;
+		}
+		console.log(String(emps));
+		*/
+/*
+		function getMax(arr){
+			for(var i=1,max=arr[0];i<arr.length;arr[i]>max&&(max=arr[i]),i++);{
+				return max;
+		}
+		console.log(
+			getMax([1,4,2,6]),
+			getMax([12,123,23,3])
+		);
+*/
+		function indexOf(arr,val,fromi){
+			fromi===undefined&&(fromi=0);
+			for(var i=fromi;i<arr.length;i++){
+				if(arr[i]===val){return i};
+			}
+			return -1;
+		}	
+		var arr=[1,2,3,2,1];
+		console.log(
+			indexOf([arr,2]),
+			indexOf([arr,2,2]),
+			indexOf([arr,2,4]),
+			indexOf([arr,4])
+		);
+	</script>	
+</body>
+</html>

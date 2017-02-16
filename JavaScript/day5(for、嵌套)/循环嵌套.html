@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function star1(){
+			console.log("*")
+		}
+	</script>
+	
+	
+	<script type="text/javascript">
+		function star2(){
+			var msg="";
+			for(i=1;i<=5;i++){
+				msg+=("*")
+			}
+			console.log(msg)
+		}
+	</script>
+	
+	
+	<script type="text/javascript">
+		function star3(){
+			for(j=1;j<=5;j++){			//控制行数
+				var msg="";
+				for(i=1;i<=5;i++){		//控制每行的个数
+					msg+=("*")
+				}
+				console.log(msg)
+			}
+		}
+	</script>
+	
+	
+	<script type="text/javascript">
+		function star4(){
+			for(j=1;j<=5;j++){
+				var msg="";
+				for(i=1;i<=j;i++){
+					msg+=("*")
+				}
+				console.log(msg)
+			}
+		}
+	</script>
+
+	
+	<script type="text/javascript">
+		function cfb(){
+			for(j=1;j<=9;j++){
+				var msg="";
+				for(i=1;i<=j;i++){
+					msg+=(i+"*"+j+"="+(i*j)+"\t");
+				}
+				console.log(msg);
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+		function inRun(x){
+			if(x%4==0 && x%100!=0 || x%400==0){
+				return true;
+			}
+			return false;
+		}
+
+
+		function date(){
+			var totalDay=0;
+			var x=Number(prompt("输入年")),y=Number(prompt("输入月")),z=Number(prompt("输入日"));
+			//年
+			for(i=1990;i<=x-1;i++){
+				if(inRun(i)){
+				totalDay+=366;
+			}else{
+				totalDay+=365;
+				}
+			}
+
+			//月
+			for(j=1;j<=y-1;j++){
+				switch(j){
+					case 1:
+					case 3:
+					case 5:
+					case 7:
+					case 8:
+					case 10:
+						totalDay+=31;
+						break;
+					case 4:
+					case 6:
+					case 9:
+					case 11:
+						totalDay+=30;
+						break;
+					case 2:
+						totalDay+=28;
+						if(inRun(x)){
+						totalDay+=1;
+						}
+						break;
+				}
+			}
+
+			//日
+			totalDay+=z;
+			var date=totalDay%7;
+			var msg="";
+			switch(date){
+				case 1:
+					msg="一"
+					break;
+				case 2:
+					msg="二"
+					break;
+				case 3:
+					msg="三"
+					break;
+				case 4:
+					msg="四"
+					break;
+				case 5:
+					msg="五"
+					break;
+				case 6:
+					msg="六"
+					break;
+				case 0:
+					msg="日"
+					break;
+			}
+			console.log(x+"年"+y+"月"+z+"日是星期"+msg);
+		}
+	</script>
+	<button onclick="star1();">一个星星</button>
+	<button onclick="star2();">5个星星</button>
+	<button onclick="star3();">5*5个星星</button>
+	<button onclick="star4();">左对齐递增星星</button>
+	<button onclick="cfb();">9*9乘法表</button>
+	<button onclick="date();">日期</button>
+</body>
+</html>

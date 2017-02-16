@@ -1,0 +1,10 @@
+/*每个展示数据的div的默认样式*/
+#container div{
+	background-color: #80ff80;
+	margin: 10px;
+	float:left;
+}
+/*当展示数据的div处于被选定状态时的样式*/
+.chosen{
+	border: 2px solid #ff0080;
+}

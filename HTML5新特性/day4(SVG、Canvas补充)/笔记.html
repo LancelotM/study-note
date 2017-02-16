@@ -1,0 +1,101 @@
+1、Canvas小知识点
+	1、如何等待 所有图片 加载完成,才开始绘图？
+		var progress=0;
+		var img =new Image();
+		img.src='';
+		img.onload=function(){
+			progress+=
+			if(progress===100){
+				startDraw();
+			}
+		}
+	2、如何为 Canvas 上的图形绑定事件监听？
+		为 Canvas 绑定监听函数，获取事件发生的坐标,是否处于目标图像的范围内
+2、Adobe Photoshop 和 Adobe Illustrator 的区别
+	Adobe Photoshop 处理位图
+	———— 每幅图像由(rgb)组成，善于描述颜色的细节变化,可用于照片等领域
+	———— 但是放大后会出现失帧
+	Adobe Illustrator 处理矢量图
+	———— 每幅图像由 线条/色块(需要制定方向、长度值),可以无限缩放而不失帧
+	———— 但是不善于描述颜色的细节变化
+3、SVG绘图技术 ———— 重点
+	Scalable Vector Graphiph 可缩放的矢量图
+	SVG技术的使用方法
+		1、HTML5之前的使用方法
+			SVG标签不属于HTML4或XHTML标签,只能编写独立的 XML 文档
+			用 img/iframe/embed 标签的src 以及 object 标签的data 引入到HTML中
+		2、HTML5之后的使用方法
+			可以直接用SVG标签
+			<svg width='' height=''>	默认是300*150的inline-block		
+			</svg> 
+4、使用SVG绘制矩形
+	<svg>
+		<rect width=''(required) height=''(required)></rect>
+	</svg>
+		属性：
+			x //x坐标
+			y //y坐标
+			fill //背景颜色
+			fill-opacity //背景颜色透明度
+			stroke //描边
+			stroke-width //描边宽度
+			stroke-opacity //描边透明度
+	注意：
+		1、由于rect不是标准HTML属性,所以需要用核心DOM进行修改		
+		rect.setAttribute('','');
+		2、使用 JS 动态创建SVG元素 2种
+			1、svg.innerHTML+=
+			2、用docuemnt.createElementNS('http://www.3w.org/2000/svg','xxx')
+		3、SVG 元素的 nodeName 都是纯小写形式！ 与普通HTML不同
+5、使用SVG绘制圆形
+	<svg>
+		<circle r=''(required)></circle>
+	</svg>
+		属性:
+			cx //圆心的x坐标
+			cy //圆心的y坐标
+6、使用SVG绘制椭圆
+	<svg>
+		<ellipse rx=''(required) ry=''(required)></ellipse>
+	</svg>
+		属性:
+			cx //圆心的x坐标
+			cy //圆心的y坐标
+7、使用SVG绘制直线
+	<svg>
+		<line ></line>
+	</svg>
+		属性:
+			x1 //原点的x坐标
+			y1 //原点的y坐标
+			x2 //终点的y坐标
+			y2 //终点的y坐标
+			stroke //描边
+8、使用SVG绘制折线
+	<svg>
+		<polyline points='x1,y1 x2,y2 ..'(required) stroke=''></polyline>
+	</svg>
+9、使用SVG绘制多边形
+	<svg>
+		<polygon points='x1,y1 x2,y2 ..'></polygon>
+	</svg>
+10、使用SVG绘制为文本
+	注意：传统的标签和SVG的标签不能相互混用，不兼容
+	<svg>
+		<text x='' y='' font-size='' alignment-baseline='before-edge'>文本内容</text>
+	</svg>
+11、使用SVG绘制为图像
+	<svg>
+		<image xlink:href=''(required) width=''(required) height=''(required)></image>
+	</svg>
+12、如何使用渐变效果
+	渐变对象属于特效,必须声明在特效列表<defs></defs>中
+	<svg>
+		<defs>
+			<linearGradient id='' x1='0' y1='0' x2='100%' y2='0'></linearGradient>
+			<stop offset='0'(required) stop-color='#'></stop>
+		</defs>
+		<text x='50' y='100' fill='url(#)'></text>	
+	</svg>
+	动态使用
+		对象.setAttribute('fill','url(#)')

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+
+  var MyComponent = React.createClass({
+    handleClick:function(){
+      console.log(this.refs.inputTxt.value);
+    },
+    render:function(){
+      return <div>
+        <input type="text" ref='inputTxt'/>
+        <button onClick={this.handleClick}>
+          ClickMe
+        </button>
+      </div>
+    }
+  })
+
+  ReactDOM.render(
+  <MyComponent/>,
+  document.getElementById('example')
+  )
+
+</script>
+
+</body>
+</html>

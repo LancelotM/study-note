@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<h3>使用Canvas绘制一幅验证码图片</h3>
+<canvas id="c1"></canvas>
+<h4>说明：真正的项目中，验证码图片是由服务器页面（如php）生产的，此练习仅作为演示练习</h4>
+<script>
+  var w = 120;  //画布的宽
+  var h = 30;   //画布的高
+  c1.width = w;
+  c1.height = h;
+  var ctx = c1.getContext('2d');
+
+  //绘制随机的背景颜色——填充一个大的矩形
+  ctx.fillStyle = rc(180, 230);
+  ctx.fillRect(0,0,w, h);
+
+  //绘制随机的文本——难点
+  ctx.textBaseline = 'top';
+  var pool = 'ABCDEFGHJKLMNPQRSTWXY3456789';
+  for(var i=0; i<4; i++){
+    var txt = pool[rn(0,pool.length)];
+    ctx.fillStyle = rc(80,180);
+    ctx.font = rn(10,20)+'px Arial';
+    var txtWidth = ctx.measureText(txt).width; //文本宽度
+
+    ctx.save();
+    //平移原点 + 旋转画笔
+    ctx.translate(i*30+15, 15);
+    ctx.rotate(rn(-12,12)*Math.PI/180);
+    ctx.fillText(txt, rn(-15,15-txtWidth), rn(-15,15-txtWidth));
+    ctx.restore();
+  }
+
+  //绘制6条随机干扰线
+  for(var i=0; i<6; i++){
+    ctx.beginPath();
+    ctx.moveTo(rn(0,w), rn(0,h));
+    ctx.lineTo(rn(0,w), rn(0,h));
+    ctx.strokeStyle = rc(80,180);
+    ctx.stroke();
+  }
+  //绘制50条随机干扰点——半径为1的圆
+  for(var i=0; i<50; i++){
+    ctx.beginPath();
+    ctx.arc(rn(0,w),rn(0,h),1, 0, 2*Math.PI);
+    ctx.fillStyle = rc(80,230);
+    ctx.fill();
+  }
+
+
+
+  /**random number: 生成指定范围内的随机整数**/
+  function rn(min, max){
+    return Math.floor(Math.random()*(max-min)+min);
+  }
+  /**random color: 生成指定范围内的随机颜色**/
+  function rc(min, max){
+    var r = rn(min, max);
+    var g = rn(min, max);
+    var b = rn(min, max);
+    return `rgb(${r},${g},${b})`;
+  }
+</script>
+</body>
+</html>

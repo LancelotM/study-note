@@ -1,0 +1,99 @@
+AngularJS四大特征
+	1、采用了MVC的设计模式
+	2、双向数据绑定(view和model)
+	3、依赖注入
+	4、模块化设计
+
+1、如何自定义模块并调用
+	自定义模块；
+		angular.module('myApp01',['ng'])
+	模块之间如何相互之间的调用:
+		angular.module('myApp02',['ng','myApp01'])
+	模块化好处：体现'高内聚低耦合'的设计原则,提高代码的复用率,降低测试难度
+	模块分类：
+		1、ng官方提供的模块
+			ng/ngAnimate/ngRoute/ngTouch...
+		2、用户自定义的模块
+			angular.module();
+	一个AngularJS的模块可以包含哪些组件?
+		1、controller:维护模型数据
+		2、directive:用在 view 中输出/绑定 Model 数据
+		3、function:forEach/toJson/fromJson
+		4、filter:结果的筛选、过滤、格式化
+		5、service:提供一些变量或方法的服务
+
+2、单页面应用的工作原理
+	1、url
+		http://127.0.0.1/index.html#/路由地址
+	2、浏览器请求index.html,解析路由地址
+	3、查找路由词典,#/start ==> tpl/start.html
+	4、获取当前路由地址,对应的真实模板的地址 start.html
+	5、发起 AJAX 请求,获取目标模板页面,将服务器返回的代码片段,插入到当前DOM树上,实现局部刷新
+
+3、使用ngRoute模块来实现SAP应用的基本步骤
+	1、创建完整的HTML页面 index.html,引入angular.js和angular-route.js
+	2、创建自定义的模块,指定依赖于['ng','ngRoute']
+	3、指定容器,用来盛放代码片段 ngView
+	4、创建模块页面
+		模板页面中 执行跳转的3种方式：
+			1、直接修改地址栏中的url
+			2、使用超链接 <a href="#/路由地址"></a>
+			3、$location.path('/路由地址')
+	5、配置路由词典
+		.config(function($routeProvider){
+		  $routeProvider.when('路由地址(/myLogin)',{
+			//4、创建的模块页面
+			templateUrl:'tpl/login.html'
+			//,controller:'loginCtrl'
+		  })
+		  .when('/myMain',{
+			templateUrl:'tpl/main.html'
+			  //,controller:'mainCtrl'
+		  })
+		  .otherwise({redirectTo:'/myLogin'})
+		})
+	6、测试在地址栏中输入不同的路由地址的时候,能否将代码片段加载进来
+	配置代码片段的控制器的方式
+		1、ng-controller
+		2、config(function($routeProvider){
+			$routeProvider.when('路由地址(/自定义地址)',{
+				templateUrl:'代码片段地址(tpl/login.html)'
+				,controller:'控制器名           (可以指定控制器)'
+			})
+		})
+
+4、如何使用ngRoute进行参数的传递?
+	1、明确发送方和接收方
+	2、配置 接收方 的路由以及接受参数
+		$routeProvider.when('/begin',{
+			templateUrl:'tpl/ex_start.html'	
+		  })
+		.when('/begin/:id',{
+			templateUrl:'tpl/ex_start.html'
+			//,controller:'jump2Reg'
+		})
+		如果接受id,借助ngRoute服务:$routeParams.id
+	3、发送参数
+		<a href="#/register/发送的参数">跳转到注册</a>
+		$location.path("/register/发送的参数")
+
+5、动态加载页头和页尾
+	ngInclude 
+		<ANY ng-include="'页头的url'"></ANY>
+6、其他模块
+	ngAnimate 支持JS动画和CSS动画
+		1、通过script引入angular-animate.js
+		2、指定自定义的模块,要依赖于ngAnimate
+		3、设置CSS
+			ngAnimate模块为ngView添加class
+			离开：
+				ng-leave和ng-leave-active
+			进入：
+				ng-enter和ng-enter-active
+7、表单
+	在ngAnimate中,专门针对表单和表单中的控件,提供了一些属性,用于验证空间之的状态
+	$pristine 未输入过
+	$dirty 已经输入过
+	$valid 验证通过
+	$invalid 验证未通过
+	$error(obj) 验证时的错误信息

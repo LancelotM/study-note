@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var str="No zuo no die No can no bibi";
+      var i=str.search(/no/i);//查找no忽略大小写
+      console.log(i);//0
+      var kws=str.match(/no/ig);
+      console.dir(kws);
+      str=str.replace(/no/ig,"**");
+      console.log(str);
+      console.log("共替换"+
+        (kws!=null?kws.length:0)
+      +"处");
+      var reply=//查找我艹，我草，我操
+       "那天，我去了她家。我说: 我擦，你家真大!";
+      var i=reply.search(/我[艹草操]/);
+      console.log(i);
+    </script>
+  </body>
+</html>

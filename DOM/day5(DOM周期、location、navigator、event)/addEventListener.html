@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <button id="btn">发射</button>
+    <script>
+      function shoot1(){
+        console.log("发射普通子弹");
+      }
+      function shoot2(){
+        console.log("发射跟踪导弹");
+      }
+      btn.addEventListener("click",shoot1);
+      //在控制台中: 
+        //为btn再绑定shoot2
+        //再将shoot2解除绑定
+    </script>
+  </body>
+</html>

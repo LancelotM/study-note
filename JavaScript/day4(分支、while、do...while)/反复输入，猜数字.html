@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function telBank(){	
+			while(true){
+				var input=prompt("请输入一个数字：");
+				if(input=="0"){
+					console.log("退出成功");
+					break;
+				}
+			}
+		}
+
+		function guess(){
+			var num=Math.random();
+			num=(num*100)|0;
+			while(true){			
+				var input=prompt("请输入一个的0~100整数：\n不包含0和100\n要是太笨猜不出来就输入exit，强制退出")
+				if(input=="exit"){
+					alert("毕竟智商感人，没关系不用自卑");
+					break;
+				}
+				if(input>="100"||input<="0"){
+					alert("超出范围");
+					continue;					
+				}else if(input>num){
+					alert("猜大了");
+				}else if(input<num){
+					alert("猜小了");
+				}else if(input==num){
+					alert("弱智，怎么才猜对！");
+					break;
+				}else{
+					alert("输入有误，超过范围");
+					continue;
+				}
+			}
+		}
+	</script>
+	<button onclick="telBank();">反复输入</button>
+	<button onclick="guess();">猜数字</button>
+</body>
+</html>

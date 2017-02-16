@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    #container {
+      border: 1px solid #aaa;
+      padding: 10px;
+      margin: 10px;
+      width: 500px;
+      min-height: 300px;
+    }
+  </style>
+</head>
+<body>
+<h3>经典闭包问题</h3>
+<div id="container">
+  <button>按钮0</button>
+  <button>按钮1</button>
+  <button>按钮2</button>
+</div>
+<script>
+  var list = container.querySelectorAll('button');
+  for(var i=0; i<list.length; i++){
+    var bt = list[i];
+    bt.onclick = outer(i);
+  }
+  //闭包对象： 一个数据(i) + 三个函数
+  //解决方法： 把一个闭包拆为三个闭包
+  function outer(num){
+    function inner(){
+      console.log(num);
+    }
+    return inner;
+  }
+</script>
+</body>
+</html>

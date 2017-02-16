@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h3>注册新用户</h3>
+    用户名：<input id="uname"><br>
+    密码名：<input id="upwd"><br>
+    <input type="button" value="提交注册信息" id="btSubmit">
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('#btSubmit').click(function(){
+      var n = uname.value;
+      var p = upwd.value;
+      //异步提交给服务器     
+      $.post('12_user_add.php',{uname:n,upwd:p}, function(txt){
+        //console.log('开始处理响应数据');
+        //console.log(arguments);
+        if(txt==='succ'){
+          alert('注册成功！');
+        }else {
+          alert('注册失败');
+        }
+      });
+    });
+    </script>
+  </body>
+</html>

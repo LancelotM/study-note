@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      margin: 0;
+    }
+    .main {
+      border: 1px solid #aaa;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .main:before {
+      content: ' ';
+      display: table;
+    }
+    .main:after {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+    .container {
+      width: 500px;
+      margin: 80px auto;
+      background: rgba(255,255,255, .6);
+      border: 1px solid #aaa;
+      border-radius: 4px;
+    }
+    .bg-video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+<h1>使用视频做背景的DIV</h1>
+<div class="main">
+  <div class="container">
+    <h4>注册新用户</h4>
+    <h4>注册新用户</h4>
+    <h4>注册新用户</h4>
+    <h4>注册新用户</h4>
+  </div>
+  <video class="bg-video" src="res/birds.mp4" width="100%" autoplay loop muted></video>
+</div>
+</body>
+</html>

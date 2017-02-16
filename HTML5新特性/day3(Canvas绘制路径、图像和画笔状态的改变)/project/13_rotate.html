@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制路径——四个旋转的飞机</h3>
+  <canvas id="c8" width="600" height="400"></canvas>
+  <script>
+    var ctx = c8.getContext('2d');
+
+    var p3 = new Image();
+    p3.src = "img/p3.png";
+    p3.onload = function(){
+      var deg = 0; //飞机旋转的角度
+      setInterval(function(){
+        ctx.clearRect(0, 0, 600,400);
+        deg+=5;
+
+        //绘制左上角的小飞机
+        ctx.translate(200/2, 100/2);//原点平移
+        ctx.rotate(deg*Math.PI/180);//旋转画笔
+        ctx.drawImage(p3,-200/2, -100/2); //绘图
+        ctx.rotate(-deg*Math.PI/180);//逆向旋转
+        ctx.translate(-200/2, -100/2); //原点恢复
+        //绘制此飞机对画笔的修改最终全部恢复原样
+
+        //绘制右上角的小飞机
+        ctx.translate(600-200/2, 100/2);//原点平移
+        ctx.rotate(deg*Math.PI/180);
+        ctx.drawImage(p3,-200/2, -100/2);
+        ctx.rotate(-deg*Math.PI/180);
+        ctx.translate(-(600-200/2), -100/2);
+        //此飞机对画笔的修改最终全部恢复原样
+
+        //绘制左下角的小飞机
+        ctx.translate(200/2, 400-100/2);//原点平移
+        ctx.rotate(deg*Math.PI/180); //旋转画笔
+        ctx.drawImage(p3,-200/2, -100/2); //绘图
+        ctx.rotate(-deg*Math.PI/180); //逆向旋转
+        ctx.translate(-200/2, -(400-100/2)); //原点恢复
+        //此飞机对画笔的修改最终全部恢复原样
+
+      },50)
+    }
+
+
+  </script>
+</body>
+</html>

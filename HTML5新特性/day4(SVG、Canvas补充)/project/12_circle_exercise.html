@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    svg {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+<h3>使用SVG绘图——矩形</h3>
+<svg width="600" height="400" id="svg12">
+</svg>
+
+<script>
+  //动态添加30个圆形
+  for(var i=0; i<30; i++){
+    var c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('r',rn(5,100));
+    c.setAttribute('cx',rn(0,600));
+    c.setAttribute('cy',rn(0,400));
+    c.setAttribute('fill',rc(0,256));
+    c.setAttribute('fill-opacity',Math.random());
+    svg12.appendChild(c);
+  }
+
+  //使用事件代理方式为每个圆形绑定单击监听函数
+  svg12.onclick = function(e){
+    var target = e.target; //事件源对象
+    //if(target.nodeName==='CIRCLE'){
+    if(target.nodeName==='circle'){
+      var timer = setInterval(function(){
+        //让半径变大
+        var r = target.getAttribute('r');
+        r = parseFloat(r);
+        r *= 1.1;
+        target.setAttribute('r', r);
+
+        //让透明度变小
+        var p = target.getAttribute('fill-opacity');
+        p = parseFloat(p);
+        p *= 0.8;
+        target.setAttribute('fill-opacity', p);
+
+        if(p<0.001){ //几乎看不见时，删除元素
+          clearInterval(timer);
+          svg12.removeChild(target);
+        }
+      },50);
+    }
+
+  }
+
+
+
+
+
+  /**random number: 生成指定范围内的随机整数**/
+  function rn(min, max){
+    return Math.floor(Math.random()*(max-min)+min);
+  }
+  /**random color: 生成指定范围内的随机颜色**/
+  function rc(min, max){
+    var r = rn(min, max);
+    var g = rn(min, max);
+    var b = rn(min, max);
+    return `rgb(${r},${g},${b})`;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>使用Worker线程执行耗时的JS操作</h3>
+  <p id="calcResult"></p>
+  <button onclick="console.log(111)">按钮1</button>
+  <!--<script src="js/5.js"></script>-->
+  <script>
+    //创建新的工作线程
+    new Worker('js/5.js');
+  </script>
+  <button onclick="console.log(222)">按钮2</button>
+
+</body>
+</html>

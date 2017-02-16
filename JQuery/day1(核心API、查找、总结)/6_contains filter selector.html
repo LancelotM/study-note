@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <link rel="stylesheet" href="css/style.css" /> 
+</head>
+<body>
+  
+ <h3>内容过滤选择器.</h3>
+ 
+  <input type="button" value="选取含有文本“di”的div元素." id="btn1"/>
+  <input type="button" value="选取不包含子元素(或者文本内容)的空div元素." id="btn2"/>
+  <input type="button" value="选取含有class为mini元素 的父div元素." id="btn3"/>
+  <input type="button" value="选取含有子元素(或者文本元素)的div元素." id="btn4"/>
+
+
+  <br /><br />
+
+   <!-- 测试的元素 -->
+  <div class="one" id="one" >
+ id为one,class为one的div
+      <div class="mini">class为mini</div>
+  </div>
+
+    <div class="one"  id="two" title="test" >
+	 id为two,class为one,title为test的div.
+      <div class="mini"  title="other">class为mini,title为other</div>
+      <div class="mini"  title="test">class为mini,title为test</div>
+  </div>
+
+  <div class="one">
+      <div class="mini">class为mini</div>
+      <div class="mini">class为mini</div>
+	  <div class="mini">class为mini</div>
+	  <div class="mini"></div>
+  </div>
+
+
+
+  <div class="one">
+      <div class="mini">class为mini</div>
+      <div class="mini">class为mini</div>
+	  <div class="mini">class为mini</div>
+	  <div class="mini"  title="tesst">class为mini,title为tesst</div>
+  </div>
+
+
+  <div style="display:none;"  class="none">style的display为"none"的div</div>
+  
+  <div class="hide">class为"hide"的div</div>
+ 
+  <div>
+  包含input的type为"hidden"的div<input type="hidden" size="8"/>
+  </div>
+
+  
+  <span id="mover">正在执行动画的span元素.</span>
+
+</body>
+</html>

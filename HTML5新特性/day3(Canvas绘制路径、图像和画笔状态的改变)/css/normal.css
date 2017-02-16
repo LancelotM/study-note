@@ -1,0 +1,12 @@
+body{
+  text-align: center;
+  margin: 0;v
+}
+canvas{
+  background: #999;
+}
+a{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+}

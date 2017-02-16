@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <table>
+    <thead>
+      <tr>
+        <th>请选择</th>
+        <th>姓名</th>
+        <th>生日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="obj in list">
+        <td>
+          <input type="checkbox"
+                 ng-change="obj.isSelected"
+                 ng-model="funcChange()"
+                 ng-checked="isAll"/>
+          <span ng-bind="isChecked"></span>
+        </td>
+        <td ng-bind="obj.name"></td>
+        <td ng-bind="obj.bir"></td>
+      </tr>
+    </tbody>
+  </table>
+  <input type="checkbox"
+         ng-checked="select"
+         ng-model="isAll"
+         ng-click="changeAll()"/>全选/取消全选
+  <span ng-bind="isAll"></span>
+  <hr/>
+  <button ng-click="look()">查看</button>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', function ($scope) {
+      $scope.funcChange=function(){
+        $scope.select=true;
+        angular.forEach($scope.list,
+          function(value,key){
+            $scope.select=value.isSelected
+          }
+        )
+      }
+      $scope.changeAll=function(){
+        angular.forEach($scope.list,
+          function(value,key){
+            value.isSelected=$scope.isAll;
+          }
+        )
+      }
+      $scope.list=[
+        {name:'king',bir:'2016-05-01',isSelected:false},
+        {name:'Golden',bir:'2016-05-04',isSelected:false}
+      ]
+
+      }
+      $scope.look=function(){
+        var str='';
+        angular.forEach($scope.list,function(value,key){
+          if(value.isSelected){
+            str+=value.name+'被选中了'
+          }
+        })
+        if(str==''){
+          str='都未被选中'
+        }
+        alert(str)
+      }
+    )
+</script>
+</body>
+</html>

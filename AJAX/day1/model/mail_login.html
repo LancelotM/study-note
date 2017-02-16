@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style>
+		.modal{
+			position:fixed;
+			left:0;
+			right:0;
+			bottom:0;
+			top:0;
+			background:rgba(0,0,0,.5);
+			display:none;
+		}
+		.modal.active{
+			display:block;
+		}
+		.modal-dialog{
+			width:360px;
+			height:200px;
+			margin:150px auto;
+		}
+		.modal-content{
+			background:#fff;
+			border-radius:5px;
+			padding:50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="loginArea">
+		<a href="#" id="btLogin">用户登录</a>
+		<!-- <span>欢迎回来xxx</span> -->
+	</div>
+	<div class='modal' id='modalLogin'>
+		<div class='modal-dialog'>
+			<div class='modal-content'>
+				<p id='warning'></p>
+				手机号：<input id='phone'><br>
+				密码号：<input id='pwd'><br>
+				<input id='btSubmit' type="button" value='提交''>
+			</div>
+		</div>
+	</div>
+	<script>
+		btLogin.onclick=function(e){
+			e.preventDefault();
+			modalLogin.className='modal active';
+		}
+		btSubmit.onclick=function(){
+			var ph=phone.value;
+			var pw=pwd.value;	
+			if(!ph){return warning.innerHTML='手机号不能为空';}
+			if(!pw){return warning.innerHTML='密码不能为空';}			
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState===4){
+					if(xhr.status===200){
+						doResponse(xhr,ph);
+					}else {
+						alert('响应完成但有问题');
+					}
+				}
+			}
+			xhr.open('POST','mail_login.php',true);
+			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			xhr.send('phone='+ph+'&pwd='+pw);
+
+			function doResponse(xhr,ph){
+				console.log('开始处理响应数据');
+				 console.log(xhr);
+				if(xhr.responseText==='succ'){
+					modalLogin.className='modal';
+					btLogin.innerHTML='欢迎回来'+ph;
+				}else if(xhr.responseText==='err'){
+					warning.innerHTML='用户名或密码错误';
+				}else{
+					alert('不可识别的响应数据：'+xhr.responseText);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

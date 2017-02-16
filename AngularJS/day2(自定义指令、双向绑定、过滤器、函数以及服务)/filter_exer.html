@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <ul>
+    <li ng-repeat="obj in list|orderBy:'age'"
+      ng-bind="obj.name+' '+obj.age+' '+obj.score"></li>
+  </ul>
+  <ol>
+    <li ng-repeat="obj in list|orderBy:'age':true|limitTo:3"
+        ng-bind="obj.name+' '+obj.age+' '+obj.score"></li>
+  </ol>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', function ($scope) {
+      $scope.list=[
+        {name:'Lucy',age:20,score:80},
+        {name:'Mike',age:10,score:40},
+        {name:'Nike',age:25,score:60},
+        {name:'Allice',age:100,score:45},
+        {name:'Tom',age:5,score:70},
+        {name:'Tony',age:50,score:20}
+      ]
+    })
+</script>
+</body>
+</html>

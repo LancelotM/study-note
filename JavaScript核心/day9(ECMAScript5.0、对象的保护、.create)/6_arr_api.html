@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var arr1=[1,2,5,4,3];
+      var arr2=[0,2,4,6,8];//升序
+      var arr3=[9,7,5,3,1];
+      console.log(
+        arr1.every(//false some true
+          function(val){return val%2==1}
+        ),
+        arr2.every(//false some false
+          function(val){return val%2==1}
+        ),
+        arr3.every(//true some true
+          function(val){return val%2==1}
+        )
+      );
+      console.log(//判断哪个数组是升序
+        arr1.every(
+          function(val,i,arr){
+            return i<arr.length-1?
+                      val<=arr[i+1]:true;
+          }
+        ),
+        arr2.every(
+          function(val,i,arr){
+            return i<arr.length-1?
+                      val<=arr[i+1]:true;
+          }
+        ),
+        arr3.every(
+          function(val,i,arr){
+            return i<arr.length-1?
+                      val<=arr[i+1]:true;
+          }
+        )
+      );
+    </script>
+  </body>
+</html>

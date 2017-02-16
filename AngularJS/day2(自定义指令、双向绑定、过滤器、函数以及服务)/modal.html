@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <!--方向1——Model 数据绑定到 View-->
+  <p ng-bind="num"></p>
+  <button ng-click="add()">click me</button>
+  <!--方向2——View 数据绑定到 Model-->
+  <form>
+    <input type="text" ng-model="myText"/>
+    <span ng-bind="myText"></span><br/>
+
+    <input type="checkbox" ng-model="yesOrno"/>
+    <span ng-bind="yesOrno"></span><br/>
+
+    <select ng-model="city"
+      ng-options="city.name for city in cities">
+    </select>
+    <span ng-bind="city.value"></span><br/>
+  </form>
+
+</div>
+<script>
+  angular.module('myModule',['ng'])
+    .controller('myCtrl',function($scope){
+      <!--方向1——Model 数据绑定到 View-->
+      $scope.num=0;
+      $scope.add=function(){
+        $scope.num++;
+      }
+      $scope.cities=[
+        {name:'请问',value:'qwe'},
+        {name:'阿萨德',value:'asd'},
+        {name:'支持',value:'zxc'},
+      ]
+      $scope.city=$scope.cities[0]
+      <!--方向2——View 数据绑定到 Model-->
+//      $scope.myText='';
+//      $scope.$watch('myText',function(){
+//        console.log($scope.myText)
+//      })
+      $scope.yesOrno='';
+      $scope.$watch('yesOrno',function(){
+        console.log($scope.yesOrno)
+      })
+//      $scope.mySelected='';
+//      $scope.$watch('mySelected',function(){
+//        console.log($scope.mySelected)
+//      })
+    })
+</script>
+</body>
+</html>

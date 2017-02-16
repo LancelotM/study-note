@@ -1,0 +1,40 @@
+body{
+  text-align: center;
+  font-size: 20px;
+}
+#box{
+  width: 300px;
+  min-height: 100px;
+  border: 2px solid #111111;
+  padding: 40px;
+}
+#complare{
+  text-align: right;
+  margin-right:35px;
+}
+#box #result{
+  text-align: center;
+}
+#test{
+  width:150px
+}
+#box h3{
+  text-align: left;
+}
+#box label{
+  margin: 5px;
+}
+#complare input{
+  width: 180px;
+  margin: 5px;
+}
+#box #start{
+  text-align: left;
+}
+footer div{
+  display:inline-block;
+  cursor: pointer;
+}
+#new{
+  margin-right: 70px;
+}

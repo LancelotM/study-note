@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var LabelSpan=React.createClass({
+    render:function(){
+      return <span>{this.props.LabelSpan}</span>
+    }
+  })
+  var Input=React.createClass({
+    render:function(){
+      return <input type={this.props.inputType} id={this.props.inputId}/>
+    }
+  })
+  var Btn=React.createClass({
+    render:function(){
+      return <button>{this.props.btnName}</button>
+
+    }
+  })
+  var Form=React.createClass({
+    render:function(){
+      return <form>
+        <label for="uname">
+          <LabelSpan LabelSpan="用户名:"/>
+          <Input inputId="uname" inputType="text"/>
+        </label>
+        <br/>
+        <label for="upwd">
+          <LabelSpan LabelSpan="密码:"/>
+          <Input inputId="upwd" inputType="password"/>
+        </label>
+        <br/>
+        <Btn btnName="注册"/>
+        <Btn btnName="登录"/>
+      </form>
+    }
+  })
+  ReactDOM.render(
+      <Form/>,
+    document.getElementById('ex')
+  )
+
+</script>
+</body>
+</html>

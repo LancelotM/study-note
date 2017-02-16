@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//栈
+		//var bus=[];
+		//for(var i=1;i<=5;i++){
+			//var c="乘客"+i;
+			//console.log(c+"上车");
+			//bus.unshift(c);//bus.push(c);
+			//console.log(String(bus));
+		//}
+		//while(bus.length!=0){
+			//var c=bus.shift();//var c=bus.pop(c);
+			//console.log(c+"下车");
+			//console.log(String(bus));
+		//}
+		
+		//十进制转二进制
+		//function dec2bin(dec){
+			//var bin=[];
+			//while(dec!=0){
+				//bin.unshift(dec%2);//bin.push(dec%2);
+				//dec=parseInt(dec/2);
+			//}
+			////bin.reverse();
+			//return bin.join("");
+		//}
+		//var n=95;
+		//console.log(dec2bin(n),n.toString(2));
+
+		//队列
+		var shen7=5,queue=[];
+		for(i=1;i<=5;i++){
+			var c="顾客"+i;
+			console.log(c+"入队列");
+			queue.push(c);
+			console.log(String(queue));
+		}
+		queue.push("你");
+		while(shen7!=0){
+			var c=queue.shift();
+			console.log(c+"抢购成功");
+			shen7--;
+			console.log(String(queue));
+		}
+		console.log(String(queue+"抢购失败"));
+	</script>	
+</body>
+</html>

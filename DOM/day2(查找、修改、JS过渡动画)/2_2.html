@@ -1,0 +1,108 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>读取并修改元素的内容</title>
+<meta charset="utf-8" />
+<style>
+	select{width:100px;height:85px;}
+	div{display:inline-block;width:50px}
+</style>
+
+</head>
+<body>
+	<!--假设两个select元素，分别保存备选地区列表和选中地区列表
+实现两选择框之间选项的交换：
+    包括：当个选中项左右移动
+              多个选中项左右移动
+              全左移和全右移
+要求：两个select中的地区都要按照名称首字母排序
+-->
+	<select id="unsel" size="5" multiple>
+    <option>Argentina</option>
+    <option>Brazil</option>
+    <option>Canada</option>
+    <option>Chile</option>
+    <option>China</option>
+    <option>Cuba</option>
+    <option>Denmark</option>
+    <option>Egypt</option>
+    <option>France</option>
+    <option>Greece</option>
+    <option>Spain</option>
+  </select>
+	<div>
+<button onclick="move(this)">&gt;&gt;</button>
+<button onclick="move(this)">&gt;</button>
+<button onclick="move(this)">&lt;</button>
+<button onclick="move(this)">&lt;&lt;</button>
+	</div>
+	<select id="sel" size="5" multiple>
+	</select>
+	<script>
+    //查找id为unsel的元素，获取其内容，去掉开头的空字符和<option>以及结尾的</option>和空字符，按</option>空字符<option>切割，保存在变量unselCts
+    var unselCts=
+      document.getElementById("unsel")
+              .innerHTML
+              .replace(
+                /^\s*<option>|<\/option>\s*$/g,
+                ""
+              ).split(/<\/option>\s*<option>/);
+    //创建空数组selCts
+    var selCts=[];
+    function move(btn){
+      switch(btn.innerHTML){//判断btn的内容
+        case "&gt;&gt;"://是>>
+         //将unselCts拼接到selCts结尾，再保存回selCts中
+          selCts=selCts.concat(unselCts);
+          unselCts=[];//清空unselCts
+          selCts.sort();//将selCts按字符串升序排列
+          break;
+        case "&lt;&lt;"://是<<
+          //将selCts拼接到unselCts结尾，再保存回unselCts中
+          unselCts=unselCts.concat(selCts);
+          selCts=[];//清空selCts
+          unselCts.sort();//将unselCts按字符串升序排列
+          break;
+        case "&gt;":
+          //获得id为unsel中的所有option,保存在opts中
+          var opts=document.querySelectorAll(
+            "#unsel>option"
+          );
+          //反向遍历opts中每个option
+          for(var i=opts.length-1;i>=0;i--){
+            //如果当前option的selected为true
+            if(opts[i].selected){
+              //删除unselCts中i位置的元素，再追加到selCts中
+              selCts.push(unselCts.splice(i,1)[0]);
+            }
+          }//(遍历结束)
+          selCts.sort();//将selCts按字符串升序排列
+          break;
+        case "&lt;":
+          //获得id为sel中的所有option,保存在opts中
+          //反向遍历opts中每个option
+            //如果当前option的selected为true
+              //删除selCts中i位置的元素，再追加到unselCts中
+          //(遍历结束)
+          //将unselCts按字符串升序排列
+      }
+      //将unselCts数组的内容更新到id为unsel的元素
+      updateView("unsel",unselCts);
+      //将selCts数组的内容更新到id为sel的元素
+      updateView("sel",selCts);
+    }
+    function updateView(id,cts){//将每个数组更新到页面
+      //找到id为id的select，设置其内容为:
+        //<option>+
+        //cts按</option><option>拼接的结果
+        //+</option>
+      document.getElementById(id).innerHTML=
+        cts.length>0?
+          "<option>"+
+          cts.join("</option><option>")
+          +"</option>":
+          "";
+    }
+  </script>
+</body>
+</html>

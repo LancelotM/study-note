@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    #container {
+      border: 1px solid #aaa;
+      padding: 10px;
+      margin: 10px;
+      width: 500px;
+      min-height: 300px;
+    }
+  </style>
+</head>
+<body>
+<h3>请拖拽您选择的头像到下方区域中</h3>
+<div id="container">
+
+</div>
+<script>
+  /**拖放的目标对象——document，监听drop事件，防止浏览器中打开客户端图片**/
+  document.ondragover = function(e){
+    //阻止dragover的默认行为：继续出发dragleave
+    e.preventDefault();
+  }
+  document.ondrop = function(e){
+    //阻止document的drop事件默认行为：在当前窗口中打开客户端图片
+    e.preventDefault();
+  }
+
+
+  /**拖放的源对象——客户端的一张图片**/
+
+  /**拖放的目标对象——div#container，若图片释放此元素上方，则需要在其中显示出该图片**/
+  container.ondragover = function(e){
+    e.preventDefault();
+  }
+  container.ondrop = function(e){
+    //读取拖放进来的客户端图片内容
+    //console.log(e.dataTransfer.files);
+    //提示：Chrome此处的显示有问题：files.length: 0 其实不是0！！
+    /*var list = e.dataTransfer.files;
+    for(var i=0; i<list.length; i++){
+      var f = list[i];
+      console.log(f);
+    }*/
+
+    var f0 = e.dataTransfer.files[0]; //File
+    var reader = new FileReader();//文件读取器
+    //读取指定文件中的内容，作为“数据URL”
+    reader.readAsDataURL(f0);
+    reader.onload = function(){
+      console.log('客户端文件内容读取完成')
+      console.log(reader.result);//读取的结果
+      var img = new Image();
+      img.src = reader.result; //DataURL
+      container.appendChild(img);
+    }
+  }
+</script>
+</body>
+</html>

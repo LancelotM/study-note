@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>在当前显示区范围内实现点不到的小方块</title>
+	<style>
+		div{position:fixed;width:300px;height:300px;
+			background-color:pink;
+      border-radius:30px;
+		}
+	</style>
+ </head>
+ <body>
+	<div id="pop">
+    <img src="images/xiaoxin.gif" style="width:100%;border-radius:30px"/>
+  </div>
+  <script>
+    var game={
+      pop:null,
+      PSIZE:0,//pop的大小
+      MAXTOP:0, MAXLEFT:0,//最大top和left
+      init:function(){
+        //查找id为pop的div，保存在pop属性中
+        this.pop=document.getElementById("pop");
+        //获取pop计算后的样式中的width,转为浮点数保存在PSIZE属性中
+        this.PSIZE=parseFloat(
+          getComputedStyle(this.pop).width
+        );
+        //计算MAXTOP: innerHeight-PSIZE
+        this.MAXTOP=innerHeight-this.PSIZE;
+        //计算MAXLEFT: innerWidth-PSIZE
+        this.MAXLEFT=innerWidth-this.PSIZE;
+        //在0~MAXTOP之间随机生成top值rTop
+        var rTop=Math.floor(
+          Math.random()*(this.MAXTOP+1)
+        );
+        //在0~MAXLEFT之间随机生成left值rLeft
+        var rLeft=Math.floor(
+          Math.random()*(this.MAXLEFT+1)
+        );
+        //设置pop的top为rTop
+        this.pop.style.top=rTop+"px";
+        //设置pop的left为rLeft
+        this.pop.style.left=rLeft+"px";
+        //为pop添加鼠标进入事件监听为:
+        this.pop.addEventListener('mouseover',
+          function(e){
+            while(true){//反复
+            //在0~MAXTOP之间随机生成top值rTop
+            var rTop=Math.floor(
+              Math.random()*(this.MAXTOP+1)
+            );
+            //在0~MAXLEFT之间随机生成left值rLeft
+            var rLeft=Math.floor(
+              Math.random()*(this.MAXLEFT+1)
+            );
+            //获得鼠标相对于文档显示区的位置:
+            var x=e.clientX, y=e.clientY;
+            //如果新位置不包含鼠标位置: 
+            if(!(x>rLeft&&x<rLeft+this.PSIZE
+                  &&y>rTop&&y<rTop+this.PSIZE)){
+              //设置pop的top为rTop
+              this.pop.style.top=rTop+"px";
+              //设置pop的left为rLeft
+              this.pop.style.left=rLeft+"px";
+              break;
+            }
+            }
+          }.bind(this)
+        );
+        //为pop添加单击事件监听:
+          //弹出提示: 约么?
+      }
+    }
+    game.init();
+  </script>
+ </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+ </head>
+ <body>
+	<h1>事件绑定</h1>
+	<button id="btn1">弹出提示</button>
+  <button id="btn2">移除btn1的click</button>
+  <button id="btn3">click me</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    function sayHello(){alert("Hello")};
+    function sayWorld(){alert("World")};
+    $("#btn1").on("click",sayHello);
+    $("#btn1").on("click",sayWorld);
+    $("#btn2").on("click",function(){
+      $("#btn1").off("click");
+    });
+    $("#btn3").one("click",function(){
+      alert("约么?");
+    });
+  </script>
+ </body>
+</html>

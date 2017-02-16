@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>UI主线程和Worker线程间的通讯</h3>
+  <h4>UI主线程：负责操作DOM，读取数据，显示结果</h4>
+  <h4>Worker线程：负责运算</h4>
+
+  <input id="num"><button id="btn">开始质数判定</button>
+  <div id="result">结算结果：....</div>
+
+  <script>
+    btn.onclick = function(){
+      var n = num.value;
+      //创建并发执行的Worker线程，去执行耗时的运算
+      var w8 = new Worker('js/8.js');
+      //UI主线程给Worker线程发送消息
+      w8.postMessage(n);
+      //UI主线程接收Worker线程返回的消息
+      w8.onmessage = function(e){
+        result.innerHTML = e.data;
+      }
+    }
+  </script>
+</body>
+</html>

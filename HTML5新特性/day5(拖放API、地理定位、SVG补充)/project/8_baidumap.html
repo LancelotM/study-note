@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="http://api.map.baidu.com/api?v=2.0&ak=l8GCbrvB4oAyE6TLDCpGuA4kriUDpt7m">
+  </script>
+  <style>
+    #container {
+      width: 800px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+<h3>在自己的网页中使用百度地图</h3>
+<div id="container"></div>
+<script>
+  var map = new BMap.Map("container");
+  var point = new BMap.Point(116.300856,39.915948);
+  map.centerAndZoom(point, 15);
+
+  //添加地图控件
+  map.addControl(new BMap.NavigationControl());
+  map.addControl(new BMap.ScaleControl());
+  map.enableScrollWheelZoom(true);
+  map.addControl(new BMap.MapTypeControl());
+  map.addControl(new BMap.OverviewMapControl());
+
+
+</script>
+</body>
+</html>

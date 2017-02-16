@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <p ng-bind="'ID：'+id"></p>
+  <p ng-bind="'price：'+price"></p>
+  <button ng-click="reset()">reset</button>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .constant('$ID',{id:10})
+    .value('$price',{price:30})
+    .controller('myCtrl', function ($scope,$ID,$price) {
+      $scope.id=$ID.id;
+      $scope.price=$price.price;
+      $scope.reset=function(){
+        angular.extend($ID,{id:20});
+        angular.extend($price,{price:33});
+        $scope.id=$ID.id;
+        $scope.price=$price.price;
+      }
+    })
+</script>
+</body>
+</html>

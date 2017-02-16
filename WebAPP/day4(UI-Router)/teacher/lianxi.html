@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+  <title></title>
+  <style>
+    .col{
+      border:solid grey;
+    }
+  </style>
+
+</head>
+<body ng-controller="myCtrl">
+
+<ion-header-bar>
+  <h1 class="title">ionic每日一练</h1>
+</ion-header-bar>
+
+<ion-content>
+  <div class="row"
+       ng-if="$index%4 == 0"
+       ng-repeat="obj in list">
+    <div class="col col-25">
+      <img ng-src="{{obj.url}}" width="100%" alt=""/>
+      <p>{{obj.name}}</p>
+      <p>{{obj.price}}</p>
+    </div>
+
+    <div class="col col-25">
+      <img ng-src="{{list[$index+1].url}}" width="100%" alt=""/>
+      <p>{{list[$index+1].name}}</p>
+      <p>{{list[$index+1].price}}</p>
+    </div>
+
+    <div class="col col-25">
+      <img ng-src="{{list[$index+2].url}}" width="100%" alt=""/>
+      <p>{{list[$index+2].name}}</p>
+      <p>{{list[$index+2].price}}</p>
+    </div>
+
+
+    <div class="col col-25">
+      <img ng-src="{{list[$index+3].url}}" width="100%" alt=""/>
+      <p>{{list[$index+3].name}}</p>
+      <p>{{list[$index+3].price}}</p>
+    </div>
+
+
+
+
+  </div>
+</ion-content>
+
+
+<ion-footer-bar>
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+
+<script>
+  var app = angular.module('myApp', ['ionic']);
+
+  app.controller('myCtrl',
+    ['$scope',
+      function ($scope) {
+        $scope.list = [
+          {name:'商品A',url:'img/1.jpg',price:20},
+          {name:'商品B',url:'img/2.jpg',price:21},
+          {name:'商品C',url:'img/3.jpg',price:22},
+          {name:'商品D',url:'img/4.jpg',price:23},
+          {name:'商品E',url:'img/1.jpg',price:24},
+          {name:'商品F',url:'img/2.jpg',price:25},
+          {name:'商品G',url:'img/3.jpg',price:26},
+          {name:'商品H',url:'img/4.jpg',price:27},
+          {name:'商品I',url:'img/1.jpg',price:28},
+          {name:'商品J',url:'img/2.jpg',price:29},
+          {name:'商品K',url:'img/3.jpg',price:30},
+          {name:'商品L',url:'img/4.jpg',price:31}
+        ];
+
+
+      }])
+
+</script>
+</body>
+</html>

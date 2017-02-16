@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>Canvas绘图</h3>
+  <canvas id="c8" width="600" height="400">
+    您的浏览器不支持Canvas标签！
+  </canvas>
+  <script>
+    //获得画布对应的画笔
+    var ctx = c8.getContext('2d');
+
+    //ctx.fillRect(0,0, 5, 100);
+    //ctx.fillRect(0,0, 10, 100);
+    //ctx.fillRect(0,0, 15, 100);
+    //ctx.fillRect(0,0, 20, 100);
+    //可以慢慢变长的矩形 —— 定时器+绘图
+    var w = 0;
+
+    setInterval(function(){
+      w+=5;
+      ctx.fillRect(0,0, w, 100);
+
+    },100)
+
+
+  </script>
+</body>
+</html>

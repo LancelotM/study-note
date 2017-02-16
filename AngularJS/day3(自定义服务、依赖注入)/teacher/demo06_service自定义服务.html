@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+    <p>{{stu_name}}</p>
+    <button ng-click="callStudy()">clickMe</button>
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+//  通过service方法创建服务
+  app.service('$student', function () {
+    this.name = 'Michael';
+    this.study = function () {
+      console.log("Michael is studying...");
+    }
+  });
+
+
+  app.controller('myCtrl', function ($scope,$student) {
+      $scope.stu_name = $student.name;
+      $scope.callStudy = function () {
+        $student.study();
+      }
+  })
+
+</script>
+
+</body>
+</html>

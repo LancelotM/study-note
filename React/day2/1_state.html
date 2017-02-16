@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var Btn=React.createClass({
+    getInitialState:function(){
+      return {
+        switch:false,
+        age:20
+      }
+    },
+    handleClick:function(){
+      this.setState({
+        switch:!this.state.switch,
+        age:this.state.age++
+       });
+    },
+    render:function(){
+      return <button onClick={this.handleClick}>
+        {"当前的状态为："+this.state.switch+"年龄："+this.state.age}
+      </button>
+    }
+  })
+  ReactDOM.render(
+      <Btn/>,
+    document.getElementById('ex')
+  )
+</script>
+</body>
+</html>

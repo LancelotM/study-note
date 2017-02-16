@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body>
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<!--<ion-content>-->
+  <!--<p>Hello Ionic</p>-->
+<!--</ion-content>-->
+<ion-tabs class="tabs-icon-top">
+  <ion-tab title="Music" icon="ion-headphone">
+    <ion-view>
+      <ion-content class="royal-bg">
+        这是Music的页面
+      </ion-content>
+    </ion-view>
+  </ion-tab>
+  <ion-tab title="Moive" icon="ion-videocamera">
+    <ion-view>
+      <ion-content class="assertive-bg">
+        这是Moive的页面
+      </ion-content>
+    </ion-view>
+  </ion-tab>
+</ion-tabs>
+<!--<ion-footer-bar class="bar-royal">-->
+  <!--<h1 class="title">footer</h1>-->
+<!--</ion-footer-bar>-->
+<script>
+  angular.module('myModule', ['ionic'])
+</script>
+</body>
+</html>

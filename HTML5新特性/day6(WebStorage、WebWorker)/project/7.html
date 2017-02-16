@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>使用Worker线程执行耗时的JS操作</h3>
+  <p id="calcResult"></p>
+
+  <button onclick="console.log(111)">按钮1</button>
+  <script>
+    //UI主线程接收Worker线程传递的消息
+    var w7 = new Worker('js/7.js');
+    w7.onmessage = function(e){
+      calcResult.innerHTML = e.data;
+    }
+  </script>
+  <button onclick="console.log(222)">按钮2</button>
+
+</body>
+</html>

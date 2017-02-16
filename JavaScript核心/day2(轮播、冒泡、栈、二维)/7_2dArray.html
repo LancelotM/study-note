@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var provs=["北京市","河北省","山东省"];
+                 //  0        1        2
+      var cities=[
+        ["东城区","西城区","海淀区"],//0
+        ["廊坊市","保定市","承德市"],//1
+        ["德州市","烟台市","济南市","青岛市"],//2
+      ];
+      console.dir(cities);
+      function getCitiesByProv(pname){
+        //遍历provs 
+        for(var i=0;i<provs.length;i++){
+          //如果当前省份等于pname
+          if(provs[i]===pname){
+            //弹出提示,显示cities数组中i位置的子数组内容
+            alert(cities[i])
+            return;//退出函数
+          }
+        }//(遍历结束)
+        alert("省份不存在");//弹出提示,省份不存在
+      }
+      getCitiesByProv(prompt("输入省份"));
+    </script>
+  </body>
+</html>

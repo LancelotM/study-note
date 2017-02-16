@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+    <style>
+      .btn{
+        padding:6px 12px;
+        background:#aaf;
+        border-radius:6px;
+        text-decoration:none;
+      }
+      [data-toggle='dropdown']+.menu{
+        overflow:hidden;
+        list-style:none;
+        border:1px solid #aaa;
+        width:100px;
+      }
+      .fade{
+        height:0;
+        opacity:0;
+        transition:all .3s linear;
+      }
+      .in{
+        height:100px;
+        opacity:1;
+      }
+    </style>
+  </head>
+  <body>
+    <a data-toggle="dropdown" href="#menu" class="btn">下拉菜单</a>
+    <ul id="menu" class="menu fade">
+      <li>海贼王</li>
+      <li>奇异博士</li>
+      <li>爸爸去哪儿</li>
+    </ul>
+    <script>
+      document.querySelector(
+        "[data-toggle='dropdown']"
+      ).addEventListener("click",
+        function(e){
+          e.preventDefault();
+          var i=this.href.indexOf("#");
+          document.querySelector(
+            this.href.slice(i)
+          ).className="menu fade in";
+        }
+      );
+    </script>
+  </body>
+</html>

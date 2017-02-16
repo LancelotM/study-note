@@ -1,0 +1,35 @@
+1、state 状态：只要更新state,就会根据 state 重新渲染用户界面,React来处理如何最高效的更新DOM
+	1、how?
+		初始化state: getInitialState 定义状态（对象）
+		修改state: this.setState() 修改状态
+		读取state: this.state.状态名称 读取状态
+2、React组件的生命周期
+	生命周期的3个阶段
+		1、mount 插入到DOM
+		2、update 重新渲染
+		3、unmount 从DOM中移除
+	3个阶段的处理函数
+		1、
+			componentWillMount() 准备插入
+			componentDidMount() 已经插入
+		2、
+			componentWillUpdate(props,state) 准备渲染
+			componentDidUpdate(props,state) 已经渲染
+		3、
+			componentWillUnmount() 准备移除
+3、事件
+	React组件中的方法分为2类
+		1、React自有的方法：
+			生命周期,render,componentWill/DidMount/Update/Unmount/render/getInitialState
+		2、用户自定义的方法,遵循驼峰式命名
+			handleChange handleClick handleDrap
+4、表单组件
+	表单元素有以下的属性设置都是受控组件
+		value(input textarea)
+		checked(checkedbox radio)
+		selected(option)
+		
+		解决受控组件的视图问题
+			1、可以通过 default+受控组件 来解决
+			2、通过设置 受控组件的状态 来解决
+	其余的都是非受控组件

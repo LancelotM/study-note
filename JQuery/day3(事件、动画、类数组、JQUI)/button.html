@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<button>button1</button>	
+	<button>button2</button>	
+	<button>button3</button>	
+	<button>button4</button>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		
+		//$("button").on("click",function(){
+			//var i=$("button").index(this);
+			//alert(`我是${i}`);
+		//});
+		
+		//$('button').each(function(i){
+			//$(this).click(function(){
+				//alert(`我是${i}`)
+			//});
+		//});
+
+		var btns=document.querySelectorAll("button");
+		for(var i=0;i<btns.length;i++){
+			(function(i){
+				btns[i].addElementListener("click",function(){
+					alert("我是"+i);
+				});
+			})(i);
+		}
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/normal.css"/>
+</head>
+<body>
+<script>
+  if(localStorage.length===0){
+    location.href='save.html';
+  }
+</script>
+<div id="box">
+  <h3>测试试卷</h3>
+  <form id="complare">
+    <!--<label id="R0">英文</label><input id="W0" type="text"/><br/>-->
+    <!--<label id="R1">英文</label><input id="W1" type="text"/><br/>-->
+    <!--<label id="R2">英文</label><input id="W2"  type="text"/><br/>-->
+  </form>
+  <input id="test" type="button" value="提交答案"/>
+</div>
+<script type="text/javascript">
+  var html='';
+  for(var i=0; i<localStorage.length; i++){
+    var k = localStorage.key(i);       //获取第i个key
+    html+=`
+     <label>${k}:</label><input id="W${i}"/><br/>
+    `;
+  }
+  complare.innerHTML=html;
+  test.onclick=function(){
+    var totalWord=0;
+    var rightWord=0;
+    for(var i=0; i<localStorage.length; i++){
+      totalWord++;
+      var k = localStorage.key(i);      //获取第i个key
+      var v=localStorage[k];
+      console.log(k,v)
+      var w=document.getElementById(`W${i}`);
+      if(v===w.value){
+        rightWord++
+      }
+      console.log(totalWord,rightWord);
+      sessionStorage['totalWords']=totalWord;
+      sessionStorage['rightWords']=rightWord;
+      location.href='result.html';
+    }
+  };
+</script>
+</body>
+</html>

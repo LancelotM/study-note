@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    svg {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>SVG绘图——滤镜——高斯模糊滤镜</h3>
+
+  <svg id="s2" width="600" height="400">
+    <!--定义特效对象-->
+    <defs>
+      <!--linearGraident-->
+      <!--filter-->
+      <filter id="f3">
+        <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+      </filter>
+      <filter id="f6">
+        <feGaussianBlur stdDeviation="6"></feGaussianBlur>
+      </filter>
+    </defs>
+
+    <text x="50" y="100" font-size="70">达内科技® 2016</text>
+    <text x="50" y="200" font-size="70" filter="url(#f3)">达内科技® 2016</text>
+    <text x="50" y="300" font-size="70" filter="url(#f6)">达内科技® 2016</text>
+  </svg>
+  <script>
+
+  </script>
+</body>
+</html>

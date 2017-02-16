@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var target=new Date();
+      target.setDate(target.getDate()+7);
+      document.cookie=
+        "username=zhangdong;expires="
+                          +target.toGMTString();
+        //cookie名
+        //变量名
+    </script>
+  </body>
+</html>

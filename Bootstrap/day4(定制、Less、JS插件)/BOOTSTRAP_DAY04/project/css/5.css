@@ -1,0 +1,12 @@
+body {
+  margin: 20px;
+  font-family: 'SimHei';
+  background: #fff;
+}
+.box {
+  padding: 20px;
+  margin: 20px;
+  background: #f6c0c1;
+  color: #e4393c;
+  border: 1px solid #ce1c1f;
+}

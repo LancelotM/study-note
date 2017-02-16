@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//"use strict";//对整段代码启用严格模式
+		//var emp={id:1001,name:"eric",age:18};
+		//var attrs=Object.getOwnPropertyDescriptor(emp,"id");
+		//console.dir(attrs);  
+		////id属性只读
+		////修改对象中指定属性的特性
+		//Object.defineProperty(emp,"id",{
+			//writable:false,//只读
+			//configurable:false,//禁止修改其他特性
+		//});
+		//console.dir(emp);
+		//Object.defineProperties(emp,{
+			//id:{writable:false,configurable:false},
+			//name:{configurable:false},
+			//bal:{enumerable:false,configurable:false}
+		//})
+		//for(var key in emp){
+			//console.log(key+":"+emp[key])
+		//}
+		//console.dir(emp);
+		//console.log(emp.bal);
+		
+		//emp.id=12;
+		//delete emp.name;
+		
+		//为emp对象添加一个新属性age
+		
+		var emp={id:1001,name:"eric"};
+		(function(){
+			var _age;
+			Object.defineProperty(emp,"age",{
+				get:function(){
+					console.log("自动调用的age的get方法");
+					return _age
+				},
+				set:function(val){
+					console.log("自动调用的age的set方法"+val);
+					if(val<18||val>65)
+					throw new Error("范围不对");
+					_age=val;
+				}
+			})
+		})();
+		console.log(emp.age);
+		//emp.age=17;//报错
+		//emp.age++;//get   +1    set
+		////存在什么漏洞?
+		emp._age=0;
+		console.log(emp.age);
+		console.dir(emp);
+
+
+	</script>	
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style type="text/css">
+		#d1{
+			width:98%;
+			height:200px;
+			border:1px solid #D3E1BD;
+			background:#FDFFFA;					/*上半个整体*/		
+			margin-bottom:20px;
+			padding:15px;
+			font-size:12px;
+		}
+		#d2>a{
+			border:1px solid #CCCCCC;
+			border-radius:5px;				/*链接*/
+			padding:6px 12px;
+						text-decoration:none;
+		}
+		#d2>a:hover{
+			background:#0000ff;
+			color:#FFFFFF;
+		}
+		.current{
+			border:0;			/*去掉边框*/
+			color:red;
+			padding:10px;
+		}
+		#d3{
+			width:75px;
+			height:15px;				/*5个星星*/
+			background:url(images/iconlist_1.png) no-repeat -108px -238px;
+			
+		}
+		.b1{
+			padding:3px 5px;					/*为字上背景*/
+			background:#FFECD4;
+		}
+		.d4{				/*添加上下外边距*/
+			line-height:40px;
+			color:#9A9A9A;
+		}
+		#d5{
+			border-bottom:2px solid #D3E1BD;
+			padding:1px;					/*分割线*/
+			margin-top:5px;
+		}
+		#d1>form>button{
+			width:50px;
+			height:50px;					/*按钮*/
+			background-image:radial-gradient(#CBCBCB 0%,#F9F9F9 100%);
+			border-radius:50%;
+			box-shadow:3px 3px 2px 1px;
+		}
+		#d1>form,#d2{
+			text-align:right;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1">                       <!--上半个整体-->
+		<div id="d3"></div>				<!--5个星星-->
+		<div id="d5"></div>				<!--分割线-->
+		<div class="d4">标&nbsp;&nbsp;&nbsp;&nbsp;签：<span class="b1">比洗衣粉好</span> <span class="b1">去污能力强</span></div>
+		<div  class="d4">心&nbsp;&nbsp;&nbsp;&nbsp;得：买了几次，挺好用的，洗的衣服很干净，以后就它了！</div>
+		<div  class="d4">购买日期：2014-12-01
+		</div>
+		<form action="get" href="http://http://www.tmooc.cn/web/index_new.html?tedu">
+			<button>有用(3)</button>
+			<button>回复(3)</button>
+		</form>
+	</div>
+	<div id="d2">
+		<span class="current">1</span>
+		<a href="#">2</a>
+		<a href="#">3</a>
+		<a href="#">4</a>
+		<a href="#">5</a>
+		<a href="#">6</a>
+	</div>
+</body>
+</html>

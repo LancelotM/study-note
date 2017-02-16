@@ -1,0 +1,76 @@
+正课:
+1. *****ES5
+  对对象的保护: 
+    对属性的保护
+    防篡改
+  Object.create();
+  数组API:
+*****bind()
+
+1. 对对象的保护: 
+   对属性: 
+     命名属性
+        数据属性:
+        访问器属性:
+           大问题: 受保护的属性值应该保存在?
+           解决: 闭包
+     内部属性
+
+   防篡改: 禁止修改对象的属性结构
+     3个级别: 
+     1. 防扩展: 禁止向对象中添加新属性
+         Object.preventExtensions(obj)
+     2. 密封: 即防扩展，又禁止删除旧属性
+         Object.seal(obj)
+            其实是将所有属性的configurable设置为false
+     3. 冻结: 即密封，又禁止修改所有属性值！
+          何时: 如果一个对象中保存了大量不变的属性值时
+             Object.freeze(obj); 
+             其实是将所有属性的writable设置为false！
+
+2. Object.create(): 
+   var newObj=Object.create(father,{扩展的新属性})
+    创建一个新对象newObj，继承father，并为newObj扩展新的自有属性
+   何时: 只要继承一个现有对象，创建一个新的子对象时
+   相当于: var newObj={};
+               newObj.__proto__=father;
+               Object.defineProperties(newObj,{
+	 扩展的新属性
+               })
+
+3. 数组API: 
+   1. 判断: 数组中的元素是否符合要求
+      1. 所有元素是否都符合要求
+          var bool=
+	arr.every(function(val,i,arr){ return 判断条件 })              2. 是否包含符合要求的元素
+          var bool=
+          	arr.some(function(val,i,arr){ return 判断条件 })
+   2. 遍历API: 依次对数组中每个元素执行相同的操作
+      1. 对原数组中每个元素执行相同的操作，结果保存回原数组
+        arr.forEach(function(val,i,arr){  arr[i]=新值;  });
+      2. 取出原数组中每个元素的值，执行相同的操作后，保存到一个新数组中
+        var newArr=arr.map(function(val,i,arr){  
+            return 操作后的元素值
+        });
+   3. 过滤和汇总: 
+       过滤: 选择原数组中符合条件的元素，组成新数组
+       var subArr=arr.filter(function(val,i,arr){
+          return 判断条件;
+       });
+
+       汇总: 将原数组中每个元素统计出一个汇总结果
+         var r=arr.reduce(function(prev,val,i,arr){
+             return prev+val;
+         },0);
+         其中: 0: 表示初始值
+                  prev: 截止到目前的阶段汇总值
+                  回调函数的返回值，自动作为下次的prev值
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		var pid="230713199308060039"
+		var gender=(pid.slice(length-1))%2===1?"男":"女";
+		var birth=pid.slice(6,length-4);
+		var age=parseInt(2016-pid.slice(6,length-8));
+		console.log(gender,birth,age+"");
+		
+		//验证码
+		//var code="E4fR";
+		//while(prompt("请输入验证码"+code).toLowerCase()!=code.toLowerCase()){
+			//console.log("验证码错误");
+		//}
+		//console.log("验证通过");
+
+		//编码
+		var msg="打算i,的的啊入啊"
+		function encode(msg){
+			for(var i=0,code="";i<msg.length;i++){
+				var unicode=msg.charCodeAt(i);
+				code+=(unicode+100000+"").slice(1);
+			}
+			return code;
+		}
+		var code=encode(msg);
+		console.log(code);
+
+		//解码
+		function decode(code){
+			for(var i=0,decode="";i<code.length;i+=5){
+				decode+=String.fromCharCode(code.slice(i,i+5));
+			}
+			return decode;
+		}
+		var msg2=decode(code);
+		console.log(msg2);
+		
+		//查找关键词
+		var str="no zuo no die no can no bibi",i=-1;
+			while((i=str.indexOf("no",i+1))!=-1){
+				console.log("在位置"+i+"发现关键词");	
+		}
+		//查找最后的关键词
+		var fullFileName="c:/dasd/dq/sdgsd/iyti/123.hitml"
+		var extend=fullFileName.substr(fullFileName.lastIndexOf("/")+1);
+		console.log(extend);
+	</script>	
+</body>
+</html>

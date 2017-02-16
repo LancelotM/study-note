@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h3>拖放API——拖放删除效果</h3>
+
+  <img src="img/trash.png" id="trash" class="half-opacity">
+  <hr/>
+  <div id="container">
+    <img id="p3" src="img/p3.png">
+    <img id="p4" src="img/p4.png">
+    <img id="p5" src="img/p5.png">
+  </div>
+
+  <script>
+    //不使用全局变量
+
+    /**源对象可以触发的事件**/
+    var list = container.querySelectorAll('img');
+    for(var i=0; i<list.length; i++){
+      var p = list[i];
+      //源对象刚一开始拖动，记录拖动事件的源对象
+      p.ondragstart = function(e){
+        //e.dataTransfer.setData('k', '123');
+        e.dataTransfer.setData('ImgId', this.id);
+      }
+    }
+
+    /**目标对象可以触发的事件**/
+    trash.ondragover = function(e){
+      e.preventDefault(); //使得drop可以触发
+    }
+    trash.ondrop = function(e){
+      //从父容器中删除拖动的小飞机
+      console.log('drop...')
+      //获取源对象传递的数据
+      //var v = e.dataTransfer.getData('k');
+      //console.log(v)
+      var id = e.dataTransfer.getData('ImgId');
+      var img = document.getElementById(id);
+      container.removeChild(img);
+    }
+
+  </script>
+</body>
+</html>

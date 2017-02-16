@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>
+
+  <script>
+    if(sessionStorage['userName']){
+      location.href='index.html'
+    }
+  </script>
+</head>
+<body>
+<form  action="">
+  <input id="uname" type="text" placeholder="输入用户名"/><br/>
+  <input id="upwd" type="password" placeholder="输入密码"/><br/>
+  <input id="btn" type="button" value="提交"/>
+</form>
+<script>
+  btn.onclick=function(){
+    sessionStorage['userName']=uname.value;
+    sessionStorage['userpwd']=upwd.value;
+    alert('登录成功');
+    setInterval(function(){
+      location.href='index.html';
+    },3000)
+  }
+</script>
+</body>
+</html>

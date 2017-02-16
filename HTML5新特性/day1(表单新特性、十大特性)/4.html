@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/4.css"/>
+</head>
+<body>
+
+<div class="container">
+
+  <video id="v"  class="bg" src="../day2/res/birds.mp4" autoplay loop muted></video>
+  <form action="">
+    <h1>用户注册</h1>
+    <div class="form-group">
+      <label class="control-label" for="uname">用户名称：</label>
+      <input required minlength="3" maxlength="6" type="text" id="uname" class="form-control"/>
+      <span class="help-block primary">用户名可以包含数字和文字</span>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="upwd">密码：</label>
+      <input required  type="password" id="upwd" class="form-control"/>
+      <span class="help-block primary">密码长度在6到12位之间</span>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="umail">邮箱：</label>
+      <input required type="email" id="umail" class="form-control"/>
+      <span class="help-block primary">请注意邮箱格式</span>
+    </div>
+    <div class="form-group">
+      <label class="control-label"></label>
+      <input type="submit" value="提交"/>
+    </div>
+  </form>
+</div>
+<script>
+  window.onload=function(){
+    if(v.ended){
+      v.play();
+    }
+  }
+  uname.onblur=function(){
+    if(this.validity.valueMissing){
+      var msg='用户名不能为空';
+      this.nextElementSibling.className='help-block danger';
+    }else if(this.validity.tooShort){
+      var msg='用户名太短，不能少于3位';
+      this.nextElementSibling.className='help-block danger';
+    }else if(this.validity.tooLong){
+      var msg='用户名太长，不能多于6位';
+      this.nextElementSibling.className='help-block danger';
+    }else{
+      var msg='用户名验证正确';
+      this.nextElementSibling.className='help-block success';
+    }
+    this.nextElementSibling.innerHTML=msg;
+    this.setCustomValidity(msg);
+  }
+</script>
+</body>
+</html>

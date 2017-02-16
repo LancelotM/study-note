@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style type="text/css">
+		#d{
+			width:200px;
+			height:200px;
+			background:#e4393c;
+			font-size:100px;
+			font-weight:bold;
+			text-align:center;
+			line-height:200px;
+			margin:auto;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		document.onkeydown=function(e){
+			var event=event||window.event;
+			d.innerHTML=e.keyCode;
+		}
+
+		//var code="5Edg"
+		//var input;
+		//while((input=prompt("请输入验证码"+code)).toLowerCase()!=code.toLowerCase()){
+			//alert("输入错误，重新输入");
+		//}
+		//alert("验证通过");
+
+		var small="yu xiang ming";
+		var big="YU XIANG MING";
+		var name="于祥明"
+		var code="%E4%BA%8E%E7%A5%A5%E6%98%8E"
+		//大写
+		console.log(small.toUpperCase());
+		//小写
+		console.log(big.toLowerCase());
+		//第一个"i"的位置
+		console.log(small.indexOf("i"));
+		//最后一个"i"的位置
+		console.log(small.lastIndexOf("i"));
+		//完全编码
+		console.log(encodeURIComponent(name));
+		//完全解码
+		console.log(decodeURIComponent(code));
+	</script>
+	<div id="d"></div>
+</body>
+</html>

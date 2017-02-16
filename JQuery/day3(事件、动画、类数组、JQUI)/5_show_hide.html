@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+
+ </head>
+ <body>
+	<h1>jQuery动画函数——显示隐藏动画</h1>
+  <button id="btn1">隐藏DIV</button>
+  <div id="target">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat optio quasi assumenda quo consequatur distinctio dignissimos eius similique magni pariatur sequi eligendi voluptates eveniet atque maiores totam incidunt sint libero?</p>
+  </div>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $("#btn1").click(function(){
+      $(this).next().fadeToggle();
+    })
+  </script>
+ </body>
+</html>

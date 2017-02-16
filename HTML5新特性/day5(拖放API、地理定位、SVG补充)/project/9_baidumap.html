@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="http://api.map.baidu.com/api?v=2.0&ak=l8GCbrvB4oAyE6TLDCpGuA4kriUDpt7m">
+  </script>
+  <style>
+    #container {
+      width: 800px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+<h3>在自己的网页中使用百度地图</h3>
+<div id="container"></div>
+<script>
+  var map = new BMap.Map("container");
+  var point = new BMap.Point(116.300856,39.915948);
+  map.centerAndZoom(point, 15);
+
+  //添加地图上的覆盖物件  Overlay
+  //添加标记
+  /*var marker = new BMap.Marker(point);
+  marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+  map.addOverlay(marker);*/
+
+  var icon = new BMap.Icon('img/rose.png', new BMap.Size(20,50));
+  var marker = new BMap.Marker(point, {icon:icon});
+  marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+  map.addOverlay(marker);
+
+  //添加一个说明窗口
+  var param = {
+    width: 120,
+    height: 80,
+    title: '达内万寿路中心'
+  }
+  var win = new BMap.InfoWindow('万寿西街2号',param);
+  map.openInfoWindow(win, point);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<ion-content>
+  <p>Hello Ionic</p>
+  <button class="button button-royal" ng-click="show()">click me</button>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+    .controller('myCtrl',['$scope','$ionicActionSheet',function($ionicActionSheet,$scope){
+      $scope.show=function(){
+        $ionicActionSheet.show({
+          titleText:'ionicActionSheet title',
+          cancelText:'取消',
+          buttons:[{text:'编辑'},{text:'取消'}],
+          buttonClicked:function(index){
+            console.log(index)
+          },
+          desteuctiveText:'删除',
+          desteuctiveButtonClicked:function(){
+            console.log('执行删除动作')
+            return true;
+          }
+        })
+      }
+    }])
+</script>
+</body>
+</html>

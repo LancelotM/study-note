@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', function ($scope) {
+      var list=[13,21,55];
+      angular.forEach(list,function(value,key){
+        console.log('key is '+key+' value is '+value)
+      })
+      var stu={name:'Lucy',age:20};
+      angular.forEach(stu,function(value,key){
+        console.log('key is '+key+' value is '+value)
+      })
+
+      var jsonObj={'name':'Mike','age':35};
+      var jsonStr=angular.toJson(jsonObj);
+      console.log(jsonStr);
+      var jsonObj=angular.fromJson(jsonStr);
+      console.log(jsonObj)
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#address{
+				padding:15px;
+				width:80px;
+				border:1px solid #333;
+				/*相对定位：改变自己的 z-index*/
+				position:relative;
+				z-index:100;
+				background:#fff;
+			}
+
+			#menu{
+				width:400px;
+				height:300px;
+				border:1px solid #333;
+				/*绝对定位*/
+				position:absolute;
+				top:49px;
+				left:-40px;
+
+				background:white;
+				/*隐藏元素*/
+				display:none;
+				z-index:10;
+			}
+			
+			#address:hover{
+				border-bottom:2px solid #fff;
+			}
+
+			#parent{
+				/*相对定位：配合 menu 做绝对定位*/
+				position:relative;
+				left:200px;
+			}
+
+			#parent:hover #menu{
+				display:block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="parent">
+			<div id="address">
+				送至：北京
+			</div>
+			<div id="menu">
+					地址选择列表...
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div>
+			<h1>此处是京东LOGO</h1>
+		</div>
+	</body>
+</html>

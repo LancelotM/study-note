@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+  <title></title>
+</head>
+<body ng-controller="myCtrl">
+
+<ion-header-bar>
+  <h1 class="title">header</h1>
+</ion-header-bar>
+
+<ion-content >
+  <ul class="list list-inset">
+    <li class="item" ng-repeat="tmp in list">
+      {{tmp}}
+    </li>
+  </ul>
+</ion-content>
+
+<ion-footer-bar>
+  <button class="button button-positive" ng-click="goTop()">Top</button>
+  <button class="button button-assertive" ng-click="goBottom()">Bottom</button>
+  <button class="button button-calm"
+          ng-click="get()">
+    get
+  </button>
+  <button
+    ng-click="set()"
+    class="button button-energized">
+    滚动到列表项为10的位置
+  </button>
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+
+<script>
+  var app = angular.module('myApp', ['ionic']);
+
+  app.controller('myCtrl',
+    ['$scope','$ionicScrollDelegate',
+      function ($scope,$ionicScrollDelegate) {
+
+        $scope.list = [];
+        for(var i=0;i<50;i++)
+        {
+          $scope.list.push(i);
+        }
+//        滚动到页面顶部
+        $scope.goTop = function () {
+          $ionicScrollDelegate.scrollTop(true);
+        }
+
+//        滚动到页面底部
+        $scope.goBottom = function () {
+          $ionicScrollDelegate.scrollBottom(true);
+        }
+
+//        拿到当前滚动位置信息
+        $scope.get = function () {
+          var obj = $ionicScrollDelegate.getScrollPosition();
+          console.log(obj);
+        }
+
+//        滚动到指定的位置
+        $scope.set = function () {
+          $ionicScrollDelegate.scrollTo(0,540,true);
+        }
+
+    }])
+
+</script>
+</body>
+</html>

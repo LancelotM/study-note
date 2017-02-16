@@ -1,0 +1,19 @@
+<?php
+header('Content-Type:applacation/json;charset="UTF-8"');
+$json=[];
+$json[]=[
+    'name'=>'红烧狮子头',
+    'price'=>20,
+    'cout'=>2
+];
+$json[]=[
+    'name'=>'大杂烩',
+    'price'=>30,
+    'cout'=>5
+];
+$json[]=[
+    'name'=>'糖醋排骨',
+    'price'=>40,
+    'cout'=>7
+];
+echo json_encode($json);

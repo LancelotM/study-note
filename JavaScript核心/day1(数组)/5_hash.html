@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var scores=[];
+      scores["MATH"]=81;
+      scores["CHS"]=53;
+      scores["ENG"]=89;
+      console.dir(scores);
+      for(var key in scores){
+        console.log(key+":"+scores[key]);
+      }
+
+//鄙视题: 去掉数组中重复的元素(百万数量级)
+function unique1(arr){
+  //i遍历arr,同时创建空数组result
+  for(var i=0,result=[];i<arr.length;i++){
+    //j遍历result
+    for(var j=0;j<result.length;j++){
+      //如果result中当前元素等于arr中当前元素,就退出循环
+      if(result[j]===arr[i]){break;}  
+    }//(遍历结束)
+    //如果j等于result的length
+    if(j===result.length){
+      //将arr中当前元素追加到result中
+      result[result.length]=arr[i];
+    }
+  }
+  return result;//返回result
+}
+
+function unique2(arr){
+  //i遍历arr,同时创建两个空数组result和hash
+  for(var i=0,result=[],hash=[];
+      i<arr.length;
+      i++){
+    //如果hash中以当前元素为key的元素是undefined
+    if(hash[arr[i]]===undefined){
+      //将当前元素追加到result结尾
+      result[result.length]=arr[i];
+      //在hash中添加一个新元素: key为当前元素值,值为true
+      hash[arr[i]]=true;
+    }
+  }//(遍历结束)
+  return result;//返回result
+}
+      //测试:
+      //var arr=[1,2,3,4,3,2,1,2,1];
+      //console.log(String(unique2(arr)));
+                //[1,2,3,4]
+//生成100万个0~1000之间的随机数
+for(var i=0,arr=[];i<1000000;i++){
+  arr[i]=Math.floor(Math.random()*1000);
+}
+console.time("unique1");//计时器开始
+unique1(arr);
+//计时器结束，显示用时
+console.timeEnd("unique1");
+console.time("unique2");
+unique2(arr);
+console.timeEnd("unique2");//ns
+
+    </script>
+  </body>
+</html>

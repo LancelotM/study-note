@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1 id="jx"></h1>
+    <script>
+  function doubleBall(){
+    var reds=[];//定义空数组reds
+    //反复: 只要reds中元素的个数<6
+    while(reds.length<6){
+      //在1~33之间生成随机整数r
+      var r=Math.floor(Math.random()*33+1);
+	  //遍历reds
+      for(var i=0;i<reds.length;i++){
+        //如果当前元素等于r,就退出循环
+        if(reds[i]==r){break;}
+      }//(遍历结束)
+      //如果reds中不包含r，就将r压入reds中
+      if(i==reds.length){reds.push(r)}
+    }//(循环结束)
+    //将reds按数字升序排列
+    reds.sort(function(a,b){return a-b;});
+    //在1~16之间生成随机整数blue
+    var blue=Math.floor(Math.random()*16+1);
+    //返回: reds转为字符串+ | +blue
+    return String(reds)+" | "+blue;
+  }
+  jx.innerHTML=doubleBall();
+    </script>
+  </body>
+</html>

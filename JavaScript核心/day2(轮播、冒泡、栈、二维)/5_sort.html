@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var arr=[3,1,4,7,5,8,2,6];
+      var names=
+      ["rose","scott","jerry","tom","smith"]
+      var arr2=[12,1,23,123,3,2];
+      //Step1: 定义比较器函数
+      function compare(a,b){return a-b;}
+      //颠倒比较器函数结果的正负，可改升序为降序
+      //function compare(a,b){return b-a;}
+      //Step2: 将比较器函数作为参数放入sort中
+      arr2.sort(compare);
+      console.log(String(arr2));
+
+      var kids=[
+        [0,0,0],//3个苹果
+        [0],//1个苹果
+        [0,0,0,0],//4个苹果
+        [0,0],//2个苹果
+      ];
+      //按苹果个数从大到小排列
+      function compare2(a,b){
+        return b.length-a.length;
+      }
+      kids.sort(compare2);
+      console.dir(kids);
+    </script>
+  </body>
+</html>

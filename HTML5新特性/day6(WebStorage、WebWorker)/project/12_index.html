@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  .blue {  background: #ccf; color: #33f;  }
+  .pink {  background: #f3b; color: #918;	 }
+  .dark {  background: #111; color: #eee;  }
+</style>
+</head>
+<body>
+<script>
+  var theme = localStorage['UserTheme'];
+  if(theme){
+    document.body.className = theme;
+  }
+</script>
+  <h3>首页</h3>
+  <select id="selectTheme">
+    <option value="0">—请选择您喜欢的页面主题—</option>
+    <option value="blue">湛蓝天空</option>
+    <option value="pink">芭比公主</option>
+    <option value="dark">杀马特黑</option>
+  </select>
+  <hr/>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor doloremque laboriosam omnis. Aliquid cumque distinctio eaque fuga nemo odit officiis placeat quia ratione unde. Adipisci laborum non soluta veniam voluptatibus.</p>
+  <hr/>
+  <a href="12_usercenter.html">跳转到用户中心</a>
+  <script>
+    selectTheme.onchange = function(){
+      var theme = this.value;
+      document.body.className = theme;
+      //在客户端浏览器中保存选择的主题——磁盘中
+      localStorage['UserTheme']=theme;
+    }
+  </script>
+</body>
+</html>

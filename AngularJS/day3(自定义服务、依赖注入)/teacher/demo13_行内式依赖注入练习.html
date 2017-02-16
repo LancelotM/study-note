@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+
+  <input type="number" ng-model="num1"/>
+  <br/>
+  <input type="number" ng-model="num2"/>
+  <br/>
+  <button ng-click="add()">add</button>
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.service('$addService', function () {
+    this.addFunc = function (arg1,arg2) {
+      return arg1+arg2;
+    }
+  })
+
+//  采用行内式依赖注入
+  app.controller('myCtrl',
+    ["$scope","$addService",
+      function ($scope,$addService) {
+
+        $scope.add = function () {
+          var result = $addService.addFunc($scope.num1,$scope.num2);
+          alert("result is "+result);
+        }
+
+  }])
+
+</script>
+
+</body>
+</html>

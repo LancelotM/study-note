@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			/*1、声明或复位 计数器 : counter-reset*/
+			body{
+				counter-reset:c1 0;
+			}
+			/*2、设置计数器增量 :counter-increment*/
+			div{
+				counter-increment:c1 1;
+			}
+			/*3、使用计数器 : counter()*/
+			div:before{
+				content:"第"counter(c1)"句:";
+			}
+		</style>
+	</head>
+	<body>
+		<div>锄禾日当午</div>
+		<div>汗滴禾下土</div>
+		<div>谁知盘中餐</div>
+		<div>粒粒皆辛苦</div>
+	</body>
+</html>

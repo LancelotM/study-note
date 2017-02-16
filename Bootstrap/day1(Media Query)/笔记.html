@@ -1,0 +1,109 @@
+1、如何编写响应式网页 ———— 重点
+	1G:模拟信号,手机只能打电话
+	2G:数组信号,手机可以发短信
+	2.5G:GPRS,手机可以上网,WAP网页/WML
+	3G:智能手机,iOS/Android ———— Linux操作系统,具备真正的浏览器,可以浏览HTML网页
+	早期的HTML网页都是为PC浏览器准备的,宽度设定都很大,手机屏幕,浏览体验不佳!
+	好处：各种设备下都正常浏览
+	不足：页面代码结构需要考虑到多种设备,编写难度更大,一般只适用于内容不太多的页面
+2、如何测试响应式网页
+	1、使用真实物理设备测试 ———— 测试效果最好但最麻烦
+	2、使用第三方测试软件测试 ————　测试效果有待进一步验证
+	3、使用浏览器提供的设备模拟器测试 ———— 最简单但有时测试效果与真实物理设备有所不同,需要进一步验证
+3、面试题：如何编写响应式网页　————　整个阶段的最重点
+	1、必须声明 viewport 元标签
+		<meta name='viewport' content='width=device-width,initial-scale=1.0,user-scalable=no'>
+	2、容器尽量使用相对尺寸
+		绝对尺寸	div.container{ width:500px;}
+		相对尺寸	div.container{ width:80%;}
+	3、文字大小尽量使用相对尺寸
+		绝对尺寸	.text{font-size:12px;}
+		相对尺寸	.text{font-size:0.8em/rem;}
+	4、图片尽量使用相对尺寸
+		绝对尺寸	img{width:200px;}
+		相对尺寸	img{width:50%;/max-width:50%;(指定在父容器中的宽度占比,同时还不能超过自己的原始大小)}
+	5、页面布局尽量采用流式布局(Fliud)
+		float:left 或 display:inline-block;
+	6、响应式网页必须 CSS3 Media Query 技术！
+4、CSS3 Media Query
+	Media:
+		指浏览网页的设备，如screen(phone/pc/pad)、tv、projection、print、tty、braille
+	Query:
+		使用CSS自动查询出浏览设备的特性,如位深、解析度、宽高、水平/竖直方向
+	CSS3 Media Query:
+		根据浏览页面的设备类型不同,或者特性不同,而有选择的执行某些CSS,放弃执行另外的
+	语法结构及用法
+				@media 设备名 only （选取条件） not （选取条件） and（设备选取条件），设备二{sRules}
+	媒体查询具体有2中使用方法：
+		1、有选择性的执行符合条件的外部CSS文件			
+			在link中使用media：
+				<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px),only screen and (max-device-width:480px)" href="link.css"/>
+			上面使用中only可省略，限定于计算机显示器，第一个条件max-width是指渲染界面最大宽度，第二个条件max-device-width是指设备最大宽度。
+		2、有选择性的执行CSS中的部分内容 ———— 重点
+			/* 当浏览器的可视区域小于980px */
+				@media screen and （max-width： 980px） {
+					#wrap {width： 90%; margin:0 auto;}
+					#content {width： 60%;padding： 5%;}
+					#sidebar {width： 30%;}
+					#footer {padding： 8% 5%;margin-bottom： 10px;}
+				}
+5、Twitter Bootstrap
+	bootstrap:起步,引导程序,入口程序
+	内容分为5部分
+		1、起步
+		2、全局CSS样式
+		3、组件
+		4、JS插件
+		5、定制
+6、Bootstrap第一部分 ———— 起步
+	基本模板
+		<html lang="zh-cn">
+		<html lang="en-us">
+		HTML 标签的 lang 属性(language)指定当前页面所使用的自然语言
+		作用：
+			1、指定当前页面的基础语言，为浏览器的翻译做准备
+			2、为盲人的屏幕阅读器指明基础发音
+		<meta name="X-UA-Compatible" content="IE=edge">
+		Cross-UserAgent-Compatible,跨(IE)浏览器兼容性
+		IE6：非常多的专有对象
+		IE7：6/7内核
+			edge：可用的最新版本的IE内核
+		<script src="js/html5shiv.min.js"></script>
+			第三方的JS文件,自调函数,让老IE支持HTML5语义标签
+		<script src="js/respond.min.js"></script>
+			第三方的JS文件,自调函数,让老IE支持响应式网页
+7、Bootstrap第二部分 ———— 全局CSS样式
+	1、全局CSS样式————按钮(a/button/input)
+		.btn btn-default  //Bootstrap提供基本按钮
+		按钮颜色
+			.btn btn-danger  //红色-危险
+			.btn btn-success  //绿色-成功
+			.btn btn-warning  //红色-警告
+			.btn btn-info  //浅蓝-提示
+			.btn btn-primary  //深蓝-基础
+		按钮大小
+			.btn btn-xs  //超小号
+			.btn btn-sm  //小号
+			.btn   //默认好
+			.btn btn-lg  //大号
+		.btn btn-block //块级按钮
+	2、全局CSS样式————图片(img)
+		.img-rounded  //圆角图
+		.img-circle  //圆形图
+		.img-thumbnail  //缩略图
+		.img-responsive  //响应式图
+	3、全局CSS样式————列表(ol/ul)
+		.list-unstyled  //去除提示符的列表
+		.list-inline  //行内/水平的列表
+	4、全局CSS样式————文本
+		.text-5种颜色
+		.bg-5种颜色
+		对齐方式
+			.text-left  //左对齐
+			.text-right  //右对齐
+			.text-center  //居中对齐
+			.text-justify  //两端对齐
+		大小写转换
+			.text-uppercase  //全大写
+			.text-lowercase  //全小写
+			.text-capitalize  //首字符大写

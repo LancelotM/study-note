@@ -1,0 +1,16 @@
+.blue{
+  background: #ccf;
+  color: #339;
+}
+.pink{
+  background: #f3b;
+  color: #916;
+}
+.dark{
+  background: #111;
+  color: #eee;
+}
+a{
+  text-decoration:none;
+  font-size: 30px;
+}

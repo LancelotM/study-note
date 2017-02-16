@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+ </head>
+ <body>
+	<h1>操作元素的属性</h1>
+	<img src="img/1.jpg" alt="1">
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //为img元素添加单击事件 
+    $("img").click(function(){
+      //获得当前元素的alt属性转为整数+1保存在i中
+      var i=parseInt($(this).attr("alt"))+1;
+      i>4&&(i=1);//如果i>4，就改回1
+      //设置当前元素的src属性为img/i.jpg,以及alt属性为i
+      $(this).attr("src",`img/${i}.jpg`)//ES6
+             .attr("alt",i);
+    });
+  </script>
+ </body>
+</html>

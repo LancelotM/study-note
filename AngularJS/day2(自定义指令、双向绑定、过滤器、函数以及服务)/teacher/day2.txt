@@ -1,0 +1,145 @@
+一、自定义指令
+语法：
+var app =	angular.module('myModule',['ng']);
+app.directive(name,fn);
+
+自定义指令：
+restrict:'EACM'
+E-->Element 元素
+A-->Attribute 属性
+C-->Class 
+M-->Comment 注释（在指令中添加一个属性：replace:true）
+
+新指令的命名：
+①驼峰式
+②前缀一般是公司或者项目的简写，后缀一般是指令的作用
+③使用指令: tsHello--->ts-hello
+
+在第二个参数 指定一个方法，在方法中返回一个对象设置指令。对象中template、restrict、replace、scope。。。
+
+总结：如果要参数的传递，需要在创建指令的时候，加上scope，同时指定对应的属性的名称（testName），在使用指令的时候，需要加上对应的属性（test-name=''）
+
+练习：创建自定义的指令 tsDirective,传入ts-name="Hello Directive"，调用指令（作为元素来使用）显示出来。
+
+
+二、双向数据绑定
+1、方向1的绑定（Model数据 绑定到View）
+
+实现方法：{{name}}、常用指令（ngRepeat/ngBind/ngIf...）
+
+相比DOM操作：先去查找元素，再去设置元素，只需要把model数据绑定视图上，数据改，视图就会更新。
+
+2、方向2的绑定（将View数据绑定到Model数据）
+
+实现方法只有一种方式： ng-model
+<input type='text' ng-model='myText'/>
+
+$scope.$watch('模型变量名',function(){})
+
+
+练习：
+留言本：多行文本输入框textarea、
+选择城市：下拉菜单select、
+是否同意：复选框 checkbox
+
+三、过滤器
+过滤器是用在表达式中，实现对表达式结果的筛选、过滤、格式化，达到更好的表现效果
+
+语法：|--》管道
+{{表达式 | 过滤器1：'name' | 过滤器2 }}
+
+currency 货币样式的过滤器
+date 日期
+uppercase
+lowecase 大小写的转换
+orderBy 升序或者降序  orderBy:'age':true
+limitTo 限定显示的数量
+number 限制显示小数点后几位
+
+练习：过滤器，模拟一个list=[{name,age,score},{}],、
+①按照age升序，②按照score降序并只显示前三名
+
+
+四、常用函数
+forEach
+uppercase/lowercase
+toJson/fromJson 
+序列化：将一个json对象转换为json格式的字符串
+反序列化：将一个json格式的字符串 转换为json格式的对象
+
+
+五、服务
+在ng中 服务 是 一种单例对象，所谓单例，服务在每一个应用中只会被实例化一次。
+
+功能：为应用提供数据和对象
+两大类：①内置的服务 ②自定义服务
+
+1、内置的服务的使用方法
+
+如果在控制器中，使用ng中内置的服务，需要在控制器的回调函数中
+①将对应的服务给注入进来
+②使用服务所提供的数据和对象
+
+app.controller('myCtrl',function($scope,$location){
+	var url = $location.absUrl();
+});
+
+
+2、控制器和作用范围
+
+$scope与$rootScope：
+$scope是$rootScope的子作用域控制对象，$rootScope的id为1，其他的为2,3....
+
+不同的控制器之间，所对应的作用域控制对象($scope),之间是相互隔离的，如果要共享数据，怎么办？
+
+借助$rootScope这个根作用域控制对象来实现。
+
+如果父作用域对象想要调用子作用域对象的变量或者方法，ng提供了2个方法：
+①$broadcast  将事件从父亲传递给子级
+$scope.$broadcast(eventName,data);
+
+②$emit 将事件从子级传递给父亲
+$scope.$emit(eventName,data);
+
+接收：
+$scope.$on(eventName,function(event,data){
+
+})
+
+每日一练：全选
+
+双向数据绑定
+ngChecked/ngClick/ngModel/ngChange
+
+分析：
+模型数据是一个对象数组
+
+步骤：
+①ui搞定
+②部分选中
+③全部选中
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

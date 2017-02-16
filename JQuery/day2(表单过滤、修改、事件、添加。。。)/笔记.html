@@ -1,0 +1,113 @@
+1、查找————表单过滤、状态
+	表单过滤：利用表单中的元素名和type属性来选择表单中元素
+		强调：只能选择表单元素
+	场合：查找表单元素时
+	包括：
+		:input可匹配：
+			input textarea select button
+			如果希望进行单独匹配input textarea select button
+			可用元素选择器
+		按type属性选择：
+			:text :password :radio :checkbox 
+			:submit :reset :button
+			:image :file
+	状态选择器: :enbaled :disabled :checked :selected
+2、修改
+	1、属性:
+		$("...").attr("属性名"[,值])
+			相当于attribute:可改HTML标准属性，又可访问自定义扩展属性
+			问题：不能修改三大状态
+			解决：
+				$("...").prop("属性名"[,值])可读取内容对象中的属性
+				比如:可改HTML属性，又可访问状态属性
+						但不能访问自定义扩展属性
+		无论获取属性还是样式的值，返回的都是字符串，要计算，必须先转为数组
+	2、内容：3种
+		DOM:innerHTML textContent value（表单元素）
+		$(...).html([html片段]) 获取或设置元素的innerHTML内容
+		$(...).text([文本]) 获取或设置元素的textContent内容
+
+		$(...).empty() 清除元素的内容
+			只能清除.html和.text
+			.val()可以赋值为空字符串("")
+
+		$(...).val([值]) 获取或设置表单元素的value内容
+	3、样式：
+		1、直接修改css属性
+			$(...).css("css属性名") =>getComputedStyle(elem).css属性
+			$(...).css("css属性名",值) =>elem.style.css属性=值
+			批量修改多个css属性
+				$(...).css({
+					css属性:值,
+					...:...
+					...:...
+				})
+			强调:
+				css属性名，强烈建议使用去横线变驼峰
+				修改css属性值时，不用加单位也行
+			问题:代码量大
+		2、通过修改class批量修改
+			$(...).addClass("类名") 想选中的元素添加类名
+			$(...).removeClass("类名1","类名2",...) 想选中的元素移除类名
+			$(...).hasClass("类名") 想选中的元素是否包含指定的类名
+			
+			如果希望类名做切换，可用
+			$(...).toggleClass("类名") 想进行切换的类型
+3、添加,删除,替换,复制
+	1、添加2步
+		1、创建节点
+			var $elem=$(html代码片段)
+		2、将节点添加到DOM树
+			$(parent).append/prepend($elem)
+				将$elem添加到parent的结尾/开头
+			$(child).before/after($elem)
+				将$elem插入到现有子元素child之前/之后
+	2、删除
+		$(...).remove()
+	3、替换
+		$(oldElem).replaceWith("html代码片段")
+		用html代码片段创建新元素，替换现有旧元素 右替换左
+		$("html代码片段").replaceAll("selector")
+		用html代码片段创建新元素，替换所有符合右边选择器要求的旧元素 左替换右
+	4、复制
+		var elem_copy=$(...).clone()
+		问题:浅复制：仅复制属性，不复制事件行为
+		解决:深复制：既复制属性，又复制事件行为
+			$(...).clone(true)
+4、事件
+	笔试题：jQuery中有几种绑定事件的方式
+		1、 $(...).bind("事件名",fn) => addEventListener();
+			$(...).unbind("事件名",fn) => removeEventListener();
+				重载：	$(...).unbind("事件名")	解除指定事件上绑定的所有处理函数
+						$(...).unbind()	解除当前元素上所有事件处理函数绑定
+				优点：不必非要使用有名的函数，
+						同样可以移除匿名函数的绑定！
+				***优化：在删除任何DOM元素前，都要先解绑元素上有所事件监听
+		2、$(...).one("事件名",fn) 只触发一次事件后就自动解除
+		3、简化版：只对部分最常用的时间提供了简化
+			$(...).事件名(fn)
+		4、利用冒泡：
+			DOM:
+				parent.addEventListener("事件名",function(e){
+					this => parent
+					难题1:获得目标元素:e.target
+					难题2:判断是否想要的目标元素
+						e.target.nodeName/e.target.属性
+				})
+			jQuery:
+				$(parent).delegate("selector","事件名",function(){
+					简化1：
+						this => e.target 
+						用之前要$(this)
+					简化2：
+						用预定义的selector,代替了手写的if判断
+				})
+		5、$(...).live/die("事件名",fn) 废弃：因为将所有事件集中绑定到document上
+		6、$(...).on() ：统一了之前所有绑定方式
+			2种用法：
+				1、代替bind，直接为子元素绑定事件：
+					$(child).on("事件名",fn)
+					$(child).off("事件名",fn)
+						只有一种重载.off("事件名")
+				2、代替.dalegate,用于利用冒泡
+					$(parent).on("事件名","selector",fn)

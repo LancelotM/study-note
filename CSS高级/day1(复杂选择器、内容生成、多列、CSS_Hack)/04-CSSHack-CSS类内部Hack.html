@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#d1{
+				width:200px;
+				height:200px;
+				background:red;
+				/*必须按照以下顺序设置*/
+
+				/*IE9,10，要显示为黑色背景*/
+				background:black\9\0;
+				/*IE8 中，要显示为黄色背景*/
+				background:yellow\0;
+				/*IE7 中，要显示为绿色背景*/
+				+background:green;
+				/*IE6 中，要显示为蓝色背景*/
+				-background:blue;
+
+				
+				
+
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1"></div>
+	</body>
+</html>

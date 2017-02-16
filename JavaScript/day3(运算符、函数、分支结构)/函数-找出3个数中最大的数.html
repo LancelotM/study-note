@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function max(n1,n2,n3){
+			console.log("第一个数："+n1);	
+			console.log("第二个数："+n2);
+			console.log("第三个数："+n3);
+			
+			
+			var max=n1
+			max=max<n2 ? n2 : max;
+			max=max<n3 ? n3 : max;
+			
+			console.log("结果："+max);
+			return max;
+
+		}
+		function testmax(){
+			console.log("三个数中最大值为："+max(40,45,50));
+		}
+	</script>
+	<button onclick="testmax();">获取三个数中最大值</button>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    
+    <h3>使用JSONP发起异步请求</h3>
+    <button id="bt2">异步请求</button>
+    
+    
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+
+    
+    $('#bt2').click(function(){
+      $.ajax({
+        type: 'GET',
+        url: 'http://localhost/AJAX_DAY08/8_jsonp.php',
+        dataType: 'jsonp', //使用JSONP请求的标识
+        success: doResponse
+      });
+    });
+
+
+    function doResponse(){
+      console.log('客户端开始处理服务器返回的数据');
+      console.log(arguments);
+    }
+
+    </script>
+  </body>
+</html>

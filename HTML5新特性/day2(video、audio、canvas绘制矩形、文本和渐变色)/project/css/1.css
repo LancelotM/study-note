@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 500px;
+  min-height: 400px;
+  margin: 100px auto 0 auto;
+  padding: 1.5em;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+.form-group:not(:last-child) {
+  margin-bottom: 15px;
+}
+.control-label {
+  display: inline-block;
+  width: 70px;
+  text-align: right;
+  vertical-align: middle;
+}
+.form-control {
+  padding: 4px;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  width: 200px;
+  vertical-align: middle;
+}
+.help-block {
+  font-size: 0.8em;
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #fff;
+}
+.primary {
+  background: #bbb;
+  border-color: #aaa;
+}
+.danger {
+  background: #d22;
+  border-color: #a00;
+}
+.success {
+  background: #2b2;
+  border-color: #0a0;
+}
+
+
+
+

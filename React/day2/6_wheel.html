@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var Scroll=React.createClass({
+    getInitialState:function(){
+      return {
+        color:"#fff"
+      }
+    },
+    handleWheel:function(){
+      var newColor=this.getRandomColor()
+      this.setState({
+          color:newColor
+      })
+    },
+    getRandomColor:function(){
+       var r=Math.floor(Math.random()*256);
+       var g=Math.floor(Math.random()*256);
+       var b=Math.floor(Math.random()*256);
+
+       var R=r.toString(16)
+       var G=g.toString(16)
+       var B=b.toString(16)
+
+       return "#"+R+G+B;
+    },
+    render:function(){
+      return <div onWheel={this.handleWheel}
+                style={{background:this.state.color}}>backgroundColor is change
+             </div>
+    }
+  })
+  ReactDOM.render(
+      <Scroll/>,
+    document.getElementById('ex')
+  )
+
+</script>
+</body>
+</html>

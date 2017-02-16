@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    #p2{
+      background:#e43954;
+    }
+  </style>
+</head>
+<body>
+<form action="">
+  <datalist id="dishList">
+    <option>阿萨德按时</option>
+    <option>请问</option>
+    <option>二他</option>
+    <option>与体育</option>
+  </datalist>
+  <progress id="p1"></progress><br/>
+  <progress id="p2" value="0"></progress>
+</form>
+<script>
+  var timer=setInterval(function(){
+  var v =p2.value;
+  v=parseFloat(v);
+  v+=0.05;
+  p2.value=v;
+  if(v>=1){clearInterval(p2);}
+  },100);
+</script>
+</body>
+</html>

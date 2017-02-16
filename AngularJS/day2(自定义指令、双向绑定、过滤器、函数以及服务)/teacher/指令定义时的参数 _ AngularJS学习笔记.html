@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html -->
+<html lang="en-US" class=""><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
+        <title>指令定义时的参数 | AngularJS学习笔记</title>
+        
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.4.2">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/gitbook/images/favicon.ico" type="image/x-icon">
+        
+        
+    
+    
+    <link rel="next" href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-9.html">
+    
+    
+    <link rel="prev" href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-7.html">
+    
+
+        
+    <script type="text/javascript" src="chrome-extension://aadgmnobpdmgmigaicncghmmoeflnamj/ng-inspector.js"></script><style>#haloword-pron { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -34px; }#haloword-pron:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -34px; }#haloword-open { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -17px; }#haloword-open:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -17px; }#haloword-close { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px 0; }#haloword-close:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px 0; }#haloword-add { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -51px; }#haloword-add:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -51px; }#haloword-remove { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -68px; }#haloword-remove:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -68px; }</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.fancybox-margin{margin-right:0px;}</style></head>
+    <body><div id="MathJax_Message" style="display: none;"></div>
+        
+        
+<link rel="stylesheet" href="./指令定义时的参数 _ AngularJS学习笔记_files/style.css">
+
+
+        
+    <div class="book without-animation with-summary font-size-2 font-family-1" data-level="18.8" data-basepath=".." data-revision="1418901468480">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control">
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	    
+            <li>
+                <a href="https://www.gitbook.com/book/checkcheckzz/angularjs-learning-notes" target="blank" class="custom-link">Return to book</a>
+            </li>
+    	
+    	    
+            <li>
+                <a href="https://www.gitbook.com/book/checkcheckzz/angularjs-learning-notes/reviews" target="blank" class="custom-link">Review this book</a>
+            </li>
+    	
+    	    
+            <li>
+                <a href="https://www.gitbook.com/@checkcheckzz" target="blank" class="custom-link">About the author</a>
+            </li>
+    	
+    	
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter" data-level="0" data-path="index.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="1" data-path="chapter1/chapter1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter1/chapter1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         关于AngularJS
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="2" data-path="chapter2/chapter2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter2/chapter2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         关于本文档
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="3" data-path="chapter3/chapter3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter3/chapter3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         开始的例子
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="4" data-path="chapter4/chapter4.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter4/chapter4.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         依赖注入
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="5" data-path="chapter5/chapter5.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter5/chapter5.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         作用域
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="6" data-path="chapter6/chapter6.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter6/chapter6.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         数据绑定与模板
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="6.1" data-path="chapter6/6-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter6/6-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         数据-&gt;模板
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="6.2" data-path="chapter6/6-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter6/6-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                         模板-&gt;数据
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="6.3" data-path="chapter6/6-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter6/6-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                         数据-&gt;模板-&gt;数据-&gt;模板
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="7" data-path="chapter7/chapter7.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter7/chapter7.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         模板
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="7.1" data-path="chapter7/7-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter7/7-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         定义模板内容
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="7.2" data-path="chapter7/7-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter7/7-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                         内容渲染控制
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="7.3" data-path="chapter7/7-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter7/7-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                         节点控制
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="7.4" data-path="chapter7/7-4.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter7/7-4.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                         事件绑定
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="7.5" data-path="chapter7/7-5.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter7/7-5.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                         表单控件
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="8" data-path="chapter8/chapter8.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter8/chapter8.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         模板中的过滤器
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="8.1" data-path="chapter8/8-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter8/8-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                         排序 orderBy
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="8.2" data-path="chapter8/8-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter8/8-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                         过滤列表 filter
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="8.3" data-path="chapter8/8-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter8/8-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                         其它
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="8.4" data-path="chapter8/8-4.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter8/8-4.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                         例子：表头排序
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="8.5" data-path="chapter8/8-5.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter8/8-5.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                         例子：搜索
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="9" data-path="chapter9/chapter9.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter9/chapter9.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         锚点路由
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="9.1" data-path="chapter9/9-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter9/9-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         路由定义
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="9.2" data-path="chapter9/9-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter9/9-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                         参数定义
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="9.3" data-path="chapter9/9-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter9/9-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                         业务处理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="10" data-path="chapter10/chapter10.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter10/chapter10.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                         定义模板变量标识标签
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="11" data-path="chapter11/chapter11.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter11/chapter11.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                         AJAX
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="11.1" data-path="chapter11/11-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter11/11-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                         HTTP请求
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="11.2" data-path="chapter11/11-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter11/11-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                         广义回调管理
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="12" data-path="chapter12/chapter12.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter12/chapter12.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                         工具函数
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="12.1" data-path="chapter12/12-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter12/12-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                         上下文绑定
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="12.2" data-path="chapter12/12-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter12/12-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                         对象处理
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="12.3" data-path="chapter12/12-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter12/12-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                         类型判定
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="13" data-path="chapter13/chapter13.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter13/chapter13.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                         其它服务
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="13.1" data-path="chapter13/13-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter13/13-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                         日志
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="13.2" data-path="chapter13/13-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter13/13-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                         缓存
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="13.3" data-path="chapter13/13-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter13/13-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.3.</b>
+                        
+                         计时器
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="13.4" data-path="chapter13/13-4.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter13/13-4.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.4.</b>
+                        
+                         表达式函数化
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="13.5" data-path="chapter13/13-5.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter13/13-5.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.5.</b>
+                        
+                         模板单独使用
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="14" data-path="chapter14/chapter14.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter14/chapter14.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                         自定义模块和服务
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="14.1" data-path="chapter14/14-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter14/14-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.1.</b>
+                        
+                         模块和服务的概念与关系
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="14.2" data-path="chapter14/14-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter14/14-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.2.</b>
+                        
+                         定义模块
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="14.3" data-path="chapter14/14-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter14/14-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.3.</b>
+                        
+                         定义服务
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="14.4" data-path="chapter14/14-4.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter14/14-4.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.4.</b>
+                        
+                         引入模块并使用服务
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="15" data-path="chapter15/chapter15.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter15/chapter15.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                         附加模块 ngResource
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="15.1" data-path="chapter15/15-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter15/15-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                         使用引入与整体概念
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="15.2" data-path="chapter15/15-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter15/15-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                         基本定义
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="15.3" data-path="chapter15/15-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter15/15-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.3.</b>
+                        
+                         基本使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="15.4" data-path="chapter15/15-4.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter15/15-4.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.4.</b>
+                        
+                         定义和使用时的占位量
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="15.5" data-path="chapter15/15-5.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter15/15-5.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.5.</b>
+                        
+                         实例
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="16" data-path="chapter16/chapter16.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter16/chapter16.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                         AngularJS与其它框架的混用(jQuery, Dojo)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="17" data-path="chapter17/chapter17.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter17/chapter17.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                         自定义过滤器
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18" data-path="chapter18/chapter18.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/chapter18.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                         自定义指令directive
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter" data-level="18.1" data-path="chapter18/18-1.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                         指令的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.2" data-path="chapter18/18-2.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                         指令的执行过程
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.3" data-path="chapter18/18-3.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                         基本的自定义方法
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.4" data-path="chapter18/18-4.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-4.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.4.</b>
+                        
+                         属性值类型的自定义
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.5" data-path="chapter18/18-5.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-5.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.5.</b>
+                        
+                         Compile的细节
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.6" data-path="chapter18/18-6.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-6.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.6.</b>
+                        
+                         transclude的细节
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.7" data-path="chapter18/18-7.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-7.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.7.</b>
+                        
+                         把节点内容作为变量处理的类型
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="18.8" data-path="chapter18/18-8.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.8.</b>
+                        
+                         指令定义时的参数
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.9" data-path="chapter18/18-9.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-9.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.9.</b>
+                        
+                         Attributes的细节
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.10" data-path="chapter18/18-10.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-10.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.10.</b>
+                        
+                         预定义的 NgModelController
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.11" data-path="chapter18/18-11.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-11.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.11.</b>
+                        
+                         预定义的 FormController
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.12" data-path="chapter18/18-12.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-12.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.12.</b>
+                        
+                         示例：文本框
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.13" data-path="chapter18/18-13.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-13.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.13.</b>
+                        
+                         示例：模板控制语句 for
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter" data-level="18.14" data-path="chapter18/18-14.html">
+            
+                
+                    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-14.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.14.</b>
+                        
+                         示例：模板控制语句 if/else
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/">AngularJS学习笔记</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_42">
+                    
+                        <h2 style=" border-bottom: 1px solid #69ab01; color: #5e9802; padding: 2px; text-shadow: 1px 1px 1px gray; margin: 20px auto; font-size: medium;">18.8. 指令定义时的参数</h2>
+
+<p style="margin: 15px 0;">
+指令定义时的参数如下：
+</p>
+
+<ul style="line-height: 1.4em; padding: 0px; padding-left: 20px; margin: auto 30px;">
+<li>name
+</li>
+<li>priority
+</li>
+<li>terminal
+</li>
+<li>scope
+</li>
+<li>controller
+</li>
+<li>require
+</li>
+<li>restrict
+</li>
+<li>template
+</li>
+<li>templateUrl
+</li>
+<li>replace
+</li>
+<li>transclude
+</li>
+<li>compile
+</li>
+<li>link
+</li>
+</ul>
+
+<p style="margin: 15px 0;">
+现在我们开始一个一个地吃掉它们……，但是并不是按顺序讲的。
+</p>
+
+<dl style="font-size: small; margin: 10px auto; padding: 10px; border-bottom: 1px dashed gray; border-top: 1px dashed gray;">
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">priority</i></dt><dd style="margin-left: 30px;">
+    这个值设置指令的权重，默认是 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">0</code> 。当一个节点中有多个指令存在时，就按着权限从大到小的顺序依次执行它们的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">compile</code> 函数。相同权重顺序不定。
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">terminal</i></dt><dd style="margin-left: 30px;">
+    是否以当前指令的权重为结束界限。如果这值设置为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">true</code> ，则节点中权重小于当前指令的其它指令不会被执行。相同权重的会执行。
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">restrict</i></dt><dd style="margin-left: 30px;">
+    指令可以以哪些方式被使用，可以同时定义多种方式。
+    <ul style="line-height: 1.4em; padding: 0px; padding-left: 20px; margin: auto 30px;">
+    <li>E 元素方式 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">&lt;my-directive&gt;&lt;/my-directive&gt;</code>
+    </li>
+    <li>A 属性方式 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">&lt;div my-directive="exp"&gt; &lt;/div&gt;</code>
+    </li>
+    <li>C 类方式 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">&lt;div class="my-directive: exp;"&gt;&lt;/div&gt;</code>
+    </li>
+    <li>M 注释方式 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">&lt;!-- directive: my-directive exp --&gt;</code>
+    </li>
+    </ul>
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">transclude</i></dt><dd style="margin-left: 30px;">
+    前面已经讲过基本的用法了。可以是 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">'element'</code> 或 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">true</code> 两种值。
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">compile</i></dt><dd style="margin-left: 30px;">
+    基本的定义函数。 <div class="top-box hide"><div class="alert-info"></div></div><code style="margin: auto 3px; color: #228b22; font-family: monospace; " data-original-code="function compile(tElement, tAttrs, transclude) { ... }" data-snippet-id="ext.ebebf21722844664c45a601b60dec1a8" data-snippet-saved="false" data-codota-status="done">function compile(tElement, tAttrs, transclude) { ... }</code>
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">link</i></dt><dd style="margin-left: 30px;">
+    前面介绍过了。大多数时候我们不需要单独定义它。只有 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">compile</code> 未定义时 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 才会被尝试。 <div class="top-box hide"><div class="alert-info"></div></div><code style="margin: auto 3px; color: #228b22; font-family: monospace; " data-original-code="function link(scope, iElement, iAttrs, controller) { ... }" data-snippet-id="ext.d11a4f7b4ed44e92a45fa203d472d9b8" data-snippet-saved="false" data-codota-status="done">function link(scope, iElement, iAttrs, controller) { ... }</code>
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">scope</i></dt><dd style="margin-left: 30px;">
+    scope 的形式。 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">false</code> 节点的 scope ， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">true</code> 继承创建一个新的 scope ， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">{}</code> 不继承创建一个新的隔离 scope 。 <div class="top-box hide"><div class="alert-info"></div></div><code style="margin: auto 3px; color: #228b22; font-family: monospace; " data-original-code="{@attr: &#39;引用节点属性&#39;, =attr: &#39;把节点属性值引用成scope属性值&#39;, &amp;attr: &#39;把节点属性值包装成函数&#39;}" data-snippet-id="ext.80038fe574d50b49f04bb44ae0c69b43" data-snippet-saved="false" data-codota-status="done">{@attr: '引用节点属性', =attr: '把节点属性值引用成scope属性值', &amp;attr: '把节点属性值包装成函数'}</code>
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">controller</i></dt><dd style="margin-left: 30px;">
+    为指令定义一个 controller ， <div class="top-box hide"><div class="alert-info"></div></div><code style="margin: auto 3px; color: #228b22; font-family: monospace; " data-original-code="function controller($scope, $element, $attrs, $transclude) { ... }" data-snippet-id="ext.ffbe93bbf5315e695b1db9dc58192fd3" data-snippet-saved="false" data-codota-status="done">function controller($scope, $element, $attrs, $transclude) { ... }</code>
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">name</i></dt><dd style="margin-left: 30px;">
+    指令的 controller 的名字，方便其它指令引用。
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">require</i></dt><dd style="margin-left: 30px;">
+    要引用的其它指令 conroller 的名字， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">?name</code> 忽略不存在的错误， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">^name</code> 在父级查找。
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">template</i></dt><dd style="margin-left: 30px;">
+    模板内容。
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">templateUrl</i></dt><dd style="margin-left: 30px;">
+    从指定地址获取模板内容。
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">replace</i></dt><dd style="margin-left: 30px;">
+    是否使用模板内容替换掉整个节点， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">true</code> 替换整个节点， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">false</code> 替换节点内容。
+</dd>
+</dl>
+
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">&lt;a</span> <span style="color: #e0eee0">b&gt;&lt;/a&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+
+  app.directive(&#39;a&#39;, function(){
+    var func = function(element, attrs, link){
+      console.log(&#39;a&#39;);
+    }
+
+    return {compile: func,
+            priority: 1,
+            restrict: &#39;EA&#39;};
+  });
+
+  app.directive(&#39;b&#39;, function(){
+    var func = function(element, attrs, link){
+      console.log(&#39;b&#39;);
+    }
+
+    return {compile: func,
+            priority: 2,
+            //terminal: true,
+            restrict: &#39;A&#39;};
+  });
+" data-snippet-id="ext.47915d33f256262dd265c5cce45691d0" data-snippet-saved="false" data-codota-status="done">  <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+
+  <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+    <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">element</span>, <span style="color: #e0eee0">attrs</span>, <span style="color: #e0eee0">link</span>){
+      <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'a'</span>);
+    }
+
+    <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+            <span style="color: #e0eee0">priority</span><span style="color: #7fff00">:</span> <span style="color: #00ffff">1</span>,
+            <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'EA'</span>};
+  });
+
+  <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'b'</span>, <span style="color: #bcd2ee">function</span>(){
+    <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">element</span>, <span style="color: #e0eee0">attrs</span>, <span style="color: #e0eee0">link</span>){
+      <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'b'</span>);
+    }
+
+    <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+            <span style="color: #e0eee0">priority</span><span style="color: #7fff00">:</span> <span style="color: #00ffff">2</span>,
+            <span style="color: #507080">//terminal: true,</span>
+            <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'A'</span>};
+  });
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+上面几个参数值都是比较简单且容易理想的。
+</p>
+<p style="margin: 15px 0;">
+再看 <i style=" color: #d75100; font-style: normal; ">scope</i> 这个参数：
+</p>
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  &lt;div ng-controller=&quot;TestCtrl&quot;&gt;
+    &lt;div a b&gt;&lt;/div&gt;
+  &lt;/div&gt;
+" data-snippet-id="ext.5901a63e8d35c4912e8601284da253cd" data-snippet-saved="false" data-codota-status="done">  <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">ng-controller=</span><span style="color: #00e5ee">"TestCtrl"</span><span style="color: #e0eee0">&gt;</span>
+    <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">a</span> <span style="color: #e0eee0">b&gt;&lt;/div&gt;</span>
+  <span style="color: #e0eee0">&lt;/div&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code=" 1   var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+ 2
+ 3   app.directive(&#39;a&#39;, function(){
+ 4     var func = function(element, attrs, link){
+ 5       return function(scope){
+ 6         console.log(scope);
+ 7       }
+ 8     }
+ 9
+10     return {compile: func,
+11             scope: true,
+12             restrict: &#39;A&#39;};
+13   });
+14
+15   app.directive(&#39;b&#39;, function(){
+16     var func = function(element, attrs, link){
+17       return function(scope){
+18         console.log(scope);
+19       }
+20     }
+21
+22     return {compile: func,
+23             restrict: &#39;A&#39;};
+24   });
+25
+26   app.controller(&#39;TestCtrl&#39;, function($scope){
+27     $scope.a = &#39;123&#39;;
+28     console.log($scope);
+29   });
+" data-snippet-id="ext.dddb8e114c1af6491448c2f5b16d052b" data-snippet-saved="false" data-codota-status="done"><span style="color: gray; padding: 0 5px 0 5px"> 1</span>   <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 2</span><br><span style="color: gray; padding: 0 5px 0 5px"> 3</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 4</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">element</span>, <span style="color: #e0eee0">attrs</span>, <span style="color: #e0eee0">link</span>){
+<span style="color: gray; padding: 0 5px 0 5px"> 5</span>       <span style="color: #90ee90">return</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">scope</span>){
+<span style="color: gray; padding: 0 5px 0 5px"> 6</span>         <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">scope</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 7</span>       }
+<span style="color: gray; padding: 0 5px 0 5px"> 8</span>     }
+<span style="color: gray; padding: 0 5px 0 5px"> 9</span><br><span style="color: gray; padding: 0 5px 0 5px">10</span>     <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+<span style="color: gray; padding: 0 5px 0 5px">11</span>             <span style="color: #e0eee0">scope</span><span style="color: #7fff00">:</span> <span style="color: #90ee90">true</span>,
+<span style="color: gray; padding: 0 5px 0 5px">12</span>             <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'A'</span>};
+<span style="color: gray; padding: 0 5px 0 5px">13</span>   });
+<span style="color: gray; padding: 0 5px 0 5px">14</span><br><span style="color: gray; padding: 0 5px 0 5px">15</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'b'</span>, <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px">16</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">element</span>, <span style="color: #e0eee0">attrs</span>, <span style="color: #e0eee0">link</span>){
+<span style="color: gray; padding: 0 5px 0 5px">17</span>       <span style="color: #90ee90">return</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">scope</span>){
+<span style="color: gray; padding: 0 5px 0 5px">18</span>         <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">scope</span>);
+<span style="color: gray; padding: 0 5px 0 5px">19</span>       }
+<span style="color: gray; padding: 0 5px 0 5px">20</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">21</span><br><span style="color: gray; padding: 0 5px 0 5px">22</span>     <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+<span style="color: gray; padding: 0 5px 0 5px">23</span>             <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'A'</span>};
+<span style="color: gray; padding: 0 5px 0 5px">24</span>   });
+<span style="color: gray; padding: 0 5px 0 5px">25</span><br><span style="color: gray; padding: 0 5px 0 5px">26</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">controller</span>(<span style="color: #00e5ee">'TestCtrl'</span>, <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>){
+<span style="color: gray; padding: 0 5px 0 5px">27</span>     <span style="color: #e0eee0">$scope</span>.<span style="color: #e0eee0">a</span> <span style="color: #7fff00">=</span> <span style="color: #00e5ee">'123'</span>;
+<span style="color: gray; padding: 0 5px 0 5px">28</span>     <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">$scope</span>);
+<span style="color: gray; padding: 0 5px 0 5px">29</span>   });
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+对于 <i style=" color: #d75100; font-style: normal; ">scope</i> ：
+</p>
+
+<ul style="line-height: 1.4em; padding: 0px; padding-left: 20px; margin: auto 30px;">
+<li>默认为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">false</code> ， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 函数接受的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 为节点所在的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 。
+</li>
+<li>为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">true</code> 时，则 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 函数中第一个参数（还有 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">controller</code> 参数中的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">$scope</code> ）， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 是节点所在的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">child scope</code> ，并且如果节点中有多个指令，则只要其中一个指令是 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">true</code> 的设置，其它所有指令都会受影响。
+</li>
+</ul>
+
+<p style="margin: 15px 0;">
+这个参数还有其它取值。当其为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">{}</code> 时，则 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 接受一个完全隔离（isolate）的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> ，于 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">true</code> 的区别就是不会继承其它 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 的属性。但是这时，这个 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 的属性却可以有很灵活的定义方式：
+</p>
+<p style="margin: 15px 0;">
+<i style=" color: #d75100; font-style: normal; ">@attr</i> 引用节点的属性。
+</p>
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  &lt;div ng-controller=&quot;TestCtrl&quot;&gt;
+    &lt;div a abc=&quot;here&quot; xx=&quot;{{ a }}&quot; c=&quot;ccc&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+" data-snippet-id="ext.82a9a65fb6bb0a02d7128ee20a3a8d1f" data-snippet-saved="false" data-codota-status="done">  <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">ng-controller=</span><span style="color: #00e5ee">"TestCtrl"</span><span style="color: #e0eee0">&gt;</span>
+    <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">a</span> <span style="color: #e0eee0">abc=</span><span style="color: #00e5ee">"here"</span> <span style="color: #e0eee0">xx=</span><span style="color: #00e5ee">"{{ a }}"</span> <span style="color: #e0eee0">c=</span><span style="color: #00e5ee">"ccc"</span><span style="color: #e0eee0">&gt;&lt;/div&gt;</span>
+  <span style="color: #e0eee0">&lt;/div&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+
+  app.directive(&#39;a&#39;, function(){
+    var func = function(element, attrs, link){
+      return function(scope){
+        console.log(scope);
+      }
+    }
+
+    return {compile: func,
+            scope: {a: &#39;@abc&#39;, b: &#39;@xx&#39;, c: &#39;@&#39;},
+            restrict: &#39;A&#39;};
+  });
+
+  app.controller(&#39;TestCtrl&#39;, function($scope){
+    $scope.a = &#39;123&#39;;
+  });
+" data-snippet-id="ext.7595ec53f0444761221faae151f5a5c2" data-snippet-saved="false" data-codota-status="done">  <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+
+  <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+    <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">element</span>, <span style="color: #e0eee0">attrs</span>, <span style="color: #e0eee0">link</span>){
+      <span style="color: #90ee90">return</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">scope</span>){
+        <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">scope</span>);
+      }
+    }
+
+    <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+            <span style="color: #e0eee0">scope</span><span style="color: #7fff00">:</span> {<span style="color: #e0eee0">a</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'@abc'</span>, <span style="color: #e0eee0">b</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'@xx'</span>, <span style="color: #e0eee0">c</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'@'</span>},
+            <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'A'</span>};
+  });
+
+  <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">controller</span>(<span style="color: #00e5ee">'TestCtrl'</span>, <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>){
+    <span style="color: #e0eee0">$scope</span>.<span style="color: #e0eee0">a</span> <span style="color: #7fff00">=</span> <span style="color: #00e5ee">'123'</span>;
+  });
+</pre></div>
+
+
+<ul style="line-height: 1.4em; padding: 0px; padding-left: 20px; margin: auto 30px;">
+<li><i style=" color: #d75100; font-style: normal; ">@abc</i> 引用 div 节点的 abc 属性。
+</li>
+<li><i style=" color: #d75100; font-style: normal; ">@xx</i> 引用 div 节点的 xx 属性，而 xx 属性又是一个变量绑定，于是 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 中 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">b</code> 属性值就和 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">TestCtrl</code> 的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">a</code> 变量绑定在一起了。
+</li>
+<li><i style=" color: #d75100; font-style: normal; ">@</i> 没有写 attr name ，则默认取自己的值，这里是取 div 的 c 属性。
+</li>
+</ul>
+
+<p style="margin: 15px 0;">
+<i style=" color: #d75100; font-style: normal; ">=attr</i> 相似，只是它把节点的属性值当成节点 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 的属性名来使用，作用相当于上面例子中的 <i style=" color: #d75100; font-style: normal; ">@xx</i> ：
+</p>
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  &lt;div ng-controller=&quot;TestCtrl&quot;&gt;
+    &lt;div a abc=&quot;here&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+" data-snippet-id="ext.35e153d63ddf93b4fb07f0b6cb49e4ef" data-snippet-saved="false" data-codota-status="done">  <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">ng-controller=</span><span style="color: #00e5ee">"TestCtrl"</span><span style="color: #e0eee0">&gt;</span>
+    <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">a</span> <span style="color: #e0eee0">abc=</span><span style="color: #00e5ee">"here"</span><span style="color: #e0eee0">&gt;&lt;/div&gt;</span>
+  <span style="color: #e0eee0">&lt;/div&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+
+  app.directive(&#39;a&#39;, function(){
+    var func = function(element, attrs, link){
+      return function(scope){
+        console.log(scope);
+      }
+    }
+
+    return {compile: func,
+            scope: {a: &#39;=abc&#39;},
+            restrict: &#39;A&#39;};
+  });
+
+  app.controller(&#39;TestCtrl&#39;, function($scope){
+    $scope.here = &#39;123&#39;;
+  });
+" data-snippet-id="ext.b3b83d11aa162421cd068828743dd540" data-snippet-saved="false" data-codota-status="done">  <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+
+  <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+    <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">element</span>, <span style="color: #e0eee0">attrs</span>, <span style="color: #e0eee0">link</span>){
+      <span style="color: #90ee90">return</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">scope</span>){
+        <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">scope</span>);
+      }
+    }
+
+    <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+            <span style="color: #e0eee0">scope</span><span style="color: #7fff00">:</span> {<span style="color: #e0eee0">a</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'=abc'</span>},
+            <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'A'</span>};
+  });
+
+  <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">controller</span>(<span style="color: #00e5ee">'TestCtrl'</span>, <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>){
+    <span style="color: #e0eee0">$scope</span>.<span style="color: #e0eee0">here</span> <span style="color: #7fff00">=</span> <span style="color: #00e5ee">'123'</span>;
+  });
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+<i style=" color: #d75100; font-style: normal; ">&amp;attr</i> 是包装一个函数出来，这个函数以节点所在的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 为上下文。来看一个很爽的例子：
+</p>
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  &lt;div ng-controller=&quot;TestCtrl&quot;&gt;
+    &lt;div a abc=&quot;here = here + 1&quot; ng-click=&quot;show(here)&quot;&gt;这里&lt;/div&gt;
+    &lt;div&gt;{{ here }}&lt;/div&gt;
+  &lt;/div&gt;
+" data-snippet-id="ext.6cafa192e4e4848ba05e293c800b14a8" data-snippet-saved="false" data-codota-status="done">  <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">ng-controller=</span><span style="color: #00e5ee">"TestCtrl"</span><span style="color: #e0eee0">&gt;</span>
+    <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">a</span> <span style="color: #e0eee0">abc=</span><span style="color: #00e5ee">"here = here + 1"</span> <span style="color: #e0eee0">ng-click=</span><span style="color: #00e5ee">"show(here)"</span><span style="color: #e0eee0">&gt;</span>这里<span style="color: #e0eee0">&lt;/div&gt;</span>
+    <span style="color: #e0eee0">&lt;div&gt;</span>{{ here }}<span style="color: #e0eee0">&lt;/div&gt;</span>
+  <span style="color: #e0eee0">&lt;/div&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code=" 1   var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+ 2
+ 3   app.directive(&#39;a&#39;, function(){
+ 4     var func = function(element, attrs, link){
+ 5       return function llink(scope){
+ 6         console.log(scope);
+ 7         scope.a();
+ 8         scope.b();
+ 9
+10         scope.show = function(here){
+11           console.log(&#39;Inner, &#39; + here);
+12           scope.a({here: 5});
+13         }
+14       }
+15     }
+16
+17     return {compile: func,
+18             scope: {a: &#39;&amp;abc&#39;, b: &#39;&amp;ngClick&#39;},
+19             restrict: &#39;A&#39;};
+20   });
+21
+22   app.controller(&#39;TestCtrl&#39;, function($scope){
+23     $scope.here = 123;
+24     console.log($scope);
+25
+26     $scope.show = function(here){
+27       console.log(here);
+28     }
+29   });
+" data-snippet-id="ext.eecc629d231ed24172792354a8982b2c" data-snippet-saved="false" data-codota-status="done"><span style="color: gray; padding: 0 5px 0 5px"> 1</span>   <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 2</span><br><span style="color: gray; padding: 0 5px 0 5px"> 3</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 4</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">element</span>, <span style="color: #e0eee0">attrs</span>, <span style="color: #e0eee0">link</span>){
+<span style="color: gray; padding: 0 5px 0 5px"> 5</span>       <span style="color: #90ee90">return</span> <span style="color: #bcd2ee">function</span> <span style="color: #e0eee0">llink</span>(<span style="color: #e0eee0">scope</span>){
+<span style="color: gray; padding: 0 5px 0 5px"> 6</span>         <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">scope</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 7</span>         <span style="color: #e0eee0">scope</span>.<span style="color: #e0eee0">a</span>();
+<span style="color: gray; padding: 0 5px 0 5px"> 8</span>         <span style="color: #e0eee0">scope</span>.<span style="color: #e0eee0">b</span>();
+<span style="color: gray; padding: 0 5px 0 5px"> 9</span><br><span style="color: gray; padding: 0 5px 0 5px">10</span>         <span style="color: #e0eee0">scope</span>.<span style="color: #e0eee0">show</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">here</span>){
+<span style="color: gray; padding: 0 5px 0 5px">11</span>           <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'Inner, '</span> <span style="color: #7fff00">+</span> <span style="color: #e0eee0">here</span>);
+<span style="color: gray; padding: 0 5px 0 5px">12</span>           <span style="color: #e0eee0">scope</span>.<span style="color: #e0eee0">a</span>({<span style="color: #e0eee0">here</span><span style="color: #7fff00">:</span> <span style="color: #00ffff">5</span>});
+<span style="color: gray; padding: 0 5px 0 5px">13</span>         }
+<span style="color: gray; padding: 0 5px 0 5px">14</span>       }
+<span style="color: gray; padding: 0 5px 0 5px">15</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">16</span><br><span style="color: gray; padding: 0 5px 0 5px">17</span>     <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+<span style="color: gray; padding: 0 5px 0 5px">18</span>             <span style="color: #e0eee0">scope</span><span style="color: #7fff00">:</span> {<span style="color: #e0eee0">a</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'&amp;abc'</span>, <span style="color: #e0eee0">b</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'&amp;ngClick'</span>},
+<span style="color: gray; padding: 0 5px 0 5px">19</span>             <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'A'</span>};
+<span style="color: gray; padding: 0 5px 0 5px">20</span>   });
+<span style="color: gray; padding: 0 5px 0 5px">21</span><br><span style="color: gray; padding: 0 5px 0 5px">22</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">controller</span>(<span style="color: #00e5ee">'TestCtrl'</span>, <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>){
+<span style="color: gray; padding: 0 5px 0 5px">23</span>     <span style="color: #e0eee0">$scope</span>.<span style="color: #e0eee0">here</span> <span style="color: #7fff00">=</span> <span style="color: #00ffff">123</span>;
+<span style="color: gray; padding: 0 5px 0 5px">24</span>     <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">$scope</span>);
+<span style="color: gray; padding: 0 5px 0 5px">25</span><br><span style="color: gray; padding: 0 5px 0 5px">26</span>     <span style="color: #e0eee0">$scope</span>.<span style="color: #e0eee0">show</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">here</span>){
+<span style="color: gray; padding: 0 5px 0 5px">27</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">here</span>);
+<span style="color: gray; padding: 0 5px 0 5px">28</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">29</span>   });
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+scope.a 是 <i style=" color: #d75100; font-style: normal; ">&amp;abc</i> ，即：
+</p>
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">scope</span>.<span style="color: #e0eee0">a</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(){<span style="color: #e0eee0">here</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">here</span> <span style="color: #7fff00">+</span> <span style="color: #00ffff">1</span>}
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+只是其中的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">here</code> 是 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">TestCtrl</code> 的。
+</p>
+<p style="margin: 15px 0;">
+scope.b 是 <i style=" color: #d75100; font-style: normal; ">&amp;ngClick</i> ，即：
+</p>
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">scope</span>.<span style="color: #e0eee0">b</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(){<span style="color: #e0eee0">show</span>(<span style="color: #e0eee0">here</span>)}
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+这里的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">show()</code> 和 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">here</code> 都是 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">TestCtrl</code> 的，于是上面的代码最开始会在终端输出一个 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">124</code> 。
+</p>
+<p style="margin: 15px 0;">
+当点击“这里”时，这时执行的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">show(here)</code> 就是 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">llink</code> 中定义的那个函数了，与 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">TestCtrl</code> 无关。但是，其间的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope.a({here:5})</code> ，因为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">a</code> 执行时是 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">TestCtrl</code> 的上下文，于是向 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">a</code> 传递的一个对象，里面的所有属性 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">TestCtrl</code> 就全收下了，接着执行 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">here=here+1</code> ，于是我们会在屏幕上看到 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">6</code> 。
+</p>
+<p style="margin: 15px 0;">
+这里是一个上下文交错的环境，通过 <i style=" color: #d75100; font-style: normal; ">&amp;</i> 这种机制，让指令的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 与节点的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 发生了互动。真是鬼斧神工的设计。而实现它，只用了几行代码：
+</p>
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  case &#39;&amp;&#39;: {
+    parentGet = $parse(attrs[attrName]);
+    scope[scopeName] = function(locals) {
+      return parentGet(parentScope, locals);
+    }
+    break;
+  }
+" data-snippet-id="ext.764edee93f21136c0ac722f1d5c07431" data-snippet-saved="false" data-codota-status="done">  <span style="color: #90ee90">case</span> <span style="color: #00e5ee">'&amp;'</span><span style="color: #7fff00">:</span> {
+    <span style="color: #e0eee0">parentGet</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">$parse</span>(<span style="color: #e0eee0">attrs</span>[<span style="color: #e0eee0">attrName</span>]);
+    <span style="color: #e0eee0">scope</span>[<span style="color: #e0eee0">scopeName</span>] <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">locals</span>) {
+      <span style="color: #90ee90">return</span> <span style="color: #e0eee0">parentGet</span>(<span style="color: #e0eee0">parentScope</span>, <span style="color: #e0eee0">locals</span>);
+    }
+    <span style="color: #90ee90">break</span>;
+  }
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+再看 <i style=" color: #d75100; font-style: normal; ">controller</i> 这个参数。这个参数的作用是提供一个 controller 的构造函数，它会在 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">compile</code> 函数之后， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 函数之前被执行。
+</p>
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">&lt;a&gt;</span>haha<span style="color: #e0eee0">&lt;/a&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code=" 1   var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+ 2
+ 3   app.directive(&#39;a&#39;, function(){
+ 4     var func = function(){
+ 5       console.log(&#39;compile&#39;);
+ 6       return function(){
+ 7         console.log(&#39;link&#39;);
+ 8       }
+ 9     }
+10
+11     var controller = function($scope, $element, $attrs, $transclude){
+12       console.log(&#39;controller&#39;);
+13       console.log($scope);
+14
+15       var node = $transclude(function(clone_element, scope){
+16         console.log(clone_element);
+17         console.log(&#39;--&#39;);
+18         console.log(scope);
+19       });
+20       console.log(node);
+21     }
+22
+23     return {compile: func,
+24             controller: controller,
+25             transclude: true,
+26             restrict: &#39;E&#39;}
+27   });
+" data-snippet-id="ext.8b0144d28c7886f4dc9faad7e80c7994" data-snippet-saved="false" data-codota-status="done"><span style="color: gray; padding: 0 5px 0 5px"> 1</span>   <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 2</span><br><span style="color: gray; padding: 0 5px 0 5px"> 3</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 4</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 5</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'compile'</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 6</span>       <span style="color: #90ee90">return</span> <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 7</span>         <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'link'</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 8</span>       }
+<span style="color: gray; padding: 0 5px 0 5px"> 9</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">10</span><br><span style="color: gray; padding: 0 5px 0 5px">11</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">controller</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>, <span style="color: #e0eee0">$element</span>, <span style="color: #e0eee0">$attrs</span>, <span style="color: #e0eee0">$transclude</span>){
+<span style="color: gray; padding: 0 5px 0 5px">12</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'controller'</span>);
+<span style="color: gray; padding: 0 5px 0 5px">13</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">$scope</span>);
+<span style="color: gray; padding: 0 5px 0 5px">14</span><br><span style="color: gray; padding: 0 5px 0 5px">15</span>       <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">node</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">$transclude</span>(<span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">clone_element</span>, <span style="color: #e0eee0">scope</span>){
+<span style="color: gray; padding: 0 5px 0 5px">16</span>         <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">clone_element</span>);
+<span style="color: gray; padding: 0 5px 0 5px">17</span>         <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'--'</span>);
+<span style="color: gray; padding: 0 5px 0 5px">18</span>         <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">scope</span>);
+<span style="color: gray; padding: 0 5px 0 5px">19</span>       });
+<span style="color: gray; padding: 0 5px 0 5px">20</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">node</span>);
+<span style="color: gray; padding: 0 5px 0 5px">21</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">22</span><br><span style="color: gray; padding: 0 5px 0 5px">23</span>     <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+<span style="color: gray; padding: 0 5px 0 5px">24</span>             <span style="color: #e0eee0">controller</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">controller</span>,
+<span style="color: gray; padding: 0 5px 0 5px">25</span>             <span style="color: #e0eee0">transclude</span><span style="color: #7fff00">:</span> <span style="color: #90ee90">true</span>,
+<span style="color: gray; padding: 0 5px 0 5px">26</span>             <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'E'</span>}
+<span style="color: gray; padding: 0 5px 0 5px">27</span>   });
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+<code style="margin: auto 3px; color: #228b22; font-family: monospace; ">controller</code> 的最后一个参数， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">$transclude</code> ，是一个只接受 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">cloneAttachFn</code> 作为参数的一个函数。
+</p>
+<p style="margin: 15px 0;">
+按官方的说法，这个机制的设计目的是为了让各个指令之间可以互相通信。参考普通节点的处理方式，这里也是处理指令 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 的合适位置。
+</p>
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">&lt;a</span> <span style="color: #e0eee0">b&gt;</span>kk<span style="color: #e0eee0">&lt;/a&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code=" 1   var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+ 2
+ 3   app.directive(&#39;a&#39;, function(){
+ 4     var func = function(){
+ 5     }
+ 6
+ 7     var controller = function($scope, $element, $attrs, $transclude){
+ 8       console.log(&#39;a&#39;);
+ 9       this.a = &#39;xx&#39;;
+10     }
+11
+12     return {compile: func,
+13             name: &#39;not_a&#39;,
+14             controller: controller,
+15             restrict: &#39;E&#39;}
+16   });
+17
+18   app.directive(&#39;b&#39;, function(){
+19     var func = function(){
+20       return function($scope, $element, $attrs, $controller){
+21         console.log($controller);
+22       }
+23     }
+24
+25     var controller = function($scope, $element, $attrs, $transclude){
+26       console.log(&#39;b&#39;);
+27     }
+28
+29     return {compile: func,
+30             controller: controller,
+31             require: &#39;not_a&#39;,
+32             restrict: &#39;EA&#39;}
+33   });
+" data-snippet-id="ext.41a9ea4684e356237401c80efe42f544" data-snippet-saved="false" data-codota-status="done"><span style="color: gray; padding: 0 5px 0 5px"> 1</span>   <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 2</span><br><span style="color: gray; padding: 0 5px 0 5px"> 3</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 4</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 5</span>     }
+<span style="color: gray; padding: 0 5px 0 5px"> 6</span><br><span style="color: gray; padding: 0 5px 0 5px"> 7</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">controller</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>, <span style="color: #e0eee0">$element</span>, <span style="color: #e0eee0">$attrs</span>, <span style="color: #e0eee0">$transclude</span>){
+<span style="color: gray; padding: 0 5px 0 5px"> 8</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'a'</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 9</span>       <span style="color: #90ee90">this</span>.<span style="color: #e0eee0">a</span> <span style="color: #7fff00">=</span> <span style="color: #00e5ee">'xx'</span>;
+<span style="color: gray; padding: 0 5px 0 5px">10</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">11</span><br><span style="color: gray; padding: 0 5px 0 5px">12</span>     <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+<span style="color: gray; padding: 0 5px 0 5px">13</span>             <span style="color: #e0eee0">name</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'not_a'</span>,
+<span style="color: gray; padding: 0 5px 0 5px">14</span>             <span style="color: #e0eee0">controller</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">controller</span>,
+<span style="color: gray; padding: 0 5px 0 5px">15</span>             <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'E'</span>}
+<span style="color: gray; padding: 0 5px 0 5px">16</span>   });
+<span style="color: gray; padding: 0 5px 0 5px">17</span><br><span style="color: gray; padding: 0 5px 0 5px">18</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'b'</span>, <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px">19</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px">20</span>       <span style="color: #90ee90">return</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>, <span style="color: #e0eee0">$element</span>, <span style="color: #e0eee0">$attrs</span>, <span style="color: #e0eee0">$controller</span>){
+<span style="color: gray; padding: 0 5px 0 5px">21</span>         <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">$controller</span>);
+<span style="color: gray; padding: 0 5px 0 5px">22</span>       }
+<span style="color: gray; padding: 0 5px 0 5px">23</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">24</span><br><span style="color: gray; padding: 0 5px 0 5px">25</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">controller</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>, <span style="color: #e0eee0">$element</span>, <span style="color: #e0eee0">$attrs</span>, <span style="color: #e0eee0">$transclude</span>){
+<span style="color: gray; padding: 0 5px 0 5px">26</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'b'</span>);
+<span style="color: gray; padding: 0 5px 0 5px">27</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">28</span><br><span style="color: gray; padding: 0 5px 0 5px">29</span>     <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+<span style="color: gray; padding: 0 5px 0 5px">30</span>             <span style="color: #e0eee0">controller</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">controller</span>,
+<span style="color: gray; padding: 0 5px 0 5px">31</span>             <span style="color: #e0eee0">require</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'not_a'</span>,
+<span style="color: gray; padding: 0 5px 0 5px">32</span>             <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'EA'</span>}
+<span style="color: gray; padding: 0 5px 0 5px">33</span>   });
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+<i style=" color: #d75100; font-style: normal; ">name</i> 参数在这里可以用以为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">controller</code> 重起一个名字，以方便在 <i style=" color: #d75100; font-style: normal; ">require</i> 参数中引用。
+</p>
+<p style="margin: 15px 0;">
+<i style=" color: #d75100; font-style: normal; ">require</i> 参数可以带两种前缀（可以同时使用）：
+</p>
+
+<ul style="line-height: 1.4em; padding: 0px; padding-left: 20px; margin: auto 30px;">
+<li><i style=" color: #d75100; font-style: normal; ">?</i> ，如果指定的 controller 不存在，则忽略错误。即：
+<p style="margin: 15px 0;"></p>
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">require</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'?not_b'</span>
+</pre></div>
+
+
+<p style="margin: 15px 0;"></p>
+如果名为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">not_b</code> 的 controller 不存在时，不会直接抛出错误， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 函数中对应的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">$controller</code> 为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">undefined</code> 。
+<p style="margin: 15px 0;"></p>
+</li>
+<li><i style=" color: #d75100; font-style: normal; ">^</i> ，同时在父级节点中寻找指定的 controller ，把上面的例子小改一下：
+<p style="margin: 15px 0;"></p>
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">&lt;a&gt;&lt;b&gt;</span>kk<span style="color: #e0eee0">&lt;/b&gt;&lt;/a&gt;</span>
+</pre></div>
+
+
+<p style="margin: 15px 0;"></p>
+把 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">a</code> 的 <i style=" color: #d75100; font-style: normal; ">require</i> 改成（否则就找不到 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">not_a</code> 这个 controller ）：
+<p style="margin: 15px 0;"></p>
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">require</span>: <span style="color: #00e5ee">'?^not_a'</span>
+</pre></div>
+
+
+</li>
+</ul>
+
+<p style="margin: 15px 0;">
+还剩下几个模板参数：
+</p>
+
+<dl style="font-size: small; margin: 10px auto; padding: 10px; border-bottom: 1px dashed gray; border-top: 1px dashed gray;">
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">template</i> 模板内容，这个内容会根据 <i style=" color: #d75100; font-style: normal; ">replace</i> 参数的设置替换节点或只替换节点内容。</dt><dd style="margin-left: 30px;">
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">templateUrl</i> 模板内容，获取方式是异步请求。</dt><dd style="margin-left: 30px;">
+</dd>
+<dt style="border-left: 4px solid rgb(215, 81, 0); padding-left: 5px; margin: 5px auto;"><i style=" color: #d75100; font-style: normal; ">replace</i> 设置如何处理模板内容。为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">true</code> 时为替换掉指令节点，否则只替换到节点内容。</dt><dd style="margin-left: 30px;">
+</dd>
+</dl>
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  &lt;div ng-controller=&quot;TestCtrl&quot;&gt;
+    &lt;h1 a&gt;原始内容&lt;/h1&gt;
+  &lt;/div&gt;
+" data-snippet-id="ext.b32158c2b7f68739c5ad7d9f2961eb82" data-snippet-saved="false" data-codota-status="done">  <span style="color: #e0eee0">&lt;div</span> <span style="color: #e0eee0">ng-controller=</span><span style="color: #00e5ee">"TestCtrl"</span><span style="color: #e0eee0">&gt;</span>
+    <span style="color: #e0eee0">&lt;h1</span> <span style="color: #e0eee0">a&gt;</span>原始内容<span style="color: #e0eee0">&lt;/h1&gt;</span>
+  <span style="color: #e0eee0">&lt;/div&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code="  var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+
+  app.directive(&#39;a&#39;, function(){
+    var func = function(){
+    }
+
+    return {compile: func,
+            template: &#39;&lt;p&gt;标题 {{ name }} &lt;button ng-click=&quot;name=\&#39;hahaha\&#39;&quot;&gt;修改&lt;/button&gt;&lt;/p&gt;&#39;,
+            //replace: true,
+            //controller: function($scope){$scope.name = &#39;xxx&#39;},
+            //scope: {},
+            scope: true ,
+            controller: function($scope){console.log($scope)},
+            restrict: &#39;A&#39;}
+  });
+
+  app.controller(&#39;TestCtrl&#39;, function($scope){
+    $scope.name = &#39;123&#39;;
+    console.log($scope);
+  });
+" data-snippet-id="ext.1ed7f957f907ee40df40918bff7e7af9" data-snippet-saved="false" data-codota-status="done">  <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+
+  <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+    <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(){
+    }
+
+    <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+            <span style="color: #e0eee0">template</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'&lt;p&gt;标题 {{ name }} &lt;button ng-click="name=\'</span><span style="color: #e0eee0">hahaha</span>\<span style="color: #00e5ee">'"&gt;修改&lt;/button&gt;&lt;/p&gt;'</span>,
+            <span style="color: #507080">//replace: true,</span>
+            <span style="color: #507080">//controller: function($scope){$scope.name = 'xxx'},</span>
+            <span style="color: #507080">//scope: {},</span>
+            <span style="color: #e0eee0">scope</span><span style="color: #7fff00">:</span> <span style="color: #90ee90">true</span> ,
+            <span style="color: #e0eee0">controller</span><span style="color: #7fff00">:</span> <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>){<span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">$scope</span>)},
+            <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'A'</span>}
+  });
+
+  <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">controller</span>(<span style="color: #00e5ee">'TestCtrl'</span>, <span style="color: #bcd2ee">function</span>(<span style="color: #e0eee0">$scope</span>){
+    <span style="color: #e0eee0">$scope</span>.<span style="color: #e0eee0">name</span> <span style="color: #7fff00">=</span> <span style="color: #00e5ee">'123'</span>;
+    <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #e0eee0">$scope</span>);
+  });
+</pre></div>
+
+
+<p style="margin: 15px 0;">
+<i style=" color: #d75100; font-style: normal; ">template</i> 中可以包括变量引用的表达式，其 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">scope</code> 遵寻 <i style=" color: #d75100; font-style: normal; ">scope</i> 参数的作用（可能受继承关系影响）。
+</p>
+<p style="margin: 15px 0;">
+<i style=" color: #d75100; font-style: normal; ">templateUrl</i> 是异步请求模板内容，并且是获取到内容之后才开始执行指令的 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">compile</code> 函数。
+</p>
+<p style="margin: 15px 0;">
+最后说一个 <i style=" color: #d75100; font-style: normal; ">compile</i> 这个参数。它除了可以返回一个函数用为 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 函数之外，还可以返回一个对象，这个对象能包括两个成员，一个 <i style=" color: #d75100; font-style: normal; ">pre</i> ，一个 <i style=" color: #d75100; font-style: normal; ">post</i> 。实际上， <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 函数是由两部分组成，所谓的 <i style=" color: #d75100; font-style: normal; ">preLink</i> 和 <i style=" color: #d75100; font-style: normal; ">postLink</i> 。区别在于执行顺序，特别是在指令层级嵌套的结构之下， <i style=" color: #d75100; font-style: normal; ">postLink</i> 是在所有的子级指令 <code style="margin: auto 3px; color: #228b22; font-family: monospace; ">link</code> 完成之后才最后执行的。 <i style=" color: #d75100; font-style: normal; ">compile</i> 如果只返回一个函数，则这个函数被作为 <i style=" color: #d75100; font-style: normal; ">postLink</i> 使用：
+</p>
+
+<div class="highlight" style="background: #103040"><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;">  <span style="color: #e0eee0">&lt;a&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+</pre></div>
+
+
+
+<div class="highlight" style="background: #103040"><div class="top-box hide"><div class="alert-info"></div></div><pre style=" white-space: pre-wrap; word-wrap: break-word; border: 1px solid #888; font-size: small; line-height: 1.5em; padding: 5px;; color: #e0eee0; background: #103040;" data-original-code=" 1   var app = angular.module(&#39;Demo&#39;, [], angular.noop);
+ 2
+ 3   app.directive(&#39;a&#39;, function(){
+ 4     var func = function(){
+ 5       console.log(&#39;a compile&#39;);
+ 6       return {
+ 7         pre: function(){console.log(&#39;a link pre&#39;)},
+ 8         post: function(){console.log(&#39;a link post&#39;)},
+ 9       }
+10     }
+11
+12     return {compile: func,
+13             restrict: &#39;E&#39;}
+14   });
+15
+16   app.directive(&#39;b&#39;, function(){
+17     var func = function(){
+18       console.log(&#39;b compile&#39;);
+19       return {
+20         pre: function(){console.log(&#39;b link pre&#39;)},
+21         post: function(){console.log(&#39;b link post&#39;)},
+22       }
+23     }
+24
+25     return {compile: func,
+26             restrict: &#39;E&#39;}
+27   });
+" data-snippet-id="ext.805da7b68afb12cdf484cae14545e1f2" data-snippet-saved="false" data-codota-status="done"><span style="color: gray; padding: 0 5px 0 5px"> 1</span>   <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">app</span> <span style="color: #7fff00">=</span> <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">module</span>(<span style="color: #00e5ee">'Demo'</span>, [], <span style="color: #e0eee0">angular</span>.<span style="color: #e0eee0">noop</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 2</span><br><span style="color: gray; padding: 0 5px 0 5px"> 3</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'a'</span>, <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 4</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px"> 5</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'a compile'</span>);
+<span style="color: gray; padding: 0 5px 0 5px"> 6</span>       <span style="color: #90ee90">return</span> {
+<span style="color: gray; padding: 0 5px 0 5px"> 7</span>         <span style="color: #e0eee0">pre</span><span style="color: #7fff00">:</span> <span style="color: #bcd2ee">function</span>(){<span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'a link pre'</span>)},
+<span style="color: gray; padding: 0 5px 0 5px"> 8</span>         <span style="color: #e0eee0">post</span><span style="color: #7fff00">:</span> <span style="color: #bcd2ee">function</span>(){<span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'a link post'</span>)},
+<span style="color: gray; padding: 0 5px 0 5px"> 9</span>       }
+<span style="color: gray; padding: 0 5px 0 5px">10</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">11</span><br><span style="color: gray; padding: 0 5px 0 5px">12</span>     <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+<span style="color: gray; padding: 0 5px 0 5px">13</span>             <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'E'</span>}
+<span style="color: gray; padding: 0 5px 0 5px">14</span>   });
+<span style="color: gray; padding: 0 5px 0 5px">15</span><br><span style="color: gray; padding: 0 5px 0 5px">16</span>   <span style="color: #e0eee0">app</span>.<span style="color: #e0eee0">directive</span>(<span style="color: #00e5ee">'b'</span>, <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px">17</span>     <span style="color: #bcd2ee">var</span> <span style="color: #e0eee0">func</span> <span style="color: #7fff00">=</span> <span style="color: #bcd2ee">function</span>(){
+<span style="color: gray; padding: 0 5px 0 5px">18</span>       <span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'b compile'</span>);
+<span style="color: gray; padding: 0 5px 0 5px">19</span>       <span style="color: #90ee90">return</span> {
+<span style="color: gray; padding: 0 5px 0 5px">20</span>         <span style="color: #e0eee0">pre</span><span style="color: #7fff00">:</span> <span style="color: #bcd2ee">function</span>(){<span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'b link pre'</span>)},
+<span style="color: gray; padding: 0 5px 0 5px">21</span>         <span style="color: #e0eee0">post</span><span style="color: #7fff00">:</span> <span style="color: #bcd2ee">function</span>(){<span style="color: #e0eee0">console</span>.<span style="color: #e0eee0">log</span>(<span style="color: #00e5ee">'b link post'</span>)},
+<span style="color: gray; padding: 0 5px 0 5px">22</span>       }
+<span style="color: gray; padding: 0 5px 0 5px">23</span>     }
+<span style="color: gray; padding: 0 5px 0 5px">24</span><br><span style="color: gray; padding: 0 5px 0 5px">25</span>     <span style="color: #90ee90">return</span> {<span style="color: #e0eee0">compile</span><span style="color: #7fff00">:</span> <span style="color: #e0eee0">func</span>,
+<span style="color: gray; padding: 0 5px 0 5px">26</span>             <span style="color: #e0eee0">restrict</span><span style="color: #7fff00">:</span> <span style="color: #00e5ee">'E'</span>}
+<span style="color: gray; padding: 0 5px 0 5px">27</span>   });
+</pre></div>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-7.html" class="navigation navigation-prev " aria-label="Previous page: 把节点内容作为变量处理的类型"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-9.html" class="navigation navigation-next " aria-label="Next page: Attributes的细节" style="margin-right: 17px;"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="./指令定义时的参数 _ AngularJS学习笔记_files/app.js.下载"></script>
+
+    
+    <script src="./指令定义时的参数 _ AngularJS学习笔记_files/MathJax.js.下载"></script>
+    
+
+    
+    <script src="./指令定义时的参数 _ AngularJS学习笔记_files/plugin.js.下载"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    
+    
+
+<div id="haloword-lookup" class="ui-widget-content ui-draggable"><div id="haloword-title"><span id="haloword-word"></span><a herf="#" id="haloword-pron" class="haloword-button" title="发音"></a><audio id="haloword-audio"></audio><div id="haloword-control-container"><a herf="#" id="haloword-add" class="haloword-button" title="加入单词表"></a><a herf="#" id="haloword-remove" class="haloword-button" title="移出单词表"></a><a href="https://checkcheckzz.gitbooks.io/angularjs-learning-notes/content/chapter18/18-8.html#" id="haloword-open" class="haloword-button" title="查看单词详细释义" target="_blank"></a><a herf="#" id="haloword-close" class="haloword-button" title="关闭查询窗"></a></div><br style="clear: both;"></div><div id="haloword-content"></div></div><div class="codota-scope"><div class="green-popovers-container"></div><div data-snippet-id="ext.ebebf21722844664c45a601b60dec1a8" class="top-bar-placeholder" style="top: -2153.39px; left: 862.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.d11a4f7b4ed44e92a45fa203d472d9b8" class="top-bar-placeholder" style="top: -2070.39px; left: 886.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.80038fe574d50b49f04bb44ae0c69b43" class="top-bar-placeholder" style="top: -1967.39px; left: 1114.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.ffbe93bbf5315e695b1db9dc58192fd3" class="top-bar-placeholder" style="top: -1885.39px; left: 934.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.47915d33f256262dd265c5cce45691d0" class="top-bar-placeholder" style="top: -1476px; left: 1230.5px; display: none; opacity: 0.3;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" data-original-title="" title=""><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.5901a63e8d35c4912e8601284da253cd" class="top-bar-placeholder" style="top: -950px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.dddb8e114c1af6491448c2f5b16d052b" class="top-bar-placeholder" style="top: -865px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.82a9a65fb6bb0a02d7128ee20a3a8d1f" class="top-bar-placeholder" style="top: -9px; left: 1230.5px; display: none; opacity: 0.3;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" data-original-title="" title=""><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.7595ec53f0444761221faae151f5a5c2" class="top-bar-placeholder" style="top: 76px; left: 1230.5px; display: block; opacity: 1;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" data-original-title="" title=""><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.35e153d63ddf93b4fb07f0b6cb49e4ef" class="top-bar-placeholder" style="top: 572px; left: 1230.5px; display: none; opacity: 0.3;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" data-original-title="" title=""><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.b3b83d11aa162421cd068828743dd540" class="top-bar-placeholder" style="top: 657px; left: 1230.5px; display: none; opacity: 0.3;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" data-original-title="" title=""><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.6cafa192e4e4848ba05e293c800b14a8" class="top-bar-placeholder" style="top: 1048px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.eecc629d231ed24172792354a8982b2c" class="top-bar-placeholder" style="top: 1152px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.764edee93f21136c0ac722f1d5c07431" class="top-bar-placeholder" style="top: 2140px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.8b0144d28c7886f4dc9faad7e80c7994" class="top-bar-placeholder" style="top: 2413px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.41a9ea4684e356237401c80efe42f544" class="top-bar-placeholder" style="top: 3106px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.b32158c2b7f68739c5ad7d9f2961eb82" class="top-bar-placeholder" style="top: 4341px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.1ed7f957f907ee40df40918bff7e7af9" class="top-bar-placeholder" style="top: 4426px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div><div data-snippet-id="ext.805da7b68afb12cdf484cae14545e1f2" class="top-bar-placeholder" style="top: 5076px; left: 1230.5px; display: none;"><a class="watermark" rel="tooltip" data-container=".codota-scope" data-delay="500" data-title="Info available for 0 elements in snippet. Click for details..." data-original-title="" title=""></a><button link="https://www.codota.com/codebox/" target="_blank" class="codebox-badge" data-container=".green-popovers-container" data-toggle="popover" data-trigger="manual" data-html="true" data-placement="top" style="display: none;">In CodeBox</button><button class="codota-black-btn codebox-save-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-briefcase"></i> Save</button><button class="codota-white-btn codebox-save-selection-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top" style="display: none;" data-original-title="" title=""><i class="fa fa-bars"></i> Save Selection</button><button class="codota-white-btn copy-to-clipboard pull-right"><i class="fa fa-copy"></i> Copy</button><button class="codota-white-btn share-snippet-btn pull-right" data-container=".green-popovers-container" data-trigger="manual" data-html="true" data-placement="top"><i class="fa fa-share"></i> Share</button></div></div></body></html>

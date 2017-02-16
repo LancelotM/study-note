@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>使用Worker线程执行耗时的JS操作</h3>
+  <input id="num"><button id="startCalc">开始运算</button>
+
+  <button onclick="console.log(111)">按钮1</button>
+  <script>
+
+    startCalc.onclick = function(){
+      var n = num.value; //要传递的数据
+
+      var w6 = new Worker('js/6.js');
+      //UI主线程给Worker线程发消息
+      w6.postMessage(n);
+    }
+  </script>
+  <button onclick="console.log(222)">按钮2</button>
+
+</body>
+</html>

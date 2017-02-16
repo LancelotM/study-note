@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>倒计时</title>
+  <meta charset="utf-8"/>
+ </head>
+
+ <body>
+	<h1>距离放学还有<span id="time"></span></h1>
+	<button onclick="stop(this)">||</button>
+	<script>
+    function stop(btn){
+      //如果btn的内容为||
+      if(btn.innerHTML=="||"){
+        //停止定时器,并设置btn的内容为|>
+        clearInterval(timer);
+        btn.innerHTML="|&gt;";
+      }else{//否则
+        //启动定时器,将序号再保存回timer
+        timer=setInterval(task,1000);
+        //设置btn的内容为||
+        btn.innerHTML="||";
+      }
+    }
+    function task(){//Step1: 任务函数
+      //定义目标时间target: 2016/11/16 18:00:00
+      var target=new Date("2016/11/16 18:00:00");
+      var now=new Date();//获得当前时间now
+      //用(target-now)/1000得到总秒数保存在变量s
+      var s=Math.floor((target-now)/1000);
+      if(s>=0){//只有s>=0
+        var h=Math.floor(s/3600);//根据s换算成h
+        h<10&&(h="0"+h);//如果h<10，就补成0+h
+        //根据s换算成m
+        var m=Math.floor((s%3600)/60);      
+        m<10&&(m="0"+m);//如果m<10，就补成0+m
+        s%=60;//将s换算成剩余s
+        //如果s<10，就补成0+s
+        s<10&&(s="0"+s);
+        //设置id为time的span的内容为h+":"+m+":"+s
+        var html=document.getElementById("time")
+                         .innerHTML
+        document.getElementById("time")
+                .innerHTML=html.indexOf(":")==-1?
+                            h+":"+m+":"+s:
+                            h+" "+m+" "+s
+      }else{//否则
+        clearInterval(timer);//停止定时器
+        document.getElementById("time")
+                .innerHTML="00:00:00";
+      }
+    }
+    //Step2: 启动定时器
+    task();
+    var timer=setInterval(task,500);
+    //Step3: 停止定时器
+  </script>
+ </body>
+</html>

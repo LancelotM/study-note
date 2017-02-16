@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <style>
+    /*body {*/
+      /*margin: 0;*/
+      /*text-align: center;*/
+      /*padding-right: 10px;*/
+    /*}*/
+  </style>
+</head>
+<body>
+<h3>新的input type</h3>
+
+<form>
+  您的邮箱：<input type="email" name="userMail"/><br/>
+  您的博客：<input type="url" name="userWB"/><br/>
+  高考总分：<input type="number" name="score"/><br/>
+  您的年龄：<input type="number" name="age" min="18" max="30" step="5"/><br/>
+  手机号码：<input type="tel" name="phone"/><br/>
+  新闻搜索：<input type="search" name="newsKW"/><br/>
+  范围选择：<input type="range" name="range" id="r1"/><br/>
+  范围选择：<input type="range" name="range" id="r2" min="18" max="60" step="5"/><br/>
+  幸运颜色：<input type="color" name="luckColor"><br/>
+  您的生日：<input type="date" name="birthday"><br/>
+  开学月份：<input type="month" name="schoolMonth"><br/>
+  年终总结：<input type="week" name="summary"><br/>
+  <input type="submit"/>
+
+  <script>
+    r1.onchange = function(){
+      console.log(this.value);
+    }
+    r2.onchange = function(){
+      console.log(this.value);
+    }
+  </script>
+</form>
+</body>
+</html>

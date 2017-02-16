@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body{
+     text-align: center;
+    }
+    .helf-opacity{
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+<img src="img/trash.png" id="t" class="helf-opacity"/>
+<hr/>
+<div id="container">
+  <img src="img/p3.png"/>
+  <img src="img/p4.png"/>
+  <img src="img/p5.png"/>
+</div>
+
+<script>
+
+//  var allp=document.querySelectorAll("[class='pic']");
+//  console.log(allp);
+//  var startX=0;
+//  var startY=0;
+//  for(var i=0;i<allp.length;i++){
+//    console.log(allp[i])
+//    var p=allp[i];
+//    p.ondragstart=function(){
+//      console.log(this)
+//      startX=this.offsetX;
+//      startY=this.offsetY;
+//    }
+//    p.ondrag=function(){
+//      if(x===0&&y===0) {
+//        return;
+//      }
+//      var x= this.pageX;
+//      var y= this.pageY;
+//      x-=startX;
+//      y-=startY;
+//      p.style.left=x+'px';
+//      p.style.top=y+'px'
+//    }
+//    p.ondragend=function(){
+//      var x= this.pageX;
+//      var y= this.pageY;
+//      x-=startX;
+//      y-=startY;
+//      p.style.left=x+'px';
+//      p.style.top=y+'px';
+//    }
+//  }
+  var srcObj=null;
+  var list=container.querySelectorAll('img');
+  for(var i=0;i<list.length;i++){
+    var p=list[i];
+    p.ondragstart=function(){
+      srcObj=this;
+      console.log(srcObj)
+      console.log(this.pageX)
+    }
+  }
+  t.ondragenter=function(){
+    t.className='';
+  };
+  t.ondragover=function(e){
+    e.preventDefault();
+  };
+  t.ondragleave=function(){
+    t.className="helf-opacity"
+  };
+  t.ondrop=function(){
+    t.className="helf-opacity"
+    container.removeChild(srcObj);
+  };
+
+//  t.ondragstart(e){
+//
+//  }
+//  t.ondrag(e){
+//
+//  }
+//  t.ondragend(e){
+//
+//  }
+</script>
+</body>
+</html>

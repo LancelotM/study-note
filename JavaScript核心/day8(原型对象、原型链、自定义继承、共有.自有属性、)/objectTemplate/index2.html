@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>自我介绍</title>
+		<link rel="Stylesheet" href="index.css"/>
+	</head>
+	<body>
+		<div id="parentDiv">
+<div id="lilei" onmouseover="" onmouseout="dialog.style.display='none'">
+</div>
+<div id="hmm" onmouseover="" onmouseout="dialog.style.display='none'">
+</div>
+			<div id="dialog">
+			</div>
+		</div>
+		<script>
+      function Student(name,age){
+        this.name=name; this.age=age;
+      }
+      var father={bal:1000000000,car:"infiniti"};
+      //替换构造函数的原型对象为新对象
+      Student.prototype=father;
+      //再为新原型对象添加intr和className成员
+      Student.prototype.intr=function(){
+        console.log(
+          "I'm "+this.name+", I'm "+this.age);
+      }
+      Student.prototype.className="初一2班";
+      
+      var lilei=new Student("Li Lei",11);
+      var hmm=new Student("Han Meimei",12);
+      //Object.setPrototypeOf(hmm,father);
+      console.dir(lilei);
+      console.dir(hmm);
+
+		</script>
+	</body>
+</html>

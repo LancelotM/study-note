@@ -1,0 +1,26 @@
+<div ng-include="'tpl/include/header.html'"></div>
+<ion-content class="has-footer has-header">
+  <div class="card">
+    <div class="item item-divider">
+      <a href="#/myStart">首页</a> / 详情
+    </div>
+    <div class="item item-text-wrap">
+      <h1 ng-bind="dishDetail.name">菜名</h1>
+      <hr/>
+      <img class="full-image" ng-src="img/{{dishDetail.img_lg}}">
+      <p ng-bind="'主要材料：'+dishDetail.material">主要原料</p>
+      <p ng-bind="dishDetail.detail"></p>
+      <hr/>
+      <p ng-bind="'￥：'+dishDetail.price">价格</p>
+    </div>
+    <div class="item item-divider text-right">
+      <div class="pull-right">
+        <button class="button button-small button-balanced"
+                ui-sref="order({id:dishDetail.did})">我要订餐</button>
+        <button class="button button-small button-energized"
+                ui-sref="main">我在看看</button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<div ng-include="'tpl/include/footer.html'"></div>

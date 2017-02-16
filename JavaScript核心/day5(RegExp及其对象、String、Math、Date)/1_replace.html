@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+    /*
+      var str="那天，我去了她家，我说: 我了个去，你家真大。她想和我去草地野餐。我说: 我了去，你家还有草坪！";
+      str=str.replace(/我(了个?)?去/g,
+        function(kw){//kw本次找到的关键词
+          return kw.length==2?"**":
+                 kw.length==3?"***":
+                              "****";
+        }
+      );
+      console.log(str);
+    */
+      //鄙视: 每个单词首字母变大写
+      var stmt="we two who and who";
+      stmt=stmt.replace(/\b[a-z]/g,function(kw){
+        return kw.toUpperCase();
+      });
+      console.log(stmt);
+
+      function ltrim(str){//去掉str开头的空字符
+        return str.replace(/^\s+/,"");
+      }
+      function rtrim(str){//去掉str结尾的空字符
+        return str.replace(/\s+$/,"");
+      }
+      //去掉str开头和结尾的空字符
+      function trim(str){
+        return str.replace(/^\s+|\s+$/g,"");
+      }
+      var str="   zhang   dong    ";
+      console.log(ltrim(str));
+      console.log(rtrim(str));
+      console.log(trim(str));
+
+      var birth="19831226";
+      birth=birth.replace(
+        /(\d{4})(\d{2})(\d{2})/,"$1年$2月$3日"
+      );
+      console.log(birth);
+    </script>
+  </body>
+</html>

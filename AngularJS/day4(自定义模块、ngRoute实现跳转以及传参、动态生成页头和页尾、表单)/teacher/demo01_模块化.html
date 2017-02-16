@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="myApp02">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="myCtrl">
+    <button ng-click="funcClick()">ClickMe</button>
+  </div>
+
+<script>
+
+  var app01 = angular.module('myApp01', ['ng']);
+
+  app01.factory('$custom', function () {
+    return {
+      show: function () {
+        console.log('$custom service ' +
+        'show method is called');
+      }
+    }
+  })
+
+  var app02 = angular.module('myApp02', ['ng', 'myApp01']);
+
+  app02.controller('myCtrl',
+    ["$scope", "$custom",
+      function ($scope, $custom) {
+          $scope.funcClick = function () {
+            $custom.show();
+          }
+      }])
+
+</script>
+
+</body>
+</html>

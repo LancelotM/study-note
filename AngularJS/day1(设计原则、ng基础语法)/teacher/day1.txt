@@ -1,0 +1,220 @@
+框架：优秀的可以重复使用的代码，单独提取并封装，提高代码的服用了、开发速度，并保证良好的浏览器的兼容性。
+
+angularJS、phoneGap、Ionic、ZeptoJS、React。。。
+
+判断框架：①它适用的场景 ②如何使用 ③遇到了问题怎么解决(维基百科、官网、论坛（stackoverflow）)
+
+
+一、常用的设计原则和设计模式
+
+1、设计原则（明确）
+① YANGI（You aren't gonna need it） 不写不需要的代码
+②KISS（Keep it simple and stupid） 代码越简单越好
+③DRY（Don't Repeat Yourself）封装代码
+④高内聚低耦合
+内聚：一个模块内部的不同部分之间的关系
+耦合：不同模块/组件的关系
+⑤SRP(single responsibility principle) 单一责任原则
+⑥OCP（open closed principle） 开闭原则
+对扩展开放 对修改关闭
+⑦LCP（least knownledge principle） 最少知识法则
+
+
+2、设计模式（23种 了解）
+总体来说设计模式分为三大类：
+
+①创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。
+
+②结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。
+
+③行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。
+
+
+经常用到的设计模式：
+工厂方法模式、单例模式、适配器模式、解释器模式、观察者模式
+
+MVC、MVVM、MVP。。。--》终极目标：模块化和复用
+
+MVC：
+Model（模型数据）、View（视图）、Controller（控制器）
+
+遥控器--》控制器：数据的增删改查的操作
+电视 --》View：展示数据
+光缆 --》Model：模型数据
+
+why MVC？
+解耦（降低代码的耦合度）、职责的切分。。。。
+
+工作原理：当对视图操作的时候，触发控制器中的一些方法，在这些方法中对于数据的增删改查的操作，借助一些绑定显示，更新到视图。
+
+
+二、认识AngularJS
+
+1、什么是AngularJS
+ng是一个由Google维护的开源的框架，实现单页面应用程序，适用于数据操作比较频繁的场景
+
+2、为什么AngularJS
+四大特征：
+①采用了MVC的设计模式
+②双向数据绑定
+③依赖注入
+④模块化设计
+
+3、怎么使用？
+引入对应的js文件。
+
+3.1 表达式
+语法：{{表达式}}
+作用：将表达式的结果输出到调用该表达式的元素的innerHTML中
+
+练习：新建一个html文件，在文件中，通过双花括号语法执行算术运算、比较运算、逻辑运算、三目运算。
+
+3.2 指令
+ngApp指令：①指定angularJS的作用范围②自动载入并启动ng应用
+
+ngInit指令：初始化一些变量（对象、数组。。。），注意：不需要写上var关键字
+语法：<ANY ng-init=""></ANY>
+
+练习：ngInit指令创建一个对象数组（学生数组），模拟4个对象，每个对象包含name、sex、score；将对象数组输出到一个table中。
+
+步骤：
+①引入js文件，指定ngApp指令
+②通过ngInit初始化数据
+③将数据展示在table中。
+
+
+
+ngApp/ngInit
+注意事项：ngInit来初始化变量的时候，如果需要初始化多个变量，只需要通过‘；’来隔开
+<span ng-init="name='lucy';age=20">{{name}}</span>
+
+ngApp指令ng应用的作用范围，如果ngApp调用了多次，只有第一次是生效的。
+
+三、ng常用的指令
+
+ng中的指令：是由AngularJS提供的，可以将指令用在HTML中作为扩展属性、扩展标签
+
+扩展属性用法：<ANY ng-xx=""></ANY>
+扩展标签用法：<ngView></ngView>
+
+1、ngBind
+用法： <ANY ng-bind=“”></ANY>
+双花括号 -》表达式的结果输出到调用元素的innerHTML中。
+ngBind 将表达式的结果输出到调用元素的innerHTML中，但是相对于{{}}，解决在ng启动较慢时，{{}}闪烁的问题。
+
+2、ngRepeat指令
+为HTML添加循环功能
+语法1：<ANY ng-repeat="临时变量 in 集合"></ANY>
+语法2：<ANY ng-repeat="（下标变量名，值变量名） in 集合"></ANY>
+
+用途：对于指定的集合的每个成员，依次赋值给临时变量，将当前元素循环输出一遍。
+
+$index/$first/$middle...
+
+练习：学生数组 ngInit初始化，通过ngRepeat遍历对象数组并显示在table中。
+
+3、ngIf指令
+为HTML添加选择功能
+语法:<ANY ng-if="表达式"></ANY>
+用途：表达式的结果为true，当前元素会挂到DOM树，否则删除。
+
+练习：通过ngIf指令将对象数组中，成绩大于60分的显示在table中。
+
+4、ngShow/ngHide
+
+语法:<ANY ng-show="表达式"></ANY>
+用途：根据表达式输出结果，true-》显示 false-》隐藏
+
+
+语法:<ANY ng-hide="表达式"></ANY>
+用途：根据表达式输出结果，true-》隐藏  false-》显示
+
+5、ngSrc 
+语法：<img ng-src='{{url}}'/>
+
+
+四、AngularJS如何实现MVC
+M： model 模型数据：js定义的变量
+V： view 视图：增强过后的html，显示数据
+C： controller 控制器，负责数据的操作，function来处理
+
+
+步骤：
+①声明一个模块
+var app = angular.module('模块名','依赖列表');
+②注册模块：ng-app='模块名'
+③声明控制器： app.controller('控制器名字'，function(){})
+④调用控制器：ng-controller='控制器名字'
+⑤操作：操作模型数据($scope.name='xiaofang'
+⑥显示 （<p>{{name}}</p>）
+在控制器的范围内，通过ng指令或者双花括号语法来显示数据
+
+
+$scope是一个控制器的作用域对象，服务service，单例模式的对象)
+
+事件：
+单击事件 ngClick--》  <button ng-click='show()'></button>
+ngDblClick
+ngMouseEnter/Leave...
+
+
+练习：
+使用angularJS的MVC的设计模式，来实现一个加载更多的列表。
+分析：
+①创建模块、控制器、模型数据（对象数组）
+②将模型数据通过ngRepeat显示在ul中
+③按钮通过ng-click指定点击的回调：对象数组push两条数据
+
+两种方法：①ngInit 耦合度比较高 ②$scope
+初始化模型数据：通过控制器的$scope来实现。
+
+ngDisabled
+ngChecked
+ngStyle/ngClass...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

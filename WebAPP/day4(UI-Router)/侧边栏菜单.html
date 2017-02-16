@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<!--<ion-header-bar class="bar-positive">-->
+  <!--<h1 class="title">header</h1>-->
+<!--</ion-header-bar>-->
+<!--<ion-content>-->
+  <!--<p>Hello Ionic</p>-->
+<!--</ion-content>-->
+<!--<ion-footer-bar class="bar-royal">-->
+  <!--<h1 class="title">footer</h1>-->
+<!--</ion-footer-bar>-->
+<ion-side-menus>
+  <ion-side-menu-content>
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">header</h1>
+    </ion-header-bar>
+    <ion-content>
+      <p>Hello Ionic</p>
+      <button class="button" menu-toggle="left">左边栏菜单</button>
+      <button class="button" ng-click="rightSideMenu(true)">右边栏菜单</button>
+    </ion-content>
+    <ion-footer-bar class="bar-royal">
+      <h1 class="title">footer</h1>
+    </ion-footer-bar>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <button menu-close class="button icon ion-close"></button>
+    <ul class="list">
+      <li class="item">个人中心</li>
+      <li class="item">重置</li>
+      <li class="item">请问</li>
+    </ul>
+  </ion-side-menu>
+  <ion-side-menu side="right">
+    <button ng-click="rightSideMenu(false)" class="button icon ion-close"></button>
+    <ul class="list">
+      <li class="item">个人中心</li>
+      <li class="item">重置</li>
+      <li class="item">请问</li>
+    </ul>
+  </ion-side-menu>
+</ion-side-menus>
+<script>
+  angular.module('myModule', ['ionic'])
+    .controller('myCtrl',['$scope','$ionicSideMenuDelegate',function($ionicSideMenuDelegate,$scope){
+      $scope.rightSideMenu=function(arg){
+        $ionicSideMenuDelegate.toggleRight(arg);
+      }
+    }])
+</script>
+</body>
+</html>

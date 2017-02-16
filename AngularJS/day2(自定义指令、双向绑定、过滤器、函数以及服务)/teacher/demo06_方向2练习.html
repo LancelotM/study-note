@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+
+  留言本：
+  <textarea ng-model="user_msg"></textarea>
+
+  <p>{{user_msg}}</p>
+
+  <br/>
+  选择城市：
+  <select ng-model="user_city">
+    <option value="bj">北京</option>
+    <option value="sh">上海</option>
+    <option value="gz">广州</option>
+  </select>
+  <br/>
+  是否同意本站协议
+  <input type="checkbox" ng-model="user_agree"/>
+</div>
+
+<script>
+  var app = angular.module('myApp',['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+
+   /* $scope.$watch('user_msg', function () {
+      console.log($scope.user_msg);
+    })
+
+    $scope.$watch('user_city', function () {
+      console.log($scope.user_city);
+    })
+
+
+    $scope.$watch('user_agree', function () {
+      console.log($scope.user_agree);
+    })*/
+
+  });
+</script>
+
+</body>
+</html>

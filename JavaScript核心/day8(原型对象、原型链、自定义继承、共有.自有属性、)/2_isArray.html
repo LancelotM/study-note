@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+     var n=1,s="str",b=true,nu=null,un=undefined;
+     function fn(){};
+      var obj1=[1,2,3];//.class="Array"
+      var obj2={};//.class="Object"
+      var obj3={};//.class="Object"
+          obj3.__proto__=obj1;
+      obj3.push(1);obj3.push(2);
+      Array.prototype.push.call(obj2,1);
+            //obj2.push(1)
+      /*0. typeof 不能判断对象的类型
+       console.log(
+        typeof(n),
+        typeof(s),
+        typeof(b),
+        typeof(nu),
+        typeof(un),
+        typeof(fn),
+        typeof(obj1),
+        typeof(obj2)
+       );
+      */
+      /*1. 判断原型对象: */
+      console.log(
+        Array.prototype.isPrototypeOf(obj1),
+        Array.prototype.isPrototypeOf(obj2),
+        Array.prototype.isPrototypeOf(obj3)
+      );
+      /*2. 判断构造函数*/
+      console.log(
+        //obj1.constructor==Array,
+        obj1 instanceof Array,
+        //obj2.constructor==Array,
+        obj2 instanceof Array,
+        //obj3.constructor==Array
+        obj3 instanceof Array
+      )
+      /*3. 检查对象的class属性*/
+      console.log(
+        Object.prototype.toString.call(obj1)
+          =="[object Array]",
+        Object.prototype.toString.call(obj2)
+          =="[object Array]",
+        Object.prototype.toString.call(obj3)
+          =="[object Array]"
+      );
+      /*4. Array.isArray()*/
+      console.log(
+        Array.isArray(obj1),
+        Array.isArray(obj2),
+        Array.isArray(obj3)
+      );
+    </script>
+  </body>
+</html>

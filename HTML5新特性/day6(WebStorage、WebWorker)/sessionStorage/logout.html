@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script>
+    if(!sessionStorage['userName']){
+      location.href='index.html'
+    }
+  </script>
+</head>
+<body>
+<script>
+  sessionStorage.clear();
+  alert('退出成功');
+  setInterval(function(){
+    location.href='index.html';
+  },3000)
+</script>
+</body>
+</html>

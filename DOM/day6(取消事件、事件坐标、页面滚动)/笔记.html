@@ -1,0 +1,24 @@
+1、取消事件
+	e.preventDafault();
+2、事件坐标
+	相对于屏幕左上角坐标
+		e.screenX/Y
+	相对于文档显示区左上角坐标
+		e.clientX||e.x
+		e.clientY||e.y
+	相对于body左上角坐标
+		e.pageX/Y
+	相对于所在元素左上角坐标
+		e.offsetX/Y
+3、页面滚动
+	事件:
+		.onscroll
+	滚动距离
+		document.body.scrollTop||
+	方法：
+		window.scrollTo/By(left,top)
+4、cookie
+	存：
+		document.cookie="username=;expires=
+		target.toGMTString()"
+	

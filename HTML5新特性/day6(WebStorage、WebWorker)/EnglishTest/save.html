@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/normal.css"/>
+</head>
+<body>
+
+<div id="box">
+  <h3>单词录入</h3>
+  <form action="">
+    <label>英文:</label><input id="E" type="text"/><br/>
+    <label>中文:</label><input id="C" type="text"/><br/>
+    <input id="save" type="button" value="保存"/>
+  </form>
+  <hr/>
+  <footer id="start">
+    <div>开始测试</div>
+  </footer>
+</div>
+<script type="text/javascript">
+  save.onclick=function(){
+    localStorage[E.value]=C.value;
+    E.value='';
+    C.value='';
+    //localStorage.clear();
+  };
+  start.onclick=function(){
+    location.href='test.html';
+  }
+</script>
+</body>
+</html>

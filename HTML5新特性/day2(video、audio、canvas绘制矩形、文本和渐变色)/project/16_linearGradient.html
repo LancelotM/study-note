@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制文本</h3>
+  <canvas id="c8" width="600" height="400">
+    您的浏览器不支持Canvas标签！
+  </canvas>
+  <script>
+    //获得画布对应的画笔
+    var ctx = c8.getContext('2d');
+
+    //创建渐变对象
+    var g = ctx.createLinearGradient(50,100, 50,300);
+    g.addColorStop(0, '#f00');  //添加颜色点
+    g.addColorStop(0.5, '#ff0');  //添加颜色点
+    g.addColorStop(1, '#0f0');  //添加颜色点
+
+
+    //使用渐变对象
+  ctx.fillStyle = g; //把填充样式设置为“渐变对象”
+    ctx.fillRect(50,100, 500, 200);
+
+    // ctx.strokeStyle = g;
+    // ctx.lineWidth=6;
+    // ctx.strokeRect(50,100, 500, 200);
+
+
+
+  </script>
+</body>
+</html>

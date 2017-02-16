@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>Canvas绘图</h3>
+  <canvas id="c8" width="600" height="400">
+    您的浏览器不支持Canvas标签！
+  </canvas>
+  <script>
+    //获得画布对应的画笔
+    var ctx = c8.getContext('2d');
+
+    //向右下30度角移动的矩形
+    var x = 0;
+    var y = 0;
+    setInterval(function(){
+      //清画布
+      //ctx.clearRect(0, 0, 600, 400);
+
+      x += 5;
+      y += 5*Math.tan( 30*Math.PI/180 );
+
+      ctx.strokeRect(x, y, 100, 80);
+
+    },41);
+
+  </script>
+</body>
+</html>

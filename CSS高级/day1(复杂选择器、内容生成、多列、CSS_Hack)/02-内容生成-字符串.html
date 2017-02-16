@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			div:before{
+				content:"子曰：";
+				font-weight:bold;
+				color:red;
+				margin-right:15px;
+			}
+
+			div:after{
+				content:"-摘自《论语》";
+				/*块级*/
+				display:block;
+				text-align:right;
+			}
+		</style>
+	</head>
+	<body>
+		<div>学而时习之，不亦乐乎!</div>
+		<div>三人行，必有我师焉!</div>
+
+		子曰：学而时习之，不亦乐乎! 
+															-摘自《论语》
+	</body>										
+</html>

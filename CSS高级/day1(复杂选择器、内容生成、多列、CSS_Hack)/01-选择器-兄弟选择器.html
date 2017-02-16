@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			/*div+p{font-weight:bold;color:red;}*/
+			/*#content+.important{
+				font-weight:bold;
+				color:green;
+			}
+			#content+span{
+				background-color:yellow;
+			}*/
+
+			/*通用兄弟选择器*/
+			div~p{
+				color:red;
+			}
+			#content~.important{
+				background:green;
+			}
+		</style>
+	</head>
+	<body>
+		<p class="important">class为important的p元素</p>
+		<div id="content">id为content的div元素</div>
+		<p class="important">class为important的p元素</p>
+		<span class="important">class为important的span元素</span>
+	</body>
+</html>

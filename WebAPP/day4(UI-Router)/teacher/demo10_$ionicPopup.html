@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+  <title></title>
+</head>
+<body ng-controller="myCtrl">
+
+<ion-header-bar>
+  <h1 class="title">header</h1>
+  <button
+    ng-click="showLoading()"
+    class="button icon ion-refresh">
+    刷新
+  </button>
+</ion-header-bar>
+
+<ion-content>
+  <ion-list>
+    <ion-item ng-repeat="tmp in list">
+      {{tmp}}
+    </ion-item>
+  </ion-list>
+  <p>Hello </p>
+  <button
+    ng-click="showAlert()"
+    class="button button-assertive">
+    警告弹窗
+  </button>
+  <button
+    ng-click="showConfirm()"
+    class="button button-positive"
+    >
+    确认弹窗
+  </button>
+  <button ng-click="showPrompt()">输入提示窗</button>
+
+</ion-content>
+
+<ion-footer-bar>
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+
+<script>
+  var app = angular.module('myApp', ['ionic']);
+
+  app.controller('myCtrl',
+    ['$scope', '$ionicPopup','$ionicLoading','$timeout',
+    function ($scope, $ionicPopup,$ionicLoading,$timeout) {
+
+      $scope.list = [1,2,3,4,5];
+
+//      显示一个加载中的窗口
+      $scope.showLoading = function () {
+        $ionicLoading.show({
+          template:'正在加载....'
+        });
+
+        $timeout(function(){
+          $scope.hideLoading();
+        },2000);
+
+      }
+
+//      隐藏一个加载中的窗口
+      $scope.hideLoading = function () {
+        $ionicLoading.hide();
+      }
+
+
+//      显示一个警告窗
+      $scope.showAlert = function () {
+        $ionicPopup.alert({
+          title: "Donnot touch",
+          template: '食物有毒'
+        })
+      }
+
+//      显示一个确认窗
+      $scope.showConfirm = function () {
+        $ionicPopup
+          .confirm({
+            title: '请确认',
+            template: '确认这样操作吗？'
+          })
+          .then(function (result) {
+            console.log("result is " + result);
+          })
+      }
+
+//      显示一个输入提示框
+      $scope.showPrompt = function () {
+        $ionicPopup
+          .prompt({
+            title: '标题',
+            template: '请输入金额'
+          })
+          .then(function (result) {
+            console.log('用户输入的结果为:'+result);
+          });
+      }
+
+    }])
+
+</script>
+</body>
+</html>

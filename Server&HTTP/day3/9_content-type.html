@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h3>POST方式提交表单</h3>
+    <!--     
+    表单的编码/请求主体的编码类型 
+    (1)text/plain
+    (2)application/x-www-form-urlencoded 默认值
+    (3)multipart/form-data
+    -->
+    <form action="9.php" method="POST" enctype="multipart/form-data">
+    用户名：<input type="text" name="uname"><br>
+    密码名：<input type="password" name="upwd"><br>
+    头像照：<input type="file" name="headpic"><br>
+    <input type="submit">
+    </form>
+  </body>
+</html>

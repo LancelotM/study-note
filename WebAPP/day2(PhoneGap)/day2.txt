@@ -1,0 +1,227 @@
+http://androiddevtools.cn/ 更新SDK
+
+
+一、PhoneGap
+why？ 昨天所写混合编程应用程序和webApp功能都差不多，在android系统中运行，借助工具来实现和nativeApp差不多的功能，比如说调用底层的硬件--phoneGap
+
+what？
+开源的移动设备应用程序框架，目标是使用前端开发技术来实现跨平台应用程序，能够实现原生应用程序可以实现的功能：调用智能手机的核心本地功能，传感器、摄像头、震动。。
+
+开发框架分为3层：
+应用层 ：开发者写js、html、css
+中间层 ：phoneGap/cordova封装好的js的api
+底层： 各个操作系统的硬件的调用
+
+发展历史：
+09年，iOSDevCamp中，提出了使用前端技术来开发iOS应用程序
+10年，支持7个平台
+11年，被Adobe收购，phoneGap保留了商标，将核心的跨平台代码贡献给了Adobe，Adobe将代码开源，叫做cordova
+
+
+特点：
+①兼容性
+write once ,run everywhere
+②标准化
+采用w3c标准
+③大众化
+不需要手机编程基础，只要会html/css/js，就能做混合编程应用程序开发，而且还能够通过js调用设备底层硬件
+
+
+
+build.phonegap.com //云端打包
+phonegap.com
+cordova.apache.org
+phonegap-plugins.com
+
+二、搭建phoneGap的开发环境
+方式1：通过命令行的方式
+需要安装nodeJS，通过npm安装cordova，使用cordova所提供的命令去创建、编译运行工程等功能。
+参考cordova官网：http://cordova.apache.org/
+
+方式2：通过图形化的方式
+1、pc端
+http://phonegap.com/getstarted/
+
+2、移动端
+https://github.com/phonegap/phonegap-app-developer/blob/master/resources/release/android/PhoneGap-1.7.6-release.apk
+
+将apk的安装包安装到模拟器中，有两种方式：
+方式1：通过adb（Android Debug Bridge），借助命令行去安装
+
+步骤1：找到adb
+步骤2：windows+R ->cmd ->显示可以输入命令的窗口
+步骤3：统一将apk包放到c盘根目录下
+步骤4：通过adb去安装apk包    路径+adb.exe install 路径+**.apk
+
+
+方式2：将apk放在apache对应的htdocs目录中，然后在模拟器访问对应的目录，点击下载，去安装
+
+安装移动端的应用程序注意：
+①如果提示waiting for device,建议将模拟器和eclipse关掉再打开
+②如果提示 INSTAILL_FAILED_ALREADY_EXISTS,说明安装包已经安装过了，不要去重复安装！
+
+
+三、phonegap事件列表
+①运行状态 pause/resume
+②网络状态 online/offline
+③电池状态 battery
+④按钮： button
+
+document.addEventListener('事件名称',事件对应的处理函数,false)
+
+四、phoneGap核心API
+
+1、设备
+device.platform/version/uuid/name/phonegap..
+
+注意事项：核心API在使用的过程中，都是在deviceReady之后调用，否则有可能调用不成功。
+
+插件工作原理（以device为例）：
+在插件中的www目录device.js，执行exec方法读取到设备的信息；
+在执行exec方法时，根据当前的平台，找到对应的cordova.js；
+在cordova.js文件中，通过nativeApiProvider找到真正要去执行的原生代码，将结果再一步步通过回调返回。
+
+
+2、提醒通知
+notification来实现听觉、视觉、触觉的通知
+navigator.notification.alert/confirm/beep(3)/vibrate(2000)
+
+3、加速度传感器
+accelerometer获取沿着xyz三个轴加速度信息
+navigator.accelerometer.getCurrentAcceleration()
+navigator.accelerometer.watchAcceleration()
+navigator.accelerometer.clearWatch()
+
+4、capture 采集音频、视频、照片
+navigator.device.capture.captureAudio/Image/Video()
+
+
+5、file文件操作
+功能1：文件系统创建文件并写入内容
+功能2：从文件系统读取文件中的内容
+
+功能1：写文件
+①得到文件系统 FileSystem
+requestFileSystem，在成功的回调里得到fileSystem
+
+②得到fileEntry
+getFile 在成功的回调中得到fileEntry
+
+③fileWriter
+createWriter在成功的回调中得到fileWriter
+fileWriter.write() 写内容
+
+
+
+功能2：读文件
+①fileSystem
+②fileEntry
+③fileReader
+file对象：fileEntry.file()
+fileReader.readAsText(file);
+
+文件操作对象：
+fileSystem 文件系统
+fileEntry 文件操作入口对象
+fileWriter 文件写对象  fileWriter.write('asdfadsf');
+fileReader 文件读对象 fileReader.readAsText(file);
+file 文件对象 包含了文件属性信息 名称/路径/大小。。 fileEntry.file()
+
+
+6、摄像头
+navigator.camera.getPicture(成功的回调，失败的回调，option对象)
+option对象：{quality:50,sourceType:Camera.PictureSourceType.PHOTOLIBRARY}
+如果sourceType为从相册中选取照片，在成功的回调中 存储的是图片的路径
+
+练习：通过camera所提供的getPicture方法，从相册中选取一张图片，设置为对应的头像。
+页面：button、image
+实现：点击button调用getPicture方法，在成功的回调中得到url，找到image标签，设置它的src为刚得到的url
+注意：没有照片，通过apache，在模拟器中通过输入pc端的ip地址，访问开饭项目中img目录中图片，长按图片，save保存。
+
+
+
+
+每日一练：
+加速度传感器：通过摇一摇，改变元素的背景色。
+
+分析：
+1、要实现对加速度传感器数据的监听
+2、判断传感器数据在xyz值的变化，如果这个值的变化超过了20，
+就认为是摇一摇的动作--》 改变背景色
+3、创建一个定时器，判断当前和上次数据的变化的差值，1s
+
+build.phonegap.com 云端打包
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

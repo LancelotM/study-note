@@ -1,0 +1,75 @@
+一、uiRouter的基本使用步骤
+
+uiRouter：以状态为基本单位
+①引入ionic-bundle.js、指定依赖于ionic模块
+②指定容器
+ui-view
+③创建代码片段
+④设置状态
+app.config(function($stateProvider,$urlRouterProvider){
+	$stateProvider.state('',{})
+	$urlRouterProvider.otherwise('myPerson')
+})
+⑤直接修改地址栏、超链接（href='#/url'）、js（$state.go('状态名称')）、扩展属性ui-sref='home'
+⑥参数传递
+
+二、发送参数的基本步骤
+uiRouter
+明确发送和接收，置接收方的状态($stateParams)，发送参数
+
+demo:
+从登陆页跳转到主页面并传递一个参数：id 3
+①明确发送方和接收方
+发送：登录页面
+接收方：主页面
+②配置接收方的状态
+main--> url:'/myMain/:id'
+$stateParams.id
+③发送参数
+button ui-sref="main({id:2})">登录去主页面-uiSref</button>
+<a href="#/myMain/4">跳转到主页面-href</a>
+<button ng-click="jump('main',{id:3})">登录到mainjs</button>
+
+$scope.jump = function (state,arg) {
+          $state.go(state,arg);
+        }
+
+三、uiRouter中嵌套路由
+
+嵌套路由：在指定的容器中，插入的代码片段（还可以指定uiView）
+
+步骤：
+①首先需要指定盛放代码片段的容器，如果加载到容器的代码片段A，需要加载其他的代码片段B、C到A中，就是一个嵌套
+
+②对于B、C设置状态的时候，如果A状态为stateA，指定为stateA.stateB,stateA.stateC
+(
+
+$stateProvider
+      .state('mail',{
+        url:'/myMail',
+        templateUrl:'tpl/mail.html'
+      })
+      .state('mail.inbox',{
+        url:'/myInBox',
+        templateUrl:'tpl/inbox.html'
+      })
+      .state('mail.outbox',{
+        url:'/myOutBox',
+        templateUrl:'tpl/outbox.html'
+      })
+
+)
+
+③触发状态
+指定状态
+ <ion-list>
+      <ion-item ui-sref="mail.inbox">收件箱</ion-item>
+      <ion-item ui-sref="mail.outbox">发件箱</ion-item>
+    </ion-list>
+
+
+
+
+
+
+

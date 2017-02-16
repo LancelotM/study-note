@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h3>Canvas绘图</h3>
+  <canvas width="600" height="600" id="c">
+    您的浏览器不支持Canvas
+  </canvas>
+  <canvas id="c1" width="600" height="600"></canvas>
+  <h3>绘制文本</h3>
+  <canvas id="c2" width="600" height="600"></canvas>
+  <script>
+//    var ctx=c2.getContext('2d');
+//    ctx.textBaseline='top'
+//    var txt='此处是文本基线对齐实验';
+//    ctx.font='20px sans-serif';
+//    ctx.fillStyle='#d22'
+//    var fs=20;
+//    var tw=ctx.measureText(txt).width;
+//    ctx.fillText(txt,0,600-fs);
+//    ctx.strokeText(txt,600-tw,600-fs);
+//    ctx.fillText(txt,(600-tw)/2,(600-fs)/2);
+//    var x=(600-tw)/2;
+//    setInterval(function(){
+//      if(x<600){
+//        x+=5;
+//        console.log(x)
+//        ctx.clearRect(0,200,600,200);
+//        ctx.fillText(txt,x,(600-fs)/2);
+//      }else{
+//        x=-tw;
+//      }
+//
+//    },41)
+//
+//
+//    var ctx= c.getContext('2d');
+//    console.log(ctx);
+//    ctx.fillRect(0,0,100,80);
+//    ctx.strokeRect(499,1,100,80);
+//    ctx.fillStyle="#d22";
+//    ctx.fillRect(0,320,100,80);
+//    ctx.strokeStyle='#2d2';
+//    ctx.strokeRect(499,319,100,80);
+//    ctx.fillRect(250,160,100,80);
+//    ctx.strokeRect(250,160,100,80);
+
+
+    var ctx= c1.getContext('2d');
+    ctx.strokeRect(0,0,100,100);
+    var w= 0,x= 0,y=0;
+    var timer=setInterval(function(){
+      if(x<600) {
+        x+=5;
+        y+=5*Math.tan(Math.PI/6);
+        ctx.clearRect(0, 0, 600, 600);
+        ctx.fillRect(x, y, 100, 100);
+      }else{
+        x=-100;
+        y=-100;
+      }
+    },41)
+  </script>
+</body>
+</html>

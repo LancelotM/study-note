@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h2>跨页面的传递数据</h2>
+    <h3>2-1</h3>
+    <hr>
+    <button id="bt">跳转到2-2</button>
+
+    <script>
+    var loginUid = 9999;
+    var loginUname = 'qiangdong';
+
+    bt.onclick = function(){
+      /***
+      *Cookie就是一种键值对，保存在浏览器内存/磁盘中，可以实现在多个页面间共享数据功能
+      */
+      //保存cookie数据
+      document.cookie = 'LoginUserId='+loginUid;
+      //保存第二个cookie数据
+      document.cookie = 'LoginUserName='+loginUname;
+
+      //保存更多的cookie数据
+      document.cookie = 'UserAge=2000';
+      document.cookie = 'UserAge=3000';
+
+
+      location.href="2_2.html";
+    }
+
+    </script> 
+  </body>
+</html>

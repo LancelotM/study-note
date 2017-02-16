@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+    
+      var bus=[];
+      for(var i=1;i<=5;i++){
+        var c="乘客"+i;
+        console.log(c+" 上车");
+        bus.unshift(c);//bus.push(c);
+        console.log(String(bus));
+      }
+      while(bus.length!=0){ 
+        var c=bus.shift();//var c=bus.pop();
+        console.log(c+" 下车");
+        console.log(String(bus));
+      }
+    
+    
+      function dec2bin(dec){
+        var bin=[];//创建空数组bin
+        //反复: 只要dec!=0
+        while(dec!=0){
+          //将dec/2的余数压入bin中
+          bin.unshift(dec%2);//push(dec%2);
+          //dec/2去掉小数后保存回dec中
+          dec=parseInt(dec/2)
+        }//(循环结束)
+        //将bin翻转//如何不翻转也能得到结果?
+        //bin.reverse();
+        //bin无缝拼接的结果;
+        return bin.join("");
+      }
+      //测试:
+      var n=99;
+      console.log(dec2bin(n),n.toString(2));
+    */
+      var shen7=5;
+      var queue=[];
+      for(var i=1;i<=5;i++){//5个人在排队
+        var c="顾客"+i;
+        console.log(c+" 入队列");
+        queue.push(c);
+        console.log(String(queue));
+      }
+      queue.push("你");//你最后排队
+      while(shen7>0){//只要还有，就接着卖
+        var c=queue.shift();//开头出队列
+        console.log(c+"抢购成功");
+        shen7--;//少一部
+        console.log(String(queue));
+      }
+      console.log(queue+" 没抢上");
+    </script>
+  </body>
+</html>

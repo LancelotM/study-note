@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            text-align: center;
+        }
+        #labels{
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="labels" width="650" height="600">   
+    </canvas>
+    <script type="text/javascript">
+        var label = "部门2";
+        var arr=[
+            {"label": "部门1", "value":300},
+            {"label": label, "value":500},
+            {"label": "部门3", "value":150},
+            {"label": "部门4", "value":400},
+            {"label": "部门5", "value":550},
+            {"label": "部门6", "value":250}
+        ];
+        var ctx=labels.getContext('2d');
+        var lwidth=labels.width;
+        var lheight=labels.height;
+        var y=lheight;
+        // var r=Math.floor(Math.random()*255);
+        // var g=Math.floor(Math.random()*255);
+        // var b=Math.floor(Math.random()*255);
+        // var gb=rgb(r,g,b)
+        // console.log(r);console.log(g);console.log(b);
+        // console.log(gb);
+        for(var i=0;i<arr.length;i++){
+            var ln=arr[i].label;
+            var lv=arr[i].value;
+            // var r=Math.floor(Math.random()*255);
+            // var g=Math.floor(Math.random()*255);
+            // var b=Math.floor(Math.random()*255);
+            console.log("i:"+i);
+            (function(i,lv){
+                setInterval(function(){
+                //ctx.clearRect(100*i,100*i,100*(i+1),lheight);
+                    if(y>lheight-lv){
+                        y-=5;
+                        console.log("y:"+y)
+                        console.log("lv:"+lv)
+                        console.log("i:"+i)
+
+                        var gb=ctx.createLinearGradient(i*100+50,lheight-lv,i*100+50,lheight);
+                        gb.addColorStop(1,'#fff');
+                        gb.addColorStop(0,'#00f');
+                        ctx.fillStyle=gb;
+                        ctx.fillRect(i*100+50,y,50,lv);
+                    }
+                
+                },50)
+            })(i,lv);
+            
+            
+        }
+
+
+        // (function(a){
+        //     console.log(a)
+        // })(i)
+
+
+        // function a(i){
+        //     console.log(i)
+        // }
+        // a(1)
+
+    </script>
+</body>
+</html>

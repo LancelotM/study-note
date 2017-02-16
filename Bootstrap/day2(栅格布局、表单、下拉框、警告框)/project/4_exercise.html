@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <style>
+    div {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!--标题栏-->
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Bootstrap <i>CSS</i> <small>type</small></h1>
+    </div>
+  </div>
+
+  <!--搜索框-->
+  <div class="row">
+    <div class="col-md-3 col-md-offset-9">
+      <input class="form-control" type="text"/>
+    </div>
+  </div>
+
+  <!--主体内容-->
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-unstyled">
+        <li><a href="#">Startup</a></li>
+        <li><a href="#">GlobalCSS</a></li>
+        <li><a href="#">Component</a></li>
+        <li><a href="#">JS Plugin</a></li>
+        <li><a href="#">Customize</a></li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <blockquote>
+        <h3>三人行，必有我师焉。</h3>
+        <footer>摘自孔子《论语》</footer>
+      </blockquote>
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>编号</th>
+          <th>书名</th>
+          <th>价格</th>
+          <th>作者</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>101</td>
+          <td>三国志</td>
+          <td>35.5</td>
+          <td>罗冠中</td>
+        </tr>
+        <tr>
+          <td>102</td>
+          <td>西游记</td>
+          <td>45.5</td>
+          <td>吴承恩</td>
+        </tr>
+        <tr>
+          <td>103</td>
+          <td>红楼梦</td>
+          <td>55.5</td>
+          <td>曹雪芹</td>
+        </tr>
+        <tr>
+          <td>104</td>
+          <td>水浒传</td>
+          <td>65.5</td>
+          <td>施耐庵</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <h3>特色课程</h3>
+      <dl>
+        <dt>HTML</dt>
+        <dd>Hyper Text Markup Language</dd>
+        <dt>CSS</dt>
+        <dd>Cascade Style Sheet</dd>
+        <dt>JS</dt>
+        <dd>JavaScript</dd>
+      </dl>
+      <blockquote class="blockquote-reverse">
+        <h3>来自达内</h3>
+        <footer>总裁寄语</footer>
+      </blockquote>
+    </div>
+  </div>
+
+  <!--版权声明条-->
+  <div class="row">
+    <div class="col-md-12">
+      <p class="text-center">达内科技 © 2016</p>
+    </div>
+  </div>
+</div>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+  (function () {
+    var s = document.createElement("script");
+    s.onload = function () {
+      bootlint.showLintReportForCurrentDocument([]);
+    };
+    s.src = "js/bootlint.js";
+    document.body.appendChild(s)
+  })();
+</script>
+</body>
+</html>

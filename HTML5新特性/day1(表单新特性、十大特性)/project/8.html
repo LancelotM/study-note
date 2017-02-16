@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>定制错误提示消息</h3>
+
+  <form>
+    登录名称：<input name="uname" id="uname" required><br>
+    登录密码：<input name="upwd" id="upwd" minlength="6" maxlength="9"><br>
+    用户年龄：<input type="number" name="age" id="age" min="18" max="30"><span></span><br>
+
+    <input type="submit">
+  </form>
+  <script>
+    /*普通的input一般不监听onchange事件*/
+    /*uname.onkeyup = function(){
+    }
+    uname.onblur = function(){
+    }*/
+
+    uname.onblur = function(){
+      /*
+      以前的输入验证：
+      if(this.value.length===0){....}
+       */
+      //HTML5中的输入验证:
+      if(this.validity.valueMissing){
+        var msg ='登录用户名不能为空';
+        alert(msg);
+        this.setCustomValidity(msg);
+      }else {  //输入有效了
+        this.setCustomValidity(''); //清除自定义错误消息
+      }
+    }
+
+    age.onblur = function(){
+      if(this.validity.rangeUnderflow){
+        var msg = "用户年龄太小啦~";
+        //this.nextElementSibling.innerHTML = msg;
+        //this.setCustomValidity(msg);
+      }else if(this.validity.rangeOverflow){
+        var msg = "用户年龄太大啦~~";
+        //this.nextElementSibling.innerHTML = msg;
+        //this.setCustomValidity(msg);
+      }else {
+        var msg = "";
+        //this.nextElementSibling.innerHTML = msg;
+        //this.setCustomValidity(msg);
+      }
+      this.nextElementSibling.innerHTML = msg;
+      this.setCustomValidity(msg);
+
+    }
+
+
+  </script>
+</body>
+</html>

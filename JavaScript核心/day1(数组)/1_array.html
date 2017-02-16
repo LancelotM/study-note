@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+    
+      //var empty=[];//创建空数组:
+      //console.dir(empty);
+      //var days=//创建数组同时初始化元素内容
+       //["日","一","二","三","四","五","六"];
+        ////0    1    2    3    4   5    6
+      //console.dir(days);
+      //var nArr=new Array(10);
+      //console.dir(nArr);
+      //console.log("星期"+days[1]);
+      //days[7]="七";
+      //console.dir(days);
+      //days[9]="旭";
+      //console.dir(days);
+      //console.log(days[100]);
+      //days.length=7;
+      //console.dir(days);
+    
+
+      var arr=[1,2,3,4,5,6,7];//8
+             //0 1 2 3 4 5 6    7
+             //        4 3 2    1
+      arr[arr.length]=8;//末尾追加新元素
+	  console.log(arr);
+      //访问最后一个元素
+      console.log(arr[arr.length-1]);//8
+      //访问倒数第4个元素(ctrl+alt+↓)
+      console.log(arr[arr.length-4]);//5
+      arr.length--;//删除最后一个元素
+      console.log(arr[arr.length-1]);//7
+      //删除末尾3个元素(ctrl+alt+↓)
+      arr.length-=3;//[1,2,3,4]
+      console.log(arr[arr.length-1]);//4
+      arr.length=0;//清空数组
+      console.dir(arr);
+
+    </script>
+  </body>
+</html>

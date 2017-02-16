@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>表单提交验证</title>
+<meta charset="utf-8" />
+<style>
+	.hintText{color: #aaaaaa; font-style: italic; }
+	.normalText { color: #000000;}
+</style>
+</head>
+<body>
+	<h2>发表留言</h2>
+<form name="msgForm" onsubmit="valiAll(this,event)">
+	姓名：<input name="userName" class="hintText" 
+				value="请输入您的姓名"
+				onfocus="nameFocus(this)"
+				onblur="valiName(this)"/>
+		  <span>姓名不能为空</span><br />
+				
+	内容：<textarea name="content" class="hintText" 
+					rows="5" cols="30"
+					style="resize:none"
+					onfocus="contentFocus(this)"
+					onblur="valiContent(this)">请输入留言内容</textarea><br />
+	<label>
+		<input type="checkbox"  onclick="agree(this)"/>我已阅读了《常见问题列表》
+	</label><br/>
+	<input type="submit" disabled="disabled=" value="提交"/>
+</form>
+<script type="text/javascript">
+	function valiAll(form,e){
+		if(!valiName(form.userName)){
+			form.userName.focus();
+			e.preventDefault();
+		}
+		else if(!valiContent(form.content)){
+			form.content.focus();
+			e.preventDefault();
+		} 
+	}
+	function agree(chb){
+		var form=document.forms["msgForm"];
+		if(form[form.length-2].checked==true){
+			form[form.length-1].disabled=false;
+		}else{form[form.length-1].disabled=true;}
+		//form[form.length-1].disabled!=chb.checked;
+	}
+	function nameFocus(txt){
+		getFocus(txt,"请输入您的姓名");
+	}
+	function getFocus(txt,hint){
+		txt.value==hint&&(txt.value=txt.className="");
+	}
+	function contentFocus(txt){
+		getFocus(txt,"请输入留言内容");
+	}
+	function valiName(txt){
+		return vali(txt,"请输入您的姓名");
+	}
+	function vali(txt,hint){
+		var reg=new RegExp("^(\\s*|"+hint+")$");
+		if(reg.test(txt.value)){
+			txt.className="hintText";
+			txt.value=hint;
+			return false;
+		}
+		else{return true;}
+	}
+	function valiContent(txt){
+		return vali(txt,"请输入留言内容");
+	}
+</script>
+</body>
+</html>

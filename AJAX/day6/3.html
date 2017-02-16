@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h3>如何为后加载的元素做事件绑定</h3>
+    <button id="bt1">添加按钮2</button>
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('#bt1').click(function(){
+      $('body').append('<button id="bt2">按钮2</button>');
+    });
+
+    //此处的绑定无法为任何元素绑定监听函数
+    $('#bt2').click(function(){
+      alert(2222);
+    });
+
+    alert('JS执行完成');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      if(Array.prototype.forEach===undefined)
+       Array.prototype.forEach=function(callback){
+          //遍历当前数组
+          for(var i=0;i<this.length;i++){
+            if(this[i]!==undefined)//防稀疏数组
+              //调用callback函数,传入:当前值,当前位置和当前数组
+              callback(this[i],i,this);
+          }
+       }
+      //如果?.map===undefined
+        //?.map=function(callback){
+          //创建新的空数组newArr
+          //遍历当前数组
+            //如果当前元素不是undefined
+              //调用callback,传入当前元素，当前位置和当前数组，将执行结果保存到newArr中相同位置
+          //(遍历结束)
+          //返回newArr
+        //}
+  
+      var arr=[,2,,4,5,,];
+//      arr.forEach(function(val,i,arr){
+//        arr[i]*=2;
+//      });
+      var evens=arr.map(function(val){
+        return val*2;
+      });
+      document.write(String(arr)+"<br>");
+      document.write(String(evens)+"<br>");
+    </script>
+  </body>
+</html>

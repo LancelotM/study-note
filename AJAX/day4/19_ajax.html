@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <button>异步请求服务器端的JSON数据</button>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('button').click(function(){
+      //使用万能AJAX封装函数，发起异步请求
+      $.ajax({
+        type: 'GET',
+        url: '18_ajax.php',
+        beforeSend: function(){
+          console.log('\nbefore send...');
+          console.log(arguments);
+        },
+        success: function(obj,msg, xhr){
+          console.log('\nsuccess...');
+          console.log(arguments);
+        },
+        error: function(){
+          console.log('\nerror...');
+          console.log(arguments);
+        },
+        complete: function(){
+          console.log('\ncomplete...');
+          console.log(arguments);
+        }
+      });
+    });
+    </script>
+  </body>
+</html>

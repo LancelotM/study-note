@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+    .nav {
+      list-style:none;
+      margin: 0 0 20px 0;
+      padding: 0;
+    }
+    .nav li {
+      display: inline-block;
+      padding: 6px 50px;
+    }
+    .nav li.active {
+      border-bottom: 2px solid #e4393c;
+    }
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+    .nav li.active a {
+      color: #e4393c;
+      font-weight: bold;
+    }
+    .item {
+      display: inline-block;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      margin: 5px;
+      padding: 10px;
+      width: 240px;
+      overflow: hidden;
+    }
+    </style>
+  </head>
+  <body>
+    <h3>学生查询</h3>
+    <ul class="nav">
+      <li class="active"><a href="A">A级成绩</a></li>
+      <li><a href="B">B级成绩</a></li>
+      <li><a href="C">C级成绩</a></li>
+      <li><a href="D">D级成绩</a></li>
+    </ul>
+    <div id="container">
+<!--       <div class="item"> -->
+<!--         <span>Tom</span> -->
+<!--         <img src="img/1.jpg"> -->
+<!--       </div> -->
+<!--       <div class="item"> -->
+<!--         <span>Tom</span> -->
+<!--         <img src="img/1.jpg"> -->
+<!--       </div> -->
+<!--       <div class="item"> -->
+<!--         <span>Tom</span> -->
+<!--         <img src="img/1.jpg"> -->
+<!--       </div> -->
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('.nav').on('mouseenter', 'a', function(){
+      //修改a的父元素li的active
+      $(this).parent().addClass('active').siblings('.active').removeClass('active');
+
+      //获取要查询的级别，发起异步请求
+      var g = $(this).attr('href');
+      $.ajax({
+        type: 'GET',
+        url: '2_student_select.php',
+        data: {scoreGrade: g},
+        success: function(list){
+          console.log('开始处理学生数据');
+          //console.log(arguments);
+          var html = '';
+          for(var i=0; i<list.length; i++){
+            //每个学生对应一个div.item
+            html += `
+              <div class="item"> 
+                <span>${list[i].sname}</span> 
+                <img src="${list[i].pic}"> 
+              </div>
+            `;
+          }
+          $('#container').html(html);
+        },
+        error: function(){
+          alert('异步请求数据失败!请查看命令行');
+          console.log(arguments);
+        }
+      });
+    })
+    </script>
+  </body>
+</html>

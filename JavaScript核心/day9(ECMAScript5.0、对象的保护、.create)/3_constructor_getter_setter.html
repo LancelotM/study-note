@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      "use strict";//
+      //定义一个类型，实现公有属性public和私有属性private
+      function Emp(id,name,salary,age){
+        //public
+        this.id=id;//只读
+        this.name=name;//不可删除
+        this.salary=salary;//不可遍历
+        //private
+        var _age;
+        Object.defineProperties(this,{
+          id:{writable:false},
+          salary:{enumerable:false},
+          age:{
+            get:function(){return _age;},
+            set:function(val){
+              if(val<18||val>65)
+                throw new Error("年龄必须介于18~65");
+              _age=val;
+            },
+            enumerable:true
+          }
+        });//this{id: name: salary:  age:get/set}
+        this.age=age;
+        //防篡改: 密封
+        Object.seal(this);
+      }
+      var eric=new Emp(1001,"eric",10000,18);
+      //eric.Age=-2;
+      //delete eric.name;
+//      Object.defineProperty(eric,"id",{
+//        writable:true
+//      });
+      //eric.id=1002;
+      //delete eric.name;
+      for(var key in eric){
+        console.log(key+" : "+eric[key]);
+      }
+
+    </script>
+  </body>
+</html>

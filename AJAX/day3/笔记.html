@@ -1,0 +1,57 @@
+使用JQery的AJAX封装函数————六个
+1、使用JQery的AJAX封装函数————load()——对象函数
+	1、使用方法：
+		$('选择器').load('URL(xx.php)',[请求数据(get/post)],[成功后的回调函数(function(data){})])
+	2、含义：
+		向指定的URL发起异步请求,如果有请求数据，就是POST,否则就是GET;获取服务器端返回HTML响应，设置为当前选中元素的innerHTML
+	3、案例演示：异步加载多个页面完全一样的页头和页尾
+		1、编写header.php，只含有页头中的DIV片段
+		2、编写footer.php，只含有页尾中的DIV片段
+		3、编写index.php
+			<body>
+				<div id="header"></div>
+				<div id="main"></div>
+				<div id="footer"></div>
+			</body>
+			待页面加载完成后(window.onload)
+		使用限制
+			1、服务器返回的必须是 HTML 片段
+			2、服务器返回的数据会替换已有数据
+2、使用JQery的AJAX封装函数————$.get()
+	1、使用方法：
+		$.get(URL,[请求数据{sid:id}],响应成功后的回调函数(function(data){}))
+	2、含义
+		向指定的 URL 发起 GET 请求;把请求数据追加在 URL 的后面;服务器给出了成功的响应会自动调用第三个参数——doResponse
+	3、案例演示：
+		实现异步的学生记录的删除
+3、使用JQery的AJAX封装函数————$.post()
+	1、使用方法：
+		$.post(URL,请求数据{sid:id},响应成功后的回调函数(function(data){}))
+	2、含义
+		向指定的 URL 发起 POST 请求;把请求数据追加在请求主体中;服务器给出了成功的响应会自动调用第三个参数——doResponse
+4、使用JQery的AJAX封装函数————$.getScript()
+	1、使用方法：
+		$.getScript(URL,[请求数据{sid:id}],[响应成功后的回调函数])
+	2、含义
+		向指定的 URL 发起 GET 请求;把请求数据追加在 URL 的后面;服务器给出了成功的响应会自动调用 eval(xhr.responseText)
+	3、注意
+		服务器必须返回application/javascript!即使不是，也会强制条用 eval(xhr.responseText)进行执行！而 $.get() 可以实现同样的功能，可以根据服务器的响应头来决定是否调用 eval(xhr.responseText)
+5、使用JQery的AJAX封装函数————$.getJSON()
+	1、使用方法：
+		$.getScript(URL,[请求数据{sid:id}],响应成功后的回调函数)
+	2、含义
+		向指定的 URL 发起 GET 请求;把请求数据追加在 URL 的后面;服务器给出了成功的响应会自动调用 JSON.parse(xhr.responseText)
+	3、注意
+		服务器必须返回application/json!即使不是，也会强制条用 JSON.parse(xhr.responseText)进行执行！而 $.get() 可以实现同样的功能，可以根据服务器的响应头来决定是否调用 JSON.parse(xhr.responseText)
+上述5个函数的通病，只能处理成功的响应消息！如果服务器端返回了错误的响应消息（如404）上述5个函数不会有任何提示————没有相关的回调函数
+6、*****使用JQery的AJAX封装函数————$.ajax()
+	1、使用方法
+		$.ajax({
+			type:'GET',
+			url:'x.php',
+			data:{k:v,k:v}/'k=v&k=v',
+			beforeSend:fn,  //请求发送前的回调
+			success:fn,		//响应成功后的回调
+			error:fn,		//响应失败后的回调
+			complete:fn,	//响应完成后(不论成败)的回调
+		})

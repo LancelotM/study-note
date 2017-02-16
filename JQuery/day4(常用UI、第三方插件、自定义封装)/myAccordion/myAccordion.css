@@ -1,0 +1,21 @@
+	.accordion>.title{/*背景#eee,边框#aaa,内边距6,字体1.5,粗体,鼠标变手指*/
+      background:#eee;
+      border:1px solid #aaa;
+      padding:6px;
+      font-size:1.5em;
+      font-weight:bold;
+      cursor:pointer;
+    }
+	.accordion>.content{
+      /*边框#aaa,内边距6,高度60*/N
+      border:1px solid #aaa;
+      padding:6px;
+      height:0;
+      overflow:hidden;
+      background-color:#fff;
+      transition:all .5s linear;
+    }
+    .accordion>.content.open{ 
+      height:100px;
+      background-color:#afa;
+    }

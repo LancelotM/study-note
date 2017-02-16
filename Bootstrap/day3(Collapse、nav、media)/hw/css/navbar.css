@@ -1,0 +1,21 @@
+body{
+  margin-top: 50px;
+}
+.navbar{
+}
+.container .navbar-header b{
+  display: inline-block;
+  width: 63px;
+  height: 42px;
+  background:url(../img/hdr-spr.png) no-repeat 0 -512px;
+  position: relative;
+  bottom:10px;
+}
+.container .navbar-header i{
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  background:url(../img/hdr-spr.png) no-repeat 0 -343px;
+  position: relative;
+  top:7px;
+}

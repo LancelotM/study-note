@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body{
+      text-align: right;
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+<div id="control">
+  <a href="login.html">登录</a>
+</div>
+
+<script>
+  var my=sessionStorage['userName'];
+  if(my!==undefined){
+    control.innerHTML=`
+   <a href="#">欢迎回来：${my}</a>
+   <a href="logout.html">退出登录</a>
+  `;
+  }
+
+</script>
+</body>
+</html>

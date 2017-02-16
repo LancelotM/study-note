@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	</head>
+<body>
+	<!--创建一个表单
+		1、提交方式get
+		2、提交地址为
+		http://www.baidu.com
+	-->
+	<form action="http://www.baidu.com" method="get">
+		<!--表单控件-->
+		<!--文本框-->
+		<p>
+			用户名称：
+			<input type="text" maxlength="10" name="txtUsername" value="请输入您的名称">
+		</p>
+		<p>
+			用户昵称：
+			<input type="text" maxlength="10" name="txtNickname" value="请输入您的昵称">
+		</p>
+		<p>
+			用户密码：
+			<input type="password" name="txtUserpwd" value="请输入您的密码">
+		</p>
+		<p>
+			用户性别：
+			<input name="rdoGender "type="radio" value="nan" checked>男
+			<input name="rdoGender "type="radio" value="nv">女
+		</p>
+		<p>
+			<input type="file" name="txtUserID=111111111" />
+		</p>
+		<p>
+			就业城市
+			<select name="selCity" >
+				<option value="BJ">北京</option>
+				<option value="SH">上海</option>
+				<option value="CQ">重庆</option>
+				<option value="TJ">天津</option>
+			</select>
+		</p>
+		<p>
+			用户爱好：
+			<input type="checkbox" name="chkHobby" value="eat">吃
+			<input type="checkbox" name="chkHobby" value="drink">喝
+			<input type="checkbox" name="chkHobby" value="play">玩
+			<input type="checkbox" name="chkHobby" value="happy">乐
+		</p>
+		<p>
+			<textarea name="txtIntro"  cols="30" rows="10">这家伙很懒，什么都没有留下。。。</textarea>
+		</p>
+		<p>
+			<input type="submit" value="登录"/>
+			<input type="reset" />
+		</p>
+	</form>
+	</body>
+</html>

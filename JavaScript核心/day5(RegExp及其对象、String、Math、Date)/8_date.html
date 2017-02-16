@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var date=new Date(0);
+      console.log(date.toGMTString());//1970/1/1
+      var tom=new Date(1000*3600*24);
+      console.log(tom.toGMTString());//1970/1/2
+      var max=Number.MAX_VALUE;
+      console.log(max);
+      var maxYears=max/(1000*3600*24*365);
+      console.log(maxYears);
+      var birth=new Date("1983/12/26");
+      var today=new Date();
+      var ms=today-birth;
+      var days=ms/(1000*3600*24);
+      console.log(days);
+    </script>
+  </body>
+</html>

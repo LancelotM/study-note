@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style type="text/css">
+	.tran>a{
+		display:inline-block;
+		width:100px;
+		border:1px solid black;
+		background:#ddd;
+	}
+	img{
+		margin:200px;
+		display:none;
+	}
+	#img1:target{
+		display:block;
+		transform:scale(2);
+	}
+	#img2:target{
+		display:block;
+		transform:scale(0.5);
+	}
+	#img3:target{
+		display:block;
+		transform:rotate(-90deg);
+	}
+	#img4:target{
+		display:block;
+		transform:rotate(90deg);
+	}
+	</style>
+</head>
+<body>
+	<div class="tran">
+		<a href="#img1">放大</a>
+		<a href="#img2">缩小</a>
+		<a href="#img3">左转</a>
+		<a href="#img4">右转</a>
+	</div>
+	<div>
+		<img src="logo-201305.png" id="img1">
+		<img src="logo-201305.png" id="img2">
+		<img src="logo-201305.png" id="img3">
+		<img src="logo-201305.png" id="img4">
+	</div>
+</body>
+</html>

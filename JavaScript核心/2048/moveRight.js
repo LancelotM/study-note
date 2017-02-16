@@ -1,0 +1,24 @@
+  ,
+  moveRight:function(){//右移所有行
+    //为data拍照，保存在before中
+    //遍历data中每一行
+      //右移第r行
+    //(遍历结束)
+    //为data拍照，保存在after中
+    //如果发生了移动
+      //随机生成数
+      //更新页面
+  },
+  moveRightInRow:function(r){//右移第r行
+    //c从CN-1开始，到>0结束，反向遍历r行中每个格
+      //找r行c列左侧前一个不为0的位置prevc
+      //如果prevc为-1,就退出循环
+      //否则
+        //如果c列的值是0
+          //将prevc列的值赋值给c列
+          //将prevc列的值置为0
+          //c留在原地
+        //否则 如果c列的值等于prevc列的值
+          //将c列的值*2
+          //将prevc列置为0
+  },

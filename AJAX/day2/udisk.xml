@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<productList>
+	<product pid='1'>
+		<pname>三星</pname>
+		<price>35.5</price>
+		<pic>1.jpg</pic>
+	</product>
+</productList>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="AngularJS-1.4.1/js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+  <span ng-init="isMember=true"></span>
+  <h1 ng-if="isMember">会员专区,仅会员可见</h1>
+
+  <table border="1" cellspacing="0" cellpadding="10"
+         ng-init="list=[
+          {id:'1',name:'tony',sex:'male',score:59},
+          {id:'2',name:'mary',sex:'male',score:70},
+          {id:'3',name:'allice',sex:'female',score:100}]">
+    <thead>
+    <tr >
+      <!--<th ng-repeat="(key,value) in list">{{value}}</th>-->
+      <th>id</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>score</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="obj in list" ng-if="obj.score>60">
+      <td ng-repeat="tmp in obj" >{{tmp}}</td>
+    </tr>
+  </table>
+</body>
+</html>

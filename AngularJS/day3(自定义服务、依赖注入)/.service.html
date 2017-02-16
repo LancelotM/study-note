@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <p ng-bind="stu_name"></p>
+  <button ng-click="callStudy()">click me</button>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .service('$student',function(){
+      this.name='Michael'
+      this.study=function(){
+        console.log('Michael is studying')
+      }
+    })
+    .controller('myCtrl', function ($scope,$student) {
+      $scope.stu_name=$student.name;
+      $scope.callStudy=function(){
+        $student.study();
+      }
+    })
+</script>
+</body>
+</html>

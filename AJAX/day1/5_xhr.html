@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <button id="bt">发起异步HTTP请求，并接收响应</button>
+    <script>
+    bt.onclick = function(){
+      //1 创建XHR对象    
+      var xhr = new XMLHttpRequest();
+      //2 监听XHR的状态改变
+      xhr.onreadystatechange = function(){
+        console.log('\nXHR状态改变啦:'+xhr.readyState);
+        console.log('响应状态码：'+xhr.status);
+        console.log('响应主体文本：'+xhr.responseText);
+      }
+      //3 打开到服务器的连接
+      xhr.open('GET', '5.php', true);
+      //4 发送请求消息
+      xhr.send(null);
+    }
+    </script>
+  </body>
+</html>

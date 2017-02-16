@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    .tabs{list-style:none; padding:0}
+    .tabs>li{float:left}
+    .tabs>li>a{
+      text-decoration:none; 
+      color:#000;
+      padding: 6px 12px;
+    }
+  </style>
+ </head>
+ <body>
+ <h1>使用属性选择器实现标签页头的切换</h1>
+<!--   ul.tabs>li*3>a[data-toggle="tab"][href="#"]  -->
+  <ul class="tabs">
+    <li><a href="#" data-toggle="tab">十元套餐</a></li>
+    <li><a href="#" data-toggle="tab">二十元套餐</a></li>
+    <li><a href="#" data-toggle="tab">三十元套餐</a></li>
+  </ul>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $("[data-toggle='tab']").css(
+      "borderBottom","1px solid #aaa");
+    $("[data-toggle='tab']:first").css({
+      border:"1px solid #aaa",
+      borderBottom:0,
+    });
+    //为[data-toggle='tab']绑定单击事件
+    $("[data-toggle='tab']").click(function(){
+      //清除所有[data-toggle='tab']的边框，再设置下边框为"1px solid #aaa"
+      $("[data-toggle='tab']").css({
+        border:0,
+        borderBottom:"1px solid #aaa"
+      });
+      //将当前元素放入$()中转化为jQuery对象,保存在变量$this中
+      //设置$this的边框为"1px solid #aaa"，再去掉下边框
+      $(this).css({
+        border:"1px solid #aaa",
+        borderBottom:0
+      });
+    })
+  </script>
+ </body>
+</html>

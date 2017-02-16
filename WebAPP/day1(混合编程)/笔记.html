@@ -1,0 +1,37 @@
+框架学习
+	1、明确框架定位：解决什么样的问题
+	2、掌握框架的核心概念或语法
+	3、遇到问题怎么解决问题
+		--官网找手册,定位到用法或demo方案
+		--官方技术论坛,stackoverflow,segmentfault,github
+		--联系官方人员
+1、WsebApp(网页应用)
+	网页应用：体验就像传统PC端的应用一样,本身定位就是一个应用
+2、NativeApp(原生应用)
+	原生应用：借助SDK(software development kit)所提供的原生组件或者服务,进行编码而生成的应用
+		1、Android
+			java -- Dalvik虚拟机 -- Linux
+		2、iOS
+			oc/swift -- nuix
+3、HybridApp(混合编程)
+	采用前端技术+原生开发
+		phoneGap 支持7个平台,是目前唯一做到一次部署,全平台通用的移动开发框架,能够让开发者采用web前端技术调用API接口,实现HybridApp
+	1、在 混合编程 中引入自己写的HTML
+		WebView wv=new WebView(getApplicationContext());
+		wv.loadUrl("file:///android_asset/index.html");
+		setContentView(wv);
+	2、可以在 混合编程 中运行JS
+		wv.getSettings().setJavaScriptEnabled(true);
+	3、可以在 混合编程的LogCat 中运行 控制台
+		wv.setWebChromeClient(new WebChromeClient(){
+			@Override
+			@Deprecated
+			public void onConsoleMessage(String message, int lineNumber,
+					String sourceID) {
+				// TODO Auto-generated method stub
+				Log.e("test",
+						"行号为："+lineNumber+
+						"输出内容为："+message);
+				super.onConsoleMessage(message, lineNumber, sourceID);
+			}
+		});

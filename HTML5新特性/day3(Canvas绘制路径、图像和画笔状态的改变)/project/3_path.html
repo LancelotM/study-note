@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制路径——直线</h3>
+  <canvas id="c3" width="600" height="400"></canvas>
+  <script>
+    var ctx = c3.getContext('2d');
+
+    //从左上角到右下角的直线，再到右上角
+    ctx.beginPath();
+    ctx.moveTo(10,10);
+    ctx.lineTo(590, 390);
+    ctx.lineTo(590, 10);
+    //ctx.closePath();
+
+    //路径本身不可见，必须用于描边、填充、裁剪
+    ctx.strokeStyle  = '#0aa';
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    ctx.fillStyle = '#ff6';
+    ctx.fill();
+
+  </script>
+</body>
+</html>

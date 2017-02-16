@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      //东
+      function round(num,d){
+        if(isNaN(num)||isNaN(d)){
+          throw new Error("num和d必须是数字!");
+        }else{
+          num*=Math.pow(10,d);
+          num=Math.round(num);
+          return num/Math.pow(10,d);
+        }
+      }
+
+      //旭
+      var num=prompt("请输入数字");
+      var d=prompt("请输入小数位数");
+      try{
+        console.log(round(num.d));
+      }catch(err){
+        alert(String(err));
+      }
+    </script>
+  </body>
+</html>

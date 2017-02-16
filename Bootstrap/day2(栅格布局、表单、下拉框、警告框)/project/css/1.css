@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: 'sans-serif';
+  font-size: 10px;
+}
+body {
+  font-family: 'Helvatic Neue';
+  font-size: 14px;
+  background: #fff;
+  margin: 0;
+}
+.container-fluid:before,
+.container:before {
+  content: ' ';
+  display: table;
+}
+.container-fluid:after,
+.container:after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+.list-inline {
+  list-style: none;
+  padding: 0;
+  margin-left: -5px;
+}
+.list-inline > li {
+  padding: 0 5px;
+  display: inline-block;
+}
+.pull-right {
+  float: right !important;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+h1 {
+  font-size: 36px;
+  margin: 20px 0 10px 0;
+}
+.text-center {
+  text-align: center;
+}
+.btn {
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.btn-primary {
+  background: #337ab7;
+  color: #fff;
+  border-color: #2e6da4;
+}
+.center-block {
+  display: block;
+  margin: 0 auto;
+}
+.my-img {
+  float: left;
+  padding: 5px;
+}
+.container-fluid {
+  margin: 0 20px;
+}
+
+
+
+
+/**lg(Large)屏幕： w>=1200px**/
+@media screen and (min-width: 1200px){
+  .container {
+    width: 1170px;
+    margin: 0 auto;
+  }
+  .my-img {
+    width: 25%;
+  }
+}
+/**md(Medim)屏幕： 1200px>w>=992px**/
+@media screen and (min-width: 992px) and (max-width: 1199px){
+  .container {
+    width: 970px;
+    margin: 0 auto;
+  }
+  .my-img {
+    width: 25%;
+  }
+}
+/**sm(Small)屏幕： 992px>w>=768px**/
+@media screen and (min-width: 768px) and (max-width: 991px){
+  .container {
+    width: 750px;
+    margin: 0 auto;
+  }
+  .my-img {
+    width: 50%;
+  }
+}
+/**xs(ExtraSmall)屏幕： 768px>w**/
+@media screen and (max-width: 767px){
+  .my-img {
+    width: 100%;
+  }
+}

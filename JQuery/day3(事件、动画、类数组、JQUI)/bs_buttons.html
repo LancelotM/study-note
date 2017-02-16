@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <button>BTN1</button>
+    <button>BTN2</button>
+    <button>BTN3</button>
+    <button>BTN4</button>
+    <script src="js/jquery-1.11.3.js"></script> 
+    <script>
+    //jquery:
+      //用index:
+//      $("button").click(function(){
+//        var i=$("button").index(this);
+//        alert(`我是 ${i}`);//提示: 我是第i个
+//      });//问题: 每次单击都要遍历所有按钮
+      //为每个button分别绑定单击事件
+//      $("button").each(function(i){//外层函数
+//        //绑定事件时，就用闭包保护住当前i
+//        $(this).click(function(){//内层函数
+//          alert(`我是 ${i}`);//提示: 我是第i个
+//        });//优: 单击按钮时，不用再遍历所有button
+//      });
+    //*****原生js
+      //找到所有button,保存在btns中
+      var btns=
+        document.querySelectorAll("button")
+      //遍历btns
+      for(var i=0;i<btns.length;i++){
+        (function(i){//局部变量
+          //为当前btn添加单击事件
+          btns[i].addEventListener("click",
+            function(){alert(`我是 ${i}`);}
+          );
+        })(i);//将全局i赋值给匿名函数局部的i
+      }//i=4
+    </script>
+  </body>
+</html>

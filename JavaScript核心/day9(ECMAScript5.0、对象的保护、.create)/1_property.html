@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      "use strict";//对整段代码启用严格模式
+      var emp={id:1001,name:"eric",salary:10000};
+      var attrs=//获得对象中指定属性的四大特性
+       Object.getOwnPropertyDescriptor(emp,"id");
+      console.dir(attrs);
+      //id属性只读:
+      //修改对象中指定属性的特性: 
+//      Object.defineProperty(emp,"id",{
+//        writable:false,//只读
+//        configurable:false,//禁止修改其他特性
+//      });
+//      Object.defineProperty(emp,"id",{
+//        writable:true, configurable:true
+//      });//报错
+//      emp.id=1002;//报错
+//      delete emp.id;//报错
+//      console.dir(emp);
+      //salary为禁止遍历
+//      Object.defineProperty(emp,"salary",{
+//        enumerable:false,//禁止遍历
+//        configurable:false,//禁止修改其他特性
+//      });
+      //完整要求:
+        //id只读
+        //name禁止删除
+        //salary禁止遍历
+      Object.defineProperties(emp,{
+        id:{writable:false,configurable:false},
+        name:{configurable:false},
+        salary:{
+          enumerable:false,configurable:false,
+        }
+      });
+      for(var key in emp){//试图遍历salary
+        console.log(key+" : "+emp[key]);
+      }
+      console.log(emp.salary);//试图用.访问salary
+      console.dir(emp);
+      //emp.id=1002;//试图修改id
+      //delete emp.name;//试图删除name
+
+      //为emp对象添加一个新属性age
+//      Object.defineProperty(emp,"age",{
+//        value:25,
+//        //writable:false,
+//        //enumerable:false,
+//        //configurable:false
+//      });
+//      attrs=//获得对象中指定属性的四大特性
+//       Object.getOwnPropertyDescriptor(
+//        emp,"age"
+//       );
+//      console.dir(attrs);
+    </script>
+  </body>
+</html>

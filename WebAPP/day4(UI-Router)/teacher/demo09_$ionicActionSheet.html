@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+  <title></title>
+</head>
+<body ng-controller="myCtrl">
+
+<ion-header-bar>
+  <h1 class="title">header</h1>
+</ion-header-bar>
+
+<ion-content>
+  <p>Hello </p>
+  <button
+    ng-click="show()"
+    class="button button-calm">
+    showActionSheet
+  </button>
+</ion-content>
+
+<ion-footer-bar>
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+
+<script>
+  var app = angular.module('myApp', ['ionic']);
+  
+  app.controller('myCtrl',
+    ['$scope','$ionicActionSheet',
+      function ($scope,$ionicActionSheet) {
+
+        $scope.show = function () {
+//          通过以下服务的show方法去配置要显示窗口内容
+          $ionicActionSheet.show({
+            buttons:[
+              {text:'编辑'},
+              {text:'撤销'}
+            ],
+            buttonClicked: function (index) {
+              console.log("index is "+index);
+            },
+            destructiveText:'删除',
+            destructiveButtonClicked:function(){
+              console.log('执行一些删除动作');
+              return true;
+            },
+            titleText:'actionSheetTitle',
+            cancelText:'取消'
+          })
+        }
+
+      }
+    ]);
+  
+</script>
+</body>
+</html>

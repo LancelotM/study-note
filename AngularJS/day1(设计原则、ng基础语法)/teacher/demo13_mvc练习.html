@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--调用myModule模块并启动ng应用-->
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+  <!--调用myCtrl这个控制器-->
+  <div ng-controller="myCtrl">
+      <ul>
+        <li ng-repeat=" obj in dishList">
+          <img ng-src="img/{{obj.url}}" alt=""/>
+          <h1>{{obj.name}}</h1>
+          <p>{{obj.price}}</p>
+        </li>
+      </ul>
+      <button ng-click="loadMore()">点我加载更多</button>
+  </div>
+
+<script>
+  //声明模块
+  var app = angular.module('myModule',['ng']);
+
+  //声明控制器
+  app.controller('myCtrl', function ($scope) {
+  //初始化模型数据
+    $scope.dishList = [
+      {url:'1.jpg',name:'鱼香肉丝',price:80},
+      {url:'2.jpg',name:'米粉',price:20},
+      {url:'3.jpg',name:'面条',price:10},
+    ];
+
+    $scope.loadMore = function () {
+      $scope.dishList.push({url:'1.jpg',name:'鱼香肉丝2',price:70});
+    }
+
+  });
+</script>
+
+</body>
+</html>

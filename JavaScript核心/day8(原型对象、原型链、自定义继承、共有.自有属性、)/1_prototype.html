@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+    if(Array.prototype.indexOf===undefined)
+     Array.prototype.indexOf=function(val,fromi){
+       document.write("自定义的indexOf<br>");
+      !fromi&&(fromi=0);//如果fromi无效,就赋值为0
+      //从fromi开始遍历当前数组
+      for(;fromi<this.length;fromi++){
+        //如果当前数组的当前元素===val,就返回i
+        if(this[fromi]===val) return fromi;  
+      }//(遍历结束)
+      return -1;//返回-1
+     }
+
+
+    var arr=[1,2,3,2,1];
+           //0 1 2 3 4
+    document.write(arr.indexOf(2)+"<br>");//1
+    document.write(arr.indexOf(2,2)+"<br>");//3
+    document.write(arr.indexOf(2,4)+"<br>");//-1
+    document.write(arr.indexOf(4)+"<br>");//-1
+    </script>
+  </body>
+</html>

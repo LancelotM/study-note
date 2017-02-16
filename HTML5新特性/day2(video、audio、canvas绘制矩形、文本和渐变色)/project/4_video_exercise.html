@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .container {
+      position: relative;
+      text-align: center;
+    }
+    #btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -32px;
+      margin-top: -32px;
+      opacity: .9;
+      cursor: pointer;
+    }
+    #ad {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -200px;
+      margin-top: -150px;
+    }
+  </style>
+</head>
+<body>
+  <h3>视频播放</h3>
+  <div class="container">
+    <video src="res/birds.mp4" id="v4"></video>
+    <img src="img/2.jpg" id="ad">
+    <img src="img/play.png" id="btn">
+  </div>
+  <script>
+    v4.volume = 0.1;
+    /**为播放按钮绑定事件监听**/
+    btn.onclick = function(){
+      if(v4.paused){
+        v4.play();
+        btn.src = 'img/pause.png';
+      }else {
+        v4.pause();
+        btn.src = 'img/play.png';
+      }
+    }
+
+    /**为父容器绑定鼠标移出事件**/
+    var container = document.querySelector('.container');
+    //container.onmouseover
+    container.onmouseenter = function(){
+      btn.style.display = 'block';
+    }
+    container.onmouseleave= function(){
+      btn.style.display = 'none';
+    }
+
+    /**监视视频的播放和暂停，修改广告图片的图片**/
+    v4.onplay = function(){ //不论何种原因
+      ad.style.display = 'none';
+    }
+    v4.onpause = function(){ //不论何种原因
+      ad.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+1、***查找:
+	按选择器查找
+		1、只找一个
+			var elem=parent.querySelector("selector");
+		2、找多个
+			var elems=parent.querySelectorAll("selector");
+		返回值：非动态集合(non-live collection)
+				--实际存储完整数据，反复访问，不用查找DOM树
+			优点：不会造成反复查找
+	笔试题：getElementsXXXX vs querySelector
+		1、返回值
+			getElement 返回动态集合：
+				优：首次查找效率高
+				缺：可能造成反复查找DOM树
+			querySelector 返回非动态集合：
+				优：首次查找效率低
+				缺：包含完整属性，无需反复查找DOM树
+		2、易用性
+			getElement 每次只能查找一种结果，无法设置查找条件，更繁琐
+			querySelector 更灵活，且更简单
+		总结：jQuery中：
+			如果一次查找就能找到元素时，首先getElements
+			如果查找条件复杂时，就用querySelector
+2、修改：
+	1、内容
+		1、.innerHTML：获取或设置元素开始标签到结束标签之间原始的HTML代码片段
+			只能获得封闭标签的内容
+			表单元素的值只能用.value
+		2、.textContent(有兼容性问题，IE8不兼容):获取或设置元素开始标签到结束标签之间的纯文本内容
+			做了2件事情	
+				1、去掉了html标签
+				2、将转义字符转换为原文
+			场合：如果希望去掉内容汇总的标签，仅仅获取文本内容
+	2、属性
+		1、核心DOM 万能
+			1、获取属性：
+				1、获得属性节点对象（了解）
+					var attrNode=elem.attributes[i/属性名];
+					attrNode.value;
+				2、直接获得属性值
+					var value=elem.getAttribute("属性名");
+			2、设置属性
+				elem.setAttribute("属性名",新值);
+			3、判断是否包含指定属性
+				var bool=elem.hasAttribute("属性名");
+			4、移除属性
+				elem.removeAttribute("属性名");
+		2、htmlDOM 简化
+			elem.属性名
+			强调：html中的class属性和ES中的class冲突
+			ES中的class改名为className
+		
+		3、特例：disabled selected checked
+
+			不能用核心DOM操作！只能用htmlDOM打点操作
+			attribute vs property
+			attribute	指出现在开始标签中的属性
+			property	仅保存在内存中的对象中的属性
+				核心DOM只能操作出现在页面上的attribute属性
+					无法操作未出现在页面上的内存中的property操作
+				htmlDOM可以访问内存中的property属性
+		4、自定义属性：只能用核心DOM访问
+			HTML5：————兼容问题
+				所有自定义属性：属性名必须：data-属性名
+						访问时	elem.dataset.属性名
+			场合：
+				1、在客户端网页中临时缓存部分业务数据
+				2、代替id、class作为操作元素的条件
+	3、样式（今后修改一个元素的样式都是先定义class,在按需要引用class）
+		1、内联:不可重用，一次使用，优先级高
+			elem.style.css属性名
+			强调：所有css属性都要去横线变驼峰
+			问题1：只能获得/设置内联样式
+					无法获取应用在元素上的完整样式
+			解决：
+				如果是修改一个元素的样式首选:elem.style.css属性名=值
+					因为：优先级高，而且不影响其他元素
+				如果是获取一个元素的样式不要用style
+					用getComputedStyle(elem).css属性名=值（只读）
+			问题2：只能修改一个样式
+				如果修改多个CSS属性，代码繁琐
+			解决：今后只要操作一个元素的样式，都用class属性批量操作
+			特例：精确控制动画效果时，需要操作单个属性
+		2、内部/外部样式表：可重复使用
+			
+*********************************************************************
+JS写过渡动画
+	在CSS中添加两个class 添加 width(height)、opacity 属性
+		起始
+			用在HTML中，当做常驻class 添加transition、overflow 属性
+		结束

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <ul id="ulNames"><li>john</li>
+<li>smith</li><li>rose</li>
+      <li>eric</li> <li>tom</li>
+      <li>scott</li>
+    </ul>
+    <script>
+      //删除ulNames开头的空字符+<li>或结尾的</li>+空字符,再按</li>+空字符+<li>切割,按字符串排序后，结果保存在names中;
+      //链式操作:
+      var names=
+        ulNames.innerHTML//原始html
+          .replace(/^\s*<li>|<\/li>\s*$/g,"")
+          .split(/<\/li>\s*<li>/)//姓名数组
+          .sort();//排好序的数组
+      //设置ulNames的内容为:
+       //<li>+names用</li><li>拼接的结果+</li>
+      ulNames.innerHTML="<li>"+
+        names.join("</li><li>")
+      +"</li>";
+
+      var str='zhangdong@tedu.cn';
+      var subs=str.split(/@/);
+            //[zhangdong, tedu.cn]
+      var uname=subs[0];
+      var domain=subs[1];
+      console.log("用户名: "+uname);
+      console.log("域名: "+domain);
+
+      var pid="130102198312262151";
+      var chars=pid.split("");
+      console.log(String(chars));
+    </script>
+  </body>
+</html>

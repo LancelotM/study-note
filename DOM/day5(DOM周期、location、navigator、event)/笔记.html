@@ -1,0 +1,126 @@
+1、*****定时器
+	动画
+		总结：
+			获取长度属性值时：获得都是带单位的字符串，不能直接计算都要先去单位(parseFloat)，再计算
+			设置长度属性值时：在数值结尾拼单位(px)
+2、screen
+	获得屏幕的大小：
+		完整大小：screen.width/height
+		场合：用屏幕大小鉴别设备种类：
+			wide desktop	-	lg:1200+
+			pc				-	md:992~1200
+			pad				-	sm:768~992
+			phone			-	xs:480~768
+		可用大小:screen.availWidth/availHeight
+			
+3、history:保存当前窗口打开后成功访问过的url的历史记录栈
+	前进:history.go(1)
+	后退:history.go(-1)
+	刷新:history.go(0)
+
+4、***location：封装当前窗口正在打开的URL对象
+	属性：
+		.href:获取或设置当前网页打开的URL
+			场合：在当前页面打开新连接时
+				简写:location=URL
+		.protocol:协议
+		.host:主机名+端口号
+		.hostname:主机名
+		.prot:端口号
+		.pathname:网页相对路径
+		.hash:#锚点
+		.search:?查询字符串
+			笔试题：.search->参数组成的对象:
+				？uname=yu&upwd=123456
+	方法：
+		location.assgin("URL")
+		location.reload(false(默认)/true)：重新从服务器加载URL
+			默认false,优先从服务器缓存中获取文件
+			如果改成ture，强制从服务器硬盘获取新文件
+		location.replace(url):在当前窗口打开新URL，禁止后退
+5、****navigator:封装浏览器配置信息的对象
+	navigator.cookieEnabled:是否启用cookie
+		cookie:在客户端本地持久存储一个数据的文件
+			如果禁用，无法保存搜索关键词或记住密码
+	
+	navigator.plugins:封装所有插件对象的集合
+
+	判断浏览器的名称和版本
+	
+	navigator.userAgent:保存浏览器内核，名称，版本号的字符串
+6、*****event：浏览器自己触发的或用户手动触发的以页面（元素）状态的改变
+	浏览器在事件发生时，都是自动调用事件处理函数
+	事件处理函数：当节点发生事件时，自动调用的函数
+					其实就是节点的onXXX属性
+		事件处理函数的值，一般都一个函数对象
+		事件发生时：节点对象.onXXX()；
+			事件处理函数中的this:.前的节点对象
+	场合：希望一个元素/节点，能够响应某个事件时
+			在发生某个事件时，能自动执行事件处理函数
+	如何:3种方式
+		1、在HTML元素开始标签中
+			HTML:	<ANY on事件名="js语句(this)"></ANY>
+			js:		function 函数(ANY){}
+				问题：
+					1、无法给动态生成的元素绑定事件
+					2、事件绑定分散在网页各个角落，不便于维护
+		2、在JS中绑定事件：2种
+			1、ANY.onXXX=function(){
+				this->ANY
+			}
+			事件发生时，自动执行:ANY.onXXX();
+			问题：每个ANY的一个时间处理函数，只能绑定一个函数对象
+			解决：
+			2、为同一时间添加和移除多个事件
+				ANY.addEventListener("事件名",fn);				
+				ANY.removeEventListener("事件名",fn);
+
+				IE8兼容性:
+					ANY.attachEvent("on事件名",fn);
+
+				其实：ANY.addEventListener("事件名",fn[,capture(值boolean)]);
+					capture：是否在捕获阶段就提前触发
+						默认false:所有事件处理函数都在冒泡阶段反向触发
+						改为true：在捕获阶段提前触发
+				
+				强调：
+					如果只是添加事件监听，不需要移除的话，可用匿名函数
+					如果可能移除某个事件，必须定义函数名
+***事件周期
+	DOM：3阶段
+		1、捕获(capture):由外向内依次记录各级元素绑定的相同事件处理函数
+		2、目标出发：执行实际触发事件的元素上的处理函数
+		3、冒泡：由目标元素向外，触发各级父级元素绑定的相同事件处理函数
+			目标元素(target):实际触发事件的元素
+		
+		IE8只有2个阶段没有捕获阶段
+
+		事件对象:event:在事件发生时，自动创建的封装所有事件信息的对象
+			event对象提供了操控事件的方法：阻止事件，取消冒泡...
+		场合：
+			1、为了获得事件相关的数据
+			2、操控事件
+		如何：
+			获取：DOM标准：事件对象，默认作为事件处理函数的第一个参数传入
+		
+		IE8：事件对象自动保存在全局变量event中
+		解决兼容性：
+			function eventHandler(e){
+				e=e||window.event;
+			}
+
+		取消冒泡:e.stopPropagation();
+
+		利用冒泡:	
+			优化：尽量少的添加EventListener
+				为什么：每个EventListener都是一个对象
+						浏览器触发事件时，会轮询每个EventListener对象，添加的EventListener越多，页面响应速度越低
+				解决：当多个平级子元素绑定相同的时间处理函数时
+						其实，只要在父元素绑定一次，所有子元素共用即可！
+					难题1：如何获得目标元素：
+						this->父元素
+						DOM:e.target->目标元素
+						IE8:e.srcElement
+							兼容:var target=e.target||e.srcElement;
+					难题2：鉴别目标函数是否想要触发事件
+						判断目标元素的内容

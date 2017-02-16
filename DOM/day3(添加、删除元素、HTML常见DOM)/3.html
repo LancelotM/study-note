@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>联动菜单</title>
+<meta charset="utf-8" />
+<script>
+	/*使用 HTML DOM 的方式实现联动菜单*/
+	var categories=[
+{"id":10,"name":'男装',"children":[
+	{"id":101,"name":'正装'},
+	{"id":102,"name":'T恤'},
+	{"id":103,"name":'裤衩'}
+]},
+{"id":20,"name":'女装',"children":[
+	{"id":201,"name":'短裙'},
+	{"id":202,"name":'连衣裙'},
+	{"id":203,"name":'裤子',"children":[
+		{"id":2031,"name":'长裤'},
+		{"id":2031,"name":'九分裤'},
+		{"id":2031,"name":'七分裤'}
+	]},
+]},
+{"id":30,"name":'童装',"children":[
+	{"id":301,"name":'帽子'},
+	{"id":302,"name":'套装',"children":[
+		{"id":3021,"name":"0-3岁"},
+		{"id":3021,"name":"3-6岁"},
+		{"id":3021,"name":"6-9岁"},
+		{"id":3021,"name":"9-12岁"}
+	]},
+	{"id":303,"name":'手套'}
+]}
+];
+</script>
+</head>
+<body>
+	<div id="category"></div>
+  <script>
+    function createSelect(arr){
+      //创建select
+      var sel=document.createElement("select");
+      //向select中添加一个新option,内容为-请选择-,值为-1
+      sel.add(new Option("-请选择-"));
+      //遍历arr
+      for(var i=0;i<arr.length;i++){
+        //向select中添加一个新option,内容为当前元素的name属性,值为当前元素的id
+        sel.add(
+          new Option(arr[i].name,arr[i].id)
+        );
+      }//(遍历结束)
+      //为sel绑定onchange事件处理函数
+      sel.onchange=function(){//this->sel
+        //获得当前select的父元素parent
+        var parent=this.parentNode;
+        //反复: 只要当前select不是parent的lastChild
+        while(this!=parent.lastChild){
+          //删除parent下的最后一个子元素
+          parent.removeChild(parent.lastChild);
+        }
+        
+        //获得当前sel中选中项的下标-1后保存在i
+        var i=this.selectedIndex-1;
+        if(i>=0){//只有i>=0
+          //获取arr中i位置的分类对象cate
+          var cate=arr[i];
+          //用cate的children数组创建下一个select 
+          if(cate.children)//如果cate有children
+            createSelect(cate.children);
+        }
+      }
+      //将select追加到id为category的div中
+      document.getElementById("category")
+              .appendChild(sel);
+    }
+    createSelect(categories);
+  </script>
+</body>
+</html>

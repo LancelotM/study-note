@@ -1,0 +1,137 @@
+一、ng内置的服务（$http,$interval,$timeout...）
+
+①双向数据绑定的工作原理
+<p>{{num}}</p>===>ng框架自动添加一个监听（watch），和$scope.$watch是一样的，只要是数据发生了变化，视图就会更新。？？？
+如何知道数据是否发生了变化？
+ng会周期性的运行一个函数来检查$scope的模型数据是否发生变化，称之为$digest===>$scope.$digest()
+
+什么时候才会调用$digest()?
+ng指令，很少直接手工调用$digest(),都是$scope.$apply();==>$rootScope.$digest()
+
+setInterval是原生js的功能，本身就是一个循环，需要我们手工调用$scope.
+
+②$interval $timeout
+
+var t = $interval(function(){},100);
+$timeout(function(){},100);
+
+$interval.cancel(t);
+
+定时器练习：
+使用周期性定时器来实现一个图片轮播，同时实现一个自增的计数器，当计数器大于30时自动停止。
+
+③$http
+AJAX调用：$http服务向服务器发起AJAX请求，异步的获取服务器端返回的数据，声明为模型数据，在视图中展现出来。
+
+$http.get('url').success(function(data){....});
+$http.post('url',data).success(function(data){..})
+
+如果要发起post请求，必须设置头信息，设置的方式：
+$http.defaults.headers.post = {'Content-Type':'application/x-www-form-urlencoded'};
+
+
+练习：$http发起get请求，编写一个php文件，返回json数组。
+显示在table中。
+分析：apache服务跑起来，将工程放在c:\xampp\htdocs的目录中。
+第一步:编写php文件，在浏览器中去访问该文件能否拿到数据
+第二步：$http发起get请求，拿到数据
+第三步：将数据显示在table中。
+
+
+二、自定义服务
+
+无论是哪种方式创建的服务，和ng内置的服务使用的方式都是一致：注入进来，直接拿来用
+
+1、factory方法
+
+app.factory('服务名称',function(){
+	return {
+	}
+})
+
+2、service方法
+
+app.service('服务名称',function(){
+	
+})
+
+3、constant、value
+创建的服务返回是变量
+app.constant('服务名称',value) ==> 创建配置数据
+app.value('服务名称',value) ==》创建对象
+
+常量服务如果注入到控制器之后，可以通过angular.extend方法进行重置
+
+
+练习：使用service方法 创建一个服务，在服务中有两个方法，方法1中，启动一个定时器 每隔1s打印一句话，方法2：结束定时器；放置2个按钮，点击时分别调用服务中的方法1、方法2，
+
+
+三、依赖注入
+
+1、文件压缩
+使用YUICompresspor来完成文件的压缩，使用方式有2种：
+①直接通过命令行
+
+②借助webStorm来配置
+File--》Settings-->tools-->file watchers--》点击右上角的+号--》选中YUICOMPRESSOR-JS，设置program为jar包。
+
+文件压缩的作用：
+①删除所有的注释
+②删除空白、没有语义的字符
+③简化变量名、函数名、形参名--》混淆
+
+2、依赖注入
+每个angularjs的应用，注入器负责查找和创建依赖的服务，注入器的本质是服务的定位器，快速定位到应用需要注入的各种服务，在定位服务的过程当中，需要提供注入的标记，根据标记的不同，划分为3大类：
+①推断式依赖注入（猜测）
+这种方法不需要关心注入服务的顺序，ng会自动处理，根据参数列表注入服务，如果参数一旦经过混淆或者压缩，有问题。
+
+只能处理原始的代码
+
+②标记式依赖注入
+直接调用$inject属性来完成标记式的注入声明，该属性是一个字符型的数组，由于它是数组，所以有引入的先后顺序的。
+
+③行内式依赖注入（内联）
+在构建一个ng对象时，允许开发人员将一个字符型数组作为对象的参数，而不仅仅是一个函数；在这个数组中，除最后一个元素必须是函数体外，其余都是注入的服务名称，而且顺序保持一致。
+
+建议：使用第三种依赖注入的方式：行内式依赖注入。
+
+练习：要求采用行内式依赖注入，创建一个服务，服务中有一个方法实现求和 add:function(arg1,arg2)
+视图：两个input标签，一个按钮（调用服务的add方法将求和的结果弹窗显示出来）。
+
+
+3、注入器（$injector）
+
+定位和查找服务的。
+
+has --》查找服务是否存在
+get --》得到服务的实例
+
+练习：在案例基础之上，放置一个按钮，点击按钮时，通过get拿到实例并调用print方法（angular.injector-->$injector 行内式依赖注入）
+
+
+每日一练：
+实现一个购物车：要求从php服务器获取初始化的数据，通过$http.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+1、自定义指令
+	angular.module('myModule',['ng'])
+		.directive('指令名',function(){
+			return{
+				restrict(阻止):'EACM'
+				E-->Element 元素
+				A-->Attribute 属性
+				C-->Class
+				M-->Comment 注释(在指令中添加一个属性replace:true)
+			}
+		})
+	注意：
+		1、驼峰式的命名
+		2、前缀一般是公司或项目的简写,后缀一般是指令的功能
+		3、使用自定义指令ex
+			myDirective ==》 my-directive
+			在第二个参数 指定一个方法,在方法中返回一个对象设置指令,对象中template,restrict,replace,scope
+	总结：如果要参数的传递,需要在创建指令的时候,加上scope,同时指定对应的属性名(testName),在使用指令的时候,需要加上对应的属性(test-name='')
+***2、双向数据绑定 ———— 重点
+	1、方向1的绑定( Model 数据绑定到 View )
+		实现方法：
+			ng-bing='num'
+		相比DOM操作：先去查找元素,再去设置元素,只需要把model数据绑定视图上,数据改,视图就会更新
+	2、方向2的绑定( View 数据绑定到 Model )
+		实现方式只有一种：ng-model
+		方法:$scope.$watch('模型变量名',function(){})
+3、过滤器(filter)
+	过滤器是在表达式中,实现对表达式结果的筛选、过滤、格式化,达到更好的表现效果
+	语法：
+		{{表达式|过滤器:'参数'}}
+		|currency:'显示的货币(如¥/€)' //货币(默认$)
+		|date:(参数详情见手册) //日期
+		|uppercase //大写
+		|lowercase //小写
+		|orderBy:'排序的对象':'是否倒序' //排序
+		|limitTo:显示的个数 //限制字符串或数组显示的数量
+		|number:显示小数点后的几位 //格式化数字到文本,如果输入不是一个数字，返回空字符串
+4、函数
+	forEach
+		angular.forEach('数组或对象',function(value,key){}) //遍历
+	toJson(序列化)
+		序列化：将一个json对象转换为json格式的字符串
+		angular.toJson(json对象)
+	fromJson(反序列化)
+		反序列化：将一个json格式的字符串转换为json格式的对象
+		angular.fromJson(json字符串)
+5、服务
+	在ng中 服务 是一种单例对象,所谓单例,服务在每个应用中只会被实例化一次
+	功能：为应用提供数据和对象
+	2大类
+		1、内置的服务
+			在控制器中,使用ng的内置服务,需要在控制器的回调函数中,
+			1、将对应的服务给注入进来
+			2、使用服务所提供的数据和对象
+				.controller('myCtrl',function($scope,$location){
+					var url=$location.absUrl();
+				})
+		***2、控制器和作用范围 ———— 重点
+			$scope与$rootScope：
+				$scope 是 $rootScope 的子作用域控制对象,$rootScope的id为1,其他的为2,3...
+				不同的控制之间,$scope是隔离的,如果要共享数据,可以借助$rootScope来实现
+				如果父作用域对象想要调用子作用域对象的 变量 或 方法,ng提供了2个方法：
+					1、$broadcast 将事件从父亲传递给子级
+						$scope.$broadcast(eventName,data)
+					2、$emit 将事件从子级传递给父级
+						$scope.2、$emit(eventName,data)
+				接收:
+					$scope.$on(eventName,function(even,data){})

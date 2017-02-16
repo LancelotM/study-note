@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style type="text/css">
+		.dropdown-menu{
+		list-style:none;
+		padding:0;
+		margin:0;
+		border:1px solid #aaa;
+		box-shadow:0 0 6px #aaa;
+		position:absolute;
+		}
+		.fade{
+			opacity:0;
+			transition:all 2s linear;
+		}
+		.in{opacity:1;}
+		.dropdown{
+			position:relative;
+		}
+		a{
+			text-decoration:none;
+			color:#000;
+		}
+		.dropdown-menu>li{
+			padding:6px 6px 6px 6px;
+		}
+	</style>
+</head>
+<body>
+	<div class="dropdown">
+		<a href="#" data-trigger="dropdown">Dropdown</a>
+		<ul class="dropdown-menu fade">
+			<li><a>Action</a></li>
+			<li><a>Another Action</a></li>
+			<li><a>Something else here</a></li>
+			<li><a><hr></a></li>
+			<li><a>Separated link</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+	<script type="text/javascript">
+		$('[data-trigger="dropdown"]').click(function(e){
+			e.preventDefault();
+			$(this).next().toggleClass("in");
+
+			//$(this).next().hasClass("in")?
+			//$(this).next().removeClass("in"):
+			//$(this).next().addClass("in");
+
+			//$(this).next().css({
+				//display:($(this).next().css("display")=="none"?"block":"none"),
+			//});
+		});
+	</script>
+</body>
+</html>

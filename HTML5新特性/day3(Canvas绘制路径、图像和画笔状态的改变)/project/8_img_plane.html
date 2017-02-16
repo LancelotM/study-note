@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制路径——随鼠标移动的飞机</h3>
+  <canvas id="c8" width="600" height="400"></canvas>
+  <script>
+    var ctx = c8.getContext('2d');
+
+    var p3 = new Image();
+    p3.src = "img/p3.png";
+    p3.onload = function(){
+      //为Canvas元素绑定事件监听
+      c8.onmousemove = function(e){
+        var x = e.offsetX; //事件相对于事件源的坐标
+        var y = e.offsetY;
+        //console.log(x+'-'+y);
+        ctx.clearRect(0,0, 600, 400);
+        ctx.drawImage(p3, x-p3.width/2, y-p3.height/2);
+      }
+    }
+
+
+  </script>
+</body>
+</html>

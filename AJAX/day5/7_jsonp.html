@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h3>使用JSONP解决浏览器XHR跨域请求限制</h3>
+    <button id="bt1">异步请求</button>
+    
+    
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('#bt1').click(function(){
+      //使用一个异步请求的SCRIPT标签代替了XHR
+      var s = document.createElement('script');
+      s.src = "http://localhost/AJAX_DAY08/7_jsonp.php";
+      s.async = true; //浏览器请求该script内容时不会阻塞当前页面中的内容
+      document.head.appendChild(s);
+      
+    });
+
+
+    function doResponse(data){
+      console.log('客户端开始处理服务器返回的数据');
+      console.log(data);
+    }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <button>异步请求服务器端的JSON响应</button>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('button').click(function(){
+      //发起异步请求
+      $.getJSON('16_getJSON.php', function(obj){
+        console.log('开始处理响应数据');
+        console.log(typeof obj);
+        console.log(obj);
+      })
+      /*$.get('16_getJSON.php', function(obj){
+        console.log('开始处理响应数据');
+        console.log(typeof obj);
+        console.log(obj);
+      })*/
+    })
+
+    </script>
+  </body>
+</html>

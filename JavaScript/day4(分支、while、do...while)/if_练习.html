@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function date(){
+			var year=parseInt(prompt("输入年：")),month=parseInt(prompt("输入月：")),day=parseInt(prompt("输入日："));
+			var totalDay=0;
+			if(month==1){
+				totalDay=day;
+			}else if(month==2){
+				totalDay=day+31;
+			}else if(month==3){
+					totalDay=day+31+28;	
+			}else if(month==4){
+					totalDay=day+31+28+31;	
+			}else if(month==5){
+					totalDay=day+31+28+31+30;
+			}else if(month==6){
+					totalDay=day+31+28+31+30+31;	
+			}else if(month==7){
+					totalDay=day+31+28+31+30+31+30;	
+			}else if(month==8){
+					totalDay=day+31+28+31+30+31+30+31;
+			}else if(month==9){
+					totalDay=day+31+28+31+30+31+30+31+31;
+			}else if(month==10){
+					totalDay=day+31+28+31+30+31+30+31+31+30;	
+			}else if(month==11){s
+					totalDay=day+31+28+31+30+31+30+31+31+30+31;	
+			}else if(month==12){
+					totalDay=day+31+28+31+30+31+30+31+31+30+31+30;
+					
+			}
+			if(month!=1&&month!=2){
+					total=total;
+				if(year%4==0&&year%100!=0||year%400==0){
+					totalDay+=1;
+				}
+			}
+			console.log(year+"年"+month+"月"+day+"日是"+year+"年的第"+totalDay+"天");	
+			}
+	</script>	
+	<button onclick="date();">测试该日是这一年的第多少天</button>
+</body>
+</html>

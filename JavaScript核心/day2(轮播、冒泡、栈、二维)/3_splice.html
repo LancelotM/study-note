@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var imgs=[0,1,2,3,4];
+      //删除开头的2张图片,拼到结尾
+      imgs=imgs.concat(imgs.splice(0,2));
+      //imgs:[2,3,4]   deletes:[0,1]
+      console.log(String(imgs));
+      //imgs:[2,3,4,0,1]
+      //删除结尾的2张图片,拼到开头
+      imgs=imgs.splice(-2).concat(imgs);
+      //deletes[0,1]
+      console.log(String(imgs));
+      //imgs:[0,1,2,3,4]
+            //0 1 2 3 4
+      imgs.splice(3,0,22,33,[66,88],99);
+      //imgs:[0,1,2,22,33,[66,88],99,3,4]
+      console.dir(imgs);
+      imgs.splice(3,4,100,200,300);
+      console.dir(imgs);
+    </script>
+  </body>
+</html>

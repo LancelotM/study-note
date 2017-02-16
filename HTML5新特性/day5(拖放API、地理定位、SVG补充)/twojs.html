@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script src="js/two.js"></script>
+  <script>
+    var params={width:800,height:800};
+    var two=new Two(params).appendTo(container);
+
+    var circleBigLine=two.makeCircle(two.width/2,two.height/2,300);
+    circleBigLine.stroke='#999';
+    var circleBig=two.makeCircle(two.width/2,two.height/2,150);
+    circleBig.fill='#e4393c';
+
+    var circleSmallLine=two.makeCircle(0,-300,100);
+    circleSmallLine.stroke='#999';
+    var circleSmall=two.makeCircle(0,-300,50);
+    circleSmall.fill='#00f';
+    var groupBig=two.makeGroup(circleSmallLine,circleSmall);
+    groupBig.translation.set(two.width/2,two.height/2);
+    console.log(groupBig);
+
+
+    var circleSuperSmall=two.makeCircle(400,0,30);
+    circleSmall.fill='#000';
+    var groupSmall=two.makeGroup(circleSuperSmall);
+    //groupSmall.transaction.set(two.width/2+pos.x,two.height/2+pos.y)
+
+
+
+
+    function getPositions(a,b){
+      return{
+        x:Math.cos(a*Math.PI/180)*b,
+        y:Math.sin(a*Math.PI/180)*b
+      }
+    }
+    var deg=0;
+    two.bind('update', function() {
+      deg+=0.5;
+      var pos=getPositions(deg,100);
+      console.log(pos)
+      groupBig.rotation=deg*Math.PI/180;
+      //groupSmall.rotation=deg*Math.PI/180;
+    }).play();
+
+  </script>
+</body>
+</html>

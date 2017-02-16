@@ -1,0 +1,25 @@
+<h1>欢迎登录邮箱</h1>
+
+
+<div class="row">
+
+  <div class="col col-33">
+    <ion-list>
+      <ion-item
+        ng-click="load()"
+        ui-sref="mail.inbox">收件箱
+      </ion-item>
+
+      <ion-item
+        ng-click="load()"
+        ui-sref="mail.outbox">发件箱
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="col">
+    <!-- 指定盛放代码片段的容器-->
+    <div ui-view></div>
+  </div>
+
+</div>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      //将num按d位小数四舍五入
+      function round(num,d){
+        num*=Math.pow(10,d);
+        num=Math.round(num);
+        return num/Math.pow(10,d);
+      }
+      console.log(
+        round(345.678,2),
+        round(345.678,0),
+        round(345.678,-1)
+      );
+    </script>
+  </body>
+</html>

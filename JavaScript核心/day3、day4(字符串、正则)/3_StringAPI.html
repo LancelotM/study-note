@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+    /*
+      var code="Ea4T";
+      //反复:输入验证码，如果输入不正确
+      while(prompt("输入验证码:"+code)
+             .toLowerCase()!=code.toLowerCase()){
+        alert("验证码错误")//提示:
+      }//(循环结束)
+      document.write("验证通过");
+    */
+      function encode(msg){
+        //遍历msg中每个字，同时声明空字符串code
+        for(var i=0,code="";i<msg.length;i++){
+          //获得msg中当前字的unicode号，拼接到code上
+          var unicode=msg.charCodeAt(i);
+          code+=//unicode+100000,选取1位置后内容;
+                (unicode+100000+"").slice(1);
+        }//(遍历结束)/
+        return code;
+      }
+      //测试: 
+      var msg="今晚308,w84u";
+      var code=encode(msg);
+      console.log(code);
+
+      function decode(code){
+        //从0开始，每5个字符遍历一次code，同时声明空字符串msg
+        for(var i=0,msg="";i<code.length;i+=5){
+          //选取code中i位置开始的5个字符,转为字符原文,拼接到msg上
+          msg+=String.fromCharCode(
+            code.slice(i,i+5)
+          );
+        }
+        return msg;
+      }
+      var msg2=decode(code);
+      console.log(msg2);
+    </script>
+  </body>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      if(Function.prototype.bind===undefined)
+        Function.prototype.bind=
+          function(obj/*,args*/){
+        //args1[obj,10000,3000]
+            //fun->this->calc
+            var fun=this;
+            var args1=//[10000,3000]
+              [].slice.call(arguments,1);
+              //arguments.slice(1)
+            return function(){//this->window
+                //args2[4000,5000]
+              var args2=[].slice.call(arguments);
+              //fun->calc
+              fun.apply(obj,args1.concat(args2));
+              //obj.fun();
+            }
+          }
+
+      function calc(base,subsidy,bonus1,bonus2)
+      {//计算器
+        document.write(this.name+"的总工资是:"
+          +(base+subsidy+bonus1+bonus2)+"<br>"
+        );
+      }
+      //this指谁，不能看定义在哪儿，必须看如何调用
+      var lilei={name:"Li Lei"};
+      var hmm={name:"Han Meimei"};
+    //calc.call(lilei,10000,5000);//lilei临时借用
+    //calc.call(hmm,9000,9000);//hmm临时借用
+      //lilei买了一个新的专属于自己的计算器
+      var lilei_calc=calc.bind(lilei,10000,3000);
+      //lilei_calc:function(){ 
+        //calc->this->lilei; calc->base->10000
+      //}
+      //lilei使用自己的计算器
+      lilei_calc(4000,5000);
+      lilei_calc(2000,3000);
+    </script>
+  </body>
+</html>

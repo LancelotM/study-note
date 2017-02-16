@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		if(Array.forEach===undefined)
+			Array.forEach=function(callback){
+				for(var i=0;i<this.length;i++){
+					if(this[i]!=undefined)
+					callback(this.i,i,this);
+				}
+			}
+		var arr=[1,2,3,4,5];
+		arr.forEach(function(val,i,arr){
+			arr[i]*=2;
+		});
+		document.write(arr);
+	</script>	
+</body>
+</html>

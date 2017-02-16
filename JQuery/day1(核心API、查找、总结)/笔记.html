@@ -1,0 +1,136 @@
+1、什么是JQuery
+	JQuery是快速的，简洁的第三方JavaScript库
+	为什么用JQuery:
+		1、DOM操作的终极简化
+			DOM操作的问题：
+				核心DOM:万能，繁琐
+				HTML DOM：简洁，不是万能
+			JQuery在DOM操作的4个方面提供了终极的简化
+				1、查找元素，操作元素（添加，修改，删除(内容，属性，样式)）
+				2、事件处理
+				3、动画效果（了解）
+				4、AJAX操作
+		2、屏蔽了绝大多数浏览器兼容性问题
+			只要JQuery让我们用的，都是兼容的
+	场合：今后绝大多数公司的项目和开发都是基于JQuery进行开发的
+	如何：
+		1、关于版本
+			1.x:兼容旧浏览器
+				未压缩：JQuery-1.11.3.js————可读性好，便于学习
+				压缩版：JQuery-1.11.3.min.js————生产环境使用
+					三方面：
+						1、去掉注释
+						2、去掉换行和空字符
+						3、极简化变量名
+			2.x:不再兼容旧浏览器
+		2、学习使用手册
+2、JQuery核心
+	1、如何使用
+		1、下载JQuery.js保存在项目js文件夹下
+		2、在页码用 引用JQuery.js文件
+			向window中添加JQuery对象
+				JQuery对象时封装了没有简化版DOM操作API的全局对象
+				window.jQuery=window.$=jQuery
+		3、使用JQuery简化版API执行DOM操作
+			$("选择器")查找元素
+				$底层其实使用的还是:
+					getElementById
+					getElementByTagName,ClassName,...
+					querySelectorAll
+				问题：使用DOM API返回的结果不能使用jQuery简化版
+					$的返回值：jQuery结果集对象————类数组对象
+						只有$返回的结果，才能使用简化版API
+						普通DOM API返回的是标准DOM对象，不能使用简化API
+			强调：jQuery API和DOM API 不能混用，也不通用
+			
+			笔试题：DOM对象 VS jQuery对象
+				DOM对象：W3C的DOM标准规定，浏览器厂商已经实现的现成的对象，能使用DOM API————繁琐
+				jQuery对象：由jQuery库创建的，由第三方实现的
+					本质：一个封装找到的一组DOM对象类数组对象————集合
+						并在父对象中提供了简化版API
+			
+			前提：要想jQuery简化版API，必须先获得jQuery结果集合对象
+			如何：
+				1、$("选择器")直接查找对象，返回的就是
+				2、如果已经获得一个DOM对象
+					用$(DOM对象)，创建一个空的结果集合对象，并将DOM对象放入其中
+	2、核心API
+		1、$(...).size() => $(...).length 找到的元素个数
+		2、$(...).get(i) => $(...)[i] 从jQuery结果中取出DOM对象
+			场合：有jQuery不能实现的功能
+					就要将DOM对象从jQuery结果中取出
+					继续使用DOM API
+		3、$(...).index(elem/$("选择器")) =>返回查找的元素在整个结果集中的位置
+	3、查找：
+		按选择器查找：jQuery支持所有CSS选择器
+						只要jQuery允许使用的CSS选择器，都屏蔽了兼容性问题
+		包括：
+			1、基本选择器：同CSS
+				#id .class element * selector1,selector2,...
+			2、层次选择器：同CSS
+				select1 select2后代
+				select1>select2直接子代
+				select1+select2紧邻的下一个兄弟
+				select1~select2之后所有符合条件的兄弟
+			3、过滤选择器
+				1、基本过滤选择器：位置过滤：根据元素在结果集中的下标位置选择
+					场合:根据元素的结果集中的下标位置进行选择时
+					:first/last 在结果集中选择第一个和最后一个元素
+					以下选择器，下标从 0 开始:
+					:even/odd(偶数/奇数) 选择结果集中下标为 偶数/奇数 的元素
+					:eq/gt/lt(i) 选择结果集的下标 等于/大于/小于 i的元素
+				2、子元素过滤选择器:选择在父元素下指定位置的子元素
+					强调：参照的不是在结果集合中的位置，而是在父元素下的位置
+						以下选择器下标从 1 开始
+					:first-child/last-child
+					:nth-child(n/odd/even/2n/2n+1)
+					:not(selector) 否定选择器，可否定一切选择器
+				3、内容过滤:根据元素的内容来查找
+					:contains(text) 查找内容中包含指定文本的元素
+					:empty 查找不包含任何内容的空元素
+					:parent 查找只要包含内容的父元素
+					:has(selector) 选择包含满足selector要求的子元素的父元素
+						div:has(.active) 选择包含class为active的div元素的父元素
+				4、可见性过滤
+					:visible 匹配所有可见的元素
+					:hidden 匹配不可见的元素 如:display:none和 type="hidden"
+						css: 
+							1.display:none;
+							2.visibility:hidden;
+							3.opacity:0;
+						html:
+							type="hidden";
+				5、属性过滤选择器:同css
+					[属性] 查找有该属性的元素
+					[属性="值"] 查找指定属性的值为"值"的元素
+					[属性!="值"] 查找指定属性的值不为"值"的元素
+					[属性="^内容"] 查找指定属性的值以"内容"开头的元素
+					[属性="内容$"] 查找指定属性的值以"内容"结尾的元素
+					[属性="*内容"] 查找指定属性的值中有"内容"的元素
+					[条件1][条件2]... 查找同时满足条件1,2..的元素
+				6、按节点间关系查找
+					1、父子关系
+						$(parent).children() 查找parent下所有直接子元素 
+						$(parent).children(["selector"]) 查找parent下符合条件的直接子元素 
+						$(parent).find("selector") 查找parent下所有后代元素中符合条件的 
+						$(child).parent() 获得chlid的父元素
+					2、兄弟关系
+						$(...).next/prev(["selector"]) 获得下/前一个兄弟元素
+						$(...).nextAll/prevAll(["selector"]) 获得下/前所有兄弟元素
+						$(...).siblings(["selector"]) 获得前后所有兄弟元素
+练习：
+	1、$("...")返回的jQuery结果集合的所有API都自带forEach
+		后续的操作，会自动作用到每个找到的元素上
+	2、每个API都会返回jQuery对象本身，所以可以用链式操作
+	3、获取css样式属性的值:
+		var 属性值=$(..).css("属性名");
+			.css默认获取的就是计算后的完整样式！
+			.css默认设置的是内联样式
+		问题：代码量大
+		解决:用class代替单独修改css样式
+			$(...).addClass("类名") 想选中的元素添加类名
+			$(...).removeClass("类名") 想选中的元素移除类名
+			$(...).hasClass("类名") 想选中的元素是否包含指定的类名
+			
+			如果希望类名做切换，可用
+			$(...).toggleClass("类名") 想进行切换的类型

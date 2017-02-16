@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <button ng-click="funcCall()">发生到父级</button>
+  <div ng-controller="myCtrl02">
+    <button ng-click="toChild()">发生到子级</button>
+    <div ng-controller="myCtrl03">
+      <!--<p ng-bind="toChild()"></p>-->
+      <p ng-bind="count"></p>
+    </div>
+  </div>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', function ($scope) {
+      $scope.$on('event_toParent',function(event,data){
+        console.log(data);
+        $scope.funcCall=data;
+      })
+    })
+    .controller('myCtrl02', function ($scope) {
+      $scope.toParent=function(){
+        console.log('toParent function is called')
+      };
+      $scope.$emit('event_toParent',$scope.toParent);
+
+      $scope.toChild=function(){
+        //console.log('toChild function is called');
+        $scope.number = 10;
+        $scope.$broadcast('event_child',$scope.number);
+      };
+
+    })
+
+    .controller('myCtrl03', function ($scope) {
+      $scope.$on('event_child',function(event,data){
+        $scope.count = data;
+        //console.log(data);
+        //$scope.functionCallToChild=data;
+      })
+    })
+</script>
+</body>
+</html>

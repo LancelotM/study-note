@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+  <h3>产品查询</h3>
+  <select id="selectType">
+    <option value="0">—请选择产品类型—</option>
+  </select>
+  <select id="selectProducer">
+    <option value="0">—请选择生产厂家—</option>
+  </select>
+  <select id="selectModel">
+    <option value="0">—请选择产品型号—</option>
+  </select>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  /*1.当页面加载完成后，异步请求所有的“产品类型”*/
+  $(function(){
+    $.get('9_type_select.php',function(list){
+      //console.log('开始处理产品类型数据');
+      //console.log(arguments);
+      //提示：此处只要服务器端声明了application/json类型的响应，$.get会自动调用JSON.parse()进行解析
+      var html = '';
+      for(var i=0; i<list.length; i++){
+        var type = list[i];
+        html += `<option value="${type.tid}">${type.tname}</option>`;
+      }
+      selectType.innerHTML += html;
+    });
+  })
+
+
+  /*2.当产品类型选项发生改变后，异步请求对应的“生产厂家”*/
+  selectType.onchange = function(){
+    var tid = this.value;
+    if(tid==='0'){ //用户没有选择任何特定产品类型
+      return;
+    }
+    $.get('11_producer_select.php', {typeId:tid}, function(list){
+      //console.log('开始处理厂家数据');
+      //console.log(arguments);
+      var html = '<option value="0">—请选择生产厂家—</option>';
+      for(var i=0; i<list.length; i++){
+        var p = list[i]; //遍历每一个厂家
+        html += `<option value="${p.pid}">${p.pname}</option>`;
+      }
+      selectProducer.innerHTML = html;
+    });
+  }
+
+
+  /*3.当生产厂家选项发生改变后，异步请求该厂家的“产品型号”*/
+
+  
+  </script>
+  </body>
+</html>

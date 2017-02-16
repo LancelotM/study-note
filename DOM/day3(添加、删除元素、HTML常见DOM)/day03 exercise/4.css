@@ -1,0 +1,19 @@
+#dataTable{
+	border: 1px solid #aaaaaa;
+	width: 80%;
+	border-collapse: collapse;
+}
+
+th,td{
+	border: 1px solid #aaaaaa;
+	text-align: center;
+	padding: 3px;
+}
+
+thead tr{
+	background-color: #d0d0d0;
+}
+
+.even{
+	background-color: #f6f6f6;
+}

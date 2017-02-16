@@ -1,0 +1,10 @@
+h2{
+	color:blue;
+	background-color:gray;
+	}
+span{ 
+	padding:16px 6px 1px; 
+	margin-left:12px; 
+	border-left:2px solid; 
+	font-size:0; 
+	}

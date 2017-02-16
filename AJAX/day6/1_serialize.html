@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h3>jQuery中的表单序列化</h3>
+    <form id="login-form">
+        <input type="text" name="uname"><br>
+        <input type="password" name="upwd"><br>
+        <input type="text" name="age1"><br>
+        <input type="text" name="age2"><br>
+        <input type="text" name="age3"><br>
+        <input type="text" name="age4"><br>
+        <input type="button" value="提交登录信息" id="bt-login">
+    </form>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('#bt-login').click(function(){
+      var str = $('#login-form').serialize();
+      console.log(str);
+    });
+
+    </script>
+  </body>
+</html>

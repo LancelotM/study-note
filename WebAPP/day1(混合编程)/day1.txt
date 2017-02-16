@@ -1,0 +1,190 @@
+回顾：
+①jQuery：简化DOM操作，常用于DOM操作频繁，数据增删改查不是特别多的场景
+②bootStrap：在网站或者网络应用程序开发的开源前端框架，在响应式的开发，偏向于pc端
+③angularJS：实现SPA应用，数据操作非常频繁。
+	1采用了MVC的设计模式 2双向数据绑定 3依赖注入 4模块化设计
+
+
+框架学习：
+①明确框架定位：解决什么样的问题
+②掌握框架的核心概念或者语法
+③遇到问题怎么解决问题
+--遇到问题 官网找手册，定位到用法或者demo案例
+--去官方技术论坛，stackoverflow(问答), segmentfault(国内)、github
+--联系官方人员
+
+
+一、WebApp、NativeApp、HybridApp
+1、WebApp
+网页应用：体验就像传统的PC端的应用一样，本身定位就是一个应用
+
+2、NativeApp
+原生应用：借助SDK（software development kit）提供的原生组件或者服务，进行编码而生成的应用。
+①Android
+②iOS
+
+3、HybridApp 混合编程
+采用前端技术+原生开发。
+phoneGap 支持7个平台，是目前唯一做到一次部署，全平台通用的移动开发框架，能够让开发者采用web前端技术调用API接口，实现hybridApp。
+
+
+二、Eclipse工具的使用以及Android工程的创建、运行
+
+iOS开发环境--》MacOSX
+
+android开发环境.
+①java（安装jdk-》java development kit）
+②配置环境变量（计算机-》属性--》高级系统设置-》环境变量-》新建、编辑）
+③eclipse开发工具
+④配置SDK
+
+关于Eclipse的使用：
+①如果没有显示工具条，点击window->show toolbar
+②android sdk manager-->更新SDK
+③android virtual device manager->
+new->指定设备名称,选中设备，指定SD卡大小
+使用：直接打开eclipse，选中android virtual device manager按钮，在设备列表中选中对应的设备，点击start，然后点击launch去启动模拟器。
+④如果视图乱了或者出不来了，window->Reset perspective
+
+
+创建一个Android项目：
+File-》new-》AndroidApplicationProject-》设置应用的名称/包的名称，配置icon，一路next最后finish
+
+layout中的xml文件都是用来显示的ui效果。
+java代码
+
+android项目文件的介绍：
+①src--》source 源文件(java)
+②gen--》android编译项目的时候，自动生成的文件，不需要理会
+③android4.2.2 android private libraries 都是android本身sdk相关的文件
+④assets 资源文件夹 存储是不希望被流处理的文件，比如混合编程的时候，前端代码就可以放在这个目录中
+⑤bin-》binary 存储的是可以安装的apk包
+⑥libs-》libraries 库 需要用到第三方公司所提供的jar包，
+可以直接放到libs中，添加到build的路径中
+⑦res-》resource 资源 存储是1 图片 2 xml 3 menu
+⑧androidManifest.xml 权限的配置、版本号的设置、支持sdk的版本。。。都在这里进行设置。
+
+
+ActivityManager: Warning: Activity not started, its current task has been brought to the front
+代码没问题，问题出在你没有对代码做修改，又重复编译运行。
+
+
+三、hybridApp 混合编程
+
+步骤分析：
+①编写前端代码，测试在pc端是否能够达到效果 index.html
+②将前端代码拷贝到android工程中的assets目录
+③借助原生组件WebView，将前端代码显示在android的视图中
+
+WebView组件:网络视图组件，可以加载前端代码
+//实例化WebView的一个对象
+WebView wv = new WebView(getApplicationContext());
+
+//使用wv来加载页面
+wv.loadUrl("file:///android_asset/index.html");
+
+//将wv作为activity的内容视图
+setContentView(wv);
+
+
+
+练习：新建一个android工程，来实现一个混合编程应用：
+要求：一个html页面，页面有1个p，1个button，点击按钮，将p隐藏掉。
+
+如果要想混合编程app能够执行js，必须添加设置：
+wv.getSettings().setJavaScriptEnabled(true);
+
+设置能够查看console.log所输入的日志：
+        wv.setWebChromeClient(
+        		new WebChromeClient(){
+        	@Override
+        	@Deprecated
+        	public void onConsoleMessage(String message,
+        			int lineNumber, String sourceID) {
+        		// TODO Auto-generated method stub
+        		Log.e("test",
+        				"行号为:"+lineNumber+
+        				" 输入内容为:"+message);
+        		super.onConsoleMessage(message, lineNumber, sourceID);
+        	}
+        });
+
+
+实现混合编程的两种方式：
+1、直接将前端代码 放到assets目录中
+2、将前端代码都部署在服务器端，拿到url，载入并显示
+基本步骤：
+①在pc端完成代码的编辑，能够正常访问和浏览
+②将代码部署在服务器端（apache和mySql）
+③拿到Url：得到当前机器的ip地址：windows+R-->cmd-->ipconfig-》找到IPv4的地址就可以了。
+172.163.100.78 将之前访问工程的localhost改成ip地址。
+http://localhost/chaptor4/angularJS/kaifanla/kaifanla.html
+==》
+http://172.163.100.78/chaptor4/angularJS/kaifanla/kaifanla.html
+④配置webView，载入指定的url
+⑤添加网络权限，运行看效果。
+4.2.2 ``
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

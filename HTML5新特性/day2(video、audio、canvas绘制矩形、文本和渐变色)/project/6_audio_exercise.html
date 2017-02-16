@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>音频播放</h3>
+  <audio src="res/bg.mp3" id="bgAudio" autoplay></audio>
+  <input type="checkbox" id="cb" checked>
+  <span id="msg">播放/暂停背景音乐</span>
+
+  <script>
+    cb.onchange = function(){
+      var c = this.checked;  //当前是否选中
+      //console.log(c);
+      if(c){
+        bgAudio.play();
+      }else {
+        bgAudio.pause();
+      }
+    }
+  </script>
+</body>
+</html>

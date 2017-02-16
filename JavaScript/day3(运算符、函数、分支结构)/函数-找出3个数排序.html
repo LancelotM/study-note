@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function sort(x,y,z){
+			console.log("第一个数："+x);	
+			console.log("第二个数："+y);
+			console.log("第三个数："+z);
+			
+			x<y && (x^=y,y^=x,x^=y);
+			y<z && (y^=z,z^=y,y^=z);
+			x<y && (x^=y,y^=x,x^=y);
+
+			console.log("换之后："+x,y,z);
+		}
+	</script>
+	<button onclick="sort(45,81,35);">比较三个数的大小和输出</button>
+</body>
+</html>

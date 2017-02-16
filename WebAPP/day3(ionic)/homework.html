@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<ion-content>
+  <div class="card">
+    <div class="list">
+      <div  class="item">
+        <div ng-repeat="$index" class="row">
+          <div class="col">
+            <div class="row">
+              <img src="img/1.jpg">
+            </div>
+            <div class="row">title</div>
+            <div class="row">dedail</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+    .controller('myCtrl',['$scope','$http',function($scope,$http){
+      $http.get('data/hw.json')
+        .success(function(data){
+          $scope.$index=data.length/4;
+          $scope.list=data;
+          angular.forEach(data,function(value,key){
+            console.log(key)
+            console.log(value)
+
+          })
+        })
+    }])
+</script>
+</body>
+</html>

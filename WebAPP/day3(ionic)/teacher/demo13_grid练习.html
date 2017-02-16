@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+  <title></title>
+  <style>
+    .img-responsive{
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+<ion-header-bar>
+  <h1 class="title">header</h1>
+</ion-header-bar>
+
+<ion-content>
+  <div class="card">
+    <h1 class="text-center">我的订单</h1>
+    <div class="list">
+      <!--模拟表头-->
+      <div class="item">
+        <div class="row">
+          <div class="col col-20">
+            <p>序号</p>
+          </div>
+          <div class="col col-33">
+            <p>菜品</p>
+          </div>
+          <div class="col col-33">
+            <p>下单时间</p>
+          </div>
+          <div class="col col-20">
+            <p>联系人</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="row">
+          <div class="col col-20 col-center">
+            <p>1</p>
+          </div>
+          <div class="col col-33">
+            <img class="img-responsive" src="img/2.jpg" alt=""/>
+          </div>
+          <div class="col col-33 col-center">
+            <p>2017-1-6</p>
+          </div>
+          <div class="col col-20 col-center item-text-wrap">
+            <p>web1609</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="row">
+          <div class="col col-20">
+            <p>1</p>
+          </div>
+          <div class="col col-33">
+            <img class="img-responsive" src="img/3.jpg" alt=""/>
+          </div>
+          <div class="col col-33">
+            <p>2017-1-6</p>
+          </div>
+          <div class="col col-20 item-text-wrap">
+            <p>web1609</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="row">
+          <div class="col col-20">
+            <p>1</p>
+          </div>
+          <div class="col col-33">
+            <img class="img-responsive" src="img/1.jpg" alt=""/>
+          </div>
+          <div class="col col-33">
+            <p>2017-1-6</p>
+          </div>
+          <div class="col col-20 item-text-wrap">
+            <p>web1609</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer-bar>
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+
+<script>
+  var app = angular.module('myApp', ['ionic']);
+</script>
+</body>
+</html>

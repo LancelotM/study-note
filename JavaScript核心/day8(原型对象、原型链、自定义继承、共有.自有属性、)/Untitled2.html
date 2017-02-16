@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//if(Array.prototype.indexOf===undefined)
+		//Array.prototype.indexOf=function(val,fromi){
+			//if(fromi===undefined){fromi=0;}
+			//for(fromi;fromi<Array.length;fromi++){
+				//if(Array[fromi]===val){return fromi;}
+			//}
+			//return -1;
+		//}
+		//var arr=[1,2,3,2,1];
+		//document.write(arr.indexOf(2)+"<br>");
+		//document.write(arr.indexOf(2,2)+"<br>");
+		//document.write(arr.indexOf(2,4)+"<br>");
+		//document.write(arr.indexOf(2,4)+"<br>");
+
+
+		//function Student(name,age){
+			//this.name=name;
+			//this.age=age;
+		//}
+		//Student.prototype.intr=function(){
+				//console.log("I'm "+this.name+", I'm "+this.age);
+			//}
+		//var lilei=new Student("Li Lei","11");
+		//console.log(lilei);
+		//lilei.intr();
+		//console.log(lilei.hasOwnProperty("name"));
+
+		//function checkProp(obj,proName){
+			//if(obj.hasOwnProperty(proName)){
+				//return "自有属性";
+			//}else if(obj[proName]){
+				//return "共有属性";
+			//}else{return "没有";}
+		//}
+		//console.log(checkProp(lilei,"name"));
+		//console.log(checkProp(lilei,"intr"));
+		//console.log(checkProp(lilei,"bal"));
+
+		var obj1=[],obj2={},obj3=function(){};
+		obj3.__proto__=obj1;
+		////方法1	判断原型对象
+		//console.log(
+			//Array.prototype.isPrototypeOf(obj1),
+			//Array.prototype.isPrototypeOf(obj2),
+			//Array.prototype.isPrototypeOf(obj3)
+		//);
+		////方法2 判断构造函数
+		//console.log(
+			//obj1 instanceof Array,
+			//obj2 instanceof Array,
+			//obj3 instanceof Array
+		//);
+		////方法3 检查对象的class属性
+		//console.log(
+			//Object.prototype.toString.call(obj1)==="[object Array]",
+			//Object.prototype.toString.call(obj2)==="[object Array]",
+			//Object.prototype.toString.call(obj3)==="[object Array]"
+		//);
+		if(Array.isArray===undefined)
+			Array.isArray=function(obj){
+				return Object.prototype.toString.call(obj)==="[object Array]";
+			}
+		//方法4 Array.isArray(obj);
+		console.log(
+			Array.isArray(obj1)
+			Array.isArray(obj2)
+			Array.isArray(obj3)
+		);
+	</script>	
+</body>
+</html>

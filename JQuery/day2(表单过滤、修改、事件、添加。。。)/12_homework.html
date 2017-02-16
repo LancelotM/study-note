@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+  a { text-decoration: none;  color: #000;  line-height: 2em; }
+  ul { list-style:none;  padding: 0 0 0 20px; }
+  .affix { float: left;  border: 1px solid #aaa;  width: 150px; }
+  .affix  .active  a{ color: #e4393c;  font-weight: bold; }
+  .container { float: left;  width: 550px;  min-height: 400px;  border: 1px solid #aaa; }
+  .container .box {/*开始状态*/
+    display: none;  min-height: 300px;  }
+  .container .box.active {/*结束状态*/
+    display: block; 
+  }
+
+	</style>
+ </head>
+ <body>
+  <h1>练习：查找元素&操作元素</h1>
+	<h3>使用附加导航(affix)实现内容切换</h3>
+
+	<div class="affix">
+		<ul>
+			<li><a data-toggle="item" href="#my-order">我的订单</a></li>
+			<li class="active"><a data-toggle="item" href="#user-setting">用户设置</a></li>
+			<li><a data-toggle="item" href="#account-security">账户安全</a></li>
+		</ul>
+	</div>
+
+	<div class="container">
+		<div id="my-order" class="box" style="background:#fee">我的订单的详细内容</div>
+		<div id="user-setting" class="box active" style="background:#efe">用户设置的详细内容</div>
+		<div id="account-security" class="box" style="background:#eef">账户安全的详细内容</div>
+	</div>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //为class为affix的元素定义单击事件委托
+    //要求: 只有data-toggle属性为item的元素才能出发事件
+    $(".affix").on(//处理函数中:
+      "click","[data-toggle='item']",function(e){
+        e.preventDefault();//阻止默认行为
+        //如果当前a元素的父元素没有active class
+        if(!$(this).parent().hasClass("active")){
+          //为当前a元素的父元素添加active class,再去掉兄弟li中class为active的元素上的active class
+          $(this).parent().addClass("active")
+                 .siblings('.active')
+                 .removeClass("active")
+          //用当前a元素的href属性作为id，查找目标div，为其添加active, 移除其兄弟div中class为active的元素上的active。
+          $($(this).attr("href"))
+            .addClass("active")
+            .siblings(".active")
+            .removeClass("active");
+        }
+    })             
+  </script>
+ </body>
+</html>

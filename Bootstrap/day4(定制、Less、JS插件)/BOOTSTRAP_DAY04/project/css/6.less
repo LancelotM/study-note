@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/*多行注释*/
+//单行注释
+/*多行注释*/
+//单行注释
+
+
+/*变量*/
+@jd-red: #f4393c;
+@std-width: 4px;
+@half-opacity: .4;
+@first-font: 'SimHei';
+@normal-border: solid;
+
+.box {
+  color: @jd-red;
+  font-family: @first-font;
+  border: @std-width @normal-border @jd-red;
+}
+
+/*变量的运算*/
+@container-width: 992px;
+@col-count: 12;
+
+.col-1 {
+  width: @container-width/@col-count;
+}
+.col-3 {
+  width: 3*@container-width/@col-count;
+}
+
+/*样式的混入(Mixin)*/
+.box2 {
+  padding: 20px;
+  border: 3px solid #aaa;
+}
+.well {
+  .box2;
+  background: #eee;
+}
+.alert {
+  .box2;
+  color: #f00;
+}
+
+
+/*带参数的混入*/
+.box3(@pd, @bdw, @bdc:#000) {
+  padding: @pd;
+  border: @bdw solid @bdc;
+}
+.well {
+  .box3(10px, 2px, #aaa);
+  background: #eee;
+}
+.alert {
+  .box3(20px, 1px);
+  color: #f00;
+}
+
+/*样式嵌套*/
+/*
+
+.main {
+  padding: 10px;
+}
+.main ul {
+  list-style: none;
+}
+.main ul li {
+  display: inline-block;
+}
+.main ul li > a {
+  color:#333;
+}
+.main ul li > a:hover {
+  text-decoration: none;
+}
+*/
+.main {
+  padding:10px;
+  ul {
+    list-style:none;
+    li {
+      display: inline-block;
+      > a {
+        color: #333;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+/*Less提供的函数*/
+.col-1 {
+  width: floor(992px/12);
+}
+.col-2 {
+  width: percentage(992px/12/992px);
+}
+
+
+
+

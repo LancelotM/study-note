@@ -1,0 +1,7 @@
+body{height:2000px;}
+#toTop{
+	position:fixed;
+	bottom:100px;
+	right:0;
+	display:none;
+}

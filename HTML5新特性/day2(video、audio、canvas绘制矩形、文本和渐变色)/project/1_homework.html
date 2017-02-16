@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/1.css"/>
+</head>
+<body>
+<div class="container">
+  <!--HTML5标准推荐的表单写法-->
+  <form>
+    <div class="form-group">
+      <label class="control-label" for="uname">用户名：</label>
+      <input class="form-control" id="uname" required minlength="3" maxlength="6" autocomplete="off" autofocus>
+      <span class="help-block primary">用户名可以包含数字和字母</span>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="upwd">密码：</label>
+      <input class="form-control" id="upwd">
+      <span class="help-block primary">密码长度在6~12位之间</span>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="umail">邮箱：</label>
+      <input type="email" class="form-control" id="umail">
+      <span class="help-block primary">请注意邮箱格式</span>
+    </div>
+    <div class="form-group">
+      <label class="control-label"></label>
+      <input type="submit" class="form-control success">
+    </div>
+  </form>
+  <script>
+    /**对“用户名”进行输入验证**/
+    uname.onblur = function(){
+      if(this.validity.valueMissing){
+        var msg = '用户名不能为空';
+        this.nextElementSibling.innerHTML = msg;
+        this.nextElementSibling.className = 'help-block danger';
+        this.setCustomValidity(msg);
+      }else if(this.validity.tooShort){
+        var msg = '用户名不能短于3位';
+        this.nextElementSibling.innerHTML = msg;
+        this.nextElementSibling.className = 'help-block danger';
+        this.setCustomValidity(msg);
+      }else if(this.validity.tooLong){
+        var msg = '用户名不能超过6位';
+        this.nextElementSibling.innerHTML = msg;
+        this.nextElementSibling.className = 'help-block danger';
+        this.setCustomValidity(msg);
+      }else {
+        this.nextElementSibling.innerHTML = '用户名验证正确';
+        this.nextElementSibling.className = 'help-block success';
+        this.setCustomValidity('');
+      }
+    }
+
+  </script>
+</div>
+</body>
+</html>

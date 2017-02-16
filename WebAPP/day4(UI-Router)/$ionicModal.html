@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+<script id="myModal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">header</h1>
+    </ion-header-bar>
+    <ion-content>
+      Hello
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<ion-header-bar class="bar-positive">
+  <h1 class="title">header</h1>
+</ion-header-bar>
+<ion-content>
+  <p>Hello Ionic</p>
+  <button class="button button-royal"
+          ng-click="show()">打开弹窗</button>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+    .controller('myCtrl',['$scope','$ionicModal',function($ionicModal,$scope){
+      $scope.show=function(){
+        $ionicModal.fromTemplate('myModal.html',{
+          scope:$scope})
+          .then(function(modal){
+            $scope.modal=modal;
+            $scope.modal=show();
+          })
+      }
+
+    }])
+</script>
+</body>
+</html>

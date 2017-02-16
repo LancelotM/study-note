@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>根据页面滚动位置显示浮动框</title>
+	<link rel="stylesheet" href="css/7.css"/>
+ </head>
+ <body>
+	<div id="toTop">
+		<a href="#">返回顶部</a>
+	</div>
+	<script>
+		document.addEventListener("scroll",function(){
+			var scrollTop=document.body.scrollTop;
+			document.getComputedStyle("css/7.css").display=scrollTop>300?"block":"none"
+			//document.getElementById("toTop").style.display=scrollTop>300?"block":"none"
+		})
+	</script>
+ </body>
+</html>

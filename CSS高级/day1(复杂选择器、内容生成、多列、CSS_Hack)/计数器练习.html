@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style type="text/css">
+		body{
+			counter-reset:div 0;
+		}	
+		div{
+			counter-increment:div 1;
+			counter-reset:p 0;
+		}
+		div:before{
+			content:counter(div) "、";
+		}		
+		p{
+			margin:0;
+			padding-left:20px;
+			list-style:none;
+			counter-increment:p 1;
+			margin:10px;
+		}
+		p:before{
+			content:counter(div) "." counter(p);
+		}
+	</style>
+</head>
+<body>
+	<div>倚天屠龙记</div>
+	<p>张三丰</p>
+	<p>张翠山</p>
+	<p>张无忌</p>
+	<p>殷素素</p>
+	<div>西游记</div>
+	<p>孙悟空</p>
+	<p>猪无能</p>
+	<p>沙悟净</p>
+	<p>白骨精</p>
+</body>
+</html>

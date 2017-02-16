@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			:target{
+				background:yellow;
+			}
+
+			a[name]{display:none;}
+			#NO2{display:none;}
+
+			a[name]:target{
+				display:block;
+			}
+			#NO2:target{
+				display:block;
+			}
+
+			/*元素状态伪类*/
+			input:enabled{color:green;}
+			input:disabled{color:red;}
+			input:checked{background:red;}
+			
+			/*结构伪类*/
+			/*#tbl td:first-child{
+				background:red;
+			}
+			#tbl td:nth-child(2){
+				background:green;
+			}
+
+			#tbl tr:nth-child(2) td:nth-child(3){
+				background-color:yellow;
+			}*/
+
+
+			/*否定伪类*/
+			#tbl td:not(:first-child){
+				background:red;
+			}
+
+			#text::first-letter{
+				font-size:22px;
+				font-weight:bold;
+				color:blue;
+			}
+			#text:first-line{
+				color:red;
+				font-weight:bold;
+			}
+			#text::selection{
+				color:yellow;
+				background:black;
+				/*除color和background以外的属性无法在 ::selection中修改 */
+				font-size:22px;
+				font-weight:bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="text">
+			床前明月光<br>
+			疑是地上霜<br>
+			举头望明月<br>
+			低头思故乡<br>
+		</div>
+		<div>
+			<table id="tbl" border="1">
+				<tr>
+					<td>张三丰</td>
+					<td>张翠山</td>
+					<td>张无忌</td>
+					<td>张学友</td>
+				</tr>
+				<tr>
+					<td>张三丰</td>
+					<td>张翠山</td>
+					<td>张无忌</td>
+					<td>张学友</td>
+				</tr>
+				<tr>
+					<td>张三丰</td>
+					<td>张翠山</td>
+					<td>张无忌</td>
+					<td>张学友</td>
+				</tr>
+			</table>	
+		</div>
+
+		<div>
+			<p>
+				用户名：<input value="请输入名称" disabled>
+			</p>
+			<p>
+				密&nbsp;码：<input type="password">
+			</p>
+			<p>
+				性&nbsp;别：
+				<input name="rdo" type="radio">男
+				<input name="rdo" type="radio">女
+			</p>
+		</div>
+		<div>
+			<a href="#NO1">倚天屠龙记</a><br>
+			<a href="#NO2">碧血剑</a><br>
+			<a href="#NO3">鹿鼎记</a><br>
+		</div>
+		<a name="NO1">倚天屠龙记</a>
+		<div id="NO2">碧血剑</div>
+		<a name="NO3">鹿鼎记</a>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var pid="130102198312262151";
+             //012345678901234567
+      var gender=
+        pid[pid.length-2]%2==1?"男":"女";
+      var birth=//pid.slice(6,-4);
+                //pid.substring(6,pid.length-4);
+                pid.substr(6,8);
+      var age=2016-birth.slice(0,4);
+      console.log(gender,birth,age);
+    </script>
+  </body>
+</html>

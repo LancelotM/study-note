@@ -1,0 +1,42 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>事件处理</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/3.css"/>
+
+	</head>
+	<body>
+		<div class="d1">
+			<div class="d2">
+				<div class="d3">
+				</div>
+			</div>
+		</div>
+    <script>
+			function highLight(e){//e->event
+        e=e||window.event;//兼容
+        //将当前div的背景变为黄色
+        this.style.background="yellow";
+        //弹出提示: 当前div的class
+        alert("我是"+this.className);
+        //将当前div的背景清除
+        this.style.background="";
+        e.stopPropagation();//取消冒泡:停止蔓延
+      }
+      //为class为d1,d2,d3的div，分别添加单击事件处理函数为highLight
+      document.querySelector(".d1")
+              .addEventListener(
+                "click",highLight
+              );
+      document.querySelector(".d2")
+              .addEventListener(
+                "click",highLight
+              );
+      document.querySelector(".d3")
+              .addEventListener(
+                "click",highLight
+              );
+		</script>
+	</body>
+</html>

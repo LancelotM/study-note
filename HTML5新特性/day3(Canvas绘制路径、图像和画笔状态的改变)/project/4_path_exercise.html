@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制路径——直线</h3>
+  <canvas id="c3" width="600" height="400"></canvas>
+  <script>
+    var ctx = c3.getContext('2d');
+
+    //绘制X轴
+    ctx.beginPath();
+    ctx.moveTo(50, 350);    //坐标轴原点
+    ctx.lineTo(550,350);    //最右侧点
+    ctx.lineTo(550-20,350-20);
+    ctx.moveTo(550,350);    //最右侧点
+    ctx.lineTo(550-20,350+20);
+
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = '#f00';
+    //ctx.lineJoin = 'bevel'; //斜面、修改折线拐点处的样式
+    ctx.lineJoin = 'round'; //圆角、修改折线拐点处的样式
+    //ctx.lineJoin = 'miter'; //尖角、修改折线拐点处的样式
+    ctx.stroke();
+
+    //绘制Y轴     最顶端：(50,50)
+    ctx.beginPath();  //注意此处！
+    ctx.moveTo(50-20,50+20);
+    ctx.lineTo(50,50);
+    ctx.lineTo(50+20,50+20);
+    ctx.moveTo(50,50);
+    ctx.lineTo(50,350);
+
+    ctx.strokeStyle = '#0f0';
+    ctx.stroke();
+  </script>
+</body>
+</html>

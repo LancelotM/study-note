@@ -1,0 +1,168 @@
+1、转换
+	1、转换简介
+		改变元素在页面中的大小、位置、角度和形状的一种方式
+	2、转换分类
+		1、转换属性：transform:
+		取值：
+			1、none;	默认值不进行任何转换
+			2、转换函数
+				表示一个或多个转换函数，如果是多个转换函数中间用空格分开
+		2、转换原点
+			属性：transform-origin:
+			默认情况下，原点是在整个元素的中心位置处
+			取值：数值/百分比/关键字
+			两个值：表示 X轴和 Y轴的位置
+			三个值：表示 X轴、Y轴和 Z轴的位置
+		3、2D转换
+			使元素在X轴和Y轴上发生变化效果
+			1、2D位移：改变元素在页面中的位置
+				属性 和函数
+					属性：tansform:translate();
+					函数：
+						1、translate(x);元素在X轴上的位移距离，取值为正，向右移动，取值为负，向左移动
+						2、translate(x,y);Y轴取值为正，向下移动
+						3、translatex(x);只改变元素在X轴上的位置
+						4、translatey(y);只改变元素在Y轴上的位置
+					取值：数值/百分比
+			2、2D缩放：改变元素在页面的大小
+				属性 和函数
+					属性：transform:scale();
+					函数：
+						1、scale(value);只给一个值，那么X轴和Y轴将等比缩放
+						2、scale(x,y);改变X轴和Y轴的缩放比例
+						3、scalex(x);只改变X轴的缩放比例
+						4、scaley(y);只改变Y轴的缩放比例
+					取值：
+						默认值 为1
+						缩小：0~1之间的数值
+						放大：大于1的数值
+			3、2D旋转：改变元素在页面中的角度
+				1、属性 和函数
+					属性:transform:rotate(ndeg);
+					函数：
+						1、rotate(ndeg);
+						n取值为正，顺时针旋转
+						n取值为负，逆时针旋转
+				2、注意：
+					1、转换时，坐标轴会一起进行转换
+					2、转换原点可以影响转换效果
+			4、倾斜：改变元素在页面上的形状
+				1、属性 和函数
+					属性：tranform:skew(deg);
+					函数：
+						1、skew(x);X轴倾斜指定角度，实际上是改变Y轴倾斜角度
+						取值为正，逆时针
+						取值为负，顺时针
+						2、skewX(xdeg);
+						3、skewY(ydeg);Y轴倾斜指定角度，实际上是改变X轴倾斜角度
+						取值为正，顺时针
+						取值为负，逆时针
+		4、3D转换:在2D转换基础上，增加 Z轴的变化效果
+			1、距离属性：perspective:~px;
+				作用：模拟 人眼到3D投射的距离
+			**注意：该属性 需要加在 3D转换元素的父元素上**
+				兼容性：
+					火狐:-moz-perspective
+					Chrome,Safari:-webkit-
+					Opera:-o-
+			2、属性：tranform-style:
+				规范当前元素的子元素如何去排列3D位置
+				取值:
+					1、flat;默认值，不保留子元素的3D位置
+					2、preserve-3d;保留子元素3D位置
+			3、3D旋转：允许元素在 X轴 Y轴 Z轴 上进行旋转
+				属性 和函数
+				属性：transform:rotate();
+				函数:
+					1、rotatex(xdeg);以X轴为中心轴，进行元素的旋转
+					2、rotatey(ydeg);
+					3、rotatez(zdeg);
+					4、rotate3d(x,y,z,ndeg);
+						如果X,Y,Z取值为0的话，说明该轴不参与旋转
+						如果X,Y,Z取值为1的话，说明该轴是参与旋转的
+			4、3D位移：改变元素在Z轴上位置
+				属性 和函数
+				属性:transform:translate();
+				函数:
+					translatez();
+					translate3d(x,y,z);
+2、过渡:使得CSS的属性值在一段时间内平滑过渡
+	1、过渡的 4个属性
+		1、指定过渡属性:transition-property:
+			规定应用过渡效果的CSS属性名称
+			取值:
+				1、none;
+				2、all;
+				3、property-name:具体使用过渡效果的属性名称
+			可以设置过渡的属性:
+				1、颜色属性
+				2、取值为数值的属性
+				3、转换属性
+				4、渐变属性
+				5、visibility属性
+				6、阴影属性
+		2、指定过渡时间:transition-duration
+			取值：以秒（S）或毫秒（ms）作为单位，默认值0
+		3、指定速度时间曲线函数transition-timing-function:
+			取值：
+				1、ease:默认值，慢速开始，快速变快，慢速结束
+				2、linear:匀速
+				3、ease-in:慢速开始，加速结束
+				4、ease-out:快速开始，减速结束
+				5、easr-in-out:慢速开始和结束，中间先加后减
+		4、指定过渡延迟时间：transition-delay:
+			取值： ms 或 s作为单位的数值
+		5、过渡简写属性：
+			transition:property duration timing-function delay;
+	2、触发过渡效果：一般都是由用户的行为来触发
+3、动画:使元素从一种样式逐渐变化为另一种样式
+	原理：通过 关键帧 控制动画的每一步
+	
+	注意：浏览器兼容性
+		通过浏览器前缀解决兼容性
+	1、使用动画的步骤：
+		1、声明动画：声明动画的名称，并且制定关键帧的而信息
+			关键帧：
+				1、时间点
+				2、改时间点上的状态（样式）
+		2、使用动画：通过动画属性，将动画效果绑定到某个元素上
+	2、声明动画：
+		@(+兼容性前缀)keyframes 动画名称{
+			0%{
+				动画开始时元素的样式声明
+			}
+			......(1%~99%)
+			100%{
+				动画结束时元素的样式声明
+			}
+		}
+		
+		时间点：
+			0%(from)：	动画开始的时候
+			100%(to)：	动画结束的时候
+	3、使用动画
+		1、animation-name:				要调用的动画名称
+		2、animation-duration：			动画完成一个周期需要的时间
+		3、animation-iming-function:	动画的 速度时间 曲线函数
+		4、animation-delay:动画延迟
+		5、animation-iteration-count:动画的播放次数
+			取值:
+				1、具体数值;
+				2、infinite;	无限次播放
+		6、animation-direction:动画播放方向
+			取值：
+				1、normal;		默认值
+				2、reverse;		逆向播放
+				3、alternate;	轮流播放，动画在奇数次数播放时，从0%~100%,偶数时，从100%~0%
+		7、简写属性:
+			animation:name duration timing-function delay iteration-cout direction;
+		8、动画播放前后的填充方式:animation-fill-mode:
+			取值：
+				1、none;		默认值
+				2、forwards;	动画完成后，将保持在最后一个关键帧的状态上
+				3、backwards;	动画播发前（在延迟时间内），将保持在第一个关键帧的状态上
+				4、both;		动画播放前后的填充模式都应用
+		9、动画的播放状态:animation-play-state:
+			取值：
+				1、paused;	暂停
+				2、running;	播放

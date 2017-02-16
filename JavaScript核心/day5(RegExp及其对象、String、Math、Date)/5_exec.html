@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var str="明明喜欢我,却不告诉我;别理我，我想静静；静静是谁？你先告诉我明明是谁？";
+      var reg=/明明|静静/g;
+      var arr=null;
+      //反复: 在str中查找下一个关键词保存在arr中，如果不是null
+      while((arr=reg.exec(str))!=null){
+        console.log("在位置 "+arr["index"]+
+                    " 发现敏感词 "+arr[0]+
+               " 下次从 "+reg.lastIndex+" 开始");
+      }//(遍历结束)
+
+      var html='<body><a name="top"></a><h3>welcome</h3><ul><li><a class="active" href="http://tmooc.cn">go to tmooc</a></li><li><a href="http://tedu.cn" target="_blank">to to tedu</a></li></ul>';
+      var reg=/<a [^>]*href="([^"]+)"/g;
+      //var arr=null;
+      //反复: 在html中找符合reg要求得a元素，保存在arr中,如果不是null
+      //while((arr=reg.exec(html))!=null){
+        //console.log(arr[1]);
+      //}
+      while(reg.exec(html)!=null){
+        console.log(RegExp.$1);
+      }
+    </script>
+  </body>
+</html>

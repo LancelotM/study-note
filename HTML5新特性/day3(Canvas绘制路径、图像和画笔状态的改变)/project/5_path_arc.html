@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制路径——圆拱</h3>
+  <canvas id="c3" width="600" height="400"></canvas>
+  <script>
+    var ctx = c3.getContext('2d');
+
+    ctx.beginPath();
+    var x = 300;
+    var y = 200;
+    var r = 100;
+    var startAngle = 0;
+    var endAngle = Math.PI*3/2;
+    ctx.arc(x, y, r, startAngle, endAngle);
+
+    //对路径描边/填充
+    ctx.stroke();
+    ctx.fill();
+
+  </script>
+</body>
+</html>

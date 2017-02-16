@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <select id="sel"><!--innerHTML-->
+    </select>
+    <script>
+      var provs=["北京市","天津市","河北省","山东省","河南省"];
+      var str="<option>"+
+        provs.join("</option><option>")
+      +"</option>";
+      sel.innerHTML=str;
+      /*转字符串*/
+      var arr=[1,2,3,4,5];
+      console.log(String(arr));
+      console.log(arr.join("|"));
+      var chars=["H","e","l","l","o"];
+      //Hello
+      console.log(chars.join(""));
+      var arr2=new Array(5);
+      console.log(arr2.join(""));
+    </script>
+  </body>
+</html>

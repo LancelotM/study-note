@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.js"></script>
+  <title></title>
+</head>
+<body ng-controller="myCtrl">
+<div ng-view></div>
+<script>
+  angular.module('myModule', ['ng','ngRoute'])
+    .config(function($routeProvider){
+      $routeProvider.when('/begin',{
+        templateUrl:'tpl/ex_start.html'
+      })
+        .when('/begin/:id',{
+          templateUrl:'tpl/ex_start.html'
+          ,controller:'jump2Reg'
+        })
+        .when('/register',{
+          templateUrl:'tpl/ex_register.html'
+         // ,controller:'jump2Sta'
+        })
+        .otherwise({redirectTo:'/begin'})
+    })
+    .controller('myCtrl', ['$scope','$location',function ($scope,$location) {
+      $scope.jump=function(arg){
+        $location.path(arg)
+      }
+    }])
+    .controller('jump2Reg', ['$routeParams',function ($routeParams) {
+      console.log($routeParams.id);
+    }])
+//    .controller('jump2Sta', ['$scope','$location',function ($scope,$location) {
+//      $scope.j2S=function(){
+//        $location.path('/begin')
+//      }
+//    }])
+</script>
+</body>
+</html>

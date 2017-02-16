@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+<style>
+  .container{
+    border:1px solid #ddd;
+    margin: 10px;
+  }
+</style>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1> Bootstrap <i>Css</i> <small> Type </small></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-9">
+      <input class="form-control" placeholder="enter search">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-unstyled">
+        <li><a href="#"><strong>home</strong></a></li>
+        <li><a href="#"><strong>basic</strong></a></li>
+        <li><a href="#"><strong>css</strong></a></li>
+        <li><a href="#"><strong>component</strong></a></li>
+        <li><a href="#"><strong>jsplugin</strong></a></li>
+        <li><a href="#"><strong>customize</strong></a></li>
+        <li><a href="#"><strong>less</strong></a></li>
+      </ul>
+    </div>
+    <div class="col-md-7 table-responsive">
+      <blockquote class="text-center">
+        <h3>三人行必有我师焉</h3>
+        <footer>摘自孔子《论语》</footer>
+      </blockquote>
+      <table class="table table-bordered">
+        <thead>
+        <tr class="active">
+          <th>Id</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Price</th>
+          <th>PubDate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td>红楼梦</td>
+          <td>曹雪芹</td>
+          <td>10.99</td>
+          <td>2010-1-1</td>
+        </tr>
+        <tr class="active">
+          <td>2</td>
+          <td>西游记</td>
+          <td>吴承恩</td>
+          <td>20.99</td>
+          <td>2010-2-1</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>水浒传</td>
+          <td>施耐庵</td>
+          <td>30.99</td>
+          <td>2010-3-1</td>
+        </tr>
+        <tr class="active">
+          <td>4</td>
+          <td>三国演义</td>
+          <td>罗贯中</td>
+          <td>40.99</td>
+          <td>2010-4-1</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3 ">
+      <h2>Fiture</h2>
+      <dl>
+        <dt>html</dt>
+        <dd>hyper text markup language</dd>
+        <dt>javascript</dt>
+        <dd>ecmaScript dom bom</dd>
+        <dt>bootstrap</dt>
+        <dd>basic css component jspligin</dd>
+      </dl>
+      <blockquote class="text-right">
+        <h3>有朋自远方来,不亦乐乎</h3>
+        <footer>摘自孔子《论语》</footer>
+      </blockquote>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">©RAMMEDREK</div>
+  </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+  (function () {
+    var s = document.createElement("script");
+    s.onload = function () {
+      bootlint.showLintReportForCurrentDocument([]);
+    };
+    s.src = "js/bootlint.js";
+    document.body.appendChild(s)
+  })();
+</script>
+</body>
+</html>

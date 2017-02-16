@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="ex"></div>
+<script type="text/babel">
+  var ToDoItem=React.createClass({
+    handleClick:function(e){
+      console.log(e.target)
+      this.props.isDelete(e.target)
+    },
+    render:function(){
+      return <li keyName={this.props.key}>
+        <button onClick={this.handleClick}>delete</button>
+        {this.props.thing}
+      </li>
+    }
+  })
+  var ToDoList=React.createClass({
+    displayList:function(){
+      return this.props.tingsList.map(function(content,index){
+        return <ToDoItem  key={index}
+                          thing={content}
+                          isDelete={this.props.deleteItem}/>
+      })
+    },
+    render:function(){
+      return <ul>
+        {this.displayList()}
+      </ul>
+    }
+  })
+  var ToDoInput=React.createClass({
+    handleClick:function(e){
+      console.log(this.refs.inputTxt.value)
+      this.props.funcAdd(this.refs.inputTxt.value);
+    },
+    render:function(){
+      return <div>
+        <h1>待做事项列表</h1>
+        <input type="text"
+                ref='inputTxt'
+                onChange={this.handleChange}
+                />
+        <button onClick={this.handleClick}>
+                Add</button>
+      </div>
+    }
+  })
+  var ToDoBox=React.createClass({
+    getInitialState:function(){
+      return {
+        list:[]
+      }
+    },
+    add:function(arg){
+      var newList=this.state.list;
+      newList.push(arg);
+      this.setState({list:newList});
+      console.log(this.state.list)
+    },
+    delete:function(index){
+      var newList=this.state.list;
+      newList.splice(index,1);
+      this.setState({list:newList});
+      console.log(this.state.list)
+    },
+    render:function(){
+      return <div>
+        <ToDoInput funcAdd={this.add}/>
+        <ToDoList tingsList={this.state.list}
+                  deleteItem={this.delete}/>
+      </div>
+    }
+  })
+  ReactDOM.render(
+      <ToDoBox/>,
+    document.getElementById('ex')
+  )
+
+</script>
+</body>
+</html>

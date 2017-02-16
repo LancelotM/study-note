@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+ </head>
+ <body>
+	<h1>练习：jQuery万能动画函数</h1>
+	<img src="img/1.jpg" alt="">
+  <img src="img/2.jpg" alt="">
+  <img src="img/3.jpg" alt="">
+  <img src="img/4.jpg" alt="">
+	<script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $("img").css("position","absolute")
+            //i   i*200
+            //0   0px    function(0){
+            //1   200px  function(1){
+            //2   400px  function(2){
+            //3   600px  function(3){
+            .css("left",function(i){
+              return i*200;
+            })
+            .click(function(){
+              //对当前img启动自定义动画:
+                //width:400,height:300,opacity:0
+                //2秒内
+                //在动画结束后,自动删除当前img
+              $(this).animate(
+                {
+                  width:400,height:300,opacity:0
+                },
+                2000,
+                function(){$(this).remove()}
+              )
+            });
+  </script>
+ </body>
+</html>

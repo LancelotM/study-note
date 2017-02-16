@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <!--1、angular.js和angular-route.js-->
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.js"></script>
+  <title></title>
+</head>
+<body ng-controller="parentCtrl">
+<!--3、配置代码片段容器-->
+<div ng-view></div>
+<script>
+  //2、依赖注入['ng','ngRoute']
+  angular.module('myApp',['ng','ngRoute'])
+    //5、配置路由词典
+    .config(function($routeProvider){
+      $routeProvider.when('/myLogin',{
+        //4、创建的模块页面
+        templateUrl:'tpl/login.html'
+        //,controller:'loginCtrl'
+      })
+      .when('/myMain',{
+        templateUrl:'tpl/main.html'
+          //,controller:'mainCtrl'
+      })
+      .otherwise({redirectTo:'/myLogin'})
+    })
+//    .controller('loginCtrl',['$scope','$location',function($scope,$location){
+//      $scope.jump=function(){
+//        $location.path('/myMain')
+//      }
+//    }])
+    //对jump进行封装,传参
+    .controller('parentCtrl',['$scope','$location',function($scope,$location){
+      $scope.jump=function(arg){
+        $location.path(arg);
+      }
+    }])
+//    .controller('mainCtrl',['$scope','$location',function($scope,$location){
+//      $scope.jump1=function(){
+//        $location.path('/myLogin');
+//      }
+//    }])
+</script>
+</body>
+</html>

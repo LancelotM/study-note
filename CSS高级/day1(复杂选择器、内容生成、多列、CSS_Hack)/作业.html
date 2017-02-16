@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<style type="text/css">
+		div:after{
+			display:block;
+			content:"";
+			clear:both;
+		}
+		div{
+			width:100px;
+			height:50px;
+			float:left;
+			margin:20px;
+			background:#ddd;
+			text-align:center;
+			line-height:50px;
+		}
+		div>a{
+			text-decoration:none;
+		}
+		.clear{
+			clear:both;
+		}
+		img{
+			width:200px;
+			height:100px;
+			display:none;
+		}
+		img:target{
+			display:block;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<a href="#n1">img1</a>
+	</div>	
+	<div>
+		<a href="#n2">img2</a>
+	</div>	
+	<div>
+		<a href="#n3">img3</a>
+	</div>	
+	<div>
+		<a href="#n4">img4</a>
+	</div>
+	<h1 class="clear">
+			<img src="1.jpg"  id="n1" />
+			<img src="CSS类内部Hack.png" id="n2"/>
+			<img src="HTML头部引用Hack(较实用).png" id="n3"/>
+			<img src="选择器Hack.png" id="n4"/>
+	</h1>
+</body>
+</html>

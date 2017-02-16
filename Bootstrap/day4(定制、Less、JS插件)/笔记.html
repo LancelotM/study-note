@@ -1,0 +1,205 @@
+1、Bootstrap JS插件 ———— 掌握	
+	1、Bootstrap 一共提供了十几个插件函数,可以单个引入,也可以一次性全部引入
+	2、使用方法有2种
+		1、使用JS方式调用
+			$('div').modal();
+		2、使用data-*方式调用 ———— 官方推荐
+			<div data-toggle="modal"></div>
+	3、插件：
+		1、JS插件 ———— 下拉菜单
+			<div class="dropdown">
+				<a href="" data-toggle='dropdown'></a>
+				<div/ul class="dropdown-menu" id='target'>
+					<a/li href=""></a/li>
+				</div/ul>	
+			</div>	
+		2、JS插件 ———— 警告框
+			<div class="alert alert-四种颜色">
+				<span data-dismiss='alert' class="close">×</span>
+			</div>	
+		3、JS插件 ———— 折叠效果
+			<a href="#target" data-toggle='collapse'>触发元素</a>
+			<div class='collapse' id=target>触发的内容</div>
+		4、JS插件 ———— 模态框
+			Model:数据模型
+			Modal:模态对话框
+			Module:模块
+			<a data-toggle='modal' href="#target">触发元素</a>
+			<button data-toggle='modal' data-target='#target' type='button'>触发元素</button>
+			<div id='target' class="modal">	//半透明的遮罩层
+				<div class="modal-dialog">	//尺寸和定位层
+					<div class="modal-content">  //背景/边框/倒角
+						<div class="modal-header">头
+							<span class="close" data-dismiss='modal'>$times;</span>
+						</div>
+						<div class="modal-body">主体</div>
+						<div class="modal-footer">尾</div>
+					</div>
+				</div>	
+			</div>
+		5、JS插件 ———— 工具提示(tooltip)
+			<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</button>
+			<script>
+				$('').tooltip()
+			</script>
+		6、JS插件 ———— 工具提示(popover)
+			<button type="button" class="btn btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+			<script>
+				$('').popover()
+			</script>
+		7、JS插件 ———— 轮播广告(carousel) ———— 重点
+			carousel:旋转木马
+			提示：carcousel结构复杂,可以通过Bootlink提示来完成
+			<div id="carouselExample" class='carousel slide' data-ride='carousel'
+             data-interval='3000' data-pause='none'>
+				<!--图片的控制页-->
+				<ol class='carousel-indicators'>
+                    <li data-target='#carouselExample' data-slide-to='0' class="active"></li>
+                    <li data-target='#carouselExample' data-slide-to='1'></li>
+                    <li data-target='#carouselExample' data-slide-to='2'></li>
+				</ol>
+				<!--轮播的图片和字-->
+				<div class='carousel-inner'>
+                    <div class="item active">
+                        <img src="">
+                        <div class="carousel-caption">
+                            <h3>标题</h3>
+                            <span>内容</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="">
+                        <div class="carousel-caption">
+                            <h3>标题</h3>
+                            <span>内容</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="">
+                        <div class="carousel-caption">
+                            <h3>标题</h3>
+                            <span>内容</span>
+                        </div>
+                    </div>
+				</div>
+				<!--上一张下一张-->
+                <a href="#carouselExample" class="carousel-control left" data-slide='prev'>
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a href="#carouselExample" class="carousel-control right" data-slide='next'>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+			</div>
+		8、JS插件 ———— 附加导航(affix)
+			<div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+			  ...
+			</div>
+		9、JS插件 ———— 滚动监听(scroll)
+            <div data-spy='scroll' data-target='.target'>
+                <div class="target">
+                    <ul>
+                        ...
+                    </ul>
+                </div>
+            </div>
+
+2、样式语言的分类
+	1、静态样式语言:即CSS,可以直接被浏览器解释执行,作为一门语言,CSS有缺陷的,如缺少:类型、变量、运算、函数、对象和继承等语言必须的基本概念,导致了CSS样式代码可维护性差
+	2、动态样式语言:在 CSS 基础上添加了动态语言必须的因素,如类型、变量、运算、函数、对象和继承等,极大的提高了样式代码的可维护性。常见的动态样式语言：
+		1、Sass/SCSS
+		2、Stylus
+		3、Less
+	注意：浏览器只能解析CSS,所以所有的动态语言样式语言的diamante都必须转换为CSS才能执行————此过程称为动态样式代码的编译"(Compile)"
+3、Less语言 ———— 重点
+	1、Less文件有两种使用方法：
+		1、在客户端使用Less
+			创建x.less;
+			创建x.html,引入x.less,引入less.js(Less编译器)
+			客户端请求x.html,下载.less和.js两个文件,在浏览器中运行less.js把x.less文件编译为css代码
+		2、在服务器端用Less ———— 推荐方法
+			创建x.less;
+			程序员在自己的电脑上安装less编译器
+			程序员执行less编译器,把x.less=>x.css
+			创建x.html,引入x.less
+			客户端请求html,下载css,直接运行即可
+	
+	2、容易出错的地方 ———— 如何搭建Less编译环境
+		1、下载并安装一款独立于浏览器的JS解释器 ———— Node.js
+			成功的标志: node -v 能够显示出版本号
+		2、下载并安装Less编译器程序:lessc.js
+			成功的标志: 能找到 C:\npm\node_modules\less\bin\lessc ———— JS文件
+		3、运行JS解释器,执行lessc.js,编译.less文件得到.css文件
+			node C:\npm\node_modules\less\bin\lessc
+			e:\5.less > e:\5.css
+			成功的标志:在E盘下多了一个5.css
+			此步也可以用 WebStorm 中的 FileWatcher 功能来实现
+				1、配置 WebStorm 中的 FileWatcher 指定 lessc 位置
+				2、只要用户修改.less文件,WebStorm会把.less自动编译成.css
+	3、Less语法学习
+		1、Less 支持CSS所有的语法
+		2、Less 支持多行/单行注释,但CSS只支持多行注释,所以Less中的单行注释不会被编译到CSS中
+		3、Less特性(常用)：
+			1、Less 有变量(Variable)的概念
+				声明变量: @变量名:值
+				使用变量: 选择器{ 样式:@变量名; }
+				变量值可以是任意合法的样式值
+			2、Less 可以执行/样式变量的计算
+				加、减、乘、除、取余
+			3、Less 支持样式的混入(Mixin) //选择器后面可以设置参数
+				选择器1{}
+				选择器2{
+					选择器1;
+					样式;
+				}
+			4、Less 在样式混入时可以指定参数
+				选择器1(@pd,@bdw,@bdc){
+					padding:@pd;
+					border:@bdw solid @bdc;
+				}
+				选择器2{
+					选择器1(10px,1px,#aaa);
+					样式;
+				}
+				选择器3{
+					选择器1(20px,2px,#bbb);
+					样式;
+				}
+			5、Less 样式嵌套
+				选择器{
+					padding:10px;
+					ul{
+						list-style:none;
+						li{
+							display:inline-block;
+							a{
+								color:#333;
+								&(this):hover{
+									text-decoration:none;
+								}
+							}
+						}
+					}
+				}
+		4、Less 提供几十个函数(常用)：
+			1、ceil(); //上取整
+			2、floor(); //下取整
+			3、percentage(); //百分比
+			4、round(?,2); //四舍五入
+			5、lighten(@c,20%); //颜色变淡20%
+			6、darken(@c,20%); //颜色变深20%
+			...
+		5、Less 支持文件包含指令
+			CSS提供了@import指令,可用于包含其他的CSS文件,但由于会增加请求次数,不推荐使用
+			Less也提供@import指令,可用于包含其他的 Less 文件,推荐使用！———— Less的文件包含是在服务器端执行的文件拼合,客户端的一次请求就可以获得所有样式
+				@import "xx.less";
+4、Bootstrap 定制 ———— 难点
+	通过修改 Bootstrap 的 Less 源文件实现定制
+	定制的目标：
+		1、Bootstrap 瘦身,删除不必要的样式
+			注释掉 bootstrap.less 中需要的 @import 即可
+		2、修改 Bootstrap 默认的样式值,实现粗力度的定制
+			修改 variables.less 中变量的值即可
+		3、修改 Bootstrap 组件的细节样式,实现细力度定制
+			修改特定的组件对应的.less文件，如dropdown.less

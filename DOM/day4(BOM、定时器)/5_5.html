@@ -1,0 +1,42 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>倒计时自动关闭/跳转页面</title>
+<meta charset="utf-8" />
+
+</head>
+<body>
+	<span id="time">5秒钟后自动关闭</span><br>
+	<a href="javascript:myClose()">留在本页</a>
+  <script>
+    function task(){//Step1: 任务函数
+      //获得id为time的span
+      var span=document.getElementById("time");
+      //将span的内容转为整数保存在n中
+      var n=parseInt(span.innerHTML);
+      if(n>1){//如果n>1
+        //设置span的内容为n+秒钟后自动关闭
+        span.innerHTML=--n +"秒钟后自动关闭";
+      }else{//否则
+        close();//关闭当前窗口
+      }
+    }
+    //启动周期性定时,task作为任务，间隔1秒，序号保存在timer中
+    var timer=setInterval(task,1000);
+    function myClose(){
+      //停止周期性定时器
+      clearInterval(timer);
+    }
+
+	  //Step1: 任务函数
+//    function task(){
+//      close();//如果任务只有一句话
+//    }
+    //Step2: 启动定时器
+//    var timer=setTimeout("close()",5000);
+//    function myClose(){
+//      clearTimeout(timer);
+//    }
+  </script>
+</body>
+</html>

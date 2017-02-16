@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="myCtrl">
+    <input type="checkbox" ng-checked="checked"/>是否同意
+    <ul>
+      <li ng-repeat="tmp in list track by $index">{{tmp}}</li>
+    </ul>
+  </div>
+
+<script>
+  var app = angular.module('myModule',['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+      $scope.checked = false;
+      $scope.list = [1,3,1,4];
+  })
+</script>
+
+</body>
+</html>

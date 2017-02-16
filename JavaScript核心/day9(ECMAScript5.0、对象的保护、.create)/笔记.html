@@ -1,0 +1,120 @@
+ECMAScript 5.0（）
+	1、对对象的保护
+		问题：属性可随时直接使用=赋值任何值
+			  属性可随时被访问
+			  可随时添加和删除属性
+			  ————不严格！
+		解决：对对象提供保护
+
+		何如：
+			将变量中属性转移到另一变量中
+				var 新变量名=Object.getOwnPropertyDescriptor(旧变量名,"属性名")
+			访问变量中的单个属性
+				Object.defineProperty(变量名,"属性名",{
+					value:实际存储值,
+					writable:true/false,	//是否只读
+					enumerable:true/false,	//是否被for...in遍历
+					configurable:true/false //是否可以修改之前的2个属性
+				})
+			访问变量中的多个属性
+				Object.defineProperties(变量名,{
+					属性名1:{writable:true/false,enumerable:true/false,configurable:true/false},
+					属性名2:{writable:true/false,enumerable:true/false,configurable:true/false},
+					属性名3:{writable:true/false,enumerable:true/false,configurable:true/false}
+				})
+			
+			1、对对象的属性提供保护
+				1、将对象的属性分为2类：
+					1、命名属性：可随时通过.属性名方式访问的属性
+						又分为2类：
+							1、数据属性：实际存储属性值的属性
+								如何保护：每个属性都包含4大特性
+									{
+										value:实际存储属性值,
+										writable:true/false,
+											可修改/只读
+										enumerable:true/false,
+											能否被for..in遍历到
+											依然可用.访问到
+										configurable:true/false,
+											1、是否可修改之前的两个属性
+											2、是否可删除当前属性
+											一旦改为false不可逆！
+									}
+								特殊：如果要定义的属性不存在：
+									defineProperty会自动添加
+									自动添加后，属性的特性值：都是false
+								问题：只能提供基本(只读,遍历,删除)保护
+									无法按照自定义规则保护属性
+								解决：访问器属性
+							2、访问器属性：不实际存储属性值
+											专门对其他属性提供验证保证
+								场合：只要按照自定义规则保护属性
+								如何：也有4大特性
+									{
+										get:function(){return 受保护的属性值},
+										set:function(val){
+										验证要赋的新值val
+										通过才将val保存到受保护的属性中},
+										enumerable:true/false,
+										configurable:true/false
+									}
+									当通过访问器属性获取受保护的属性值时
+										自动调用get方法
+									当通过访问器属性为受保护的属性赋值时
+										自动调用set方法
+									大问题：受保护的属性值应该保存在哪
+											才能做到比人不能直接用，只能用过访问器属性访问
+									解决：闭包
+					2、内部属性：无法通过.属性名方式访问的属性
+						class		Objcet.prototype.toString.cal(obj);
+						__proto__	Object.getPrototypeOf(child,father);
+									Object.setPrototypeOf(child,father);
+				2、防篡改：禁止修改对象的属性结构
+					3个级别
+						1、防扩展：禁止向对象中添加新属性
+							Object.preventExtensions(obj);
+						2、密封：既防扩展，有禁止删除旧属性
+							Object.seal(obj);
+								其实将所有属性的configurable设置为false
+						3、冻结：既密封，又禁止修改所有的属性值！
+							场合：如果一个对象中保存了大量不变的属性值时
+							Object.freeze(obj);
+								其实是将所有属性的writable设置为false
+			2、对整个对象提供保护
+	2、Object.create();
+		var newObj=Object.creat(father,{扩展的新属性})
+		创建一个新对象newObj,继承father，并将newObj扩展新的自有属性
+		场合：只要基于一个现有对象，创建一个新的子对象时
+		相当于：var newOjb={};
+				new Ojb>__proto__=father;
+				Object.defineProperties(newObj,{
+					扩展的新属性:{
+						value:"",
+						writable:true,
+						enumerable:true,
+						configurable:true
+					}
+				})
+	3、数组API：
+		1、判断:数组中的元素是否符合要求
+			1、所有元素是否都符合要求
+				var boolean=arr.every(function(val,i,arr){return 判断条件;})
+			2、是否包含符合要求的元素	
+				var boolean=arr.some(function(val,i,arr){return 判断条件;})
+		2、遍历:依次对数组中每个元素执行相同的操作
+			1、对原数组中每个元素的值，执行相同操作后，进行修改原数组的值
+				arr.forEach(function(val,i,arr){ arr[i]=新值;})
+			2、取出原数组中每个元素的值，执行相同的操作后，保存到新数组
+				var newArr=arr.map(function(val){return 操作;})
+		3、过滤和汇总
+			1、过滤：选择原数组中符合条件的元素组成新数组
+				var subArr=arr.filter(function(val,i,arr){return 判断条件;})
+			2、汇总：将原数组中每个元素值统计出一个汇总结果
+				var r=arr.reduce(function(prev,val,i,arr){
+					return prev+val;
+				},0);
+				其中：
+					0：表示起始值
+					prev：截止到目前的阶段汇总值
+					回调函数的返回值，自动加到prev

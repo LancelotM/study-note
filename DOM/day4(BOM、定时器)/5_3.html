@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>窗口右下角消息弹出框</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="css/4_3.css"/>
+ </head>
+ <body>
+  <div id="msg">
+	<a id="cross">X</a>
+  </div>
+  <script type="text/javascript">
+	var adv={
+		DURATION:2000,
+		DISTANCE:0,
+		STEPS:400,
+		step:0,
+		interval:0,
+		div:null,
+		timer:null,
+		moved:0,
+		WAIT:3000,
+		init:function(){
+			this.div=document.getElementById("msg");
+			this.DISTANCE=parseFloat(getComputedStyle(this.div).height);
+			this.step=this.DISTANCE/this.STEPS;
+			this.interval=this.DURATION/this.STEPS;
+			document.getElementById("cross").onclick=function(){
+				this.move(-1);
+			}.bind(this);
+			this.move(1);
+		},
+		move:function(dir){
+			if(this.timer===null){
+			this.timer=setInterval(this.moveStep.bind(this,dir),this.interval);
+			}
+		},
+		moveStep:function(dir){
+			var bottom=parseFloat(getComputedStyle(this.div).bottom);
+			this.div.style.bottom=bottom+dir*this.step+"px";
+			this.moved++;
+			if(this.moved==this.STEPS){
+				clearInterval(this.timer);
+				this.timer=null;
+				this.moved=0;
+				if(dir==-1){
+					this.callback();
+				}
+			}
+		},
+		callback:function(){
+			setTimeout(this.move.bind(this,1),this.WAIT);
+		}
+	}
+	adv.init();
+  </script>
+ </body>
+</html>

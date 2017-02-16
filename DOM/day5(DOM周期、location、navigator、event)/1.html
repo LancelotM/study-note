@@ -1,0 +1,37 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>事件处理</title>
+<meta charset="utf-8" />
+
+</head>
+<body>
+ 	<form>
+		姓名:<input name="username"/>
+		密码:<input type="password" name="pwd"/>
+		<input type="submit"/>
+	</form>
+	<script>
+	var input=document.querySeletor("[name='username']").nodeName;
+	console.log(input);
+    function search2Obj(){
+      var params={};//创建空对象params
+      //获得location的search部分
+      var search=location.search;
+      if(search!==""){//如果search不为""
+        //选择search中1位置之后剩余内容,然后按&切割,保存在数组arr中
+        var arr=search.slice(1).split("&");
+        for(var i=0;i<arr.length;i++){//遍历arr
+          //将当前元素按=切割，保存在t中
+          var t=arr[i].split("=");
+          //为params添加新属性: 属性名为t的第0个元素,属性值为t的第1个元素
+          params[t[0]]=t[1];
+        }
+      }
+      return params;//返回params
+    }
+    var params=search2Obj();
+    console.dir(params);
+  </script>
+</body>
+</html>

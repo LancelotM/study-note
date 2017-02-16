@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    svg {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+<h3>使用SVG绘图——渐变对象</h3>
+<svg width="600" height="400" id="svg15">
+  <!--渐变属于特效，必须声明在“特效列表”-->
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="100%" y2="0">
+      <stop offset="0" stop-color="#f00"></stop>
+      <stop offset="50%" stop-color="#ff0"></stop>
+      <stop offset="100%" stop-color="#0f0"></stop>
+    </linearGradient>
+
+    <linearGradient id="g2" x1="0" y1="0" x2="100%" y2="0">
+      <stop offset="0" stop-color="red"></stop>
+      <stop offset="17%" stop-color="orange"></stop>
+      <stop offset="33%" stop-color="yellow"></stop>
+      <stop offset="50%" stop-color="green"></stop>
+      <stop offset="67%" stop-color="blue"></stop>
+      <stop offset="83%" stop-color="cyan"></stop>
+      <stop offset="100%" stop-color="purple"></stop>
+    </linearGradient>
+  </defs>
+
+  <rect width="500" height="100" x="50" y="50" fill="url(#g1)"></rect>
+
+  <text y="300" font-size="50" fill="url(#g2)">达内科技2016年</text>
+</svg>
+
+<script>
+</script>
+</body>
+</html>

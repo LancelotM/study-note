@@ -1,0 +1,57 @@
+1、Canvas绘制路径和图像 ———— 重点&难点
+	1、使用 Canvas 绘制路径(Path)
+		提示：用 Canvas 绘制路径类似于PS中的钢笔工具,路径本身是不可见的,但是有3个用途可以使路径有意义:描边、填充(闭合)、裁剪(闭合)
+		Canvas 中与路径绘制相关方法：
+			ctx.beginPath() //开始一条新路径
+			ctx.closePath() //闭合路径，让最后一个锚点自动连接到第一个锚点
+			ctx.moveTo(x,y) //移动到指定点
+			ctx.lineTo(x,y) //从当前点到指定点绘制直线路径
+			ctx.arc(x,y,radius,startAngle,endAngle,direction) //绘制拱形路径
+			ctx.ellipse()	//绘制椭圆路径
+			ctx.bezierCurveTo() //绘制贝塞尔曲线
+			ctx.lineJoin='' //修改折线拐点处的样式
+				取值: 
+					bevel //斜面/斜角
+					round //圆角
+					miter(默认值) //尖角
+			------------------------------------------------------
+			ctx.stroke() //描边
+			ctx.fill() //填充
+			ctx.clip() //裁剪
+	2、使用 Canvas 绘制图像(Image)
+		提示：图片的定位点在图片的左上角,客户端JS必须等待图片加载完成才能开始绘制
+		var img=new Image();
+		img.scr='x.jpg';
+		img.onload=function(){
+			//图片已经加载完成了
+			ctx.drawImage(img,x,y); //使用默认的宽高
+			ctx.drawImage(img,x,y,w,h);
+		}
+	3、小结：Canvas绘图可以绘制的内容:
+		1、矩形
+			ctx.fillRect()   ctx.strokeRect()   ctx.clearRect()
+		2、文本
+			ctx.fillText()   ctx.strokeText()   ctx.measureText()
+		3、路径 —— 描边/填充/裁剪
+			ctx.beginPath()   ctx.closePath()
+			ctx.moveTo()   ctx.lineTo()   ctx.arc()
+			ctx.stroke()  ctx.fill()   ctx.clip()
+		4、图像
+			ctx.drawImage()
+		5、图形图像变形
+			ctx.translate()  ctx.rotate()  ctx.scale()
+			ctx.save()  ctx.restore()
+	4、绘图上下文的状态改变和修改 ———— 难点&晦涩
+		var ctx=canvas.getContext('2d');
+		//可以将绘图上下文对象(即画笔对象)进行变形(transform) ———— 与对 Canvas 施加 CSS Transform 样式不同，绘图上下文的变形值影响当前绘制的内容
+		ctx.translate(x,y) //画笔平移(平移坐标轴的原点),所有点的坐标都发生改变
+		ctx.rotate(deg) //画笔选择,则内容旋转,旋转的轴在坐标轴的原点
+		ctx.scale() //画笔缩放
+		--------------------------------------------------------
+		ctx.save() //保存绘图上下文(画笔)当前的变形数据
+		ctx.restore() //恢复最近一次保存的画笔的变形相关的状态
+2、使用第三方统计图绘图工具 ———— Chart.js ———— 掌握
+	第三方工具的使用步骤：
+		1、打开官网，看工具介绍
+		2、参考DEMO，编写实例程序
+		3、查看API Document，实现自己的项目需求

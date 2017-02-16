@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script>
+    //若用户已经登录，则无需再看到此页面
+    var n = sessionStorage['LoginName'];
+    if(n){
+      location.href='10_index.html';
+    }
+  </script>
+</head>
+<body>
+<section>
+  <h3>用户登录</h3>
+  <hr/>
+  用户名：<input id="uname"><br>
+  密码名：<input id="upwd"><br>
+  <input type="button" id="btSubmit" value="提交登录信息">
+</section>
+<script>
+  btSubmit.onclick = function(){
+    var n = uname.value;
+    var p = upwd.value;
+    //此处应该执行异步的登录信息验证....
+    alert('登录成功，3秒钟后跳转回首页');
+    //保存当前登录的用户名，可以供后续的其他页面使用
+    sessionStorage['LoginName'] = n;
+
+    setTimeout(function(){
+      location.href = '10_index.html';
+    }, 3000)
+
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>1. 实现伸缩二级菜单</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="css/7_1.css" />
+</head>
+<body>
+	<ul class="tree">
+		<li>
+			<span class="open" onclick="toggle(this)">考勤管理</span>
+			<ul class="hide show">
+				<li>日常考勤</li>
+				<li>请假申请</li>
+				<li>加班/出差</li>
+			</ul>
+		</li>
+		<li>
+      <span class="closed" onclick="toggle(this)">信息中心</span>
+			<ul class="hide">
+				<li>通知公告</li>
+				<li>公司新闻</li>
+				<li>规章制度</li>
+			</ul>
+		</li>
+		<li>
+      <span class="closed" onclick="toggle(this)">协同办公</span>
+			<ul class="hide">
+				<li>公文流转</li>
+				<li>文件中心</li>
+				<li>内部邮件</li>
+				<li>即时通信</li>
+				<li>短信提醒</li>
+			</ul>
+		</li>
+	</ul>
+  <script>
+    function toggle(span){
+      //如果当前span的class为open
+      if(span.className=="open"){
+        //就设置当前span的class为closed
+        span.className="closed";
+        //修改当前span的下一个兄弟的class为hide
+        span.parentNode.children[1]
+            .className="hide";
+      }else{//否则
+        //查找class为tree的ul下class为open的span，保存在openSpan中
+        var openSpan=
+          document.querySelector(".tree .open");
+        if(openSpan){//如果openSpan不是null
+          //设置openSpan的class为closed
+          openSpan.className="closed";
+          //修改openSpan的下一个兄弟的class为hide
+          openSpan.parentNode.children[1]
+                  .className="hide";
+        }
+        //就设置当前span的class为open
+        span.className="open";
+        //修改当前span的下一个兄弟的class为show
+        span.parentNode.children[1]
+            .className="hide show";
+      }
+    }
+  </script>
+</body>
+</html>

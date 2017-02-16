@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+
+  <style>
+    .form-horizontal .control-label {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>组件——警告框</h1>
+  <div class="text-danger bg-danger">
+    <h4>警告！</h4>
+    <p>您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！</p>
+  </div>
+
+  <div class="alert alert-danger">
+    <h4>警告！</h4>
+    <p>您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！</p>
+  </div>
+  <div class="alert alert-success">
+    <h4>警告！</h4>
+    <p>您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！</p>
+  </div>
+  <div class="alert alert-warning">
+    <h4>警告！</h4>
+    <p>您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！</p>
+  </div>
+  <div class="alert alert-info alert-dismissible">
+    <span data-dismiss="alert" class="close">&times;</span>
+    <h4>警告！</h4>
+    <p>您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！您的浏览器版本太低！无法显示当前页面中的内容！请下载最新版本的浏览器！</p>
+  </div>
+
+
+</div>
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+  (function () {
+    var s = document.createElement("script");
+    s.onload = function () {
+      bootlint.showLintReportForCurrentDocument([]);
+    };
+    s.src = "js/bootlint.js";
+    document.body.appendChild(s)
+  })();
+</script>
+<script>
+  $('[data-qiehuan="xialacaidan"]').click(function(e){
+    e.preventDefault();
+    //$(this).siblings('.dropdown-menu').show();
+    //$(this).siblings('.dropdown-menu').hide();
+    $(this).siblings('.dropdown-menu').toggle();
+  });
+</script>
+</body>
+</html>

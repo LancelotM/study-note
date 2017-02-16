@@ -1,0 +1,195 @@
+  一、列表
+1、有序  	属性：既可以用在<ol>上，也可以用在<li>上
+    <ol>		type="1/a/A/i/I" start="x"(从x开始依次上升)
+	<li>
+	</li>
+    </ol>
+2、无序 	属性：既可以用在<ul>上，也可以用在<li>上
+    <ul>      		type="none(无)/circle(空心圆)/square(实心正方形)/disc(默认值实心圆)"
+	<li>
+	</li>
+    </ul>
+3、列表的嵌套
+	通过列表的嵌套，可以实现多层列表，放在li中
+4、定义列表
+    1、作用
+	定义列表用于给出一类食物的定义情形
+	    掩耳盗铃
+		xxxxxxxxxxx
+    2、语法
+	<dl></dl>:定义一个定义列表
+	    <dt></dt>:定义列表中药解释的名称或术语
+	    <dd></dd>:定义列表中对名词或术语的解释
+		<dl>
+		    <dt>名称/术语</dt>
+		    <dd>解释</dd>
+		</dl>
+    3、使用场合：图文混排时
+
+二、结构标记
+    1、作用
+	用于表示页面中的布局，目的是为了提升标记的语义化
+    2、结构标记
+    	1、<header>元素
+	    <header>定义文档的页眉</header>
+	    用于取代<div id="header"></div>        **可以多次引用**
+    	2、<nav>元素
+	    <nav>网页导航</nav>
+    	3、<section>元素
+	    <section>网页中的主体部分</section>
+	4、<article>元素
+	    <article>独立于文档的其他部分的内容</article>
+		比如：论坛中的帖子，新闻类网站中的具体一条新闻，博客或微博的条目，音视频等。
+	5、<aside>元素
+	    <aside>网页内容中的边栏信息</aside>
+	6、<footer>元素
+	    <footer>网页底部的信息</footer>
+
+三、表单（重难点）
+    1、作用：用于显示、收集用户信息，并将信息提交给服务器的操作
+    2、表单组成：
+	1、表单元素：负责将用户数据提交给服务器
+	    1、标记
+		<form></form>
+	    2、属性
+		1、action:定义表单被提交时的动作，主要就是 服务器上处理 数据的应用程序URL
+			  默认值是提交给本页
+		2、method:指定表单数据提交的方式
+			    取值：（默认值是get）
+				1、get 向服务器端要数据时使用（涉及到密码类的提交不能用get）
+				    特点：
+					1、显示提交：用户数据是可以显示在地址栏上的
+					2、提交数据长度限制：2KB
+				2、post 适用于向服务器传递数据，如用户名，密码等（安全性高）
+				    特点：
+					1、隐式提交：所提交的数据时看不见的
+					2、无数据长度限制
+		3、enctype 表单数据进行编码的方式
+			    取值：
+				1、application/x-www-form-urlencoded（默认值）
+				2、multipart/form-data
+				    使用场合：上传文件时使用，如上传照片
+				3、text/plain
+					    
+	2、表单控件
+	    1、作用：提供多种类型的表单控件，并且具备可视化的外观，可以接受用户的而数据，
+		     与用户进行数据交互
+	    2、表单控件分类
+	      input组元素,textarea,选项框(select、option),其他元素
+		1、input 元素
+		    1、统一语法:
+			<input>或<input/>
+		    2、属性
+			1、type(默认值text)
+			    根据type值，创建各种类型的输入字段，如文本框，密码框，单选按钮，
+			    复选框等。。
+			    	1、文本框与密码框
+				    文本框：type="text"
+				    密码框：type="password"
+				特有属性：
+				    1、maxlength:限制输入的字符数
+				    2、readonly:只读（只能看,不能改,但可以读取）,没有值,出现就生效
+				    3、name:匈牙利命名法，以控件的缩写+功能名称组成
+					    文本框、密码框的缩写：txt
+							用户名称:         用户昵称：
+							txtUsername       txtNickname
+				    4、value:提示语
+				2、单选按钮、复选框
+				    单选按钮：type="radio"     	rdo
+				    复选框：type="checkbox"	chk
+				属性：
+				    1、name：名称以及分组，一组单选按钮或复选框的话，名称必须一致
+				    2、value:
+				    3、checked:设置默认被选中
+				3、按钮
+				    提交按钮：type="submit"
+				    重置按钮：type="reset"
+				    普通按钮：type="button" 执行客户端脚本（JS）
+				属性：
+				    1、name: 缩写-btn
+				    2、value: 按钮上的显示文本
+				4、隐藏域和文件选择框
+				  1、隐藏域:不想给用户看，但是要提交给服务器的数据
+				  隐藏域: type="hidden"
+				    属性：
+					1、name:缩写-txt
+				    	2、值
+				  2、文件选择框：提交上传文件时使用，如上传照片
+				  文件选择框：type="file"
+				    属性：
+					1、name:缩写-txt
+				**注意：
+					1、保证 form 的 medthod 属性 必须 为post
+					2、保证 form 的 enctype 属性 必须 为multipart/form-data  **
+			2、value
+			    值，要提交给服务器的值
+			3、name
+			    控件的名称，服务器端使用，没有名字，无法提交
+			4、disabled  <input dis>
+			    禁用控件，该属性没有值，只要出现在控件中就表示禁用
+		2、textarea：多行文本框
+		    	<textarea>文本</textarea>
+		    	属性：
+			    1、name:缩写-txt
+			    2、readonly
+			    3、cols：指定文本域的列数，变相设置宽度
+			    4、rows：指定文本域的行数，变相设置高度
+		3、选项框(select和option)
+		    <select></select> 创建下拉选项框或滚动列表
+			属性：
+			    1、name:缩写-sel
+			    2、size:默认显示的选项数，取值>1为滚动列表，否则为下拉选项框
+		   	    3、multiple:设置多选
+		    <option></option> 选项框中的选项
+			属性：
+			    1、value:值
+			    2、selected:默认被选中
+	 	4、其他元素
+		    1、label元素 :关联 文本 与表单控件
+			1、<label>文本</label>
+			2、属性：
+			    1、for: 表示与该元素相关联的表单控件的ID值
+		    2、fieldset元素 :为控件分组		
+			1、<fieldset>为控件分组</fieldset>
+			    <legend>为分组指定标题</legend>
+				<fieldset>
+					<legend>标题</legend>
+				</fiedset>
+		    3、button元素
+			<button>文本/图标</button>
+			注意：
+			    <button>元素 放在 <form>中，就是提交按钮，
+			    放在<form>之外，就是普通按钮（IE除外）
+		    4、其他标记
+		      	1、浮动框架
+			        可以在一个浏览器窗口中显示多个页面文档
+			    2、<iframe>内容</iframe>
+			        注意：
+			 	    1、必须是成对标记
+				    2、当浏览器不支持<iframe>元素时，将显示“内容”作为该出的内容
+			    3.属性：
+			        1、src：浮动框架中的网页URL
+			        2、width：
+			        3、height：
+			        4、frameborder:浮动框架的边框，设置为则取消边框
+		        2、摘要与细节
+				允许就网页某部分内容进行展开或收缩
+			    <details>
+				<summary>标题</summary>
+			    </details>
+			3、度量元素
+			    用于显示静态比例的信息（已知最大值、最小值）
+				<meter>文本</meter>
+			    属性：
+				1、min:度量范围最小值（默认0）
+				2、max:度量范围最大值（默认1）
+				3、value：当前显示的度量值(默认0)
+			4、时间元素
+			    用于关联时间的不同表现形式
+			    	<time>时间文本</time>
+			    属性：
+				datetime:关联的日期时间(年月日T时分秒)，可以只关联日期，也可以只关联时间
+					如果同时关联日期与事件的话，日期与时间之间用T来分割
+			5、高亮文本显示
+			    将页面中的某部分文本，以特殊的背景颜色显示出来
+				<mark>高亮文本显示</mark>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <form name="temp_form" ng-submit="save()">
+    <div>
+      <input type="text" ng-model="name" name="t_name" required/>
+      <span ng-show="temp_form.t_name.$error.required">姓名不能为空</span>
+      <span ng-show="temp_form.t_name.$pristine">没有输入过</span>
+      <span ng-show="temp_form.t_name.$dirty">输入过</span>
+      <span ng-show="temp_form.t_name.$valid">验证通过</span>
+      <span ng-show="temp_form.t_name.$invalid">验证没通过</span>
+    </div>
+    <div>
+      <input type="email" name="t_email" ng-model="email" required/>
+      <span ng-show="temp_form.t_email.$error.required">未输入邮箱</span>
+      <span ng-show="temp_form.t_email.$error.email">邮箱格式不正确</span>
+    </div>
+    <input type="submit" ng-disabled="temp_form.$invalid" value="提交"/>
+  </form>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', ['$scope',function ($scope) {
+      $scope.name='web1609';
+      $scope.save=function(){
+        console.log('name is '+$scope.name)
+      }
+    }])
+</script>
+</body>
+</html>

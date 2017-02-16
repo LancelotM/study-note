@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+  var LifeComponent = React.createClass({
+    componentDidMount:function(){
+      setInterval(
+      function(){
+        var nowValue = this.state.opacityValue;
+        nowValue+=0.1;
+        if(nowValue > 1)
+        {
+          nowValue = 0;
+        }
+
+        this.setState({opacityValue:nowValue},function(){
+          console.log(this.state.opacityValue);
+        });
+
+      }.bind(this),100
+      )
+    },
+    getInitialState:function(){
+      return {opacityValue:0}
+    },
+    render:function(){
+      return <div style={{opacity:this.state.opacityValue}}>
+        Hello LifeCycle
+      </div>
+    }
+  })
+
+  ReactDOM.render(
+  <LifeComponent/>,
+  document.getElementById('example')
+  )
+
+</script>
+
+</body>
+</html>

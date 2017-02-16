@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <form name="temp_form" ng-submit="save()">
+    <div>
+      <h3>登录用户名</h3>
+      <label for="user_name">用户名:</label>
+      <input type="text" id="user_name" name="t_name" ng-model="name" required/>
+      <span ng-show="temp_form.t_name.$error.required&&temp_form.t_name.$dirty">用户名不能为空</span>
+      <!--<span ng-show="temp_form.t_name.$pristine">用户名不能为空</span>-->
+      <!--<span ng-show="temp_form.t_name.$valid">用户名正确</span>-->
+    </div>
+    <div>
+      <h3>密码</h3>
+      <label for="user_pwd">密码：</label>
+      <input type="password" id="user_pwd" name="t_pwd" ng-model="pwd" required/>
+      <span ng-show="temp_form.t_pwd.$error.required&&temp_form.t_pwd.$dirty">密码不能为空</span>
+      <!--<span ng-show="temp_form.t_pwd.$valid">密码正确</span>--><br/>
+      <input type="submit" ng-disabled="temp_form.$invalid"/>
+    </div>
+  </form>
+</div>
+<script>
+  angular.module('myModule', ['ng'])
+    .controller('myCtrl', ['$scope',function ($scope) {
+      $scope.save=function(){
+        console.log($scope.name);
+        console.log($scope.pwd);
+      }
+    }])
+</script>
+</body>
+</html>

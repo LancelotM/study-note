@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="css/ionic.css"/>
+  <script src="js/ionic.bundle.js"></script>
+</head>
+<body>
+<ion-header-bar>
+  <button class="button icon ion-navicon"></button>
+  <h1 class="title">Header Buttons</h1>
+  <button class="button">Edit</button>
+</ion-header-bar>
+<ion-content>
+  <button>normal</button><br/>
+  <button class="button">Default</button><br/>
+  <button class="button button-light">button-light</button><br/>
+  <button class="button button-stable">button-stable</button><br/>
+  <button class="button button-block button-positive">button-positive button-block</button><br/>
+  <button class="button button-full button-calm">button-calm button-full</button><br/>
+  <button class="button button-small button-balanced">button-balanced button-small</button><br/>
+  <button class="button button-large button-energized">button-energized button-large</button><br/>
+  <button class="button button-outline button-assertive">button-assertive button-outline</button><br/>
+  <button class="button button-clear button-royal">button-royal button-clear</button><br/>
+  <button class="button button-dark">button-dark</button><br/>
+  <hr/>
+  <button class="button">
+    <i class="icon ion-loading-c"></i> Loading...
+  </button><br/>
+  <button class="button icon-left ion-home">Home</button>
+  <button class="button icon-left ion-star button-positive">Favorites</button>
+  <a class="button icon-right ion-chevron-right button-calm">Learn More</a>
+  <a class="button icon-left ion-chevron-left button-clear button-dark">Back</a>
+  <button class="button icon ion-gear-a"></button>
+  <a class="button button-icon icon ion-settings"></a>
+  <a class="button button-outline icon-right ion-navicon button-balanced">Reorder</a>
+  <hr/>
+  <div class="button-bar">
+    <a class="button icon-left ion-star">First</a>
+    <a class="button button-royal">Second</a>
+    <a class="button button-calm">Third</a>
+    <a class="button icon-right ion-star button-energized">Fourth</a>
+  </div>
+</ion-content>
+<ion-footer-bar class="bar-royal">
+  <h1 class="title">footer</h1>
+</ion-footer-bar>
+<script>
+  angular.module('myModule', ['ionic'])
+</script>
+</body>
+</html>

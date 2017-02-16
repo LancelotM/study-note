@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function num(){
+			var i=1;
+			while(i<=1000){
+				console.log("1~1000所有的数字："+i);
+				i++;
+			}
+		}
+		function sum(){
+			var i=1,sum=0;
+			while(i<=1000){		
+				sum+=i;
+				i++;
+			}
+			console.log("1~1000所有的数字之和："+sum);
+		}
+		function sum_js(){
+			var i=1,sum_js=0;
+			while(i<=1000){
+				if(i%2==1){
+				sum_js+=i;
+				}
+				i++;
+			}
+			console.log("1~1000所有的奇数数字之和："+sum_js);
+		}
+	</script>	
+	<button onclick="num();">1~1000所有的数字</button>
+	<button onclick="sum();">1~1000所有的数字之和</button>
+	<button onclick="sum_js();">1~1000所有的奇数数字之和</button>
+</body>
+</html>

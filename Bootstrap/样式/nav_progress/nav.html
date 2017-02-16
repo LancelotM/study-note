@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="container">
+  <h1>Bootstrap 组件————导航(nav)</h1>
+  <h3>1、标签页式导航(页签导航)</h3>
+  <ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#1">阿萨德</a></li>
+    <li class="active"><a data-toggle="tab" href="#2">大的收到</a></li>
+    <li><a data-toggle="tab" href="#3">按时打算</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane" id="1">1的详情</div>
+    <div class="tab-pane active" id="2">2的详情</div>
+    <div class="tab-pane" id="3">3的详情</div>
+  </div>
+  <h3>2、胶囊式导航</h3>
+  <ul class="nav nav-pills">
+    <li><a data-toggle="pill" href="#">阿萨德</a></li>
+    <li class="active"><a data-toggle="pill" href="#">大的收到</a></li>
+    <li><a data-toggle="pill" href="#">按时打算</a></li>
+  </ul>
+  <h3>3、导航条专用导航</h3>
+  <h1>Bootstrap 组件————进度条</h1>
+  <div class="progress">
+    <div class="progress-bar" style="width: 10%">10%</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-danger" style="width: 20%">20%</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-success" style="width: 30%">30%</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-info" style="width: 40%">40%</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-success  progress-bar-striped" style="width: 30%">30%</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 20%">20%</div>
+  </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+  //  (function () {
+  //    var s = document.createElement("script");
+  //    s.onload = function () {
+  //      bootlint.showLintReportForCurrentDocument([]);
+  //    };
+  //    s.src = "js/bootlint.js";
+  //    document.body.appendChild(s)
+  //  })();
+</script>
+</body>
+</html>

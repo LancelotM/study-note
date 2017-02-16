@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/normal.css"/>
+</head>
+<body>
+<script>
+if(sessionStorage.length===0){
+  location.href='save.html';
+}
+</script>
+<div id="box">
+  <h3>测试结果：</h3>
+  <form id="result" action="">
+    <!--<label>总单词数：</label><br/>-->
+    <!--<label>正确数量：</label><br/>-->
+    <!--<label>错误数量：</label>-->
+  </form>
+  <hr/>
+  <footer>
+   <div id="newWords">继续录入新单词</div>
+   <div id="again">再次测试</div>
+  </footer>
+</div>
+<script>
+  result.innerHTML=`
+    <label>总单词数：${sessionStorage['totalWords']}</label><br/>
+    <label>正确数量：${sessionStorage['rightWords']}</label><br/>
+    <label>错误数量：${sessionStorage['totalWords']-sessionStorage['rightWords']}</label>
+  `;
+
+  newWords.onclick=function(){
+    location.href='save.html';
+  };
+  again.onclick=function(){
+    location.href='test.html';
+  };
+</script>
+</body>
+</html>

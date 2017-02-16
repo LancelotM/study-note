@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    svg {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+<h3>使用SVG绘图——椭圆</h3>
+<svg width="600" height="400" id="svg12">
+  <ellipse id="e1" rx="200" ry="50" cx="200" cy="50" fill="#0f0" fill-opacity=".3"></ellipse>
+</svg>
+
+<script>
+  e1.onmouseenter = function(){
+    this.setAttribute('fill-opacity',1);
+  }
+  e1.onmouseleave = function(){
+    this.setAttribute('fill-opacity',0.3);
+  }
+</script>
+</body>
+</html>

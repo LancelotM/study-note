@@ -1,0 +1,77 @@
+  handleChange:function(event){
+        console.log(event.target);
+    }
+其中event是事件对象 target是事件对象的属性
+
+(以下内容括号内为类型)
+通用属性
+bubbles (boolean) 表示事件是否冒泡
+cancelable(boolean) 表示事件是否可以取消
+currentTarget(DOMEventTarget) 与Target类似，由于事件可以冒泡，所以两者表示的内容是不同的
+defaultPrevented(boolean) 表示事件是否禁止了默认行为
+eventPhase(number) 表示事件所处的阶段
+isTrusted(boolean) 表示事件是否可信。所谓的可信事件表示的是用户操作的事件，不可信事件就是通过JS代码来触发的事件。
+nativeEvent(DOMEvent)
+preventDefault() (void) 对应的defaultPrevented，表示的是禁止默认行为
+stopPropagaTion() (void) 对应的是bubbles，表示的是sh
+target(DOMEventTarget)
+timeStamp(number) 时间戳，也就是事件触发的事件
+type(string) 事件的类型
+不同事件对象的特有属性
+剪切事件
+
+clipboardData(DOMDataTransfer)表示拿到的数据
+键盘事件
+
+altKey(boolean) 表示是否按下alt键
+charCode(Number) 表示的是按键的字符编码，可以通过编码来判断按下的是什么键
+ctrlKey(boolean) 表示是否按下ctrl键
+getModifierState(key) (function) 表示是否按下辅助按键（辅助按键就是雷士ctrl、shift等辅助按键）可以传入按键编码来判断是否按下
+key(string) 字符串，按下的键
+keyCode(Number) 表示那些不是字符编码的按键
+locale(String) 表示本地化得一些字符串
+location(number) 表示位置
+metaKey(boolean) 表示的是win系统下的win键，mac系统下对应的command键
+repeat(boolean) 表示按键是否重复
+shiftKey(boolean) 表示是否按下shift
+which(Number) 表示经过通用化得charCode和keyCode
+焦点事件
+
+relatedTarget(DOMEventTarget) 相关焦点对象
+鼠标事件
+
+altKey(boolean)
+button(Number)
+buttons(Number)
+clientX(Number) 原点为浏览器左上角
+clinetY(Number) 原点为浏览器左上角
+ctrlKey(boolean)
+getModifierState(key) (function)
+metaKey(boolean)
+pageX(Number) 原点为HTML页面的左上角
+pageY(Number) 原点为HTML页面的左上角
+relatedTarget(DOMEventTarget)
+screenX(Number) 原点为显示器的左上角
+screenY(Number) 原点为显示器的左上角
+shiftKey(boolean)
+触摸事件
+
+为了使触摸事件生效，在渲染所有组件之前调用 React.initializeTouchEvents(true)。
+altKey(boolean)
+ctrlKey(boolean)
+getModifierState(key)
+metaKey(boolean)
+shiftKey(boolean)
+changedTouches(DOMTouchList) 判断手势操作
+targetTouches(DOMTouchList) 判断手势操作
+touches(DOMTouchList) 判断手势操作
+UI元素事件
+
+detail(Number) 滚动的距离
+view(DOMAbstractView) 界面，视窗
+鼠标滚动
+
+deltaMode(Number) 可以理解为移动的单位
+deltaX(Number) X轴移动的相对距离固定值
+deltaY(Number) Y轴移动的相对距离固定值
+deltaZ(Number) Z轴移动的相对距离固定值

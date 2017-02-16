@@ -1,0 +1,82 @@
+1、内容空间分2种，栈内存，堆内存，用来储存不同类型
+	1、栈内存：存储基本类型（undefined null string number boolean）的值
+				基本类型的值有固定大小，访问时按值访问
+	2、堆内存：存储引用类型的值，引用类型返回的只有Objeck(arr对象error function)
+				引用类型的地址固定大小
+
+基本类型的值是字符串，不能给基本类型添加属性，栈内存的属性是可以复制的
+引用类型，可以多个变量对同一个函数进行引用，公用的地址、数据都是相同的
+
+(arr instanceof 类型)	判定arr的类型
+
+基本类型中使用instanceof的时候必须进行实例化，就是new一个实例出来
+var arr=new String("yu");
+alert(str instanceof String);//true
+
+	问题一：
+		基本类型的值本身不包含任何方法
+	为什么：
+		预定义了三个包装类型，包装类型中包含操作数据的API，在试图对基本类型的值调用方法时，会自动创建对应包装类型的对象，封装基础类型的值，并调用对象的方法，操作值。
+		包装类型的对象，调用完方法后，自动释放
+	问题二：
+		string类型的数据，不能使用toFixed(2)
+	为什么：	
+		创建包装类型的对象前，先检查基础类型的值，在创建对应类型的包装类型对象
+		不同类型的包装类型对象，拥有不同的API，不通用
+笔试题：
+	输出str.len是多少？
+		var str="hello";
+		str.len=5;
+		console.log(str.len);//0
+		//如果想str.len始终是5
+		var str=new String(hello);
+		str.len=5;
+		console.log(str.len);
+
+2、String API  强调：所有StringAPI都无权修改原字符串，只能返回新字符串
+	1、大小写转换：将字符串中所有英文字母统一转为大写或小写
+		var newStr=str.toUpperCase();
+		var newStr=str.toLowerCase();
+		场合：只要希望不区分大小写时
+		使用：只要是不区分大小写，都要先统一转换成大写或小写，在进行比较
+	2、获取指定位置的字符：
+		var newStr=str[i];
+		var char=str.charAt(i);	//获得指定位置字符的Unicode号
+		var unicode=str.charCodeAt(i);
+		//把Unicode码转为字
+		String.fromCharCode(unicode);
+	3、选取子字符串
+		var subStr=str.slice(starti,endi+1);		支持负数
+					str.Substring(starti,endi+1);	不支持负数(含头不含尾)
+					str.substr(starti,n);		参数不是2个下标，就含头含尾
+	4、检索关键词：
+		4种方法：
+			1、查找一个固定关键词的出现位置
+				var i=str.indexOf("关键词",fromi)
+				在str中从fromi位置开始查找下一个"关键词"所在的下标位置
+				强调：
+					1、找不到，返回-1
+					2、省略fromi，默认从0开始找
+				场合：查找所有关键词的位置
+					while((i=str.indexOf("no",i+1))!=-1){
+					console.log("在位置"+i+"处发现敏感词");
+					}
+			
+				var i=str.lastIndexOf("关键词",fromi)
+				在str中从fromi位置开始查找前一个"关键词"所在的下标位置
+				强调：
+					1、省略fromi，默认从(length-1)开始找
+				场合：专门用于检索最后一个关键词的时候用
+			问题：只能查找单一的关键词
+			
+			2、用模式匹配————正则表达式:规定一个字符串中，字符出现规律的一套规则
+			为什么：现实中很多关键词的格式和内容是由规律的，但是有时不是一样的
+			场合：
+				1、按规则，模式匹配多个关键词——————检索
+				2、按规则，检查一个字符串的格式————验证
+			使用：
+				
+				
+	5、替换：
+	6、切割：
+3、正则表达式

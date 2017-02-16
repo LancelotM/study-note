@@ -1,0 +1,17 @@
+#data {
+	width: 600px;
+}
+
+#data, td, th {
+	border-collapse: collapse;
+	border: 1px solid #aaaaaa;
+}
+
+th, td {
+	height: 28px;
+}
+
+#data thead {
+	background-color: #333399;
+	color: #ffffff;
+}

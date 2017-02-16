@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+  <h3>学生查询</h3>
+  <select id="selectClass">
+    <option value="0">—请选择班级—</option>
+  </select>
+  <hr>
+  <table width="100%" border="1">
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>成绩</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbodyStudent">
+    </tbody>
+  </table>
+
+  <script>
+  /**当页面加载完成后，异步请求班级数据**/
+  window.onload = function(){
+    //1
+    var xhr = new XMLHttpRequest();
+    //2
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4){
+        if(xhr.status===200){
+          doResponse(xhr);
+        }else {
+          alert('响应完成但有问题');
+        }
+      }
+    }
+    //3
+    xhr.open('GET','2_class_select.php', true);
+    //4    
+    xhr.send( null );
+
+    function doResponse(xhr){
+      console.log('开始处理班级数据');
+      //console.log(xhr);
+      //把服务器端返回的JSON字符串解析为JS对象
+      var list = JSON.parse(xhr.responseText);
+      //console.log(list);
+      var html = '';
+      for(var i=0; i<list.length; i++){
+        var c = list[i];
+        html += `
+          <option value="${c.cid}">${c.cname}</option>
+        `;
+      }
+      selectClass.innerHTML += html;
+    }
+  }
+
+  /**监听select的选项改变事件，异步请求学生**/
+  selectClass.onchange = function(){
+    var cid = this.value;
+    if(cid==='0'){  //用户没有选择任何班级
+      return;
+    }
+    //用户选择了特定班级，异步请求该班级学生数据
+    //1
+    var xhr = new XMLHttpRequest();
+    //2   
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4){
+        if(xhr.status===200){
+          doResponse(xhr);
+        }else {
+          alert('响应完成但有问题');
+        }
+      }
+    }
+    //3
+    xhr.open('GET','4_student_select.php?cid='+cid, true);
+    //4
+    xhr.send(null);
+
+    function doResponse(xhr){
+      console.log('开始处理学生数据');
+      var list = JSON.parse(xhr.responseText);
+      //console.log(list);
+      var html = '';
+      for(var i=0; i<list.length; i++){
+        var s = list[i];  //遍历每个学生对象
+        html += `
+          <tr>
+            <td>${s.sid}</td>
+            <td>${s.sname}</td>
+            <td>${s.score}</td>
+            <td>删除</td>
+          </tr>
+        `;
+      }
+      tbodyStudent.innerHTML = html;
+    }
+  }
+  </script>
+  </body>
+</html>

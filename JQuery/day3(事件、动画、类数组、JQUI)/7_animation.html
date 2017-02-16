@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+  <style>
+    #d1{
+      border:1px solid #aaa;
+      border-radius:6px; padding:6px;
+      background-color:#eee;
+      width:200px; height:200px;
+      position:absolute; left:0; top:120px;
+    }
+  </style>   
+ </head>
+ <body>
+	<h1>jQuery动画函数——透明度动画</h1>
+  <button id="btn1">开始动画</button>
+  <div id="d1">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit labore minima in asperiores iusto velit aperiam ipsa laboriosam sunt cupiditate maxime iste tempora dolorem quas reiciendis ut vel necessitatibus consectetur.
+  </div>
+  <button id="btn2">停止动画</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $("#btn1").click(function(){
+//      $(this).next().animate({
+//        left: 200, top: 400, 
+//        /*width:400,height:400,
+//        opacity:0,
+//        fontSize:24,
+//        borderWidth:10,*/
+//        //fontFamily:"SimHei",
+//        //transform:'translate(100px,200px)',
+//        //backgroundColor:"#faa"
+//      },2000);
+//      $(this).next().animate({top:400},2000);
+      $(this).next().animate({left: 200},2000)
+                    .animate({top:400},2000);
+    });
+    $("#btn2").click(function(){
+      $(this).prev().stop(true);
+    })
+  </script>
+ </body>
+</html>

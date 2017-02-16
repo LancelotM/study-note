@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <div>
+    <input type="text" ng-model="myInput"/>
+    <p ng-bind="myInput"></p>
+
+    <!--<select ng-model="imgUrl">-->
+      <!--<option value="img/2.jpg">考拉</option>-->
+      <!--<option value="img/4.jpg">企鹅</option>-->
+      <!--<option value="img/1.jpg">水母</option>-->
+      <!--<option value="img/3.jpg">城堡</option>-->
+    <!--</select>-->
+    <!--<img ng-src="{{imgUrl}}"><br/>-->
+
+    <select ng-model="pic"
+            ng-options="pic.name for pic in pics">
+    </select>
+    <img ng-src="{{pic.src}}">
+    <br/>
+
+    <input type="checkbox" ng-model="isAgree"/>是否同意本站协议
+    <input type="button" ng-disabled='isAgree' value="提交"/>
+  </div>
+</div>
+<script>
+  angular.module('myModule',['ng'])
+    .controller('myCtrl',function($scope){
+
+      $scope.pics=[
+        {name:'考拉',src:'img/2.jpg'},
+        {name:'企鹅',src:'img/4.jpg'},
+        {name:'水母',src:'img/1.jpg'},
+        {name:'城堡',src:'img/3.jpg'}
+      ]
+      $scope.pic=$scope.pics[0]
+      console.log($scope.pic.src)
+
+      $scope.isAgree=null;
+      $scope.$watch('isAgree',function(){
+        console.log($scope.isAgree)
+      })
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body{
+      text-align: center;
+      box-sizing: border-box;
+    }
+    #p0{
+      margin:auto
+    }
+    #chosen{
+      width: 220px;
+      height: 120px;
+      border:1px solid #aaa;
+      margin: 0 auto;
+    }
+    #list{
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+<p id="chosen">
+  <img src="imgs/p0.png" id="p0">
+</p>
+<hr/>
+<div id="list">
+  <img src="imgs/p3.png" id="p3"/>
+  <img src="imgs/p4.png" id="p4"/>
+  <img src="imgs/p5.png" id="p5"/>
+</div>
+<script>
+    var planes=list.querySelectorAll('img');
+    for(var i=0;i<planes.length;i++){
+        var p=planes[i];
+        p.ondragstart=function(e){
+            e.dataTransfer.setData('planseId',this.id);
+        }
+    }
+    chosen.ondragover=function(e){
+        e.preventDefault();
+    }
+    chosen.ondrop=function(e){
+        p0.style.display='none';
+        if(chosen.children.length>1){
+            list.appendChild(p0.nextElementSibling);
+        }
+        var pid=e.dataTransfer.getData('planseId');
+        var p=document.getElementById(pid);
+        chosen.appendChild(p);
+    }
+    list.ondragover=function(e){
+        e.preventDefault();
+    }
+    list.ondrop=function(e){
+        var pid=e.dataTransfer.getData('planseId');
+        var p=document.getElementById(pid);
+        list.appendChild(p);
+        p0.style.display='block';
+    }
+</script>
+</body>
+</html>

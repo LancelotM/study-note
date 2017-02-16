@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      //定义正则表达式reg:6位数字
+      var reg=/^\d{6}$/;
+      //反复: 请用户输入密码,用reg的test方法，检查用户的输入，如果不正确
+      while(!reg.test(prompt("输入密码"))){
+        alert("密码格式不符");//提示密码格式不符
+      }//(循环结束)
+      document.write("验证通过");
+
+
+    </script>
+  </body>
+</html>

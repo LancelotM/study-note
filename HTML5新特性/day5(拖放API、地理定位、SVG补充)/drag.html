@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body{
+      margin: 0;
+      position: relative;
+    }
+    body{
+      content:'';
+      display: table;
+    }
+    #p{
+      position: absolute;
+      top:0;
+      left:0;
+    }
+  </style>
+</head>
+<body>
+<img id="p" src="img/p5.png" alt="s"/>
+<script>
+  var startX=0;
+  var startY=0;
+  p.ondragstart=function(e){
+    console.log("drag start..");
+    console.log(arguments);
+    startX=e.offsetX;
+    startY=e.offsetY;
+  };
+
+  p.ondrag=function(e){
+    console.log("drag ..");
+    console.log(arguments);
+    if(x===0&&y===0) {
+      return;
+    }
+    console.log(startX)
+    var x= e.pageX;
+    var y= e.pageY;
+    x-=startX;
+    y-=startY;
+    p.style.left=x+'px';
+    p.style.top=y+'px'
+  };
+  p.ondragend=function(e){
+    console.log("drag end..");
+    console.log(arguments);
+    var x= e.pageX;
+    var y= e.pageY;
+    x-=startX;
+    y-=startY;
+    p.style.left=x+'px';
+    p.style.top=y+'px';
+  };
+</script>
+</body>
+</html>

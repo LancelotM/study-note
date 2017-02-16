@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>自我介绍</title>
+		<link rel="Stylesheet" href="index.css"/>
+	</head>
+	<body>
+		<div id="parentDiv">
+<div id="lilei" onmouseover="" onmouseout="dialog.style.display='none'">
+</div>
+<div id="hmm" onmouseover="" onmouseout="dialog.style.display='none'">
+</div>
+			<div id="dialog">
+			</div>
+		</div>
+		<script>
+      function Student(name,age){//定义构造函数
+        this.name=name;//每个学生必须有name属性
+        this.age=age;//每个学生必须有age属性
+      }
+      Student.prototype.intr=function(){
+        console.log(
+          "I'm "+this.name+", I'm "+this.age);
+      }
+      Student.prototype.className="初一2班";
+      var lilei=new Student("Li Lei",11);
+      var hmm=new Student("Han Meimei",12);
+//      console.log(lilei.className);
+//      console.log(hmm.className);
+      Student.prototype.className="初二2班";
+//      console.log(lilei.className);
+//      console.log(hmm.className);
+
+      function checkProp(obj,propName){
+        //如果obj中包含propName的自有属性
+        if(obj.hasOwnProperty(propName)){
+          console.log("自有");//就输出自有
+        }else if(obj[propName]){
+        //否则,如果obj的propName属性不是undefined
+          console.log("共有");//就输出共有
+        }else{//否则
+          console.log("没有");//就输出没有
+        }
+      }
+//      checkProp(lilei,"name");//自有
+//      checkProp(lilei,"className");//共有
+//      checkProp(lilei,"bal");//没有
+      //console.dir(lilei);
+		</script>
+	</body>
+</html>

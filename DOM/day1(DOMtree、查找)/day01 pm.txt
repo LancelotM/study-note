@@ -1,0 +1,150 @@
+正课:
+1. DOM
+   什么是
+***DOM Tree
+   查找
+     按节点间关系查找
+     遍历
+     查找API
+        按HTML查找(了解)
+        按Selector查找
+
+1. 什么是: Document Object Model
+     专门操作HTML内容的API
+   原生js: ES(核心语法)
+              +DOM(操作网页内容的API)  3天
+              +BOM(操作浏览器窗口的API) 2天
+   DOM: W3C 专门操作HTML内容的API标准
+
+   DOM分为: 
+       核心DOM: 能够操作所有结构化文档(HTML, XML)
+           万能, 繁琐
+       HTML DOM: 专门操作HTML内容的API
+           对部分常用API的简化
+           简单,  不是万能！
+       真正开发: 先用简单的！如果简单的实现不了，再用核心DOM补充
+
+2. ***DOM Tree: 
+   HTML中每个内容(元素,属性,文本)都是一个节点对象(Node)
+   所有节点对象都以树形结构存储在一起
+   document对象是整棵树的根节点
+   所有Node对象都是document的子代节点
+   今后，实现任何功能前，必须在头脑中构建出一个树形结构
+
+   节点对象: Node 是所有节点对象的父类型 
+      三大属性: 
+      nodeType: 节点类型  number
+         专门区分节点的类型:
+         document: 9
+         element:    1
+         attribute:   2
+         text:           3
+         问题: 无法进一步区分元素的标签名
+      nodeName: 节点名
+         专门区分节点的名称:
+         document: #document
+         element:    标签名(全大写)
+         attribute:   属性名
+         text:           #text
+      nodeValue: 节点值（了解）
+         document: null
+         element:    null
+         attribute:   属性值
+         text:           文本的内容
+          
+***DOM操作: 都要先找到元素，再修改元素
+        四大操作: 查找，修改，添加，删除
+
+3. ***查找: 
+ 1. 三个元素不用找，可直接获得: 
+     <html>  document.documentElement
+     <head> document.head
+     <body> document.body
+ 2. 节点间关系:  2大类： 
+    何时: 只要已经获得了一个节点，找周围节点时
+    节点树: 包含所有节点(元素,文本)的完整的树结构
+     1. 父子关系: elem.parentNode  返回一个父节点对象
+                         elem.childNodes   返回子节点对象的集合
+                         elem.firstChild      返回第一个子节点对象
+                         elem.lastChild       返回最后一个子节点对象
+     2. 兄弟关系: 
+           elem.previousSibling  : 返回当前节点的前一个兄弟节点
+           elem.nextSibling : 返回当前节点的下一个兄弟节点: 
+    问题: 不但包含有用的元素节点，还包含看不见的换行/空格干扰
+    解决: 今后只要仅关心元素节点时，就可用元素树
+   元素树: 仅包含元素节点的树结构
+     1. 父子关系: elem.parentElement  返回一个父元素对象
+                         elem.children       返回子元素对象的集合
+            elem.firstElementChild      返回第一个子元素对象
+            elem.lastElementChild       返回最后一个子元素对象
+     2. 兄弟关系: 
+            返回当前节点的前一个兄弟元素
+            elem.previousElementSibling  : 
+            返回当前节点的下一个兄弟元素: 
+            elem.nextElementSibling :
+
+***elem.childNodes和elem.children返回的都是动态集合: 
+     动态集合(live collection): 不实际存储元素和属性值
+                                             每次访问集合都重新查找DOM树
+     遍历动态结合: 
+        错误: for(var i=0;i<children.length;i++)
+           后果,循环了几次，就重复查找了几次DOM树
+        解决: for(var i=0,len=children.length; i<len; i++)
+           仅在循环开始时查找一次DOM树，将值另存为在len中
+
+  3. 递归遍历: 查找指定父节点下所有子代节点——鄙视题 手写
+      如何: 2步: 
+         1. 先遍历所有直接子节点
+         2. 在遍历直接子节点时，对每个子节点调用和父节点完全相同的方法。
+      算法: 深度优先遍历: 每次都优先遍历子节点
+                                  所有子节点遍历完，才返回遍历兄弟节点
+      递归的效率: 极低。
+      解决: 绝大多数递归都可用循环代替
+
+      遍历API: 每次仅遍历下一个节点，可用循环反复执行(了解)
+        1. 节点迭代器: 
+           如何: 2步: 
+             1. 创建迭代器对象: 
+               var iterator=document.createNodeIterator(
+	  parent,NodeFilter.SHOW_ALL,   null,   false
+                                                .SHOW_ELEMENT
+               );
+             2. var 原先的节点对象=
+                      iterator.nextNode(); 跳到下一个节点
+                 如果返回null，说明到头了
+        内置的就是深度优先遍历算法。
+
+   4. 按HTML查找: 在整个页面或指定父元素下，查找属性或标签符合要求得元素对象。
+     何时: 只要按基本的条件有选择的查找元素时
+     4种: 
+       1. 按id查找: 
+           var elem=document.getElementById("id");
+           强调: 只能用document调用！
+                    仅返回一个元素! 
+       2. 按标签名查找:
+          var elems=parent.getElementsByTagName("标签名");
+           强调: 任何父元素都能调用！
+                    返回父元素下所有同名标签的元素的集合!
+                        即使仅返回一个元素，也会放在集合中
+                           如果想取出唯一的一个元素，必须加[0]
+                    不仅查找直接子节点，而且查找所有子代节点
+       3. 按name属性查找: (了解)
+        var elems=document.getElementsByName("name");           4. 按class属性查找: (了解) (兼容性问题)
+        var elems=parent.getElementsByClassName("class");
+
+   练习: 
+      关于this: 
+      在事件处理函数中this->可自动获得事件绑定的元素对象
+      何时: 只要处理函数的逻辑中必须当前元素才能正常执行时
+      反之: 如果函数的逻辑中不需要当前元素也能正常执行时
+               就不用加this！
+      DOM操作的固定套路: 
+        绑定事件->找元素->修改/计算
+
+
+
+
+
+
+
+

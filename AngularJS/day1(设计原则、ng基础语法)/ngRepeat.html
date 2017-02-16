@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="AngularJS-1.4.1/js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+  <h1>Hello AngularJS</h1>
+  <table border="1" cellspacing="0" cellpadding="10"
+         ng-init="list=[
+          {id:'1',name:'tony',sex:'male',score:59},
+          {id:'2',name:'mary',sex:'male',score:70},
+          {id:'3',name:'allice',sex:'female',score:100}]">
+    <thead>
+     <tr >
+        <!--<th ng-repeat="(key,value) in list">{{value}}</th>-->
+       <th>id</th>
+       <th>name</th>
+       <th>sex</th>
+       <th>score</th>
+     </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="obj in list">
+        <td ng-repeat="(key,value) in obj">{{value}}</td>
+      </tr>
+  </table>
+  <span ng-init="car={name:'BMW',price:50}"></span>
+  <span ng-init="arr=[10,20,30]"></span>
+  <p>{{car.name}}</p>
+  <p>{{arr[0]}}</p>
+</body>
+</html>

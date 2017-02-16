@@ -1,0 +1,56 @@
+margin强势激进
+
+一、margin与容器的尺寸
+
+1、元素尺寸：
+可视尺寸-ClientWidth(标准)
+占据尺寸-OuterWidth(YY)
+
+1.margin与可视尺寸
+（1）适用于没有设定width/height的普通block水平元素
+（2）只适用于水平方向尺寸
+如何应用这一特性？
+
+一侧定宽的自适应布局
+<img src="xx.jpg" width="150" style="float:left;">
+<p style="margin-left:170px;"></p>
+
+两端对齐布局
+
+2.margin与占据尺寸
+（1）block/inline-block水平元素均适用
+（2）与有没有设定width/height值无关
+（3）适用于水平方向和垂直方向
+如何利用这一特性？
+
+滚动容器内上下留白
+<div style="height:200px;">
+	<img src="xx/jpg" height="300" style="margin:50px 0;">
+</div>
+
+以及等高布局
+
+二、margin与百分比单位
+
+1、普通元素的百分比margin的计算规则
+1.img{ margin:10%; } (默认情况下是top和left，而且都是相对于容器的宽度计算的)
+2、绝对定位元素的百分比margin
+2.img{ margin:10%; position:absolute; } (默认情况下是top)
+是相对于第一个定位祖先元素(relative/absolute/fixed)的宽度计算的
+如何利用这一特性？
+
+宽高2:1自适应矩形
+.box{ backfround-color:olive; overflow: hidden; }
+.box>div{margin:50%}
+
+三、margin重叠如何发生，存在的价值
+
+margin重叠通常特性：
+1、block水平元素（不包括float和absolute元素）
+2、不考虑writing-mode,只发生在垂直方向（margin-top/bottom）
+
+margin重叠3种情景：
+1、相邻的兄弟元素
+2、父级和第一个/最有一个子元素
+3、空的block元素
+

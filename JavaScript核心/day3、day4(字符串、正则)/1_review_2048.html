@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title>标题</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var data=[
+        [2,4,2,4],//.length总列数
+        [4,8,4,8],
+        [2,4,2,4],
+        [4,2,4,2],
+      ]//.length=>总行数
+      function isGameOver(){  
+        for(var r=0;r<data.length;r++){//遍历data
+          for(var c=0;c<data[r].length;c++){
+            //如果当前元素是0,就返回false
+            if(data[r][c]===0){return false}
+            //如果c<当前行的length-1
+              //且当前元素等于右侧元素
+            if(c<data[r].length-1
+                &&data[r][c]===data[r][c+1]){
+              return false;//就返回false
+            }
+            //如果r<data的行数-1
+              //且当前元素等于下方元素
+            if(r<data.length-1
+               &&data[r][c]===data[r+1][c]){
+              return false;//就返回false
+            }
+          }
+        }//(遍历结束)
+        return true;//返回true
+      }
+      console.log(isGameOver());//true/false
+    /*
+      //在随机位置生成一个2或4
+      function randomNum(){
+        while(true){//反复: 
+          //在0~3之间生成随机行号r
+          var r=parseInt(Math.random()*4);
+          //在0~3之间生成随机列号c
+          var c=parseInt(Math.random()*4);
+          if(data[r][c]==0){//如果data中r行c列为0
+            //设置data中r行c列为:
+              //随机生成一个小数,如果<0.5就选2，否则选4
+            data[r][c]=Math.random()<0.5?2:4;
+            break;//退出循环
+          }
+        }
+      }
+      randomNum(); randomNum();
+      console.log(data.join("\n"));
+    */
+    </script>
+  </body>
+</html>

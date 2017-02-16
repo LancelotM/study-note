@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {
+      text-align: center;
+    }
+    canvas {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h3>绘制路径——图像</h3>
+  <canvas id="c3" width="600" height="400"></canvas>
+  <script>
+    var ctx = c3.getContext('2d');
+
+    var p3 = new Image();
+    p3.src = "img/p3.png";
+    //console.log(p3.width + ' - ' + p3.height ); //0-0
+    p3.onload = function(){
+      console.log('图片p3加载完成')
+      console.log(p3.width + ' - ' + p3.height );
+      //画布左上角的小飞机
+      ctx.drawImage(p3, 0, 0);
+      //ctx.drawImage(p3, 0, 0, 100, 300);
+
+      //画布右上角的小飞机
+      ctx.drawImage(p3, 600-p3.width, 0);
+
+      //画布左下角的小飞机
+      ctx.drawImage(p3, 0, 400-p3.height);
+
+      //画布右下角的小飞机
+      ctx.drawImage(p3, 600-p3.width, 400-p3.height);
+
+      //画布正中央的小飞机
+      ctx.drawImage(p3, 300-200,200-100, 200*2, 100*2);
+    }
+
+
+  </script>
+</body>
+</html>

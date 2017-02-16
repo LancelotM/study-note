@@ -1,0 +1,76 @@
+/*测试属性*/
+#top_main,#nav,#banner,#main,#foot_box,#footer{
+	border:1px solid #000;
+}
+/*通用属性*/
+body{
+	margin:0;
+	padding:0;
+	font:12px "microsoft yahei",Arial,Helvetica,sans-serif;
+	color:#666;
+}
+a{
+	color:#666;
+	text-decoration:none;
+}
+a:hover{
+	color:#ff0700;
+	text-decoration:underline;
+}
+h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.lf{float:left;}
+.rt{float:right;}
+.clear{clear:both;}
+/*************************************/
+/***1、布局***/
+#top_box,#top_main,#nav,#banner,#main,#foot_box,#footer{
+	/*宽度，元素水平居中对齐*/
+	width:1211px;
+	margin:0 auto;
+}
+#top{
+	width:100%;
+	height:30px;
+	border-bottom:1px solid #eee;
+	background:#f7f7f7;
+	line-height:30px;
+	box-sizing:border-box;
+}
+#top>img{
+	margin:9px;
+}
+#top>ul{
+	height:100%;
+}
+#top>ul>li{
+	float:left;
+}
+#top b{
+	border-left:1px solid black;
+	margin:0 8px;
+}
+.vip{
+	background:url(Images/vip.jpg) no-repeat left center; 
+	padding-left:30px;
+}
+.com{
+	display:inline-block;
+	background:url(Images/dakehu.jpg) no-repeat left center;
+	padding-left:30px;
+}
+.service{
+	position:relative;
+}
+.list{
+	position:absolute;
+	background:#fff;
+	border:1px solid black;
+	display:none;
+}
+.service::active list {
+	display:block;
+	}

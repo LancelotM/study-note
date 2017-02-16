@@ -1,0 +1,81 @@
+track by $index //允许数组中的数据可以重复
+webView phoneGap Ionic
+
+webView是一个Android原生的组件（uiWebView -》iOS），混合编程的基本工作原理
+phoneGap是一个平台，webView是无法直接去调用底层的硬件接口，phoneGap是提供一些以plugin为基本单位的JSAPI，调用加速度传感器、设备信息、核心API。。
+Ionic中基于js的扩展(指令和服务)来实现各种效果。
+
+	1、ion-header-bar ion-footer-bar ion-content
+		align-title='left/ritght/center'
+
+	2、ion-refresher 下拉刷新
+		ion-refresher作为ion-content的第一个元素
+		<ion-refresher pulling-text='下拉刷新' on-refresh='refresh()'>
+		</ion-refresher>
+		结束刷新动作：
+		$scope.$broadcast('scroll.refreshComplete');
+	3、ion-infinite-scroll 上拉加载更多
+		ion-infinite-scroll作为ion-content的最后一个元素
+		<ion-infinite-scroll on-infinite='loadMore()' immediate-check='false'>
+		</ion-infinite-scroll>
+		结束加载更多的动作
+		$scope.$broadcast('scroll.infiniteScrollComplete');
+	4、$ionicScrollDelegate 处理和滚动的方法
+		方法：
+		scrollTop\scrollBottom\scrollTo\getScrollPosition()
+	5、ionTabs
+		<ion-tabs class='tabs-positive tabs-icon-left/right/only'></ion-tabs>
+		<ion-tab title='123'  ng-click='func1()' icon-on/off=''>
+	6、侧边栏菜单(面板、抽屉)
+		<ion-side-menus>
+			<ion-side-menu-content></ion-side-menu-content>
+			<ion-side-menu side='left/right' width=''></ion-side-menu>
+		</ion-side-menus>
+		方式1：扩展属性
+			menu-toggle='left/right'
+			menu-close
+		方式2：js的方式
+			$ionicSideMenuDelegate:
+			toggleLeft(true/false)
+			toggleRight(true/false)
+			isOpenLeft/right()
+	7、$ionicModal 自定义弹窗
+		$ionicModal.fromTemplate/fromTemplateUrl('url',{scope:$scope}).then(function(modall){})
+		ionicModal是一个实例，在这个实例：show()/hide()/remove()..
+	8、$ionicActionSheet 操作表
+		$ionicActionSheet.show({
+			buttons:
+			buttonClicked:
+			titleText:
+			destructiveText:
+			destructiveButtonClicked
+			cancelText:
+			cance:function
+		})
+	9、$ionicPopup
+		alert/prompt/confirm
+	10、$ionicLoading
+		用一个覆盖层表示当前处于活动状态，来阻止用户的交互动作
+		$ionicLoading.show()/hide()
+	11、UI-Router:UI-Router不是ng的官方的东西，确实在企业中用的比较多一个实现SPA的路由管理框架，是一个以状态为基本单位的状态机。
+		ngRoute：是ng官方提供的路由管理模块
+			①引入对应的文件，创建模块时，指定依赖于ngRoute模块
+			②指定容器 ngView
+			③创建代码片段
+			④路由词典
+				app.config(function($routeProvider){
+					$routeProvider.when().otherwise()
+				})
+			⑤直接修改地址栏、js($location.path('/路由'))、a href='#/路由'
+			⑥传参：明确发送和接收、配置接收方的路由、$routeParams
+			uiRouter：以状态为基本单位
+			①引入ionic-bundle.js、指定依赖于ionic模块
+			②指定容器
+				ui-view
+			③创建代码片段
+			④设置状态
+				app.config(function($stateProvider,$urlRouterProvider){
+					$stateProvider.state('',{})
+					$urlRouterProvider.otherwise('myPerson')
+				})
+			⑤直接修改地址栏、超链接（href='#/url'）、js（$state.go('状态名称')）、扩展属性ui-sref='home'

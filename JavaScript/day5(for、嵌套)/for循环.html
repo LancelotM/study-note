@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>标题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function js(){
+			for(i=1;i<=1000;i++){
+				if(i%2==1){
+				console.log(i);
+				}
+			}
+		}
+		function sum_os(){
+			var sum=0;
+			for(i=1;i<=1000;i++)
+			if(i%2==0){
+				sum+=i
+			}
+			console.log(sum);
+		}
+	</script>
+	<button onclick="js();">打印1-1000所有的奇数</button>
+	<button onclick="sum_os();">打印1-1000所有偶数的和</button>
+</body>
+</html>

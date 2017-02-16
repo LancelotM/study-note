@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		#target {
+			border: 1px solid #eee;
+			border-radius: 6px;
+			padding: 10px;
+			transition: all .5s linear;
+		}
+		#target.over {
+			border: 2px solid #aaa;
+			box-shadow: 0 0 6px #aaa;
+		}
+	</style>
+ </head>
+ <body>
+  <h1>补充：使用hover(fn,fn)函数监听mouseover和mouseout两个事件</h1>
+
+	<h3>鼠标悬停在div上方，则突出显示；移出则取消突出显示</h3>
+	<div id="target">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate voluptates veniam eius numquam ullam ad repellat eveniet excepturi facilis deleniti necessitatibus fuga in itaque obcaecati porro dolores distinctio suscipit odio.</p>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		$("#target").hover(
+      function(){$(this).toggleClass("over");}
+    );
+	</script>
+ </body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+	<head>
+		<title>标题</title>
+		<meta charset="utf-8">
+		<style>
+			#stage{
+				width:800px;
+				height:400px;
+				margin:0 auto;
+				/*perspective*/
+				perspective:1200px;
+			}
+			#parent{
+				width:800px;
+				height:400px;
+				position:relative;
+				transform-style:preserve-3d;
+				animation:scoll 6s linear infinite reverse;
+				transform:rotatex(-30deg);
+
+			}
+			#parent:hover{
+				animation-play-state:paused;
+			}
+			#parent div{
+				width:100px;
+				height:100px;
+				background:#E4393C;
+				position:absolute;
+				left:350px;
+				top:150px;
+			}
+
+			#parent div:nth-child(1){
+				transform:rotatey(0deg) translatez(200px);
+			}
+			#parent div:nth-child(2){
+				transform:rotatey(60deg) translatez(200px);
+			}
+			#parent div:nth-child(3){
+				transform:rotatey(120deg) translatez(200px);
+			}
+			#parent div:nth-child(4){
+				transform:rotatey(180deg) translatez(200px);
+			}
+			#parent div:nth-child(5){
+				transform:rotatey(240deg) translatez(200px);
+			}
+			#parent div:nth-child(6){
+				transform:rotatey(300deg) translatez(200px);
+			}
+			@keyframes scoll{
+				0%{transform:rotatey(0deg) translatez(200px);}
+				17%{transform:rotatey(60deg) translatez(200px);}
+				34%{transform:rotatey(120deg) translatez(200px);}
+				51%{transform:rotatey(180deg) translatez(200px);}
+				68%{transform:rotatey(240deg) translatez(200px);}
+				84%{transform:rotatey(300deg) translatez(200px);}
+				100%{transform:rotatey(360deg) translatez(200px);}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="stage">
+			<div id="parent">
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+				<div>5</div>
+				<div>6</div>
+			</div>
+		</div>
+	</body>
+</html>
